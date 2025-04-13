@@ -40,11 +40,11 @@ Student ID: Redacted
     display: flex;
     justify-content: center;
     gap: 50px;
-    height: 475px;
+    height: 550px;
 }
 
 #contents-1-content {
-    height: 400px;
+    height: 375px;
     width: 875px;
     border-style: solid;
     border-radius: 20px;
@@ -70,11 +70,11 @@ Student ID: Redacted
     display: flex;
     justify-content: center;
     gap: 25px;
-    height: 500px;
+    height: 550px;
 }
 
 .contents-2-content {
-    height: 500px;
+    height: 475px;
     width: 300px;
     border-style: solid;
     border-radius: 20px;
