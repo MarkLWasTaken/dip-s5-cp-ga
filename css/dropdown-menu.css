@@ -1,0 +1,72 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */
+
+/*	The container <div> - needed to position the dropdown content	*/
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/*	Dropdown Content (Hidden by Default)	*/
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+
+	text-align: left;
+
+    opacity: 0;
+
+	transition: opacity 0.5s ease-in-out;
+	-o-transition: opacity 0.5s ease-in-out; /* Opera < 12.1 */
+	-ms-transition: opacity 0.5s ease-in-out; /* Internet Explorer */
+	-moz-transition: opacity 0.5s ease-in-out; /* Firefox < 16 */
+	-webkit-transition: opacity 0.5s ease-in-out; /* Safari, Chrome and Opera > 12.1 */
+}
+
+/*	Show the dropdown menu on hover	*/
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown-content:hover {
+    opacity: 1;
+
+	transition: opacity 0.5s ease-in-out;
+	-o-transition: opacity 0.5s ease-in-out; /* Opera < 12.1 */
+	-ms-transition: opacity 0.5s ease-in-out; /* Internet Explorer */
+	-moz-transition: opacity 0.5s ease-in-out; /* Firefox < 16 */
+	-webkit-transition: opacity 0.5s ease-in-out; /* Safari, Chrome and Opera > 12.1 */
+}
+
+/*	Links inside the dropdown	*/
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+
+	transition: all ease-in .2s;
+	-o-transition: all ease-in .2s; /* Opera < 12.1 */
+	-ms-transition: all ease-in .2s; /* Internet Explorer */
+	-moz-transition: all ease-in .2s; /* Firefox < 16 */
+	-webkit-transition: all ease-in .2s; /* Safari, Chrome and Opera > 12.1 */
+}
+
+/*	Change color of dropdown buttons on hover	*/
+.dropdown-content a:hover {
+	background-color: #bbbbbb;
+}
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */

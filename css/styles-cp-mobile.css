@@ -1,0 +1,156 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */
+
+@media only screen and (max-width: 1080px) {
+    #header {
+        position: absolute;
+        width: 100%;
+    }
+
+    /* Hidden block when the element is in absolute position. */
+    .hidden-header-mobile {
+        height: 150px;
+    }
+
+    #menu-buttons, #menu-button {
+        display: none;
+    }
+
+    /* Display line break only in desktop design. */
+    .desktop-line-break {
+        display: none;
+    }
+
+    #footer-container {
+        position: absolute;
+        width: 100%;
+        height: 340px;
+    }
+
+    #footer-container-3 {
+        display: none;
+    }
+
+    #footer-container-3-mobile {
+        position: absolute;
+        display: block;
+    }
+
+    /* Hidden block when the element is in absolute position. */
+    .hidden-footer-container-3-mobile {
+        width: 100%;
+        height: 225px;
+    }
+
+    /* Display line break only in mobile design. */
+    .mobile-line-break {
+        display: block;
+    }
+
+    #footer-container-2 {
+        margin: 0 auto;
+        padding-top: 3%;
+        clear: both;
+    }
+
+    #content1, #content2, #content3 {
+        position: absolute;
+        width: 98%;
+        height: 200px;
+    }
+
+    #contents-container {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 800px;
+        gap: normal;
+        padding-left: 1%;
+        display: block;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .welcome {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
+
+    /* Hidden block when the element is in absolute position. */
+    .hidden-welcome {
+        display: inline;
+    }
+    
+    .content-circle-image {
+        display: none;
+    }
+
+    .content1-spacing-mobile {
+        height: 250px;
+    }
+
+    .content2-spacing-mobile {
+        height: 250px;
+    }
+
+    .content-image {
+        display: none;
+    }
+
+    .side-navigation-menu-button-mobile {
+        height: 50px;
+        background-color:lightblue;
+        border-style: solid;
+        text-align: center;
+        /* margin: auto; */
+        float: left;
+        padding: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+    
+        -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+        -moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+        -ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+        -o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+        transition: background-color 0.3s, transform 0.3s linear;
+        
+        border-radius: 5px;
+
+        z-index: 6;
+
+        display: block;
+        position: sticky;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+    
+    .side-navigation-menu-button-mobile:hover {
+        background-color: rgb(170, 170, 40);
+    
+        transform: scale(1.15);
+    
+        -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+        -moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+        -ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+        -o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+        transition: background-color 0.3s, transform 0.3s linear;
+
+        z-index: 6;
+
+        display: block;
+        position: sticky;
+    }
+}
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */

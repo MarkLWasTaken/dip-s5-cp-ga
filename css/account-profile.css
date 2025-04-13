@@ -1,0 +1,53 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M5
+Student ID: Redacted
+ */
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    color: #333;
+}
+.profile-info {
+    margin-bottom: 20px;
+}
+.profile-info label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #555;
+}
+.profile-info input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.btn {
+    display: block;
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+}
+.btn:hover {
+    background: #0056b3;
+}
+/* 
+End of the lines/blocks of codes
+Developed by M5
+Student ID: Redacted
+ */

@@ -1,0 +1,37 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */
+
+#account-logout-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 350px;
+}
+
+#account-logout-content {
+    height: 300px;
+    width: 750px;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    background-color: lightyellow;
+}
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */

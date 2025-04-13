@@ -1,0 +1,129 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */
+
+/* query-table-content-1 */
+.query-table-content-1 table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.query-table-content-1 tr {
+    height: 40px;
+}
+
+.query-table-content-1 th, .query-table-content-1 td {
+    border: 1px solid black;
+}
+
+.query-table-content-1 th {
+    width: 40%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.query-table-content-1 td {
+    width: 375px;
+    padding: 10px;
+}
+
+/* query-table-content-2 */
+.query-table-content-2 table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.query-table-content-2 tr {
+    height: 40px;
+}
+
+.query-table-content-2 th, .query-table-content-2 td {
+    border: 1px solid black;
+}
+
+.query-table-content-2 th {
+    width: 40%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.query-table-content-2 td {
+    width: 375px;
+    padding: 10px;
+}
+
+/* query-table-content-3 */
+.query-table-content-3 table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.query-table-content-3 tr {
+    height: 40px;
+}
+
+.query-table-content-3 th, .query-table-content-3 td {
+    border: 1px solid black;
+}
+
+.query-table-content-3 th {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.query-table-content-3 td {
+    padding: 10px;
+}
+
+.query-table-email-field {
+    width: 350px;
+    font-size: 18px;
+}
+
+.table-names-cb {
+    width: 350px;
+    font-size: 18px;
+}
+
+input[type="text"] {
+    width: 350px;
+    font-size: 18px;
+}
+
+.radio-choice {
+    height: 50px;
+}
+
+.radio-choices {
+    width: 350px;
+    height: 30px;
+
+}
+
+.hidden-div {
+    height: 40px;
+}
+
+.subscription-text-field {
+    width: 80%;
+    font-size: 16px;
+}
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */

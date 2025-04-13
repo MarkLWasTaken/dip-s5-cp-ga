@@ -1,0 +1,462 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */
+
+/*
+This file contains the codes for the website desktop design.
+*/
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    background-color: lightgray;
+    margin: 0;
+    /* padding: 0; */
+    font-family: Verdana, sans-serif;
+}
+
+/* img {
+    vertical-align: middle;
+} */
+
+.black-hyperlink {
+    color: black;
+    text-decoration: none;
+}
+
+#basket {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+#header {
+    height: 150px;
+    width: 1080px;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    /* margin: auto; */
+    border-radius: 0px 0px 20px 20px;
+
+    z-index: 1;
+}
+
+.website-title {
+    font-weight: bold;
+    font-size: 30px;
+
+    z-index: 1;
+}
+
+.title-and-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+}
+
+.title-and-image-content {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.header-image {
+    height: 75px;
+    width: 75px;
+}
+
+/* .page-title-container {
+    height: 75px;
+    width: fit-content;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.page-title-content {
+    margin: auto;
+} */
+
+/* Home */
+.page-title-container-1 {
+    height: 75px;
+    width: 15%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+.page-title-content {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
+/* Quizzes */
+.page-title-container-2 {
+    height: 75px;
+    width: 18%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+/* Tips */
+.page-title-container-3 {
+    height: 75px;
+    width: 13%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+/* Donations */
+.page-title-container-4 {
+    height: 75px;
+    width: 23%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+/* Contact us */
+.page-title-container-4 {
+    height: 75px;
+    width: 25%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+/* About us */
+.page-title-container-5 {
+    height: 75px;
+    width: 24%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+.header-circle-image {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    padding: 10px;
+}
+
+.account-circle-image {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    padding: 10px;
+}
+
+#menu-buttons {
+    margin-right: 20px;
+    background: gray;
+    border-style: solid;
+    height: 90px;
+    width: 1080px;
+    padding-top: 20px;
+    
+    display: flex;
+    justify-content: center; /* Center the links */
+    gap: 10px; /* Add some spacing in between the buttons */
+
+    /* Ensures the navigation bar always sticks
+    to the top of the webpage while scrolling*/
+    position: sticky;
+    top: 1%;
+
+    border-radius: 20px;
+
+    z-index: 5;
+}
+
+/* Unused */
+#slider {
+    height: 400px;
+    width: 900px;
+    background-color: lightgray;
+    border-style: solid;
+}
+
+.menu-button {
+    height: 50px;
+    background-color:lightblue;
+    border-style: solid;
+    text-align: center;
+    /* margin: auto; */
+    float: left;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+    
+    border-radius: 5px;
+}
+
+.menu-button:hover {
+    background-color: rgb(170, 170, 40);
+
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+#clear {
+    clear: both;
+}
+
+#footer-container {
+    background-color: rgb(90, 90, 90);
+    width: 1080px;
+    height: 375px;
+    /* float: right; */
+    /* clear: both; */
+    border-radius: 50px 50px 0px 0px;
+}
+
+#footer-container-2 {
+    padding-top: 3%;
+    float: left;
+}
+
+.footer-text {
+    color: white;
+    padding-left: 5%;
+}
+
+.footer-text-2 {
+    font-weight: bold;
+    text-decoration: underline;
+    padding-left: 5%;
+}
+
+.black-text {
+    color: black;
+}
+
+/* .justify-text {
+    text-align: justify;
+} */
+
+.white-hyperlink {
+    color: white;
+    text-decoration: none;
+}
+
+#footer-container-3 {
+    background-color: lightgray;
+    float: left;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    width: 350px;
+    height: 225px;
+    margin-left: 39%;
+    padding-top: 1%;
+    margin-top: 5%;
+    border-radius: 30px;
+}
+
+.subscribe-textbox {
+    width: 80%;
+    font-size: 16px;
+}
+
+.subscribe-button {
+    width: 80%;
+    font-size: 16px;
+}
+
+.white-hyperlink:hover {
+    text-decoration: underline;
+}
+
+.padding-bottom {
+    padding-bottom: 6%;
+}
+
+#account-container {
+    font-weight: normal;
+    font-size: 20px;
+    text-align: right;
+    float: right;
+}
+
+#contents-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 500px;
+}
+
+input[type="text"] {
+    font-size: 18px;
+}
+
+input[type="submit"] {
+    font-size: 18px;
+}
+
+.hidden-table {
+    height: 100px;
+    width: 450px;
+    border: 0px solid;
+    /* border-radius: 20px; */
+}
+
+/* a[href="#"] {
+    scroll-behavior: smooth;
+} */
+
+
+.content {
+    height: 500px;
+    width: 250px;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+.content:hover {
+    margin-top: 15px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+#content1 {
+    background-color: darksalmon;
+}
+
+#content2 {
+    background-color: yellow;
+}
+
+#content3 {
+    background-color: deepskyblue;
+}   
+
+.content-image {
+    height: 150px;
+    width: 150px;
+    padding: 10px;
+}
+
+.content-circle-image {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    padding: 10px;
+}
+
+/* Hidden block when the element is in absolute position */
+.hidden-welcome {
+    display: none;
+    opacity: 0;
+}
+
+.page-title {
+    padding-left: 5%;
+}
+
+/* Display line break only in mobile design. */
+.mobile-line-break {
+    display: none;
+}
+
+#footer-container-3-mobile {
+    background-color: lightgray;
+    float: left;
+    text-align: center;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    width: 100%;
+    height: 225px;
+    padding-top: 1%;
+    border-radius: 30px;
+    justify-content: center;
+    display: none;
+}
+
+.side-navigation-menu-button-mobile {
+    display: none;
+}
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */

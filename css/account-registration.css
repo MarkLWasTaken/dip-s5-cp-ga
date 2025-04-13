@@ -1,0 +1,54 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */
+
+#registration-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 850px;
+}
+
+#registration-content {
+    height: 800px;
+    width: 750px;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    background-color: lightyellow;
+}
+
+#registration-form {
+    margin: 0px auto;
+    border-spacing: 0;
+    background-color: #fafafa;
+    border-radius: 16px;
+}
+
+#registration-form, #registration-form th, #registration-form td {
+    border: 1px solid;
+    text-align: left;
+    padding: 20px 20px;
+}
+
+.register-button {
+    padding: 10px 30px;
+}
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+ */
