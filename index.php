@@ -257,7 +257,6 @@ Student ID: Redacted
                                     // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
-                                    User is logged in.
                                     User is not logged in.
                                     <a class="menu" href="account/login/index.php">Login</a>
                                     <a class="menu" href="account/registration/index.php">Register</a>
