@@ -96,10 +96,10 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                echo "<a href='javascript:void(0)' style='opacity: 0;'>Blank space</a>";
-                echo "<a href='javascript:void(0)'>User is not logged in.</a>";
-                echo "<a href='../../account/login/index.php' onclick='closeNav()'>Login</a>";
-                echo "<a href='#' onclick='closeNav()'>Register</a>";
+                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
+                <a href="javascript:void(0)">User is not logged in.</a>
+                <a href="../../account/login/index.php" onclick="closeNav()">Login</a>
+                <a href="../../account/registration/index.php" onclick="closeNav()">Register</a>
                 HTML;
                 echo $html;
             }
@@ -270,7 +270,7 @@ Student ID: Redacted
                                     User is logged in.
                                     User is not logged in.
                                     <a class="menu" href="../../account/login/index.php">Login</a>
-                                    <a class="menu" href="javascript:void(0)">Register</a>
+                                    <a class="menu" href="../../account/registration/index.php">Register</a>
                                     HTML;
                                     echo $html;
                                 }

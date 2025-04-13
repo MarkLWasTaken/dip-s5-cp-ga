@@ -132,10 +132,10 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                echo "<a href='javascript:void(0)' style='opacity: 0;'>Blank space</a>";
-                echo "<a href='javascript:void(0)'>User is not logged in.</a>";
-                echo "<a href='../../../account/login/index.php' onclick='closeNav()'>Login</a>";
-                echo "<a href='../../../account/registration/index.php' onclick='closeNav()'>Register</a>";
+                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
+                <a href="javascript:void(0)">User is not logged in.</a>
+                <a href="../../../account/login/index.php" onclick="closeNav()">Login</a>
+                <a href="../../../account/registration/index.php" onclick="closeNav()">Register</a>
                 HTML;
                 echo $html;
             }
@@ -196,42 +196,42 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../about/index.php">
+                <a class="black-hyperlink" href="../../../about/index.php">
                     <div class="menu-button">
                         About us
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste/index.php">
+                <a class="black-hyperlink" href="../../../e-waste/index.php">
                     <div class="menu-button">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../recycled-items/index.php">
+                <a class="black-hyperlink" href="../../../recycled-items/index.php">
                     <div class="menu-button">
                         Recycled items<br>we sell
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../services/index.php">
+                <a class="black-hyperlink" href="../../../services/index.php">
                     <div class="menu-button">
                         Services
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../faq/index.php">
+                <a class="black-hyperlink" href="../../../faq/index.php">
                     <div class="menu-button">
                         FAQ
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact/index.php">
+                <a class="black-hyperlink" href="../../../contact/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -306,7 +306,7 @@ Student ID: Redacted
                                     User is logged in.
                                     User is not logged in.
                                     <a class="menu" href="../../../account/login/index.php">Login</a>
-                                    <a class="menu" href="javascript:void(0)">Register</a>
+                                    <a class="menu" href="../../../account/registration/index.php">Register</a>
                                     HTML;
                                     echo $html;
                                 }
