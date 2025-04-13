@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2024 at 11:53 PM
+-- Generation Time: Apr 13, 2025 at 02:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,6 +52,17 @@ CREATE TABLE `donations` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ewaste`
+--
+
+CREATE TABLE `ewaste` (
+  `ewaste_id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mailing_list`
 --
 
@@ -78,6 +89,17 @@ INSERT INTO `mailing_list` (`mailing_list_id`, `email_address`, `is_subscribed`,
 (8, 'hmartonfi7@guardian.co.uk', 1, '2024-09-16', ''),
 (9, 'hsuddock8@irs.gov', 1, '2024-11-15', ''),
 (10, 'caizikovitz9@time.com', 1, '2024-12-17', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recycled_items`
+--
+
+CREATE TABLE `recycled_items` (
+  `recycled_items_id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -166,10 +188,22 @@ ALTER TABLE `donations`
   ADD PRIMARY KEY (`donation_id`);
 
 --
+-- Indexes for table `ewaste`
+--
+ALTER TABLE `ewaste`
+  ADD PRIMARY KEY (`ewaste_id`);
+
+--
 -- Indexes for table `mailing_list`
 --
 ALTER TABLE `mailing_list`
   ADD PRIMARY KEY (`mailing_list_id`);
+
+--
+-- Indexes for table `recycled_items`
+--
+ALTER TABLE `recycled_items`
+  ADD PRIMARY KEY (`recycled_items_id`);
 
 --
 -- Indexes for table `users`
@@ -195,24 +229,29 @@ ALTER TABLE `donations`
   MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `ewaste`
+--
+ALTER TABLE `ewaste`
+  MODIFY `ewaste_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `mailing_list`
 --
 ALTER TABLE `mailing_list`
   MODIFY `mailing_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `recycled_items`
+--
+ALTER TABLE `recycled_items`
+  MODIFY `recycled_items_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table ``
---
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -39,11 +39,11 @@ Student ID: Redacted
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free web tutorials for everyone">
-    <meta name="keywords" content="HTML and CSS">
-    <meta name="author" content="CodingAssessment Group">
+    <meta name="description" content="E-waste management system for everyone.">
+    <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
+    <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>CodingAssessment - Account Registration</title>
+    <title>Quantum E-waste Management System - Account Registration</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
@@ -61,28 +61,54 @@ Student ID: Redacted
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../quizzes/index.php" onclick="closeNav()">Quizzes</a>
-        <!-- <a href="../../tips/index.php" onclick="closeNav()">Tips</a> -->
-        <a href="../../donations/index.php" onclick="closeNav()">Donations</a>
-        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
         <a href="../../about/index.php" onclick="closeNav()">About us</a>
+        <a href="../../e-waste/index.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="../../recycled-items/index.php" onclick="closeNav()">Recycled items we sell</a>
+        <a href="../../services/index.php" onclick="closeNav()">Services</a>
+        <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
+        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
         <?php
+            // If the user is logged in.
             if (isset($_SESSION['email_address'])) {
-                echo "<a href='javascript:void(0)' style='opacity: 0;'>Blank space</a>";
-                echo "<a href='javascript:void(0)'>User is logged in.</a>";
-                echo "<a href='../../account/profile/index.php' onclick='closeNav()'>Profile</a>";
-                // echo "<a href='../../account/results/index.php' onclick='closeNav()'>Results</a>";
-                echo "<a href='../../account/logout/index.php' onclick='closeNav()'>Logout</a>";
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
+                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
+                <a href="javascript:void(0)">User is logged in.</a>
+                <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
+                <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
+                <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
+                <a href="../../e-waste-request-screening/index.php" onclick="closeNav()">E-waste request screening</a>
+                <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
+                <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
+                <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+                <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
+                HTML;
+                echo $html;
             }
+            // If the user is not logged in.
             else {
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
                 echo "<a href='javascript:void(0)' style='opacity: 0;'>Blank space</a>";
                 echo "<a href='javascript:void(0)'>User is not logged in.</a>";
                 echo "<a href='../../account/login/index.php' onclick='closeNav()'>Login</a>";
                 echo "<a href='#' onclick='closeNav()'>Register</a>";
+                HTML;
+                echo $html;
             }
-
+            // If the user is logged in as an admin.
             if (@$is_admin == 1) {
-                echo "<a href='../../admin/index.php' onclick='closeNav()'>Admin</a>";
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
+                <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+                <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
+                <a href="../../admin/e-waste-request-screening/index.php" onclick="closeNav()">E-waste request acceptance (Admin)</a>
+                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+                HTML;
+                echo $html;
             }
         ?>
     </div>
@@ -104,7 +130,7 @@ Student ID: Redacted
                     <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
                 </div>
                 <div class="title-and-image-content">
-                    CodingAssessment
+                    Quantum E-waste
                 </div>
             </div>
         </div>
@@ -129,23 +155,37 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../quizzes/index.php">
+                <a class="black-hyperlink" href="../../about/index.php">
                     <div class="menu-button">
-                        Quizzes
+                        About us
                     </div>
                 </a>
             </div>
-            <!-- <div>
-                <a class="black-hyperlink" href="../../tips/index.php">
+            <div>
+                <a class="black-hyperlink" href="../../e-waste/index.php">
                     <div class="menu-button">
-                        Tips
+                        E-waste<br>we buy
                     </div>
                 </a>
-            </div> -->
+            </div>
             <div>
-                <a class="black-hyperlink" href="../../donations/index.php">
+                <a class="black-hyperlink" href="../../recycled-items/index.php">
                     <div class="menu-button">
-                        Donations
+                        Recycled items<br>we sell
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a class="black-hyperlink" href="../../services/index.php">
+                    <div class="menu-button">
+                        Services
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a class="black-hyperlink" href="../../faq/index.php">
+                    <div class="menu-button">
+                        FAQ
                     </div>
                 </a>
             </div>
@@ -153,13 +193,6 @@ Student ID: Redacted
                 <a class="black-hyperlink" href="../../contact/index.php">
                     <div class="menu-button">
                         Contact us
-                    </div>
-                </a>
-            </div>
-            <div>
-                <a class="black-hyperlink" href="../../about/index.php">
-                    <div class="menu-button">
-                        About us
                     </div>
                 </a>
             </div>
@@ -198,6 +231,8 @@ Student ID: Redacted
                     <div class="dropdown">
                         <div class="menu-button">
                             <?php
+                                // Check if the user account is logged in or not and display
+                                // the relevant contents.
                                 if (isset($_SESSION['email_address'])) {
                                     // Online.
                                     echo "Account &#128994;";
@@ -210,16 +245,29 @@ Student ID: Redacted
                         </div>
                         <div class="dropdown-content">
                             <?php
+                                // Check if the user account is logged in or not and display
+                                // the relevant contents.
                                 if (isset($_SESSION['email_address'])) {
-                                    echo "User is logged in.";
-                                    echo "<a class='menu' href='../../account/profile/index.php'>Profile</a>";
-                                    // echo "<a class='menu' href='../../account/results/index.php'>Results</a>";
-                                    echo "<a class='menu' href='../../account/logout/index.php'>Logout</a>";
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
+                                    // Very useful for handling large blocks of of codes.
+                                    $html = <<<HTML
+                                    User is logged in.
+                                    <a class="menu" href="../../dashboard/index.php">Dashboard</a>
+                                    <a class="menu" href="../../account/profile/index.php">Profile</a>
+                                    <a class="menu" href="../../account/logout/index.php">Logout</a>
+                                    HTML;
+                                    echo $html;
                                 }
                                 else {
-                                    echo "User is not logged in.";
-                                    echo "<a class='menu' href='../../account/login/index.php'>Login</a>";
-                                    echo "<a class='menu' href='#'>Register</a>";
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
+                                    // Very useful for handling large blocks of of codes.
+                                    $html = <<<HTML
+                                    User is logged in.
+                                    User is not logged in.
+                                    <a class="menu" href="../../account/login/index.php">Login</a>
+                                    <a class="menu" href="javascript:void(0)">Register</a>
+                                    HTML;
+                                    echo $html;
                                 }
                             ?>
 		                </div>
@@ -246,7 +294,7 @@ Student ID: Redacted
 
         <br><br><br>
 
-        <!-- Layout for the registration form. -->
+        <!-- Layout for the account registration form. -->
         <div id="registration-container">
             <div id="registration-content">
                 <br>
@@ -571,20 +619,23 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../quizzes/index.php" class="white">
-                        <li class="padding-bottom">Quizzes</li>
+                    <a class="white-hyperlink" href="../../about/index.php" class="white">
+                        <li class="padding-bottom">About us</li>
                     </a>
-                    <!-- <a class="white-hyperlink" href="../../tips/index.php" class="white">
-                        <li class="padding-bottom">Tips</li>
-                    </a> -->
-                    <a class="white-hyperlink" href="../../donations/index.php" class="white">
-                        <li class="padding-bottom">Donations</li>
+                    <a class="white-hyperlink" href="../../e-waste/index.php" class="white">
+                        <li class="padding-bottom">E-waste we buy</li>
+                    </a>
+                    <a class="white-hyperlink" href="../../recycled-items/index.php" class="white">
+                        <li class="padding-bottom">Recycled items we sell</li>
+                    </a>
+                    <a class="white-hyperlink" href="../../services/index.php" class="white">
+                        <li class="padding-bottom">Services</li>
+                    </a>
+                    <a class="white-hyperlink" href="../../faq/index.php" class="white">
+                        <li class="padding-bottom">FAQ</li>
                     </a>
                     <a class="white-hyperlink" href="../../contact/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
-                    </a>
-                    <a class="white-hyperlink" href="../../about/index.php" class="white">
-                        <li class="padding-bottom">About us</li>
                     </a>
                 </ul>
             </div>
@@ -592,7 +643,7 @@ Student ID: Redacted
                 <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p><br>
                 <div class="subscription-form">
                     <form action="" method="post">
-                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
                         <input type="submit" value="Subscribe" class="subscribe-button">
                     </form>
                 </div>

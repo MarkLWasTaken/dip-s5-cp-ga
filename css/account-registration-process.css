@@ -13,11 +13,11 @@ Student ID: Redacted
     display: flex;
     justify-content: center;
     gap: 50px;
-    height: 350px;
+    height: 450px;
 }
 
 #account-registration-process-content {
-    height: 300px;
+    height: 400px;
     width: 750px;
     border-style: solid;
     border-radius: 20px;

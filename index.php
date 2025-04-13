@@ -36,7 +36,7 @@ Student ID: Redacted
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="E-waste management system for everyone.">
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
-    <meta name="author" content="Quantum E-waste management system">
+    <meta name="author" content="Quantum E-waste Management System Group">
 
     <title>Quantum E-waste Management System - Home</title>
 
@@ -226,6 +226,8 @@ Student ID: Redacted
                     <div class="dropdown">
                         <div class="menu-button">
                             <?php
+                                // Check if the user account is logged in or not and display
+                                // the relevant contents.
                                 if (isset($_SESSION['email_address'])) {
                                     // Online.
                                     echo "Account &#128994;";
@@ -238,17 +240,29 @@ Student ID: Redacted
                         </div>
                         <div class="dropdown-content">
                             <?php
+                                // Check if the user account is logged in or not and display
+                                // the relevant contents.
                                 if (isset($_SESSION['email_address'])) {
-                                    echo "User is logged in.";
-                                    echo "<a class='menu' href='dashboard/index.php'>Dashboard</a>";
-                                    echo "<a class='menu' href='account/profile/index.php'>Profile</a>";
-                                    // echo "<a class='menu' href='account/results/index.php'>Results</a>";
-                                    echo "<a class='menu' href='account/logout/index.php'>Logout</a>";
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
+                                    // Very useful for handling large blocks of of codes.
+                                    $html = <<<HTML
+                                    User is logged in.
+                                    <a class="menu" href="dashboard/index.php">Dashboard</a>
+                                    <a class="menu" href="account/profile/index.php">Profile</a>
+                                    <a class="menu" href="account/logout/index.php">Logout</a>
+                                    HTML;
+                                    echo $html;
                                 }
                                 else {
-                                    echo "User is not logged in.";
-                                    echo "<a class='menu' href='account/login/index.php'>Login</a>";
-                                    echo "<a class='menu' href='account/registration/index.php'>Register</a>";
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
+                                    // Very useful for handling large blocks of of codes.
+                                    $html = <<<HTML
+                                    User is logged in.
+                                    User is not logged in.
+                                    <a class="menu" href="account/login/index.php">Login</a>
+                                    <a class="menu" href="javascript:void(0)">Register</a>
+                                    HTML;
+                                    echo $html;
                                 }
                             ?>
 		                </div>
@@ -256,7 +270,6 @@ Student ID: Redacted
                 </a>
             </div>
             <?php
-
                 if (@$is_admin == 1) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.

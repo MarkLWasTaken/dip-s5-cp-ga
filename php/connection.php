@@ -11,7 +11,7 @@ Student ID: Redacted
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'ucdf2307_rwdd_group_4';
+$database = 'ucdf2307_cp_group_9';
 
 $connection = mysqli_connect($hostname, $username, $password, $database);
 ?>
