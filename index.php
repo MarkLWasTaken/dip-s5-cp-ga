@@ -294,43 +294,52 @@ Student ID: Redacted
 
         <br>
 
-        <div class="welcome">
-            <h1>Welcome to Quantum E-waste Management System</h1>
+        <div class="welcome-container">
+            <div class="welcome-content">
+                <h1>Welcome to Quantum E-waste Management System</h1>
+            </div>
         </div>
 
         <div class="hidden-welcome">
             <h1>Blank space.</h1>
         </div>
 
-        <br><br><br>
+        <!-- Layout for the contents 1 container. -->
+        <div id="contents-1-container">
+            <div id="contents-1-content">
+                <h1 class="page-title">Electronic wastes deserves proper disposal</h1>
+                <p class="contents-1-paragraph">Sell to us if your e-waste<br>match our list of acceptable items.<br><br>Buy from us if your requirement<br>meets what we have.</p>
+            </div>
+        </div>
 
-        <div id="contents-container">
-            <div id="content1" class="content">
+        <!-- Layout for the contents 2 container. -->
+        <div id="contents-2-container">
+            <div id="contents-2-content-1" class="contents-2-content">
                 <br>
-                <img class="content-image" src="images/tip.png" alt="Tips jar with coins." title="Tips jar with coins.">
+                <img class="content-2-image" src="images/clipboard-svgrepo-com.svg" alt="Clipboard." title="Clipboard.">
                 <br>
-                <h3>It's free</h3>
-                <p>No charges will be incurred while using the website. We rely solely on donationes to keep the website running 24/7.</p>
+                <p class="content-2-titles">Waste not want not</p>
+                <p class="content-2-paragraphs">We take your want nots, please check our list of acceptable e-wastes.</p>
             </div>
 
             <div class="content1-spacing-mobile"></div>
 
-            <div id="content2" class="content">
+            <div id="contents-2-content-2" class="contents-2-content">
                 <br>
-                <img class="content-circle-image" src="images/sample-code.png" alt="Sample code of the website." title="Sample code of the website.">
+                <img class="content-2-circle-image" src="images/sample-code.png" alt="Sample code of the website." title="Sample code of the website.">
                 <br>
-                <h3>Easy to use</h3>
-                <p>Carefully designed user interface (UI) to guide the user throughout the website.</p>
+                <p class="content-2-titles">Sustainable Development Goal (SDG)</p>
+                <p class="content-2-paragraphs">We fully support SDG.<br>Come join us to keep the planet earth safe.</p>
             </div>
 
             <div class="content2-spacing-mobile"></div>
 
-            <div id="content3" class="content">
+            <div id="contents-2-content-3" class="contents-2-content">
                 <br>
-                <img class="content-image" src="images/clipboard-svgrepo-com.svg" alt="Clipboard." title="Clipboard.">
+                <img class="content-2-image" src="images/tip.png" alt="Tips jar with coins." title="Tips jar with coins.">
                 <br>
-                <h3>Save the answers</h3>
-                <p>Quizzes that were attempted with a user account logged in will be saved into the website's database.</p>
+                <p class="content-2-titles">Get started</p>
+                <p class="content-2-paragraphs">Convert your e-waste to<br>cash rewards.</p>
             </div>
         </div>
 

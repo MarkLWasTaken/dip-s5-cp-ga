@@ -18,6 +18,8 @@ body {
     margin: 0;
     /* padding: 0; */
     font-family: Verdana, sans-serif;
+    background-image: url("images\sample-code.png");
+    background-size: 100% 100%;
 }
 
 /* img {
@@ -336,17 +338,6 @@ body {
     float: right;
 }
 
-#contents-container {
-    /*
-    A hidden container to ensure the contents tabs animations (if any)
-    do not push the footer down and affect the overall website design.
-    */
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    height: 500px;
-}
-
 input[type="text"] {
     font-size: 18px;
 }
@@ -367,59 +358,6 @@ input[type="submit"] {
 } */
 
 
-.content {
-    height: 500px;
-    width: 250px;
-    border-style: solid;
-    border-radius: 20px;
-    float: left;
-    /* padding-left: 20px; */
-    margin-left: 5px;
-    margin-right: 5px;
-    border-width: 2px;
-    text-align: center;
-
-    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
-	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
-	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
-	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
-    transition: background-color 0.3s, margin-top 0.3s linear;
-}
-
-.content:hover {
-    margin-top: 15px;
-
-    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
-	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
-	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
-	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
-    transition: background-color 0.3s, margin-top 0.3s linear;
-}
-
-#content1 {
-    background-color: darksalmon;
-}
-
-#content2 {
-    background-color: yellow;
-}
-
-#content3 {
-    background-color: deepskyblue;
-}   
-
-.content-image {
-    height: 150px;
-    width: 150px;
-    padding: 10px;
-}
-
-.content-circle-image {
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
-    padding: 10px;
-}
 
 /* Hidden block when the element is in absolute position */
 .hidden-welcome {
