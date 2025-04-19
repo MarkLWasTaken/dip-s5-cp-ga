@@ -15,7 +15,8 @@ Student ID: Redacted
     // Declare the variable to get the user ID and hide the warning message.
     @$user_id = $_SESSION['user_id'];
 
-    // Check if the guest or user logged in is an admin or not.
+    // If user ID is not null,
+    // check if the guest or user logged in is an admin or not.
     if ($user_id != null) {
         // Execute the query to get the user's role status.
         $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
@@ -209,34 +210,36 @@ Student ID: Redacted
                     </div>
                 </a>
             </div>
-            <!-- ================================================== -->
-            <!-- A large comment block by M1 -->
+            <!--
+            ==================================================
+            A large comment block by M1
 
-            <!-- TODO: Need help to fix the dropdown menu. -->
-            <!-- I intended to have a fade out effect for the menu, but it didn't work. -->
-            <!-- If I try to move the menu down, the button will work as usual, -->
-            <!-- but stops responding to to any hover movements at certain margins, -->
-            <!-- and it will not show up. -->
+            TODO: Need help to fix the dropdown menu.
+            I intended to have a fade out effect for the menu, but it didn't work.
+            If I try to move the menu down, the button will work as usual,
+            but stops responding to to any hover movements at certain margins,
+            and it will not show up.
 
-            <!-- There is also another occurance where I changed the visibility -->
-            <!-- of the dropdown menu. The fade out effect works, but the menu -->
-            <!-- functions itself will still exist but invisible and will not disappear. -->
-            <!-- Leaving a hidden trace of invisible interacble dropdown menu.-->
-            <!-- I took so much time attempting to fix this issue, and still -->
-            <!-- therefore unable to fix the dropdown menu. So I left it as it is. -->
+            There is also another occurance where I changed the visibility
+            of the dropdown menu. The fade out effect works, but the menu
+            functions itself will still exist but invisible and will not disappear.
+            Leaving a hidden trace of invisible interacble dropdown menu.
+            I took so much time attempting to fix this issue, and still
+            therefore unable to fix the dropdown menu. So I left it as it is.
 
-            <!-- Instead, I took the opportunity to create a unique user session tracking. -->
-            <!-- These two buttons are affected by certain conditions and change the -->
-            <!-- The appearance of the buttons and the dropdown menu accordingly. -->
-            <!-- The function is simple. It will check if the user is logged in or not, -->
-            <!-- for the "Account" button. And if the user is and admin or not, -->
-            <!-- for the "Admin" button. -->
-            <!-- The button function of navigating to different pages will execute as usual. -->
+            Instead, I took the opportunity to create a unique user session tracking.
+            These two buttons are affected by certain conditions and change the
+            The appearance of the buttons and the dropdown menu accordingly.
+            The function is simple. It will check if the user is logged in or not,
+            for the "Account" button. And if the user is and admin or not,
+            for the "Admin" button.
+            The button function of navigating to different pages will execute as usual.
 
-            <!-- Any improvements made to fix the visual artifact is greatly appreciated. -->
-            <!-- Please do credit your name here, if possible. -->
-            <!-- Thanks in advance. -->
-            <!-- ================================================== -->
+            Any improvements made to fix the visual artifact is greatly appreciated.
+            Please do credit your name here, if possible.
+            Thanks in advance.
+            ==================================================
+            -->
             <div>
                 <!-- Prevent the user from scrolling to the top of the page when -->
                 <!-- clicking on the "Username" button that holds the dropdown menu. -->
@@ -289,7 +292,10 @@ Student ID: Redacted
                 </a>
             </div>
             <?php
-                if (@$is_admin == 1) {
+                // Check if the user is logged in as an admin or not.
+                // 1 = System Admin
+                // 2 = Office Admin
+                if (@$is_admin == 1 || @$is_admin == 2) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
@@ -376,7 +382,8 @@ Student ID: Redacted
             <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p><br>
             <div class="subscription-form">
                 <form action="" method="post">
-                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
+                    <div class="margin-30px"></div>
                     <input type="submit" value="Subscribe" class="subscribe-button">
                 </form>
             </div>

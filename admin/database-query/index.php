@@ -16,7 +16,7 @@ Student ID: Redacted
     @$user_id = $_SESSION['user_id'];
 
     // If user ID is not null,
-    // Check if the guest or user logged in is an admin or not.
+    // check if the guest or user logged in is an admin or not.
     if ($user_id != null) {
         // Execute the query to get the user's role status.
         $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");

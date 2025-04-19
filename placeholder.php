@@ -16,7 +16,7 @@ Student ID: Redacted
     @$user_id = $_SESSION['user_id'];
 
     // If user ID is not null,
-    // Check if the guest or user logged in is an admin or not.
+    // check if the guest or user logged in is an admin or not.
     if ($user_id != null) {
         // Execute the query to get the user's role status.
         $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
@@ -58,8 +58,8 @@ Student ID: Redacted
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="#" onclick="closeNav()">Home</a>
         <a href="about/index.php" onclick="closeNav()">About us</a>
-        <a href="e-waste/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="recycled-items/index.php" onclick="closeNav()">Recycled items we sell</a>
+        <a href="e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="services/index.php" onclick="closeNav()">Services</a>
         <a href="faq/index.php" onclick="closeNav()">FAQ</a>
         <a href="contact/index.php" onclick="closeNav()">Contact us</a>
@@ -69,16 +69,17 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-                <a href="javascript:void(0)">User is logged in.</a>
+                <div class="margin-50px"></div>
+                <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+                <a href="javascript:void(0)">&#128994; User is logged in.</a>
                 <a href="dashboard/index.php" onclick="closeNav()">Dashboard</a>
                 <a href="buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
                 <a href="tracking/index.php" onclick="closeNav()">Tracking</a>
-                <a href="e-waste-request-screening/index.php" onclick="closeNav()">E-waste request screening</a>
                 <a href="transactions-history/index.php" onclick="closeNav()">Transactions history</a>
                 <a href="requests-history/index.php" onclick="closeNav()">Requests history</a>
                 <a href="profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
                 <a href="account/logout/index.php" onclick="closeNav()">Logout</a>
+                <div class="margin-50px"></div>
                 HTML;
                 echo $html;
             }
@@ -87,8 +88,9 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-                <a href="javascript:void(0)">User is not logged in.</a>
+                <div class="margin-50px"></div>
+                <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+                <a href="javascript:void(0)">&#128308; User is not logged in.</a>
                 <a href="account/login/index.php" onclick="closeNav()">Login</a>
                 <a href="account/registration/index.php" onclick="closeNav()">Register</a>
                 HTML;
@@ -103,18 +105,21 @@ Student ID: Redacted
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
                 <a href="admin/index.php" onclick="closeNav()">Admin control panel</a>
-                <a href="admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
-                <a href="admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+                <a href="#" onclick="closeNav()">Manage users</a>
+                <a href="admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+                <a href="admin/database-query/index.php" onclick="closeNav()">Database Query</a>
+                <div class="margin-100px"></div>
                 HTML;
                 echo $html;
             }
-            elseif (@$is_admin == 2) {
+            else if (@$is_admin == 2) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
                 <a href="admin/index.php" onclick="closeNav()">Admin control panel</a>
-                <a href="admin/e-waste-request-screening/index.php" onclick="closeNav()">E-waste request acceptance (Admin)</a>
-                <a href="admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+                <a href="admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
+                <a href="admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+                <div class="margin-100px"></div>
                 HTML;
                 echo $html;
             }
@@ -145,7 +150,8 @@ Student ID: Redacted
 
         <div class="hidden-header-mobile"></div>
 
-        <br>
+        <div class="margin-20px"></div>
+        <!-- <br> -->
 
         <div id="menu-buttons">
             <div>
@@ -170,14 +176,14 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="e-waste/index.php">
+                <a class="black-hyperlink" href="e-waste-we-buy/index.php">
                     <div class="menu-button">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="recycled-items/index.php">
+                <a class="black-hyperlink" href="e-waste-we-sell/index.php">
                     <div class="menu-button">
                         E-waste<br>we sell
                     </div>
@@ -261,7 +267,8 @@ Student ID: Redacted
                                     // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
-                                    User is logged in.
+                                    <!-- Online -->
+                                    &#128994; User is logged in.
                                     <a class="menu" href="dashboard/index.php">Dashboard</a>
                                     <a class="menu" href="account/profile/index.php">Profile</a>
                                     <a class="menu" href="account/logout/index.php">Logout</a>
@@ -272,7 +279,8 @@ Student ID: Redacted
                                     // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
-                                    User is not logged in.
+                                    <!-- Offline -->
+                                    &#128308; User is not logged in.
                                     <a class="menu" href="account/login/index.php">Login</a>
                                     <a class="menu" href="account/registration/index.php">Register</a>
                                     HTML;
@@ -304,16 +312,19 @@ Student ID: Redacted
             ?>
         </div>
 
-        <br class="desktop-line-break">
+        <div class="margin-20px-desktop"></div>
+        <!-- <br class="desktop-line-break"> -->
 
         <div class="page-title-container-1">
             <div class="page-title-content">Home</div>
         </div>
 
-        <br>
-        <div class="hidden-space">
+        <div class="margin-30px"></div>
+        <!-- <br> -->
+
+        <!-- <div class="hidden-space">
             <h1>Blank space.</h1>
-        </div>
+        </div> -->
 
         <!-- Layout for the contents 1 container. -->
         <div id="container-1">
@@ -323,17 +334,19 @@ Student ID: Redacted
             </div>
         </div>
 
+        <div class="margin-160px"></div>
+        <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">
-        <br class="desktop-line-break">
-        <br class="desktop-line-break">
+        <br class="desktop-line-break"> -->
 
         <div id="footer-container-3-mobile">
             <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p><br>
             <div class="subscription-form">
                 <form action="" method="post">
-                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
+                    <div class="margin-30px"></div>
                     <input type="submit" value="Subscribe" class="subscribe-button">
                 </form>
             </div>
@@ -341,8 +354,9 @@ Student ID: Redacted
 
         <div class="hidden-footer-container-3-mobile"></div>
 
-        <br class="mobile-line-break">
-        <br class="mobile-line-break">
+        <div class="margin-60px-mobile"></div>
+        <!-- <br class="mobile-line-break">
+        <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">
             <div id="footer-container-2">
@@ -354,11 +368,11 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="about/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="e-waste/index.php" class="white">
+                    <a class="white-hyperlink" href="e-waste-we-buy/index.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="recycled-items/index.php" class="white">
-                        <li class="padding-bottom">Recycled items we sell</li>
+                    <a class="white-hyperlink" href="e-waste-we-sell/index.php" class="white">
+                        <li class="padding-bottom">E-waste we sell</li>
                     </a>
                     <a class="white-hyperlink" href="services/index.php" class="white">
                         <li class="padding-bottom">Services</li>
@@ -372,10 +386,12 @@ Student ID: Redacted
                 </ul>
             </div>
             <div id="footer-container-3">
-                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p><br>
+                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p>
+                <div class="margin-24px"></div>
                 <div class="subscription-form">
                     <form action="" method="post">
-                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
+                        <div class="margin-30px"></div>
                         <input type="submit" value="Subscribe" class="subscribe-button">
                     </form>
                 </div>
