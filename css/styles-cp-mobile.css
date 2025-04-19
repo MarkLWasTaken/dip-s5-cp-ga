@@ -25,6 +25,11 @@ Student ID: Redacted
         display: none;
     }
 
+    /* Display 20px margin only in desktop design. */
+    .margin-20px-desktop {
+        display: none;
+    }
+
     #footer-container {
         position: absolute;
         width: 100%;
@@ -48,6 +53,11 @@ Student ID: Redacted
 
     /* Display line break only in mobile design. */
     .mobile-line-break {
+        display: block;
+    }
+
+    /* Display margin 60px only in mobile design. */
+    .margin-60px-mobile {
         display: block;
     }
 

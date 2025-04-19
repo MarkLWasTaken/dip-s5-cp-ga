@@ -5,6 +5,29 @@ Developed by M1
 Student ID: Redacted
  */
 
+/* Database Query title banner */
+.title-banner-container {
+    height: 75px;
+    width: 60%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+.title-banner-content {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
 /* query-table-content-1 */
 .query-table-content-1 table {
     border: 2px solid black;
@@ -12,6 +35,14 @@ Student ID: Redacted
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
+}
+
+.query-table-content-1 th {
+    background-color: rgb(150, 255, 150);
+}
+
+.query-table-content-1 td {
+    background-color: rgb(225, 255, 225);
 }
 
 .query-table-content-1 tr {
@@ -42,6 +73,14 @@ Student ID: Redacted
     overflow: hidden;
 }
 
+.query-table-content-2 th {
+    background-color: rgb(150, 255, 150);
+}
+
+.query-table-content-2 td {
+    background-color: rgb(225, 255, 225);
+}
+
 .query-table-content-2 tr {
     height: 40px;
 }
@@ -68,6 +107,14 @@ Student ID: Redacted
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
+}
+
+.query-table-content-3 th {
+    background-color: rgb(150, 255, 150);
+}
+
+.query-table-content-3 td {
+    background-color: rgb(225, 255, 225);
 }
 
 .query-table-content-3 tr {

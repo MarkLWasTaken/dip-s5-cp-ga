@@ -19,19 +19,52 @@ body {
     /* padding: 0; */
     font-family: Verdana, sans-serif;
 
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("../images/pexels-paduret-1476321.jpg");
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.25)); /* url("../images/pexels-paduret-1476321.jpg") */
     /* background-image: url("../images/pexels-paduret-1476321.jpg"); */
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-body::before {
-}
-
 /* img {
     vertical-align: middle;
 } */
+
+.margin-18px {
+    margin: 18px;
+}
+
+.margin-20px {
+    margin: 20px;
+}
+
+.margin-24px {
+    margin: 24px;
+}
+
+.margin-30px {
+    margin: 30px;
+}
+
+.margin-50px {
+    margin: 50px;
+}
+
+.margin-100px {
+    margin: 100px;
+}
+
+.margin-160px {
+    margin: 160px;
+}
+
+.margin-20px-desktop {
+    margin: 20px;
+}
+
+.margin-60px-mobile {
+    margin: 60px;
+}
 
 .black-hyperlink {
     color: black;
@@ -364,17 +397,15 @@ input[type="submit"] {
     scroll-behavior: smooth;
 } */
 
-
-
 /* Hidden block when the element is in absolute position */
-.hidden-welcome {
+.hidden-block {
     display: none;
     opacity: 0;
 }
 
-.page-title {
+/* .page-title {
     padding-left: 5%;
-}
+} */
 
 /* Display line break only in mobile design. */
 .mobile-line-break {
