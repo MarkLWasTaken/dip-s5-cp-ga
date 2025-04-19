@@ -25,10 +25,15 @@ Student ID: Redacted
         }
     }
 
-    // Users who are not website administrators (admins) are not allowed to access this page.
-    if ($is_admin != 1 || $is_admin != 2) {
+    // Users who are not system administrators (sysadmins)
+    // are not allowed to access this page.
+    if ($is_admin != 1) {
         header('Location: ../../index.php');
     }
+
+    // Ensure the connection to the DB is closed, with or without
+    // any code or query execution for security reasons.
+    mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +50,8 @@ Student ID: Redacted
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
     <link href="../../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../../css/database-query.css" rel="stylesheet"> <!-- TODO -->
-    <link href="../../css/admin.css" rel="stylesheet">
+    <!-- <link href="../../css/database-query.css" rel="stylesheet"> -->
+    <link href="../../css/manage-users.css" rel="stylesheet">
     <link href="../../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -327,16 +332,227 @@ Student ID: Redacted
         <!-- Layout for the contents 1 container. -->
         <div id="contents-1-container">
             <div id="contents-1-content">
-                <h1>Electronic wastes deserves proper disposal</h1>
-                <p class="contents-1-paragraph">Sell to us if your e-waste<br>match our list of acceptable items.<br><br>Buy from us if your requirement<br>meets what we have.</p>
+                <h1>Test header</h1>
+                <p class="contents-1-paragraph">Manage, edit and delete users here.</p>
             </div>
         </div>
 
+        <?php
+        // Unset the session variables to clear the form data.
+        unset($_SESSION['txtID']);
+        unset($_SESSION['txtFName']);
+        unset($_SESSION['txtLName']);
+        unset($_SESSION['txtEmail']);
+        unset($_SESSION['rdoGender']);
+        unset($_SESSION['txtCountry']);
+        unset($_SESSION['rdoAdmin']);
+        unset($_SESSION['txtDateCreated']);
+        unset($_SESSION['txtDateModified']);
 
+        // Check if the form has been submitted.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+             // Store the values in the session.
+            $_SESSION['txtID'] = $_POST['txtID'];
+            $_SESSION['txtFName'] = $_POST['txtFName'];
+            $_SESSION['txtLName'] = $_POST['txtLName'];
+            $_SESSION['txtEmail'] = $_POST['txtEmail'];
+            @$_SESSION['rdoGender'] = $_POST['rdoGender'];
+            $_SESSION['txtCountry'] = $_POST['txtCountry'];
+            @$_SESSION['rdoAdmin'] = $_POST['rdoAdmin'];
+            $_SESSION['txtDateCreated'] = $_POST['txtDateCreated'];
+            $_SESSION['txtDateModified'] = $_POST['txtDateModified'];
+            if (isset($_POST['clear'])) {
+                // Unset the session variables to clear the form data.
+                unset($_SESSION['txtID']);
+                unset($_SESSION['txtFName']);
+                unset($_SESSION['txtLName']);
+                unset($_SESSION['txtEmail']);
+                unset($_SESSION['rdoGender']);
+                unset($_SESSION['txtCountry']);
+                unset($_SESSION['rdoAdmin']);
+                unset($_SESSION['txtDateCreated']);
+                unset($_SESSION['txtDateModified']);
+            }
+        } else if (isset($_POST['clear'])) {
+            // Unset the session variables to clear the form data.
+            unset($_SESSION['txtID']);
+            unset($_SESSION['txtFName']);
+            unset($_SESSION['txtLName']);
+            unset($_SESSION['txtEmail']);
+            unset($_SESSION['rdoGender']);
+            unset($_SESSION['txtCountry']);
+            unset($_SESSION['rdoAdmin']);
+            unset($_SESSION['txtDateCreated']);
+            unset($_SESSION['txtDateModified']);
+        }
 
+        // Retrieve the values from the session.
+        $user_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
+        $first_name = isset($_SESSION['txtFName']) ? $_SESSION['txtFName'] : '';
+        $last_name = isset($_SESSION['txtLName']) ? $_SESSION['txtLName'] : '';
+        $email_address = isset($_SESSION['txtEmail']) ? $_SESSION['txtEmail'] : '';
+        $gender = isset($_SESSION['rdoGender']) ? $_SESSION['rdoGender'] : '';
+        $country = isset($_SESSION['txtCountry']) ? $_SESSION['txtCountry'] : '';
+        $is_admin = isset($_SESSION['rdoAdmin']) ? $_SESSION['rdoAdmin'] : '';
+        $date_created = isset($_SESSION['txtDateCreated']) ? $_SESSION['txtDateCreated'] : '';
+        $date_modified = isset($_SESSION['txtDateModified']) ? $_SESSION['txtDateModified'] : '';
+        ?>
 
+        <!-- Users table container -->
+        <div>
+            <form action="index.php" method="post">
+                <div class="query-table-content">
+                    <table id="table-query">
+                        <tr>
+                            <th colspan="2" style="padding-left: 0; text-align: center;">
+                                "users" Table Query
+                            </th>
+                        </tr>
+                        <!-- "users" table query options. -->
+                        <tr>
+                            <th>ID:</th>
+                            <td><input type="text" name="txtID" value="<?php echo $user_id ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>First Name:</th>
+                            <td><input type="text" name="txtFName" value="<?php echo $first_name ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Last Name:</th>
+                            <td><input type="text" name="txtLName" value="<?php echo $last_name ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Email Address:</th>
+                            <td><input type="email" name="txtEmail" value="<?php echo $email_address ?>" class="query-table-email-field"></td>
+                        </tr>
+                        <tr>
+                            <th>Gender:</th>
+                            <td>
+                                <div class="radio-choice">
+                                    <div class="radio-choices">
+                                        <input type="radio" id="male" name="rdoGender" value="Male" <?php echo ($gender == 'Male') ? 'checked' : ''; ?>>
+                                        <label for="male">Male</label><br>
+                                    </div>
+                                    <div class="radio-choices">
+                                        <input type="radio" id="female" name="rdoGender" value="Female" <?php echo ($gender == 'Female') ? 'checked' : ''; ?>>
+                                        <label for="female">Female</label><br>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Country:</th>
+                            <td><input type="text" name="txtCountry" value="<?php $country ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Is admin?</th>
+                            <td>
+                                <div class="radio-choice-2">
+                                    <div class="radio-choices">
+                                        <input type="radio" id="user" name="rdoAdmin" value="0" <?php echo ($gender == '0') ? 'checked' : ''; ?>>
+                                        <label for="no">User</label><br>
+                                    </div>
+                                    <div class="radio-choices">
+                                        <input type="radio" id="systemadmin" name="rdoAdmin" value="1" <?php echo ($gender == '1') ? 'checked' : ''; ?>>
+                                        <label for="yes">System Admin</label><br>
+                                    </div>
+                                    <div class="radio-choices">
+                                        <input type="radio" id="officeadmin" name="rdoAdmin" value="2" <?php echo ($gender == '2') ? 'checked' : ''; ?>>
+                                        <label for="yes">Office Admin</label><br>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Date Created:</th>
+                            <td><input type="text" name="txtDateCreated" value="<?php $date_created ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Date Modified:</th>
+                            <td><input type="text" name="txtDateModified" value="<?php $date_modified ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Action:</th>
+                            <td><input type="submit" name="submit" value="Search from the table"></td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <th>Action:</th>
+                            <td><input type="submit" name="clear" value="Clear the query"></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
 
+        <div class="margin-50px"></div>
 
+        <!-- Users table container -->
+        <div>
+            <div class="manage-user-table">
+                <?php
+                    // Attempt to make a new connection to the database.
+                    include '../../php/connection.php';
+
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
+                    <table class="manage-rows-table" border=1>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Address</th>
+                            <th>Gender</th>
+                            <th>Country</th>
+                            <th>Is Admin</th>
+                            <th colspan="2" style="text-align: center;">Actions</th>
+                        </tr>
+                    HTML;
+                    echo $html;
+
+                    // Declare a variable for the query.
+                    // $query_table_rows = "SELECT user_id, first_name, last_name, email_address, gender, country, is_admin
+                    //                     FROM `users`
+                    //                     ORDER BY user_id ASC";
+
+                    // Declare a variable for the query.
+                    $query_table_rows = "SELECT * FROM `users` WHERE
+                                        user_id LIKE '%$user_id%' AND
+                                        first_name LIKE '%$first_name%' AND
+                                        last_name LIKE '%$last_name%' AND
+                                        email_address LIKE '%$email_address%' AND
+                                        gender LIKE '%$gender%' AND
+                                        country LIKE '%$country%' AND
+                                        is_admin LIKE '%$is_admin%'
+                                        ORDER BY user_id ASC";
+
+                    // Attempt to connect to the database and execute the query.
+                    $result_table_rows = mysqli_query($connection, $query_table_rows);
+
+                    // Insert the each of the results into the table.
+                    while($row = mysqli_fetch_assoc($result_table_rows)) {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <tr>
+                            <td>{$row['user_id']}</td>
+                            <td>{$row['first_name']}</td>
+                            <td>{$row['last_name']}</td>
+                            <td>{$row['email_address']}</td>
+                            <td>{$row['gender']}</td>
+                            <td>{$row['country']}</td>
+                            <td>{$row['is_admin']}</td>
+                            <td><a href="edit_user.php?id={$row['user_id']}">Edit</a></td>
+                            <td><a href="delete_user.php?id={$row['user_id']}">Delete</a></td>
+                        </tr>
+                        HTML;
+                        echo $html;
+                    }
+                    echo '</table>';
+                ?>
+            </div>
+        </div>
 
         <div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">

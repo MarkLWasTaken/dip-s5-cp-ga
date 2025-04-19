@@ -25,8 +25,9 @@ Student ID: Redacted
         }
     }
 
-    // Users who are not website administrators (admins) are not allowed to access this page.
-    if ($is_admin != 1 || $is_admin != 2) {
+    // Users who are not system administrators (sysadmins)
+    // are not allowed to access this page.
+    if ($is_admin != 1) {
         header('Location: ../../index.php');
     }
 ?>
@@ -323,7 +324,8 @@ Student ID: Redacted
         <div class="margin-30px"></div>
         <!-- <br> -->
 
-        <div class="query-table-container">
+        <!-- Query table container -->
+        <div>
             <form action="index.php" method="post">
                 <div class="query-table-content-1">
                     <table>
@@ -705,7 +707,7 @@ Student ID: Redacted
                                     <td><input type="text" name="txtAccountsPayableID" id=""></td>
                                 </tr>
                                 <tr>
-                                    <th>Accoutns Receivable ID:</th>
+                                    <th>Accounts Receivable ID:</th>
                                     <td><input type="text" name="txtAccountsReceivableID" id=""></td>
                                 </tr>
                                 <tr>
@@ -810,7 +812,7 @@ Student ID: Redacted
                                 <tr>
                                     <th>Is admin?</th>
                                     <td>
-                                        <div class="radio-choice">
+                                        <div class="radio-choice-2">
                                             <div class="radio-choices">
                                                 <input type="radio" id="user" name="rdoAdmin" value="0">
                                                 <label for="no">User</label><br>
@@ -1295,16 +1297,16 @@ Student ID: Redacted
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email Address</th>
-                                        <th>Gender</th>
-                                        <th>Country</th>
-                                        <th>Is Admin</th>
-                                        <th colspan="2" style="text-align: center;">Actions</th>
-                                    </tr>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email Address</th>
+                                    <th>Gender</th>
+                                    <th>Country</th>
+                                    <th>Is Admin</th>
+                                    <!-- <th colspan="2" style="text-align: center;">Actions</th> -->
+                                </tr>
                                 HTML;
                                 echo $html;
 
@@ -1344,9 +1346,9 @@ Student ID: Redacted
                                         <td>{$row['gender']}</td>
                                         <td>{$row['country']}</td>
                                         <td>{$row['is_admin']}</td>
+                                        <!-- 
                                         <td><a href="javascript:void(0)">Edit</a></td>
                                         <td><a href="javascript:void(0)">Delete</a></td>
-                                        <!-- 
                                         <td><a href="edit_user.php?id={$row['user_id']}\">Edit</a></td>
                                         <td><a href="delete_user.php?id={$row['user_id']}\">Delete</a></td>
                                          -->
@@ -1361,7 +1363,6 @@ Student ID: Redacted
                     }
                 ?>
             </div>
-
         </div>
 
         <div class="margin-100px"></div>
