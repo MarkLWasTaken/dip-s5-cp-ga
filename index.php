@@ -105,7 +105,7 @@ Student ID: Redacted
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
                 <a href="admin/index.php" onclick="closeNav()">Admin control panel</a>
-                <a href="#" onclick="closeNav()">Manage users</a>
+                <a href="admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
                 <a href="admin/statistics/index.php" onclick="closeNav()">Statistics</a>
                 <a href="admin/database-query/index.php" onclick="closeNav()">Database Query</a>
                 <div class="margin-100px"></div>
