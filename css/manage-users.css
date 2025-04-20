@@ -53,6 +53,31 @@ Student ID: Redacted
     background-color: lightyellow;
 }
 
+#contents-2-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 300px;
+}
+
+#contents-2-content {
+    height: 300px;
+    width: 100%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    background-color: lightyellow;
+}
+
 /* Table query designs */
 .query-table-content table {
     border: 2px solid black;
@@ -155,6 +180,59 @@ input[type="text"] {
 form {
     margin: 0 auto;        /* Center the form horizontally */
 }
+
+
+
+
+
+
+
+#contents-3-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+}
+
+.contents-3-content {
+    height: 75px;
+    width: 20%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+.contents-3-content:hover {
+    margin-top: 15px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+#contents-3-content {
+    background-color: darksalmon;
+}
+
+
+
+
 
 /* 
 End of the lines/blocks of codes

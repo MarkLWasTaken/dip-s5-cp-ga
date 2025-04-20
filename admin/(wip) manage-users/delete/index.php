@@ -10,7 +10,7 @@ Student ID: Redacted
     session_start();
 
     // Include the PHP script for connecting to the database (DB).
-    include '../../php/connection.php';
+    include '../../../php/connection.php';
 
     // Declare the variable to get the user ID and hide the warning message.
     @$user_id = $_SESSION['user_id'];
@@ -28,7 +28,7 @@ Student ID: Redacted
     // Users who are not system administrators (sysadmins)
     // are not allowed to access this page.
     if ($is_admin != 1) {
-        header('Location: ../../index.php');
+        header('Location: ../../../index.php');
     }
 
     // Ensure the connection to the DB is closed, with or without
@@ -45,30 +45,30 @@ Student ID: Redacted
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Admin - Manage Users</title>
+    <title>Quantum E-waste Management System - Admin - Manage Users (Delete User)</title>
 
     <!-- Cascading Style Sheets -->
-    <link href="../../css/styles.css" rel="stylesheet">
-    <link href="../../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../../css/manage-users.css" rel="stylesheet">
-    <link href="../../css/styles-cp-mobile.css" rel="stylesheet">
-    <link href="../../css/side-navigation-menu.css" rel="stylesheet">
+    <link href="../../../css/styles.css" rel="stylesheet">
+    <link href="../../../css/dropdown-menu.css" rel="stylesheet">
+    <link href="../../../css/manage-users.css" rel="stylesheet">
+    <link href="../../../css/styles-cp-mobile.css" rel="stylesheet">
+    <link href="../../../css/side-navigation-menu.css" rel="stylesheet">
 
     <!-- JavaScripts -->
-    <script src="../../js/side-navigation-menu.js"></script>
+    <script src="../../../js/side-navigation-menu.js"></script>
 </head>
 
 <body>
     <!-- Reference: https://www.w3schools.com/howto/howto_js_sidenav.asp -->
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
-        <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../about/index.php" onclick="closeNav()">About us</a>
-        <a href="../../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="../../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
-        <a href="../../services/index.php" onclick="closeNav()">Services</a>
-        <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../../index.php" onclick="closeNav()">Home</a>
+        <a href="../../../about/index.php" onclick="closeNav()">About us</a>
+        <a href="../../../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="../../../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
+        <a href="../../../services/index.php" onclick="closeNav()">Services</a>
+        <a href="../../../faq/index.php" onclick="closeNav()">FAQ</a>
+        <a href="../../../contact/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
             if (isset($_SESSION['email_address'])) {
@@ -78,13 +78,13 @@ Student ID: Redacted
                 <div class="margin-50px"></div>
                 <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
                 <a href="javascript:void(0)">&#128994; User is logged in.</a>
-                <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
-                <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
-                <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-                <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
-                <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
-                <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
-                <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
+                <a href="../../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
+                <a href="../../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
+                <a href="../../../tracking/index.php" onclick="closeNav()">Tracking</a>
+                <a href="../../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
+                <a href="../../../requests-history/index.php" onclick="closeNav()">Requests history</a>
+                <a href="../../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+                <a href="../../../account/logout/index.php" onclick="closeNav()">Logout</a>
                 <div class="margin-50px"></div>
                 HTML;
                 echo $html;
@@ -97,8 +97,8 @@ Student ID: Redacted
                 <div class="margin-50px"></div>
                 <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
                 <a href="javascript:void(0)">&#128308; User is not logged in.</a>
-                <a href="../../account/login/index.php" onclick="closeNav()">Login</a>
-                <a href="../../account/registration/index.php" onclick="closeNav()">Register</a>
+                <a href="../../../account/login/index.php" onclick="closeNav()">Login</a>
+                <a href="../../../account/registration/index.php" onclick="closeNav()">Register</a>
                 HTML;
                 echo $html;
             }
@@ -110,10 +110,10 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-                <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
-                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
-                <a href="admin/database-query/index.php" onclick="closeNav()">Database Query</a>
+                <a href="../../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+                <a href="../../../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
+                <a href="../../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+                <a href="../../../admin/database-query/index.php" onclick="closeNav()">Database Query</a>
                 <div class="margin-100px"></div>
                 HTML;
                 echo $html;
@@ -122,9 +122,9 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-                <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
-                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+                <a href="../../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+                <a href="../../../admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
+                <a href="../../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
                 <div class="margin-100px"></div>
                 HTML;
                 echo $html;
@@ -138,7 +138,7 @@ Student ID: Redacted
         <div style="position: absolute, sticky;">
             <a class="black-hyperlink" href="javascript:void(0)" onclick="openNav()">
                 <div class="side-navigation-menu-button-mobile">
-                    <img src="../../images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
+                    <img src="../../../images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
                 </div>
             </a>
         </div>
@@ -146,7 +146,7 @@ Student ID: Redacted
         <div id="header" class="website-title">
             <div class="title-and-image-container">
                 <div class="title-and-image-content">
-                    <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
+                    <img class="header-image" src="../../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
                 </div>
                 <div class="title-and-image-content">
                     Quantum E-waste
@@ -163,54 +163,54 @@ Student ID: Redacted
             <div>
                 <a class="black-hyperlink" href="javascript:void(0)" onclick="openNav()">
                     <div class="menu-button">
-                        <img src="../../images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
+                        <img src="../../../images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../index.php">
+                <a class="black-hyperlink" href="../../../index.php">
                     <div class="menu-button">
                         Home
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../about_us/index.php">
+                <a class="black-hyperlink" href="../../../about_us/index.php">
                     <div class="menu-button">
                         About us
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-buy/index.php">
+                <a class="black-hyperlink" href="../../../e-waste-we-buy/index.php">
                     <div class="menu-button">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-sell/index.php">
+                <a class="black-hyperlink" href="../../../e-waste-we-sell/index.php">
                     <div class="menu-button">
                         E-waste<br>we sell
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../services/index.php">
+                <a class="black-hyperlink" href="../../../services/index.php">
                     <div class="menu-button">
                         Services
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../faq/index.php">
+                <a class="black-hyperlink" href="../../../faq/index.php">
                     <div class="menu-button">
                         FAQ
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact_us/index.php">
+                <a class="black-hyperlink" href="../../../contact_us/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -275,9 +275,9 @@ Student ID: Redacted
                                     $html = <<<HTML
                                     <!-- Online -->
                                     &#128994; User is logged in.
-                                    <a class="menu" href="../../dashboard/index.php">Dashboard</a>
-                                    <a class="menu" href="../../account/profile/index.php">Profile</a>
-                                    <a class="menu" href="../../account/logout/index.php">Logout</a>
+                                    <a class="menu" href="../../../dashboard/index.php">Dashboard</a>
+                                    <a class="menu" href="../../../account/profile/index.php">Profile</a>
+                                    <a class="menu" href="../../../account/logout/index.php">Logout</a>
                                     HTML;
                                     echo $html;
                                 }
@@ -287,8 +287,8 @@ Student ID: Redacted
                                     $html = <<<HTML
                                     <!-- Offline -->
                                     &#128308; User is not logged in.
-                                    <a class="menu" href="../../account/login/index.php">Login</a>
-                                    <a class="menu" href="../../account/registration/index.php">Register</a>
+                                    <a class="menu" href="../../../account/login/index.php">Login</a>
+                                    <a class="menu" href="../../../account/registration/index.php">Register</a>
                                     HTML;
                                     echo $html;
                                 }
@@ -306,7 +306,7 @@ Student ID: Redacted
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
                         <div>
-                            <a class='black-hyperlink' href='../../admin/index.php'>
+                            <a class='black-hyperlink' href='../../../admin/index.php'>
                                 <div class='menu-button'>
                                     Admin
                                 </div>
@@ -328,170 +328,20 @@ Student ID: Redacted
         <div class="margin-30px"></div>
         <!-- <br> -->
 
-        <!-- Layout for the contents 1 container. -->
-        <div id="contents-1-container">
-            <div id="contents-1-content">
-                <h1>Test header</h1>
-                <p class="contents-1-paragraph">Manage, edit and delete users here.</p>
-            </div>
-        </div>
-
         <?php
-        // Unset the session variables to clear the form data.
-        unset($_SESSION['txtID']);
-        unset($_SESSION['txtFName']);
-        unset($_SESSION['txtLName']);
-        unset($_SESSION['txtEmail']);
-        unset($_SESSION['rdoGender']);
-        unset($_SESSION['txtCountry']);
-        unset($_SESSION['rdoAdmin']);
-        unset($_SESSION['txtDateCreated']);
-        unset($_SESSION['txtDateModified']);
-
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
-            $_SESSION['txtID'] = $_POST['txtID'];
-            $_SESSION['txtFName'] = $_POST['txtFName'];
-            $_SESSION['txtLName'] = $_POST['txtLName'];
-            $_SESSION['txtEmail'] = $_POST['txtEmail'];
-            @$_SESSION['rdoGender'] = $_POST['rdoGender'];
-            $_SESSION['txtCountry'] = $_POST['txtCountry'];
-            @$_SESSION['rdoAdmin'] = $_POST['rdoAdmin'];
-            $_SESSION['txtDateCreated'] = $_POST['txtDateCreated'];
-            $_SESSION['txtDateModified'] = $_POST['txtDateModified'];
-            if (isset($_POST['clear'])) {
-                // Unset the session variables to clear the form data.
-                unset($_SESSION['txtID']);
-                unset($_SESSION['txtFName']);
-                unset($_SESSION['txtLName']);
-                unset($_SESSION['txtEmail']);
-                unset($_SESSION['rdoGender']);
-                unset($_SESSION['txtCountry']);
-                unset($_SESSION['rdoAdmin']);
-                unset($_SESSION['txtDateCreated']);
-                unset($_SESSION['txtDateModified']);
-            }
-        } else if (isset($_POST['clear'])) {
-            // Unset the session variables to clear the form data.
-            unset($_SESSION['txtID']);
-            unset($_SESSION['txtFName']);
-            unset($_SESSION['txtLName']);
-            unset($_SESSION['txtEmail']);
-            unset($_SESSION['rdoGender']);
-            unset($_SESSION['txtCountry']);
-            unset($_SESSION['rdoAdmin']);
-            unset($_SESSION['txtDateCreated']);
-            unset($_SESSION['txtDateModified']);
+        // Check if the 'id' parameter is set in the URL
+        if (isset($_GET['id'])) {
+            // Retrieve the value of 'id' from the link.
+            $user_id = $_GET['id'];
         }
-
-        // Retrieve the values from the session.
-        $user_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
-        $first_name = isset($_SESSION['txtFName']) ? $_SESSION['txtFName'] : '';
-        $last_name = isset($_SESSION['txtLName']) ? $_SESSION['txtLName'] : '';
-        $email_address = isset($_SESSION['txtEmail']) ? $_SESSION['txtEmail'] : '';
-        $gender = isset($_SESSION['rdoGender']) ? $_SESSION['rdoGender'] : '';
-        $country = isset($_SESSION['txtCountry']) ? $_SESSION['txtCountry'] : '';
-        $is_admin = isset($_SESSION['rdoAdmin']) ? $_SESSION['rdoAdmin'] : '';
-        $date_created = isset($_SESSION['txtDateCreated']) ? $_SESSION['txtDateCreated'] : '';
-        $date_modified = isset($_SESSION['txtDateModified']) ? $_SESSION['txtDateModified'] : '';
         ?>
-
-        <!-- Table query container -->
-        <div>
-            <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                "users" Table Query
-                            </th>
-                        </tr>
-                        <!-- "users" table query options. -->
-                        <tr>
-                            <th>ID:</th>
-                            <td><input type="text" name="txtID" value="<?php echo $user_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>First Name:</th>
-                            <td><input type="text" name="txtFName" value="<?php echo $first_name ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Last Name:</th>
-                            <td><input type="text" name="txtLName" value="<?php echo $last_name ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Email Address:</th>
-                            <td><input type="email" name="txtEmail" value="<?php echo $email_address ?>" class="query-table-email-field"></td>
-                        </tr>
-                        <tr>
-                            <th>Gender:</th>
-                            <td>
-                                <div class="radio-choice">
-                                    <div class="radio-choices">
-                                        <input type="radio" id="male" name="rdoGender" value="Male" <?php echo ($gender == 'Male') ? 'checked' : ''; ?>>
-                                        <label for="male">Male</label><br>
-                                    </div>
-                                    <div class="radio-choices">
-                                        <input type="radio" id="female" name="rdoGender" value="Female" <?php echo ($gender == 'Female') ? 'checked' : ''; ?>>
-                                        <label for="female">Female</label><br>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Country:</th>
-                            <td><input type="text" name="txtCountry" value="<?php $country ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Is admin?</th>
-                            <td>
-                                <div class="radio-choice-2">
-                                    <div class="radio-choices">
-                                        <input type="radio" id="user" name="rdoAdmin" value="0" <?php echo ($gender == '0') ? 'checked' : ''; ?>>
-                                        <label for="no">User</label><br>
-                                    </div>
-                                    <div class="radio-choices">
-                                        <input type="radio" id="systemadmin" name="rdoAdmin" value="1" <?php echo ($gender == '1') ? 'checked' : ''; ?>>
-                                        <label for="yes">System Admin</label><br>
-                                    </div>
-                                    <div class="radio-choices">
-                                        <input type="radio" id="officeadmin" name="rdoAdmin" value="2" <?php echo ($gender == '2') ? 'checked' : ''; ?>>
-                                        <label for="yes">Office Admin</label><br>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Date Created:</th>
-                            <td><input type="text" name="txtDateCreated" value="<?php $date_created ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Date Modified:</th>
-                            <td><input type="text" name="txtDateModified" value="<?php $date_modified ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="submit" value="Search from the table"></td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="clear" value="Clear the query"></td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
-        </div>
-
-        <div class="margin-50px"></div>
 
         <!-- Users table container -->
         <div>
             <div class="manage-user-table">
                 <?php
                     // Attempt to make a new connection to the database.
-                    include '../../php/connection.php';
+                    include '../../../php/connection.php';
 
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
@@ -505,26 +355,14 @@ Student ID: Redacted
                             <th>Gender</th>
                             <th>Country</th>
                             <th>Is Admin</th>
-                            <th colspan="2" style="text-align: center;">Actions</th>
                         </tr>
                     HTML;
                     echo $html;
 
                     // Declare a variable for the query.
-                    // $query_table_rows = "SELECT user_id, first_name, last_name, email_address, gender, country, is_admin
-                    //                     FROM `users`
-                    //                     ORDER BY user_id ASC";
-
-                    // Declare a variable for the query.
-                    $query_table_rows = "SELECT * FROM `users` WHERE
-                                        user_id LIKE '%$user_id%' AND
-                                        first_name LIKE '%$first_name%' AND
-                                        last_name LIKE '%$last_name%' AND
-                                        email_address LIKE '%$email_address%' AND
-                                        gender LIKE '%$gender%' AND
-                                        country LIKE '%$country%' AND
-                                        is_admin LIKE '%$is_admin%'
-                                        ORDER BY user_id ASC";
+                    $query_table_rows = "SELECT *
+                                        FROM `users`
+                                        WHERE user_id = $user_id";
 
                     // Attempt to connect to the database and execute the query.
                     $result_table_rows = mysqli_query($connection, $query_table_rows);
@@ -542,8 +380,6 @@ Student ID: Redacted
                             <td>{$row['gender']}</td>
                             <td>{$row['country']}</td>
                             <td>{$row['is_admin']}</td>
-                            <td><a href="edit/index.php?id={$row['user_id']}">Edit</a></td>
-                            <td><a href="delete/index.php?id={$row['user_id']}">Delete</a></td>
                         </tr>
                         HTML;
                         echo $html;
@@ -554,6 +390,46 @@ Student ID: Redacted
                     // any code or query execution for security reasons.
                     mysqli_close($connection);
                 ?>
+            </div>
+        </div>
+
+        <div class="margin-50px"></div>
+
+        <!-- Layout for the contents 1 container. -->
+        <div id="contents-2-container">
+            <div id="contents-2-content">
+                <h1>Delete User Confirmation</h1>
+                <p class="contents-1-paragraph">Are you sure you want to delete the following user?</p>
+                <div class="margin-50px"></div>
+
+
+
+                <!-- Layout for the contents 3 container. -->
+                 
+                <div id="contents-3-container">
+
+                    <div id="contents-3-content" class="contents-3-content">
+                    
+                    <p class="content-3-titles">Yes</p>
+                    </div>
+
+                    </div>
+
+
+                <!-- Layout for the contents 4 container. -->
+                 
+                <div id="contents-3-container">
+
+                <div id="contents-3-content" class="contents-3-content">
+
+                <p class="content-3-titles">No</p>
+                </div>
+
+                </div>
+                   
+
+
+
             </div>
         </div>
 
@@ -587,25 +463,25 @@ Student ID: Redacted
             <div id="footer-container-2">
                 <p class="footer-text-2">Sitemap</p>
                 <ul>
-                    <a class="white-hyperlink" href="../../index.php" class="white">
+                    <a class="white-hyperlink" href="../../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../about/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../e-waste-we-buy/index.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste-we-sell/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../e-waste-we-sell/index.php" class="white">
                         <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../../services/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../services/index.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="../../faq/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../contact/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>
