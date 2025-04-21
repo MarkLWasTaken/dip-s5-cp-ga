@@ -39,7 +39,7 @@ Student ID: Redacted
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="E-waste management system for everyone.">
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
@@ -63,12 +63,12 @@ Student ID: Redacted
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../../about/index.php" onclick="closeNav()">About us</a>
+        <a href="../../../about-us/index.php" onclick="closeNav()">About us</a>
         <a href="../../../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
         <a href="../../../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="../../../services/index.php" onclick="closeNav()">Services</a>
         <a href="../../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../../contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../../contact-us/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
             if (isset($_SESSION['email_address'])) {
@@ -146,7 +146,8 @@ Student ID: Redacted
         <div id="header" class="website-title">
             <div class="title-and-image-container">
                 <div class="title-and-image-content">
-                    <img class="header-image" src="../../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
+                    <img class="header-image" src="../../../images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
+                    <!-- <img class="header-image" src="../../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
                 </div>
                 <div class="title-and-image-content">
                     Quantum E-waste
@@ -175,7 +176,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../../about_us/index.php">
+                <a class="black-hyperlink" href="../../../about-us/index.php">
                     <div class="menu-button">
                         About us
                     </div>
@@ -183,14 +184,14 @@ Student ID: Redacted
             </div>
             <div>
                 <a class="black-hyperlink" href="../../../e-waste-we-buy/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
                 <a class="black-hyperlink" href="../../../e-waste-we-sell/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
                 </a>
@@ -210,7 +211,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../../contact_us/index.php">
+                <a class="black-hyperlink" href="../../../contact-us/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -395,40 +396,27 @@ Student ID: Redacted
 
         <div class="margin-50px"></div>
 
-        <!-- Layout for the contents 1 container. -->
+        <!-- Layout for the contents 2 container. -->
         <div id="contents-2-container">
             <div id="contents-2-content">
                 <h1>Delete User Confirmation</h1>
-                <p class="contents-1-paragraph">Are you sure you want to delete the following user?</p>
+                <p>Are you sure you want to delete the following user?</p>
+                <p>This action is irreversible.</p>
                 <div class="margin-50px"></div>
 
-
-
                 <!-- Layout for the contents 3 container. -->
-                 
                 <div id="contents-3-container">
-
-                    <div id="contents-3-content" class="contents-3-content">
-                    
-                    <p class="content-3-titles">Yes</p>
+                    <div id="contents-3-content-1" class="contents-3-content-1">
+                        <a class="black-hyperlink-display" href="../../../admin/mange-users/index.php">    <!-- TODO -->
+                            <p class="contents-3-content-1-title">Yes</p>
+                        </a>
                     </div>
-
+                    <div id="contents-3-content-2" class="contents-3-content-2">
+                        <a class="black-hyperlink-display" href="../../../admin/mange-users/index.php">
+                            <p class="contents-3-content-2-title">No</p>
+                        </a>
                     </div>
-
-
-                <!-- Layout for the contents 4 container. -->
-                 
-                <div id="contents-3-container">
-
-                <div id="contents-3-content" class="contents-3-content">
-
-                <p class="content-3-titles">No</p>
                 </div>
-
-                </div>
-                   
-
-
 
             </div>
         </div>
@@ -466,7 +454,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../../about/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
                     <a class="white-hyperlink" href="../../../e-waste-we-buy/index.php" class="white">
@@ -481,7 +469,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../../faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../../contact/index.php" class="white">
+                    <a class="white-hyperlink" href="../../../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

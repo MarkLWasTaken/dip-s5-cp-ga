@@ -57,12 +57,12 @@ Student ID: Redacted
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="#" onclick="closeNav()">Home</a>
-        <a href="about/index.php" onclick="closeNav()">About us</a>
+        <a href="about-us/index.php" onclick="closeNav()">About us</a>
         <a href="e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
         <a href="e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="services/index.php" onclick="closeNav()">Services</a>
         <a href="faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="contact-us/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
             if (isset($_SESSION['email_address'])) {
@@ -140,7 +140,8 @@ Student ID: Redacted
         <div id="header" class="website-title">
             <div class="title-and-image-container">
                 <div class="title-and-image-content">
-                    <img class="header-image" src="images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
+                    <img class="header-image" src="images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
+                    <!-- <img class="header-image" src="images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
                 </div>
                 <div class="title-and-image-content">
                     Quantum E-waste
@@ -169,7 +170,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="about/index.php">
+                <a class="black-hyperlink" href="about-us/index.php">
                     <div class="menu-button">
                         About us
                     </div>
@@ -177,14 +178,14 @@ Student ID: Redacted
             </div>
             <div>
                 <a class="black-hyperlink" href="e-waste-we-buy/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
                 <a class="black-hyperlink" href="e-waste-we-sell/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
                 </a>
@@ -204,7 +205,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="contact/index.php">
+                <a class="black-hyperlink" href="contact-us/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -322,6 +323,7 @@ Student ID: Redacted
         <div class="margin-30px"></div>
         <!-- <br> -->
 
+        <!-- Welcome notice. -->
         <div class="welcome-container">
             <div class="welcome-content">
                 <h1>Welcome to Quantum E-waste Management System</h1>
@@ -379,7 +381,8 @@ Student ID: Redacted
         <br class="desktop-line-break"> -->
 
         <div id="footer-container-3-mobile">
-            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p><br>
+            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p>
+            <div class="margin-30px"></div>
             <div class="subscription-form">
                 <form action="" method="post">
                     <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
@@ -402,7 +405,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="#" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="about/index.php" class="white">
+                    <a class="white-hyperlink" href="about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
                     <a class="white-hyperlink" href="e-waste-we-buy/index.php" class="white">
@@ -417,7 +420,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="contact/index.php" class="white">
+                    <a class="white-hyperlink" href="contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

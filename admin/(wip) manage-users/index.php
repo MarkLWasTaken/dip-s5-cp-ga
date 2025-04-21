@@ -39,7 +39,7 @@ Student ID: Redacted
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="E-waste management system for everyone.">
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
@@ -63,12 +63,12 @@ Student ID: Redacted
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../about/index.php" onclick="closeNav()">About us</a>
+        <a href="../../about-us/index.php" onclick="closeNav()">About us</a>
         <a href="../../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
         <a href="../../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="../../services/index.php" onclick="closeNav()">Services</a>
         <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../contact-us/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
             if (isset($_SESSION['email_address'])) {
@@ -113,7 +113,7 @@ Student ID: Redacted
                 <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
                 <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
                 <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
-                <a href="admin/database-query/index.php" onclick="closeNav()">Database Query</a>
+                <a href="../../admin/database-query/index.php" onclick="closeNav()">Database Query</a>
                 <div class="margin-100px"></div>
                 HTML;
                 echo $html;
@@ -146,7 +146,8 @@ Student ID: Redacted
         <div id="header" class="website-title">
             <div class="title-and-image-container">
                 <div class="title-and-image-content">
-                    <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
+                    <img class="header-image" src="../../images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
+                    <!-- <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
                 </div>
                 <div class="title-and-image-content">
                     Quantum E-waste
@@ -175,7 +176,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../about_us/index.php">
+                <a class="black-hyperlink" href="../../about-us/index.php">
                     <div class="menu-button">
                         About us
                     </div>
@@ -183,14 +184,14 @@ Student ID: Redacted
             </div>
             <div>
                 <a class="black-hyperlink" href="../../e-waste-we-buy/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
                 <a class="black-hyperlink" href="../../e-waste-we-sell/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
                 </a>
@@ -210,7 +211,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact_us/index.php">
+                <a class="black-hyperlink" href="../../contact-us/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -331,8 +332,7 @@ Student ID: Redacted
         <!-- Layout for the contents 1 container. -->
         <div id="contents-1-container">
             <div id="contents-1-content">
-                <h1>Test header</h1>
-                <p class="contents-1-paragraph">Manage, edit and delete users here.</p>
+                <h2>Manage, edit and delete users here.</h2>
             </div>
         </div>
 
@@ -590,7 +590,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about/index.php" class="white">
+                    <a class="white-hyperlink" href="../../about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
                     <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
@@ -605,7 +605,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact/index.php" class="white">
+                    <a class="white-hyperlink" href="../../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

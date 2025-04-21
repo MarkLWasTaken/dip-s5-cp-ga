@@ -127,7 +127,8 @@ Student ID: Redacted
         <div id="header" class="website-title">
             <div class="title-and-image-container">
                 <div class="title-and-image-content">
-                    <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
+                    <img class="header-image" src="../../images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
+                    <!-- <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
                 </div>
                 <div class="title-and-image-content">
                     Quantum E-waste
@@ -155,23 +156,23 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../about/index.php">
+                <a class="black-hyperlink" href="../../about-us/index.php">
                     <div class="menu-button">
                         About us
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste/index.php">
-                    <div class="menu-button">
+                <a class="black-hyperlink" href="../../e-waste-we-buy/index.php">
+                    <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../recycled-items/index.php">
-                    <div class="menu-button">
-                        Recycled items<br>we sell
+                <a class="black-hyperlink" href="../../e-waste-we-sell/index.php">
+                    <div class="menu-button-2">
+                        E-waste<br>we sell
                     </div>
                 </a>
             </div>
@@ -190,7 +191,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact/index.php">
+                <a class="black-hyperlink" href="../../contact-us/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>

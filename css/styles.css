@@ -46,12 +46,24 @@ body {
     margin: 30px;
 }
 
+.margin-40px {
+    margin: 40px;
+}
+
 .margin-50px {
     margin: 50px;
 }
 
+.margin-60px {
+    margin: 60px;
+}
+
 .margin-100px {
     margin: 100px;
+}
+
+.margin-120px {
+    margin: 120px;
 }
 
 .margin-160px {
@@ -238,7 +250,8 @@ body {
     margin-right: 20px;
     background: gray;
     border-style: solid;
-    height: 90px;
+    height: 105px;
+    /* height: 90px; */
     width: 1080px;
     padding-top: 20px;
     
@@ -274,6 +287,28 @@ body {
     padding: 10px;
     margin-left: 5px;
     margin-right: 5px;
+    vertical-align: middle;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+    
+    border-radius: 5px;
+}
+
+.menu-button-2 {
+    height: 65px;
+    background-color:lightblue;
+    border-style: solid;
+    text-align: center;
+    /* margin: auto; */
+    float: left;
+    padding: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
 
     -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
 	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
@@ -285,6 +320,18 @@ body {
 }
 
 .menu-button:hover {
+    background-color: rgb(170, 170, 40);
+
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.menu-button-2:hover {
     background-color: rgb(170, 170, 40);
 
     transform: scale(1.15);

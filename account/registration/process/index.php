@@ -196,23 +196,23 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../../about/index.php">
+                <a class="black-hyperlink" href="../../../about-us/index.php">
                     <div class="menu-button">
                         About us
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../../e-waste/index.php">
-                    <div class="menu-button">
+                <a class="black-hyperlink" href="../../../e-waste-we-buy/index.php">
+                    <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../../recycled-items/index.php">
-                    <div class="menu-button">
-                        Recycled items<br>we sell
+                <a class="black-hyperlink" href="../../../e-waste-we-sell/index.php">
+                    <div class="menu-button-2">
+                        E-waste<br>we sell
                     </div>
                 </a>
             </div>

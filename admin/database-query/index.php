@@ -35,7 +35,7 @@ Student ID: Redacted
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="E-waste management system for everyone.">
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
@@ -59,12 +59,12 @@ Student ID: Redacted
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../about/index.php" onclick="closeNav()">About us</a>
+        <a href="../../about-us/index.php" onclick="closeNav()">About us</a>
         <a href="../../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
         <a href="../../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="../../services/index.php" onclick="closeNav()">Services</a>
         <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../contact-us/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
             if (isset($_SESSION['email_address'])) {
@@ -142,7 +142,8 @@ Student ID: Redacted
         <div id="header" class="website-title">
             <div class="title-and-image-container">
                 <div class="title-and-image-content">
-                    <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer.">
+                    <img class="header-image" src="../../images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
+                    <!-- <img class="header-image" src="../../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
                 </div>
                 <div class="title-and-image-content">
                     Quantum E-waste
@@ -171,7 +172,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../about_us/index.php">
+                <a class="black-hyperlink" href="../../about-us/index.php">
                     <div class="menu-button">
                         About us
                     </div>
@@ -179,14 +180,14 @@ Student ID: Redacted
             </div>
             <div>
                 <a class="black-hyperlink" href="../../e-waste-we-buy/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
                 <a class="black-hyperlink" href="../../e-waste-we-sell/index.php">
-                    <div class="menu-button">
+                    <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
                 </a>
@@ -206,7 +207,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact_us/index.php">
+                <a class="black-hyperlink" href="../../contact-us/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -326,7 +327,7 @@ Student ID: Redacted
 
         <!-- Query table container -->
         <div>
-            <form action="index.php" method="post">
+            <form action="" method="post">
                 <div class="query-table-content-1">
                     <table>
                         <tr>
@@ -407,6 +408,9 @@ Student ID: Redacted
                         $html = <<<HTML
                         <style>
                             .query-table-content-2 {
+                                opacity: 0;
+                            }
+                            .query-table-content-3 {
                                 opacity: 0;
                             }
                         </style>
@@ -606,6 +610,10 @@ Student ID: Redacted
                                     <td><input type="text" name="txtItemPrice" id=""></td>
                                 </tr>
                                 <tr>
+                                    <th>Item Type:</th>
+                                    <td><input type="text" name="txtItemType" id=""></td>
+                                </tr>
+                                <tr>
                                     <th>Action:</th>
                                     <td><input type="submit" value="Search from the table"></td>
                                 </tr>
@@ -617,6 +625,7 @@ Student ID: Redacted
                                 @$_SESSION['txtID'] = $_POST['txtID'];
                                 @$_SESSION['txtItemName'] = $_POST['txtItemName'];
                                 @$_SESSION['txtItemPrice'] = $_POST['txtItemPrice'];
+                                @$_SESSION['txtItemType'] = $_POST['txtItemType'];
                             }
                             // "mailing_list" table query options.
                             else if ($_SESSION['selected_table'] == 'mailing_list') {
@@ -865,8 +874,8 @@ Student ID: Redacted
             <div class="query-table-content-3">
                 <?php
                     if (isset($_SESSION['selected_table'])) {
-                        echo '<table class="manage-rows-table" border=1>';
-                            // "accounts_payable" table query.
+                        echo '<table border=1>';
+                            // "accounts_payable" table results.
                             if ($_SESSION['selected_table'] == 'accounts_payable') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -908,7 +917,7 @@ Student ID: Redacted
                                     echo $html;
                                 }
                             }
-                            // "accounts_receivable" table query.
+                            // "accounts_receivable" table results.
                             else if ($_SESSION['selected_table'] == 'accounts_receivable') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -950,7 +959,7 @@ Student ID: Redacted
                                     echo $html;
                                 }
                             }
-                            // "contact_us" table query.
+                            // "contact_us" table results.
                             else if ($_SESSION['selected_table'] == 'contact_us') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1000,7 +1009,7 @@ Student ID: Redacted
                                     echo $html;
                                 }
                             }
-                            // "faq" table query.
+                            // "faq" table results.
                             else if ($_SESSION['selected_table'] == 'faq') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1042,7 +1051,7 @@ Student ID: Redacted
                                     echo $html;
                                 }
                             }
-                            // "feedbacks" table query
+                            // "feedbacks" table results.
                             else if ($_SESSION['selected_table'] == 'feedbacks') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1074,7 +1083,8 @@ Student ID: Redacted
                                 $result_table_rows = mysqli_query($connection, $query_table_rows);
 
                                 // Insert each of the results into the table.
-                                while($row = mysqli_fetch_assoc($result_table_rows)) {                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
                                     <tr>
@@ -1087,7 +1097,7 @@ Student ID: Redacted
                                     echo $html;
                                 }
                             }
-                            // "items" table query
+                            // "items" table.
                             else if ($_SESSION['selected_table'] == 'items') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1096,6 +1106,7 @@ Student ID: Redacted
                                         <th>ID</th>
                                         <th>Item Name</th>
                                         <th>Item Price</th>
+                                        <th>Item Type</th>
                                     </tr>
                                 HTML;
                                 echo $html;
@@ -1104,31 +1115,35 @@ Student ID: Redacted
                                 $item_id  = $_SESSION['txtID'];
                                 $item_name = $_SESSION['txtItemName'];
                                 $item_price = $_SESSION['txtItemPrice'];
+                                $item_type = $_SESSION['txtItemType'];
 
                                 // Declare a variable for the query.
                                 $query_table_rows = "SELECT * FROM `$selected_table` WHERE
                                                     item_id LIKE '%$item_id%' AND
                                                     item_name LIKE '%$item_name%' AND
-                                                    item_price LIKE '%$item_price%'
+                                                    item_price LIKE '%$item_price%' AND
+                                                    item_type LIKE '%$item_type%'
                                                     ORDER BY item_id ASC";
 
                                 // Attempt to connect to the database and execute the query.
                                 $result_table_rows = mysqli_query($connection, $query_table_rows);
 
                                 // Insert each of the results into the table.
-                                while($row = mysqli_fetch_assoc($result_table_rows)) {                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
                                     <tr>
                                         <td>{$row['item_id']}</td>
                                         <td>{$row['item_name']}</td>
                                         <td>{$row['item_price']}</td>
+                                        <td>{$row['item_type']}</td>
                                     </tr>
                                     HTML;
                                     echo $html;
                                 }
                             }
-                            // "mailing_list" table query
+                            // "mailing_list" table results.
                             else if ($_SESSION['selected_table'] == 'mailing_list') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1163,7 +1178,8 @@ Student ID: Redacted
                                 $result_table_rows = mysqli_query($connection, $query_table_rows);
 
                                 // Insert the each of the results into the table.
-                                while($row = mysqli_fetch_assoc($result_table_rows)) {                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
                                     <tr>
@@ -1177,7 +1193,7 @@ Student ID: Redacted
                                     echo $html;
                                 }
                             }
-                            // "requests" table query
+                            // "requests" table results.
                             else if ($_SESSION['selected_table'] == 'requests') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1224,7 +1240,8 @@ Student ID: Redacted
                                 $result_table_rows = mysqli_query($connection, $query_table_rows);
 
                                 // Insert the each of the results into the table.
-                                while($row = mysqli_fetch_assoc($result_table_rows)) {                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
                                     <tr>
@@ -1242,7 +1259,7 @@ Student ID: Redacted
                                     echo $html;
                                 }
                             }
-                            // "sales_request_tracking" table query
+                            // "sales_request_tracking" table results.
                             else if ($_SESSION['selected_table'] == 'sales_request_tracking') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1277,7 +1294,8 @@ Student ID: Redacted
                                 $result_table_rows = mysqli_query($connection, $query_table_rows);
 
                                 // Insert the each of the results into the table.
-                                while($row = mysqli_fetch_assoc($result_table_rows)) {                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                                    // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
                                     <tr>
@@ -1292,7 +1310,7 @@ Student ID: Redacted
                                 }
                             }
 // 54rhhtebtbrrnybtrgvcefwdxxgyt
-                            // "users" table query.
+                            // "users" table results.
                             else if ($_SESSION['selected_table'] == 'users') {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
@@ -1398,7 +1416,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about/index.php" class="white">
+                    <a class="white-hyperlink" href="../../about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
                     <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
@@ -1413,7 +1431,7 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact/index.php" class="white">
+                    <a class="white-hyperlink" href="../../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

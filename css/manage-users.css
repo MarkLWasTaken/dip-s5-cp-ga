@@ -36,11 +36,11 @@ Student ID: Redacted
     display: flex;
     justify-content: center;
     gap: 50px;
-    height: 200px;
+    height: 130px;
 }
 
 #contents-1-content {
-    height: 150px;
+    height: 80px;
     width: 100%;
     border-style: solid;
     border-radius: 20px;
@@ -178,15 +178,10 @@ input[type="text"] {
 }
 
 form {
-    margin: 0 auto;        /* Center the form horizontally */
+    margin: 0 auto;     /* Center the form horizontally */
 }
 
-
-
-
-
-
-
+/* Contents 3 container designs */
 #contents-3-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
@@ -196,18 +191,21 @@ form {
     justify-content: center;
     gap: 75px;
     height: 50px;
+    /* margin-right: 25%; */
 }
 
-.contents-3-content {
-    height: 75px;
-    width: 20%;
+/* Contents 3 content 1 designs */
+.contents-3-content-1 {
+    height: 60px;
+    width: 15%;
     border-style: solid;
     border-radius: 20px;
     float: left;
     margin-left: 5px;
     margin-right: 5px;
-    border-width: 2px;
+    border-width: 4px;
     text-align: center;
+    border-color: lightseagreen;
 
     -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
 	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
@@ -216,8 +214,8 @@ form {
     transition: background-color 0.3s, margin-top 0.3s linear;
 }
 
-.contents-3-content:hover {
-    margin-top: 15px;
+.contents-3-content-1:hover {
+    margin-top: 5px;
 
     -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
 	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
@@ -226,13 +224,58 @@ form {
     transition: background-color 0.3s, margin-top 0.3s linear;
 }
 
-#contents-3-content {
-    background-color: darksalmon;
+#contents-3-content-1 {
+    background-color: lightgray;
+    /* background-color: rgb(225, 255, 225); */
 }
 
+.contents-3-content-1-title {
+    font-weight: bold;
+}
 
+/* Contents 3 content 2 designs */
+.contents-3-content-2 {
+    height: 60px;
+    width: 15%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    border-color: lightsalmon;
 
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
 
+.contents-3-content-2:hover {
+    margin-top: 5px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+#contents-3-content-2 {
+    background-color: lightgray;
+    /* background-color: lightpink; */
+}
+
+.contents-3-content-2-title {
+    font-weight: bold;
+}
+
+.black-hyperlink-display {
+	color: black;
+	text-decoration: none;
+}
 
 /* 
 End of the lines/blocks of codes
