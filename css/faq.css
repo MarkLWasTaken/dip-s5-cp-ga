@@ -3,12 +3,11 @@
 Start of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- */
+*/
 
-/* Home */
 .page-title-container {
     height: 75px;
-    width: 70%;
+    width: 65%;
     background-color: lightgreen;
     border-style: solid;
     text-align: center;
@@ -27,11 +26,11 @@ Student ID: Redacted
     display: flex;
     justify-content: center;
     gap: 50px;
-    height: 550px;
+    height: 100%;
 }
 
 #container-1-contents {
-    height: 375px;
+    height: 100%;
     width: 100%;
     border-style: solid;
     border-radius: 20px;
@@ -53,4 +52,4 @@ Student ID: Redacted
 End of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- */
+*/

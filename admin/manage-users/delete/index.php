@@ -407,12 +407,12 @@ Student ID: Redacted
                 <!-- Layout for the contents 3 container. -->
                 <div id="contents-3-container">
                     <div id="contents-3-content-1" class="contents-3-content-1">
-                        <a class="black-hyperlink-display" href="../../../admin/mange-users/index.php">    <!-- TODO -->
+                        <a class="black-hyperlink-display" href="../../../admin/manage-users/index.php">    <!-- TODO -->
                             <p class="contents-3-content-1-title">Yes</p>
                         </a>
                     </div>
                     <div id="contents-3-content-2" class="contents-3-content-2">
-                        <a class="black-hyperlink-display" href="../../../admin/mange-users/index.php">
+                        <a class="black-hyperlink-display" href="../../../admin/manage-users/index.php">
                             <p class="contents-3-content-2-title">No</p>
                         </a>
                     </div>

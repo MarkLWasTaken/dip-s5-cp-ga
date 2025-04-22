@@ -3,7 +3,7 @@
 Start of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- -->
+-->
 
 <?php
     // Start/Initialize the session.
@@ -39,12 +39,12 @@ Student ID: Redacted
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - E-waste we sell</title>
+    <title>Quantum E-waste Management System - Dashboard</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../css/e-waste.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
     <link href="../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -59,7 +59,7 @@ Student ID: Redacted
         <a href="../index.php" onclick="closeNav()">Home</a>
         <a href="../about-us/index.php" onclick="closeNav()">About us</a>
         <a href="../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="#" onclick="closeNav()">E-waste we sell</a>
+        <a href="../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="../services/index.php" onclick="closeNav()">Services</a>
         <a href="../faq/index.php" onclick="closeNav()">FAQ</a>
         <a href="../contact-us/index.php" onclick="closeNav()">Contact us</a>
@@ -72,12 +72,12 @@ Student ID: Redacted
                 <div class="margin-50px"></div>
                 <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
                 <a href="javascript:void(0)">&#128994; User is logged in.</a>
-                <a href="../dashboard/index.php" onclick="closeNav()">Dashboard</a>
+                <a href="#" onclick="closeNav()">Dashboard</a>
                 <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
                 <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
                 <a href="../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
                 <a href="../requests-history/index.php" onclick="closeNav()">Requests history</a>
-                <a href="../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+                <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
                 <a href="../account/logout/index.php" onclick="closeNav()">Logout</a>
                 <div class="margin-50px"></div>
                 HTML;
@@ -184,7 +184,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="#">
+                <a class="black-hyperlink" href="../e-waste-we-sell/index.php">
                     <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
@@ -270,7 +270,7 @@ Student ID: Redacted
                                     $html = <<<HTML
                                     <!-- Online -->
                                     &#128994; User is logged in.
-                                    <a class="menu" href="../dashboard/index.php">Dashboard</a>
+                                    <a class="menu" href="#">Dashboard</a>
                                     <a class="menu" href="../account/profile/index.php">Profile</a>
                                     <a class="menu" href="../account/logout/index.php">Logout</a>
                                     HTML;
@@ -316,138 +316,169 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="title-banner-container">
-            <div class="title-banner-content">E-waste we sell</div>
+        <div class="page-title-container">
+            <div class="page-title-content">Dashboard</div>
         </div>
 
         <div class="margin-30px"></div>
-        <!-- <br> -->
+        <!-- <br>
+        <div class="hidden-block">
+            <h1>Blank space.</h1>
+        </div> -->
 
-        <!-- Layout for the contents 1 container. -->
-        <div id="contents-1-container">
-            <div id="contents-1-content">
-                <h2>List of e-waste we sell.</h2>
-            </div>
-        </div>
+        <!-- Layout for the FAQ container. -->
+        <div id="container-1">
+            <div id="container-1-contents">
+                <h1>General</h1>
 
-        <?php
-        // Unset the session variables to clear the form data.
-        unset($_SESSION['txtID']);
-        unset($_SESSION['txtItemName']);
-        unset($_SESSION['txtItemPrice']);
+                <!-- Layout for the buttons container 1. -->
+                <div id="buttons-container-1">
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../about-us/index.php">
+                            <p class="button-content">Home</p>
+                        </a>
+                    </div>
 
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
-            $_SESSION['txtID'] = $_POST['txtID'];
-            $_SESSION['txtItemName'] = $_POST['txtItemName'];
-            $_SESSION['txtItemPrice'] = $_POST['txtItemPrice'];
-            if (isset($_POST['clear'])) {
-                // Unset the session variables to clear the form data.
-                unset($_SESSION['txtID']);
-                unset($_SESSION['txtItemName']);
-                unset($_SESSION['txtItemPrice']);
-            }
-        } else if (isset($_POST['clear'])) {
-            // Unset the session variables to clear the form data.
-            unset($_SESSION['txtID']);
-            unset($_SESSION['txtItemName']);
-            unset($_SESSION['txtItemPrice']);
-        }
+                    <div class="margin-20px"></div>
 
-        // Retrieve the values from the session.
-        $item_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
-        $item_name = isset($_SESSION['txtItemName']) ? $_SESSION['txtItemName'] : '';
-        $item_price = isset($_SESSION['txtItemPrice']) ? $_SESSION['txtItemPrice'] : '';
-        ?>
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../about-us/index.php">
+                            <p class="button-content">About us</p>
+                        </a>
+                    </div>
 
-        <!-- Table query container -->
-        <div>
-            <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                E-waste Table Query
-                            </th>
-                        </tr>
-                        <!-- "items" table query options. -->
-                        <tr>
-                        <th>ID:</th>
-                            <td><input type="text" name="txtID" value="<?php echo $item_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Name:</th>
-                            <td><input type="text" name="txtItemName" value="<?php echo $item_name ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Price:</th>
-                            <td><input type="text" name="txtItemPrice" value="<?php echo $item_price ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="submit" value="Search from the table"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="clear" value="Clear the query"></td>
-                        </tr>
-                    </table>
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../e-waste-we-buy/index.php">
+                            <p class="button-content">E-waste we buy</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../e-waste-we-sell/index.php">
+                            <p class="button-content">E-waste we sell</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../services/index.php">
+                            <p class="button-content">Services</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../faq/index.php">
+                            <p class="button-content">FAQ</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../contact-us/index.php">
+                            <p class="button-content">Contact us</p>
+                        </a>
+                    </div>
                 </div>
-            </form>
-        </div>
 
-        <div class="margin-50px"></div>
+                <div class="margin-50px"></div>
 
-        <!-- E-waste table container -->
-        <div>
-            <div class="e-waste-table">
-                <?php
-                    // Attempt to make a new connection to the database.
-                    include '../php/connection.php';
+                <h1>User Functions</h1>
 
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                    <table border=1>
-                        <tr>
-                            <th>ID</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
-                        </tr>
-                    HTML;
-                    echo $html;
+                <!-- Layout for the buttons container 2. -->
+                <div id="buttons-container-2">
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../buy-sell-request/index.php">
+                            <p class="button-content">Buy/Sell Request</p>
+                        </a>
+                    </div>
 
-                    // Declare a variable for the query.
-                    $query_table_rows = "SELECT * FROM `items` WHERE
-                                        item_id LIKE '%$item_id%' AND
-                                        item_name LIKE '%$item_name%' AND
-                                        item_price LIKE '%$item_price%' AND
-                                        item_type = 'sell'
-                                        ORDER BY item_id ASC";
+                    <div class="margin-20px"></div>
 
-                    // Attempt to connect to the database and execute the query.
-                    $result_table_rows = mysqli_query($connection, $query_table_rows);
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../tracking/index.php">
+                            <p class="button-content">Tracking</p>
+                        </a>
+                    </div>
 
-                    // Insert the each of the results into the table.
-                    while($row = mysqli_fetch_assoc($result_table_rows)) {
-                        // Use heredoc syntax to make the code readable and easier to maintain.
-                        // Very useful for handling large blocks of of codes.
-                        $html = <<<HTML
-                        <tr>
-                            <td>{$row['item_id']}</td>
-                            <td>{$row['item_name']}</td>
-                            <td>{$row['item_price']}</td>
-                        </tr>
-                        HTML;
-                        echo $html;
-                    }
-                    echo '</table>';
+                    <div class="margin-20px"></div>
 
-                    // Ensure the connection to the DB is closed, with or without
-                    // any code or query execution for security reasons.
-                    mysqli_close($connection);
-                ?>
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../transactions-history/index.php">
+                            <p class="button-content">Transactions history</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../requests-history/index.php">
+                            <p class="button-content">Requests history</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../profile/index.php">
+                            <p class="button-content">Manage/Edit Profile</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../account/logout/index.php">
+                            <p class="button-content">Logout</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="margin-50px"></div>
+
+                <h1>Admin</h1>
+
+                <!-- Layout for the buttons container 2. -->
+                <div id="buttons-container-2">
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../admin/e-waste-requests/index.php">
+                            <p class="button-content">E-waste request screening/acceptance</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../admin/manage-users/index.php">
+                            <p class="button-content">Manage users</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../admin/statistics/index.php">
+                            <p class="button-content">Statistics</p>
+                        </a>
+                    </div>
+
+                    <div class="margin-20px"></div>
+
+                    <div class="button">
+                        <a class="black-hyperlink-display" href="../admin/database-query/index.php">
+                            <p class="button-content">Database query</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="margin-100px"></div>
             </div>
         </div>
 
@@ -474,32 +505,31 @@ Student ID: Redacted
 
         <div class="margin-60px-mobile"></div>
         <!-- <br class="mobile-line-break">
-        <br class="mobile-line-break">
         <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">
             <div id="footer-container-2">
                 <p class="footer-text-2">Sitemap</p>
                 <ul>
-                    <a class="white-hyperlink" href="../index.php" class="white">
+                    <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../about-us/index.php" class="white">
+                    <a class="white-hyperlink" href="../../about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../e-waste-we-buy/index.php" class="white">
+                    <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="#" class="white">
+                    <a class="white-hyperlink" href="../../e-waste-we-sell/index.php" class="white">
                         <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../services/index.php" class="white">
+                    <a class="white-hyperlink" href="../../services/index.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="../faq/index.php" class="white">
+                    <a class="white-hyperlink" href="../../faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../contact-us/index.php" class="white">
+                    <a class="white-hyperlink" href="../../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>
@@ -526,4 +556,4 @@ Student ID: Redacted
 End of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- -->
+-->

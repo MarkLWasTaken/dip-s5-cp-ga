@@ -1,0 +1,136 @@
+
+/*
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/
+
+.page-title-container {
+    height: 75px;
+    width: 25%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+}
+
+#container-1 {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
+}
+
+#container-1-contents {
+    height: 100%;
+    width: 75%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    background-color: lightyellow;
+}
+
+.container-1-paragraph {
+    font-size: 24px;
+    line-height: 50px;
+}
+
+/* Buttons container 1 designs */
+#buttons-container-1 {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    /* display: flex; */
+    justify-content: center;
+    gap: 75px;
+    height: 100%;
+    margin-left: 33%;
+    margin-right: 33%;
+}
+
+/* Buttons container 2 designs */
+#buttons-container-2 {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    /* display: flex; */
+    justify-content: center;
+    gap: 75px;
+    height: 100%;
+    margin-left: 33%;
+    margin-right: 33%;
+}
+
+/* Buttons container 3 designs */
+#buttons-container-3 {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    /* display: flex; */
+    justify-content: center;
+    gap: 75px;
+    height: 100%;
+    margin-left: 33%;
+    margin-right: 33%;
+}
+
+/* Button designs */
+.button {
+    height: 60px;
+    width: 50%;
+    border-style: solid;
+    border-radius: 20px;
+    /* float: left; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+
+    background-color: lightgray;
+    /* background-color: rgb(225, 255, 225); */
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+.button:hover {
+    margin-top: 5px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+
+    background-color: white;
+}
+
+.black-hyperlink-display {
+	color: black;
+	text-decoration: none;
+}
+
+/*
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/

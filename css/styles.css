@@ -30,6 +30,10 @@ body {
     vertical-align: middle;
 } */
 
+.margin-10px {
+    margin: 18px;
+}
+
 .margin-18px {
     margin: 18px;
 }
@@ -91,7 +95,10 @@ body {
 #header {
     height: 150px;
     width: 1080px;
-    background-color: lightgreen;
+    background-color: #4dcd4d;
+    /* background-color: #46bc46; */
+    /* background-color: lightgreen; */
+    /* background-color: #efcb05; */
     border-style: solid;
     text-align: center;
     /* margin: auto; */

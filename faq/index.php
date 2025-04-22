@@ -39,12 +39,12 @@ Student ID: Redacted
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - E-waste we sell</title>
+    <title>Quantum E-waste Management System - FAQ</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../css/e-waste.css" rel="stylesheet">
+    <link href="../css/faq.css" rel="stylesheet">
     <link href="../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -59,9 +59,9 @@ Student ID: Redacted
         <a href="../index.php" onclick="closeNav()">Home</a>
         <a href="../about-us/index.php" onclick="closeNav()">About us</a>
         <a href="../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="#" onclick="closeNav()">E-waste we sell</a>
+        <a href="../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="../services/index.php" onclick="closeNav()">Services</a>
-        <a href="../faq/index.php" onclick="closeNav()">FAQ</a>
+        <a href="#" onclick="closeNav()">FAQ</a>
         <a href="../contact-us/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
@@ -77,7 +77,7 @@ Student ID: Redacted
                 <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
                 <a href="../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
                 <a href="../requests-history/index.php" onclick="closeNav()">Requests history</a>
-                <a href="../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+                <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
                 <a href="../account/logout/index.php" onclick="closeNav()">Logout</a>
                 <div class="margin-50px"></div>
                 HTML;
@@ -184,7 +184,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="#">
+                <a class="black-hyperlink" href="../e-waste-we-sell/index.php">
                     <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
@@ -198,7 +198,7 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../faq/index.php">
+                <a class="black-hyperlink" href="#">
                     <div class="menu-button">
                         FAQ
                     </div>
@@ -316,115 +316,28 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="title-banner-container">
-            <div class="title-banner-content">E-waste we sell</div>
+        <div class="page-title-container">
+            <div class="page-title-content">Frequently Asked Questions (FAQ)</div>
         </div>
 
         <div class="margin-30px"></div>
-        <!-- <br> -->
+        <!-- <br>
+        <div class="hidden-block">
+            <h1>Blank space.</h1>
+        </div> -->
 
-        <!-- Layout for the contents 1 container. -->
-        <div id="contents-1-container">
-            <div id="contents-1-content">
-                <h2>List of e-waste we sell.</h2>
-            </div>
-        </div>
+        <!-- Layout for the FAQ container. -->
+        <div id="container-1">
+            <div id="container-1-contents">
+                <h2>List of frequently asked questions (FAQ) here.</h2>
 
-        <?php
-        // Unset the session variables to clear the form data.
-        unset($_SESSION['txtID']);
-        unset($_SESSION['txtItemName']);
-        unset($_SESSION['txtItemPrice']);
-
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
-            $_SESSION['txtID'] = $_POST['txtID'];
-            $_SESSION['txtItemName'] = $_POST['txtItemName'];
-            $_SESSION['txtItemPrice'] = $_POST['txtItemPrice'];
-            if (isset($_POST['clear'])) {
-                // Unset the session variables to clear the form data.
-                unset($_SESSION['txtID']);
-                unset($_SESSION['txtItemName']);
-                unset($_SESSION['txtItemPrice']);
-            }
-        } else if (isset($_POST['clear'])) {
-            // Unset the session variables to clear the form data.
-            unset($_SESSION['txtID']);
-            unset($_SESSION['txtItemName']);
-            unset($_SESSION['txtItemPrice']);
-        }
-
-        // Retrieve the values from the session.
-        $item_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
-        $item_name = isset($_SESSION['txtItemName']) ? $_SESSION['txtItemName'] : '';
-        $item_price = isset($_SESSION['txtItemPrice']) ? $_SESSION['txtItemPrice'] : '';
-        ?>
-
-        <!-- Table query container -->
-        <div>
-            <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                E-waste Table Query
-                            </th>
-                        </tr>
-                        <!-- "items" table query options. -->
-                        <tr>
-                        <th>ID:</th>
-                            <td><input type="text" name="txtID" value="<?php echo $item_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Name:</th>
-                            <td><input type="text" name="txtItemName" value="<?php echo $item_name ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Price:</th>
-                            <td><input type="text" name="txtItemPrice" value="<?php echo $item_price ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="submit" value="Search from the table"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="clear" value="Clear the query"></td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
-        </div>
-
-        <div class="margin-50px"></div>
-
-        <!-- E-waste table container -->
-        <div>
-            <div class="e-waste-table">
                 <?php
                     // Attempt to make a new connection to the database.
                     include '../php/connection.php';
 
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                    <table border=1>
-                        <tr>
-                            <th>ID</th>
-                            <th>Item Name</th>
-                            <th>Item Price</th>
-                        </tr>
-                    HTML;
-                    echo $html;
-
                     // Declare a variable for the query.
-                    $query_table_rows = "SELECT * FROM `items` WHERE
-                                        item_id LIKE '%$item_id%' AND
-                                        item_name LIKE '%$item_name%' AND
-                                        item_price LIKE '%$item_price%' AND
-                                        item_type = 'sell'
-                                        ORDER BY item_id ASC";
+                    $query_table_rows = "SELECT * FROM `faq`
+                                        ORDER BY faq_id ASC";
 
                     // Attempt to connect to the database and execute the query.
                     $result_table_rows = mysqli_query($connection, $query_table_rows);
@@ -434,20 +347,19 @@ Student ID: Redacted
                         // Use heredoc syntax to make the code readable and easier to maintain.
                         // Very useful for handling large blocks of of codes.
                         $html = <<<HTML
-                        <tr>
-                            <td>{$row['item_id']}</td>
-                            <td>{$row['item_name']}</td>
-                            <td>{$row['item_price']}</td>
-                        </tr>
+                        <div class="margin-50px"></div>
+                        <h3>{$row['faq_question']}</h3>
+                        <p>{$row['faq_answer']}</p>
                         HTML;
                         echo $html;
                     }
-                    echo '</table>';
 
                     // Ensure the connection to the DB is closed, with or without
                     // any code or query execution for security reasons.
                     mysqli_close($connection);
                 ?>
+
+                <div class="margin-100px"></div>
             </div>
         </div>
 
@@ -474,32 +386,31 @@ Student ID: Redacted
 
         <div class="margin-60px-mobile"></div>
         <!-- <br class="mobile-line-break">
-        <br class="mobile-line-break">
         <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">
             <div id="footer-container-2">
                 <p class="footer-text-2">Sitemap</p>
                 <ul>
-                    <a class="white-hyperlink" href="../index.php" class="white">
+                    <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../about-us/index.php" class="white">
+                    <a class="white-hyperlink" href="../../about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../e-waste-we-buy/index.php" class="white">
+                    <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="#" class="white">
+                    <a class="white-hyperlink" href="../../e-waste-we-sell/index.php" class="white">
                         <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../services/index.php" class="white">
+                    <a class="white-hyperlink" href="../../services/index.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="../faq/index.php" class="white">
+                    <a class="white-hyperlink" href="#" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../contact-us/index.php" class="white">
+                    <a class="white-hyperlink" href="../../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

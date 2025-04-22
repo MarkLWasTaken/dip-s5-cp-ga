@@ -16,7 +16,7 @@ Student ID: Redacted
     @$user_id = $_SESSION['user_id'];
 
     // If user ID is not null,
-    // Check if the guest or user logged in is an admin or not.
+    // check if the guest or user logged in is an admin or not.
     if ($user_id != null) {
         // Execute the query to get the user's role status.
         $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
@@ -44,7 +44,7 @@ Student ID: Redacted
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
     <link href="../../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../../css/e-waste_request_acceptance_screening.css" rel="stylesheet">
+    <link href="../../css/e-waste-requests.css" rel="stylesheet">
     <link href="../../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -57,28 +57,29 @@ Student ID: Redacted
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../about_us/index.php" onclick="closeNav()">About us</a>
-        <a href="../../e-waste_we_buy/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="../../recycled_items_we_sell/index.php" onclick="closeNav()">Recycled items we sell</a>
+        <a href="../../about-us/index.php" onclick="closeNav()">About us</a>
+        <a href="../../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="../../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="../../services/index.php" onclick="closeNav()">Services</a>
         <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../contact_us/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../contact-us/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
             if (isset($_SESSION['email_address'])) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-                <a href="javascript:void(0)">User is logged in.</a>
+                <div class="margin-50px"></div>
+                <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+                <a href="javascript:void(0)">&#128994; User is logged in.</a>
                 <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
-                <a href="../../buy_sell_request/index.php" onclick="closeNav()">Buy/Sell Request</a>
+                <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
                 <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-                <a href="#" onclick="closeNav()">E-waste request screening</a>
-                <a href="../../transactions_history/index.php" onclick="closeNav()">Transactions history</a>
-                <a href="../../requests_history/index.php" onclick="closeNav()">Requests history</a>
+                <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
+                <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
                 <a href="../../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
                 <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
+                <div class="margin-50px"></div>
                 HTML;
                 echo $html;
             }
@@ -87,8 +88,9 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-                <a href="javascript:void(0)">User is not logged in.</a>
+                <div class="margin-50px"></div>
+                <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+                <a href="javascript:void(0)">&#128308; User is not logged in.</a>
                 <a href="../../account/login/index.php" onclick="closeNav()">Login</a>
                 <a href="../../account/registration/index.php" onclick="closeNav()">Register</a>
                 HTML;
@@ -102,17 +104,22 @@ Student ID: Redacted
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
-                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+                <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+                <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
+                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+                <a href="../../admin/database-query/index.php" onclick="closeNav()">Database Query</a>
+                <div class="margin-100px"></div>
                 HTML;
                 echo $html;
             }
-            elseif (@$is_admin == 2) {
+            else if (@$is_admin == 2) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <a href="../../admin/e-waste-request-screening/index.php" onclick="closeNav()">E-waste request acceptance (Admin)</a>
-                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+                <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+                <a href="#" onclick="closeNav()">E-waste request screening/acceptance</a>
+                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+                <div class="margin-100px"></div>
                 HTML;
                 echo $html;
             }
@@ -144,7 +151,8 @@ Student ID: Redacted
 
         <div class="hidden-header-mobile"></div>
 
-        <br>
+        <div class="margin-20px"></div>
+        <!-- <br> -->
 
         <div id="menu-buttons">
             <div>
@@ -197,40 +205,42 @@ Student ID: Redacted
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact_us/index.php">
+                <a class="black-hyperlink" href="../../contact-us/index.php">
                     <div class="menu-button">
                         Contact us
                     </div>
                 </a>
             </div>
-            <!-- ================================================== -->
-            <!-- A large comment block by M1 -->
+            <!--
+            ==================================================
+            A large comment block by M1
 
-            <!-- TODO: Need help to fix the dropdown menu. -->
-            <!-- I intended to have a fade out effect for the menu, but it didn't work. -->
-            <!-- If I try to move the menu down, the button will work as usual, -->
-            <!-- but stops responding to to any hover movements at certain margins, -->
-            <!-- and it will not show up. -->
+            TODO: Need help to fix the dropdown menu.
+            I intended to have a fade out effect for the menu, but it didn't work.
+            If I try to move the menu down, the button will work as usual,
+            but stops responding to to any hover movements at certain margins,
+            and it will not show up.
 
-            <!-- There is also another occurance where I changed the visibility -->
-            <!-- of the dropdown menu. The fade out effect works, but the menu -->
-            <!-- functions itself will still exist but invisible and will not disappear. -->
-            <!-- Leaving a hidden trace of invisible interacble dropdown menu.-->
-            <!-- I took so much time attempting to fix this issue, and still -->
-            <!-- therefore unable to fix the dropdown menu. So I left it as it is. -->
+            There is also another occurance where I changed the visibility
+            of the dropdown menu. The fade out effect works, but the menu
+            functions itself will still exist but invisible and will not disappear.
+            Leaving a hidden trace of invisible interacble dropdown menu.
+            I took so much time attempting to fix this issue, and still
+            therefore unable to fix the dropdown menu. So I left it as it is.
 
-            <!-- Instead, I took the opportunity to create a unique user session tracking. -->
-            <!-- These two buttons are affected by certain conditions and change the -->
-            <!-- The appearance of the buttons and the dropdown menu accordingly. -->
-            <!-- The function is simple. It will check if the user is logged in or not, -->
-            <!-- for the "Account" button. And if the user is and admin or not, -->
-            <!-- for the "Admin" button. -->
-            <!-- The button function of navigating to different pages will execute as usual. -->
+            Instead, I took the opportunity to create a unique user session tracking.
+            These two buttons are affected by certain conditions and change the
+            The appearance of the buttons and the dropdown menu accordingly.
+            The function is simple. It will check if the user is logged in or not,
+            for the "Account" button. And if the user is and admin or not,
+            for the "Admin" button.
+            The button function of navigating to different pages will execute as usual.
 
-            <!-- Any improvements made to fix the visual artifact is greatly appreciated. -->
-            <!-- Please do credit your name here, if possible. -->
-            <!-- Thanks in advance. -->
-            <!-- ================================================== -->
+            Any improvements made to fix the visual artifact is greatly appreciated.
+            Please do credit your name here, if possible.
+            Thanks in advance.
+            ==================================================
+            -->
             <div>
                 <!-- Prevent the user from scrolling to the top of the page when -->
                 <!-- clicking on the "Username" button that holds the dropdown menu. -->
@@ -258,7 +268,8 @@ Student ID: Redacted
                                     // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
-                                    User is logged in.
+                                    <!-- Online -->
+                                    &#128994; User is logged in.
                                     <a class="menu" href="../../dashboard/index.php">Dashboard</a>
                                     <a class="menu" href="../../account/profile/index.php">Profile</a>
                                     <a class="menu" href="../../account/logout/index.php">Logout</a>
@@ -269,7 +280,8 @@ Student ID: Redacted
                                     // Use heredoc syntax to make the code readable and easier to maintain.
                                     // Very useful for handling large blocks of of codes.
                                     $html = <<<HTML
-                                    User is not logged in.
+                                    <!-- Offline -->
+                                    &#128308; User is not logged in.
                                     <a class="menu" href="../../account/login/index.php">Login</a>
                                     <a class="menu" href="../../account/registration/index.php">Register</a>
                                     HTML;
@@ -281,7 +293,6 @@ Student ID: Redacted
                 </a>
             </div>
             <?php
-                //TODO: Do we need this?
                 // Check if the user is logged in as an admin or not.
                 // 1 = System Admin
                 // 2 = Office Admin
@@ -302,36 +313,230 @@ Student ID: Redacted
             ?>
         </div>
 
-        <br class="desktop-line-break">
+        <div class="margin-20px-desktop"></div>
+        <!-- <br class="desktop-line-break"> -->
 
         <div class="page-title-container">
-            <div class="page-title-content">E-waste request acceptance/screening</div>
+            <div class="page-title-content">E-waste request screening/acceptance</div>
         </div>
 
-        <br>
+        <div class="margin-30px"></div>
+        <!-- <br>
         <div class="hidden-block">
             <h1>Blank space.</h1>
-        </div>
+        </div> -->
 
         <!-- Layout for the contents 1 container. -->
         <div id="container-1">
             <div id="container-1-contents">
-                <h1 class="container-1-title">Electronic wastes deserves proper disposal</h1>
-                <p class="container-1-paragraph">Sell to us if your e-waste<br>match our list of acceptable items.<br><br>Buy from us if your requirement<br>meets what we have.</p>
+                <h2>Approve or reject e-waste requests here.</h2>
             </div>
         </div>
 
+        <?php
+        // Unset the session variables to clear the form data.
+        unset($_SESSION['txtID']);
+        unset($_SESSION['txtRequestDate']);
+        unset($_SESSION['txtRequestType']);
+        unset($_SESSION['txtItemQuantity']);
+        unset($_SESSION['txtRequestStatus']);
+        unset($_SESSION['txtUserID']);
+        unset($_SESSION['txtItemID']);
+        unset($_SESSION['txtAccountsPayableID']);
+        unset($_SESSION['txtAccountsReceivableID']);
+
+        // Check if the form has been submitted.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+             // Store the values in the session.
+            $_SESSION['txtID'] = $_POST['txtID'];
+            $_SESSION['txtRequestDate'] = $_POST['txtRequestDate'];
+            $_SESSION['txtRequestType'] = $_POST['txtRequestType'];
+            $_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
+            @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
+            $_SESSION['txtUserID'] = $_POST['txtUserID'];
+            @$_SESSION['txtItemID'] = $_POST['txtItemID'];
+            $_SESSION['txtAccountsPayableID'] = $_POST['txtAccountsPayableID'];
+            $_SESSION['txtAccountsReceivableID'] = $_POST['txtAccountsReceivableID'];
+            if (isset($_POST['clear'])) {
+                // Unset the session variables to clear the form data.
+                unset($_SESSION['txtID']);
+                unset($_SESSION['txtRequestDate']);
+                unset($_SESSION['txtRequestType']);
+                unset($_SESSION['txtItemQuantity']);
+                unset($_SESSION['txtRequestStatus']);
+                unset($_SESSION['txtUserID']);
+                unset($_SESSION['txtItemID']);
+                unset($_SESSION['txtAccountsPayableID']);
+                unset($_SESSION['txtAccountsReceivableID']);
+            }
+        } else if (isset($_POST['clear'])) {
+            // Unset the session variables to clear the form data.
+            unset($_SESSION['txtID']);
+            unset($_SESSION['txtRequestDate']);
+            unset($_SESSION['txtRequestType']);
+            unset($_SESSION['txtItemQuantity']);
+            unset($_SESSION['txtRequestStatus']);
+            unset($_SESSION['txtUserID']);
+            unset($_SESSION['txtItemID']);
+            unset($_SESSION['txtAccountsPayableID']);
+            unset($_SESSION['txtAccountsReceivableID']);
+        }
+
+        // Retrieve the values from the session.
+        $request_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
+        $request_date = isset($_SESSION['txtRequestDate']) ? $_SESSION['txtRequestDate'] : '';
+        $request_type = isset($_SESSION['txtRequestType']) ? $_SESSION['txtRequestType'] : '';
+        $item_quantity = isset($_SESSION['txtItemQuantity']) ? $_SESSION['txtItemQuantity'] : '';
+        $request_status = isset($_SESSION['txtRequestStatus']) ? $_SESSION['txtRequestStatus'] : '';
+        $user_id = isset($_SESSION['txtUserID']) ? $_SESSION['txtUserID'] : '';
+        $item_id = isset($_SESSION['txtItemID']) ? $_SESSION['txtItemID'] : '';
+        $accounts_payable_id = isset($_SESSION['txtAccountsPayableID']) ? $_SESSION['txtAccountsPayableID'] : '';
+        $accounts_receivable_id = isset($_SESSION['txtAccountsReceivableID']) ? $_SESSION['txtAccountsReceivableID'] : '';
+        ?>
+
+        <!-- Table query container -->
+        <div>
+            <form action="index.php" method="post">
+                <div class="query-table-content">
+                    <table id="table-query">
+                        <tr>
+                            <th colspan="2" style="padding-left: 0; text-align: center;">
+                                "requests" Table Query
+                            </th>
+                        </tr>
+                        <!-- "requests" table query options. -->
+                        <tr>
+                            <th>ID:</th>
+                            <td><input type="text" name="txtID" value="<?php echo $request_id ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Request Date:</th>
+                            <td><input type="text" name="txtRequestDate" value="<?php echo $request_date ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Request Type:</th>
+                            <td><input type="text" name="txtRequestType" value="<?php echo $request_type ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Item Quantity:</th>
+                            <td><input type="text" name="txtItemQuantity" value="<?php echo $item_quantity ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>User ID:</th>
+                            <td><input type="text" name="txtUserID" value="<?php $user_id ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Item ID:</th>
+                            <td><input type="text" name="txtItemID" value="<?php $item_id ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Accounts Payable ID:</th>
+                            <td><input type="text" name="txtAccountsPayableID" value="<?php $accounts_payable_id ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Accounts Receivable ID:</th>
+                            <td><input type="text" name="txtAccountsReceivableID" value="<?php $accounts_receivable_id ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Action:</th>
+                            <td><input type="submit" name="submit" value="Search from the table"></td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <th>Action:</th>
+                            <td><input type="submit" name="clear" value="Clear the query"></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <div class="margin-50px"></div>
+
+        <!-- E-waste requests table container -->
+        <div>
+            <div class="requests-table">
+                <?php
+                    // Attempt to make a new connection to the database.
+                    include '../../php/connection.php';
+
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
+                    <table border=1>
+                        <tr>
+                            <th>ID</th>
+                            <th>Request Date</th>
+                            <th>Request Type</th>
+                            <th>Item Quantity</th>
+                            <th>User ID</th>
+                            <th>Item ID</th>
+                            <th>Accounts Payable ID</th>
+                            <th>Accounts Receivable ID</th>
+                            <th colspan="2" style="text-align: center;">Actions</th>
+                        </tr>
+                    HTML;
+                    echo $html;
+
+                    // Declare a variable for the query.
+                    $query_table_rows = "SELECT * FROM `requests` WHERE
+                                        request_id LIKE '%$request_id%' AND
+                                        request_date LIKE '%$request_date%' AND
+                                        request_type LIKE '%$request_type%' AND
+                                        item_quantity LIKE '%$item_quantity%' AND
+                                        request_status = 'Pending' AND
+                                        user_id LIKE '%$user_id%' AND
+                                        item_id LIKE '%$item_id%' AND
+                                        accounts_payable_id LIKE '%$accounts_payable_id%' AND
+                                        accounts_receivable_id LIKE '%$accounts_receivable_id%'
+                                        ORDER BY request_id ASC";
+
+                    // Attempt to connect to the database and execute the query.
+                    $result_table_rows = mysqli_query($connection, $query_table_rows);
+
+                    // Insert the each of the results into the table.
+                    while($row = mysqli_fetch_assoc($result_table_rows)) {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <tr>
+                            <td>{$row['request_id']}</td>
+                            <td>{$row['request_date']}</td>
+                            <td>{$row['request_type']}</td>
+                            <td>{$row['item_quantity']}</td>
+                            <td>{$row['user_id']}</td>
+                            <td>{$row['item_id']}</td>
+                            <td>{$row['accounts_payable_id']}</td>
+                            <td>{$row['accounts_receivable_id']}</td>
+                            <td><a href="approve/index.php?id={$row['request_id']}">Approve</a></td>
+                            <td><a href="reject/index.php?id={$row['request_id']}">Reject</a></td>
+                        </tr>
+                        HTML;
+                        echo $html;
+                    }
+                    echo '</table>';
+
+                    // Ensure the connection to the DB is closed, with or without
+                    // any code or query execution for security reasons.
+                    mysqli_close($connection);
+                ?>
+            </div>
+        </div>
+
+        <div class="margin-100px"></div>
+        <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">
-        <br class="desktop-line-break">
-        <br class="desktop-line-break">
+        <br class="desktop-line-break"> -->
 
         <div id="footer-container-3-mobile">
-            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p><br>
+            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p>
+            <div class="margin-30px"></div>
             <div class="subscription-form">
                 <form action="" method="post">
-                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
+                    <div class="margin-30px"></div>
                     <input type="submit" value="Subscribe" class="subscribe-button">
                 </form>
             </div>
@@ -339,8 +544,9 @@ Student ID: Redacted
 
         <div class="hidden-footer-container-3-mobile"></div>
 
-        <br class="mobile-line-break">
-        <br class="mobile-line-break">
+        <div class="margin-60px-mobile"></div>
+        <!-- <br class="mobile-line-break">
+        <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">
             <div id="footer-container-2">
@@ -349,14 +555,14 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about_us/index.php" class="white">
+                    <a class="white-hyperlink" href="../../about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste_we_buy/index.php" class="white">
+                    <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="../../recycled_items_we_sell/index.php" class="white">
-                        <li class="padding-bottom">Recycled items we sell</li>
+                    <a class="white-hyperlink" href="../../e-waste-we-sell/index.php" class="white">
+                        <li class="padding-bottom">E-waste we sell</li>
                     </a>
                     <a class="white-hyperlink" href="../../services/index.php" class="white">
                         <li class="padding-bottom">Services</li>
@@ -364,16 +570,18 @@ Student ID: Redacted
                     <a class="white-hyperlink" href="../../faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact_us/index.php" class="white">
+                    <a class="white-hyperlink" href="../../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>
             </div>
             <div id="footer-container-3">
-                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p><br>
+                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p>
+                <div class="margin-24px"></div>
                 <div class="subscription-form">
                     <form action="" method="post">
-                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
+                        <div class="margin-30px"></div>
                         <input type="submit" value="Subscribe" class="subscribe-button">
                     </form>
                 </div>

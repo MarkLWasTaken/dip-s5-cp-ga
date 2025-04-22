@@ -374,15 +374,15 @@ Student ID: Redacted
                         <!-- "items" table query options. -->
                         <tr>
                         <th>ID:</th>
-                            <td><input type="text" name="txtID" id=""></td>
+                            <td><input type="text" name="txtID" value="<?php echo $item_id ?>"></td>
                         </tr>
                         <tr>
                             <th>Item Name:</th>
-                            <td><input type="text" name="txtItemName" id=""></td>
+                            <td><input type="text" name="txtItemName" value="<?php echo $item_name ?>"></td>
                         </tr>
                         <tr>
                             <th>Item Price:</th>
-                            <td><input type="text" name="txtItemPrice" id=""></td>
+                            <td><input type="text" name="txtItemPrice" value="<?php echo $item_price ?>"></td>
                         </tr>
                         <tr>
                             <th>Action:</th>
