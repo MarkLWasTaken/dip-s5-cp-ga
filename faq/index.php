@@ -3,7 +3,7 @@
 Start of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- -->
+-->
 
 <?php
     // Start/Initialize the session.
@@ -392,25 +392,25 @@ Student ID: Redacted
             <div id="footer-container-2">
                 <p class="footer-text-2">Sitemap</p>
                 <ul>
-                    <a class="white-hyperlink" href="../../index.php" class="white">
+                    <a class="white-hyperlink" href="../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about-us/index.php" class="white">
+                    <a class="white-hyperlink" href="../about-us/index.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
+                    <a class="white-hyperlink" href="../e-waste-we-buy/index.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste-we-sell/index.php" class="white">
+                    <a class="white-hyperlink" href="../e-waste-we-sell/index.php" class="white">
                         <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../../services/index.php" class="white">
+                    <a class="white-hyperlink" href="../services/index.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
                     <a class="white-hyperlink" href="#" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact-us/index.php" class="white">
+                    <a class="white-hyperlink" href="../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>
@@ -437,4 +437,4 @@ Student ID: Redacted
 End of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- -->
+-->

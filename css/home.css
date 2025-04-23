@@ -30,6 +30,31 @@ Student ID: Redacted
     border-width: 2px;
     text-align: center;
     background-color: lightgray;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Home */
+.page-title-container-1 {
+    height: 75px;
+    width: 15%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.page-title-content {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
 }
 
 #contents-1-container {
@@ -55,6 +80,7 @@ Student ID: Redacted
     border-width: 2px;
     text-align: center;
     background-color: lightyellow;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .contents-1-paragraph {
@@ -84,6 +110,7 @@ Student ID: Redacted
     margin-right: 5px;
     border-width: 2px;
     text-align: center;
+    box-shadow: 0px 0px 16px 0px black;
 
     -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
 	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */

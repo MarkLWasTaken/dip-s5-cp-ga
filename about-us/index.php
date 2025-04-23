@@ -39,12 +39,12 @@ Student ID: Redacted
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Dashboard</title>
+    <title>Quantum E-waste Management System - About us</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/about-us.css" rel="stylesheet">
     <link href="../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -57,11 +57,11 @@ Student ID: Redacted
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../index.php" onclick="closeNav()">Home</a>
-        <a href="../about-us/index.php" onclick="closeNav()">About us</a>
+        <a href="#" onclick="closeNav()">About us</a>
         <a href="../e-waste-we-buy/index.php" onclick="closeNav()">E-waste we buy</a>
         <a href="../e-waste-we-sell/index.php" onclick="closeNav()">E-waste we sell</a>
         <a href="../services/index.php" onclick="closeNav()">Services</a>
-        <a href="../faq/index.php" onclick="closeNav()">FAQ</a>
+        <a href="../faq/index/php" onclick="closeNav()">FAQ</a>
         <a href="../contact-us/index.php" onclick="closeNav()">Contact us</a>
         <?php
             // If the user is logged in.
@@ -72,7 +72,7 @@ Student ID: Redacted
                 <div class="margin-50px"></div>
                 <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
                 <a href="javascript:void(0)">&#128994; User is logged in.</a>
-                <a href="#" onclick="closeNav()">Dashboard</a>
+                <a href="../dashboard/index.php" onclick="closeNav()">Dashboard</a>
                 <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
                 <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
                 <a href="../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
@@ -143,7 +143,7 @@ Student ID: Redacted
                     <img class="header-image" src="../images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
                     <!-- <img class="header-image" src="../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
                 </div>
-                <div class="title-and-image-content">
+                <div class="title-and-image-content title-text">
                     Quantum E-waste
                 </div>
             </div>
@@ -270,7 +270,7 @@ Student ID: Redacted
                                     $html = <<<HTML
                                     <!-- Online -->
                                     &#128994; User is logged in.
-                                    <a class="menu" href="#">Dashboard</a>
+                                    <a class="menu" href="../dashboard/index.php">Dashboard</a>
                                     <a class="menu" href="../account/profile/index.php">Profile</a>
                                     <a class="menu" href="../account/logout/index.php">Logout</a>
                                     HTML;
@@ -317,7 +317,7 @@ Student ID: Redacted
         <!-- <br class="desktop-line-break"> -->
 
         <div class="page-title-container">
-            <div class="page-title-content">Dashboard</div>
+            <div class="page-title-content">About us</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -326,157 +326,21 @@ Student ID: Redacted
             <h1>Blank space.</h1>
         </div> -->
 
-        <!-- Layout for the FAQ container. -->
+        <!-- Layout for the About us container. -->
         <div id="container-1">
             <div id="container-1-contents">
-                <h1>General</h1>
-
-                <!-- Layout for the buttons container 1. -->
-                <div id="buttons-container-1">
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../about-us/index.php">
-                            <p class="button-content">Home</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../about-us/index.php">
-                            <p class="button-content">About us</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../e-waste-we-buy/index.php">
-                            <p class="button-content">E-waste we buy</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../e-waste-we-sell/index.php">
-                            <p class="button-content">E-waste we sell</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../services/index.php">
-                            <p class="button-content">Services</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../faq/index.php">
-                            <p class="button-content">FAQ</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../contact-us/index.php">
-                            <p class="button-content">Contact us</p>
-                        </a>
-                    </div>
-                </div>
-
                 <div class="margin-50px"></div>
-
-                <h1>User Functions</h1>
-
-                <!-- Layout for the buttons container 2. -->
-                <div id="buttons-container-2">
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../buy-sell-request/index.html">
-                            <p class="button-content">Buy/Sell Request</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../tracking/index.php">
-                            <p class="button-content">Tracking</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../transactions-history/index.php">
-                            <p class="button-content">Transactions history</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../requests-history/index.php">
-                            <p class="button-content">Requests history</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../profile/index.php">
-                            <p class="button-content">Manage/Edit Profile</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../account/logout/index.php">
-                            <p class="button-content">Logout</p>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="margin-50px"></div>
-
-                <h1>Admin</h1>
-
-                <!-- Layout for the buttons container 2. -->
-                <div id="buttons-container-2">
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/e-waste-requests/index.php">
-                            <p class="button-content">E-waste request screening/acceptance</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/manage-users/index.php">
-                            <p class="button-content">Manage users</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/statistics/index.php">
-                            <p class="button-content">Statistics</p>
-                        </a>
-                    </div>
-
-                    <div class="margin-20px"></div>
-
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/database-query/index.php">
-                            <p class="button-content">Database query</p>
-                        </a>
-                    </div>
-                </div>
+                <p>We are an environmentally-conscious organization committed to responsible e-waste disposal and recycling.<br>
+                Our mission is to reduce the environmental impact of electronic waste through sustainable collection,<br>
+                recycling, and resale of refurbished electronic items.</p>
+                <h1>Who are we</h1>
+                <p>test</p>
+                <h1>What do we do</h1>
+                <p>test</p>
+                <h1>Our Vision</h1>
+                <p>test</p>
+                <h1>Our Mission</h1>
+                <p>test</p>
 
                 <div class="margin-100px"></div>
             </div>
@@ -511,25 +375,25 @@ Student ID: Redacted
             <div id="footer-container-2">
                 <p class="footer-text-2">Sitemap</p>
                 <ul>
-                    <a class="white-hyperlink" href="../../index.php" class="white">
+                    <a class="white-hyperlink" href="../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about-us/index.php" class="white">
+                    <a class="white-hyperlink" href="#" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste-we-buy/index.php" class="white">
+                    <a class="white-hyperlink" href="../e-waste-we-buy/index.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste-we-sell/index.php" class="white">
+                    <a class="white-hyperlink" href="../e-waste-we-sell/index.php" class="white">
                         <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../../services/index.php" class="white">
+                    <a class="white-hyperlink" href="../services/index.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="../../faq/index.php" class="white">
+                    <a class="white-hyperlink" href="../faq/index.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact-us/index.php" class="white">
+                    <a class="white-hyperlink" href="../contact-us/index.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

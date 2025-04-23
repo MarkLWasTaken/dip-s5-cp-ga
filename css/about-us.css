@@ -1,0 +1,66 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/
+
+.page-title-container {
+    height: 75px;
+    width: 20%;
+    background-color: lightgreen;
+    border-style: solid;
+    text-align: center;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.page-title-content {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
+#container-1 {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
+}
+
+#container-1-contents {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    background-color: lightyellow;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.container-1-paragraph {
+    font-size: 24px;
+    line-height: 50px;
+}
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/
