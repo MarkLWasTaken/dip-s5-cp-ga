@@ -3,7 +3,7 @@
 Start of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- */
+*/
 
 .welcome-container {
     /*
@@ -88,7 +88,7 @@ Student ID: Redacted
     line-height: 50px;
 }
 
-#contents-2-container {
+.contents-2-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
     do not push the footer down and affect the overall website design.
@@ -96,12 +96,15 @@ Student ID: Redacted
     display: flex;
     justify-content: center;
     gap: 25px;
-    height: 550px;
+    height: 420px;
+    /* height: 550px; */
 }
 
 .contents-2-content {
-    height: 475px;
-    width: 300px;
+    height: 90%;
+    width: 100%;
+    /* height: 475px;
+    width: 300px; */
     border-style: solid;
     border-radius: 20px;
     float: left;
@@ -130,15 +133,21 @@ Student ID: Redacted
 }
 
 #contents-2-content-1 {
-    background-color: darksalmon;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    /* background-color: rgba(27, 47, 48); */
+    /* background-color: darksalmon; */
 }
 
 #contents-2-content-2 {
-    background-color: yellow;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    /* background-color: rgba(27, 47, 48); */
+    /* background-color: yellow; */
 }
 
 #contents-2-content-3 {
-    background-color: deepskyblue;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    /* background-color: rgba(27, 47, 48); */
+    /* background-color: deepskyblue; */
 }   
 
 .content-2-image {
@@ -157,14 +166,16 @@ Student ID: Redacted
 .content-2-titles {
     font-size: 24px;
     font-weight: bold;
+    color: white;
 }
 
 .content-2-paragraphs {
     font-size: 20px;
+    color: white;
 }
 
 /* 
 End of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- */
+*/

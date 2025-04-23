@@ -1,5 +1,6 @@
 
 <?php
+
 /*
 Start of the lines/blocks of codes
 Developed by M1
@@ -82,3 +83,5 @@ End of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
 */
+
+?>

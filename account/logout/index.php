@@ -53,6 +53,7 @@ Student ID: Redacted
 
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
+    <link href="../../css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="../../css/dropdown-menu.css" rel="stylesheet">
     <link href="../../css/account-logout.css" rel="stylesheet">
     <link href="../../css/styles-cp-mobile.css" rel="stylesheet">

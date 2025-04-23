@@ -3,7 +3,7 @@
 Start of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- -->
+-->
 
 <?php
     // Start/Initialize the session.
@@ -43,6 +43,7 @@ Student ID: Redacted
 
     <!-- Cascading Style Sheets -->
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="css/dropdown-menu.css" rel="stylesheet">
     <link href="css/home.css" rel="stylesheet">
     <link href="css/styles-cp-mobile.css" rel="stylesheet">
@@ -343,7 +344,7 @@ Student ID: Redacted
         </div>
 
         <!-- Layout for the contents 2 container. -->
-        <div id="contents-2-container">
+        <div class="contents-2-container">
             <div id="contents-2-content-1" class="contents-2-content">
                 <br>
                 <img class="content-2-image" src="images/clipboard-svgrepo-com.svg" alt="Clipboard." title="Clipboard.">
@@ -351,9 +352,12 @@ Student ID: Redacted
                 <p class="content-2-titles">Waste not want not</p>
                 <p class="content-2-paragraphs">We take your want nots, please check our list of acceptable e-wastes.</p>
             </div>
+            <!-- <div class="content1-spacing-mobile"></div>
+            <div class="content2-spacing-mobile"></div> -->
+        </div>
 
-            <div class="content1-spacing-mobile"></div>
-
+        <!-- Layout for the contents 3 container. -->
+        <div class="contents-2-container">
             <div id="contents-2-content-2" class="contents-2-content">
                 <br>
                 <img class="content-2-circle-image" src="images/sample-code.png" alt="Sample code of the website." title="Sample code of the website.">
@@ -361,15 +365,16 @@ Student ID: Redacted
                 <p class="content-2-titles">Sustainable Development Goal (SDG)</p>
                 <p class="content-2-paragraphs">We fully support SDG.<br>Come join us to keep the planet earth safe.</p>
             </div>
+        </div>
 
-            <div class="content2-spacing-mobile"></div>
-
+        <!-- Layout for the contents 4 container. -->
+        <div class="contents-2-container">
             <div id="contents-2-content-3" class="contents-2-content">
                 <br>
                 <img class="content-2-image" src="images/tip.png" alt="Tips jar with coins." title="Tips jar with coins.">
                 <br>
                 <p class="content-2-titles">Get started</p>
-                <p class="content-2-paragraphs">Convert your e-waste to<br>cash rewards.</p>
+                <p class="content-2-paragraphs">Convert your e-waste to cash rewards.</p>
             </div>
         </div>
 
@@ -447,4 +452,4 @@ Student ID: Redacted
 End of the lines/blocks of codes
 Developed by M1
 Student ID: Redacted
- -->
+-->
