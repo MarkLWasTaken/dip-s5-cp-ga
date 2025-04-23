@@ -317,8 +317,8 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-container">
-            <div class="page-title-content">Frequently Asked Questions (FAQ)</div>
+        <div class="page-title-banner-container">
+            <div class="page-title-banner-content">Frequently Asked Questions (FAQ)</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -328,10 +328,8 @@ Student ID: Redacted
         </div> -->
 
         <!-- Layout for the FAQ container. -->
-        <div id="container-1">
+        <div id="container-1-container">
             <div id="container-1-contents">
-                <h2>List of frequently asked questions (FAQ) here.</h2>
-
                 <?php
                     // Attempt to make a new connection to the database.
                     include '../php/connection.php';

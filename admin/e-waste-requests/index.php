@@ -25,6 +25,12 @@ Student ID: Redacted
         }
     }
 
+    // Users who are not system administrators (sysadmins)
+    // are not allowed to access this page.
+    if ($is_admin != 1) {
+        header('Location: ../../index.php');
+    }
+
     // Ensure the connection to the DB is closed, with or without
     // any code or query execution for security reasons.
     mysqli_close($connection);
@@ -39,7 +45,7 @@ Student ID: Redacted
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Home</title>
+    <title>Quantum E-waste Management System - Admin - Screen user requests (Accept/Reject)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
@@ -317,8 +323,9 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-container">
-            <div class="page-title-content">E-waste request screening/acceptance</div>
+        <div class="page-title-banner-container">
+            <!-- Formerly "E-waste request screening/acceptance" -->
+            <div class="page-title-banner-content">Screen user requests (Accept/Reject)</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -328,7 +335,7 @@ Student ID: Redacted
         </div> -->
 
         <!-- Layout for the contents 1 container. -->
-        <div id="container-1">
+        <div id="container-1-container">
             <div id="container-1-contents">
                 <h2>Approve or reject e-waste requests here.</h2>
             </div>

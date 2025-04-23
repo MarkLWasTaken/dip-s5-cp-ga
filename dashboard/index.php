@@ -317,8 +317,8 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-container">
-            <div class="page-title-content">Dashboard</div>
+        <div class="page-title-banner-container">
+            <div class="page-title-banner-content">Dashboard</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -328,65 +328,67 @@ Student ID: Redacted
         </div> -->
 
         <!-- Layout for the FAQ container. -->
-        <div id="container-1">
+        <div id="container-1-container">
             <div id="container-1-contents">
+
+            <div class="margin-40px"></div>
                 <h1>General</h1>
 
                 <!-- Layout for the buttons container 1. -->
                 <div id="buttons-container-1">
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../about-us/index.php">
+                    <a class="black-hyperlink-display" href="../about-us/index.php">
+                        <div class="button">
                             <p class="button-content">Home</p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../about-us/index.php">
+                    <a class="black-hyperlink-display" href="../about-us/index.php">
+                        <div class="button">
                             <p class="button-content">About us</p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../e-waste-we-buy/index.php">
+                    <a class="black-hyperlink-display" href="../e-waste-we-buy/index.php">
+                        <div class="button">
                             <p class="button-content">E-waste we buy</p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../e-waste-we-sell/index.php">
+                    <a class="black-hyperlink-display" href="../e-waste-we-sell/index.php">
+                        <div class="button">
                             <p class="button-content">E-waste we sell</p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../services/index.php">
-                            <p class="button-content">Services</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../services/index.php">
+                        <div class="button">
+                            <p class="button-content">Services (Unavailable)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../faq/index.php">
+                    <a class="black-hyperlink-display" href="../faq/index.php">
+                        <div class="button">
                             <p class="button-content">FAQ</p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../contact-us/index.php">
-                            <p class="button-content">Contact us</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../contact-us/index.php">
+                        <div class="button">
+                            <p class="button-content">Contact us (Unavailable)</p>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="margin-50px"></div>
@@ -395,51 +397,51 @@ Student ID: Redacted
 
                 <!-- Layout for the buttons container 2. -->
                 <div id="buttons-container-2">
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../buy-sell-request/index.html">
-                            <p class="button-content">Buy/Sell Request</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../buy-sell-request/index.html">
+                        <div class="button">
+                            <p class="button-content">Buy/Sell Request (Unavailable)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../tracking/index.php">
-                            <p class="button-content">Tracking</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../tracking/index.php">
+                        <div class="button">
+                            <p class="button-content">Tracking (Unavailable)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../transactions-history/index.php">
-                            <p class="button-content">Transactions history</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../transactions-history/index.php">
+                        <div class="button">
+                            <p class="button-content">Transactions history (Unavailable)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../requests-history/index.php">
-                            <p class="button-content">Requests history</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../requests-history/index.php">
+                        <div class="button">
+                            <p class="button-content">Requests history (Unavailable)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../profile/index.php">
-                            <p class="button-content">Manage/Edit Profile</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../profile/index.php">
+                        <div class="button">
+                            <p class="button-content">Manage/Edit Profile (Unavailable)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../account/logout/index.php">
+                    <a class="black-hyperlink-display" href="../account/logout/index.php">
+                        <div class="button">
                             <p class="button-content">Logout</p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="margin-50px"></div>
@@ -448,35 +450,35 @@ Student ID: Redacted
 
                 <!-- Layout for the buttons container 2. -->
                 <div id="buttons-container-2">
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/e-waste-requests/index.php">
-                            <p class="button-content">E-waste request screening/acceptance</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../admin/e-waste-requests/index.php">
+                        <div class="button">
+                            <p class="button-content">Screen user requests (Accept/Reject) (70%)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/manage-users/index.php">
-                            <p class="button-content">Manage users</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../admin/statistics/index.php">
+                        <div class="button">
+                            <p class="button-content">Statistics (Unavailable)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/statistics/index.php">
-                            <p class="button-content">Statistics</p>
-                        </a>
-                    </div>
+                    <a class="black-hyperlink-display" href="../admin/manage-users/index.php">
+                        <div class="button">
+                            <p class="button-content">Manage users (60%)</p>
+                        </div>
+                    </a>
 
                     <div class="margin-20px"></div>
 
-                    <div class="button">
-                        <a class="black-hyperlink-display" href="../admin/database-query/index.php">
+                    <a class="black-hyperlink-display" href="../admin/database-query/index.php">
+                        <div class="button">
                             <p class="button-content">Database query</p>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="margin-100px"></div>

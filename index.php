@@ -317,8 +317,8 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-container-1">
-            <div class="page-title-content">Home</div>
+        <div class="page-title-banner-container-1">
+            <div class="page-title-banner-content">Home</div>
         </div>
 
         <div class="margin-30px"></div>

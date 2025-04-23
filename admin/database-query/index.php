@@ -41,7 +41,7 @@ Student ID: Redacted
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Admin - Database/Table Query</title>
+    <title>Quantum E-waste Management System - Admin - Database/Table query</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
@@ -319,8 +319,8 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="title-banner-container">
-            <div class="title-banner-content">Admin - Database/Table Query</div>
+        <div class="page-title-banner-container">
+            <div class="page-title-banner-content">Admin - Database/Table Query</div>
         </div>
 
         <div class="margin-30px"></div>

@@ -317,8 +317,8 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-container">
-            <div class="page-title-content">About us</div>
+        <div class="page-title-banner-container">
+            <div class="page-title-banner-content">About us</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -328,20 +328,31 @@ Student ID: Redacted
         </div> -->
 
         <!-- Layout for the About us container. -->
-        <div id="container-1">
+        <div id="container-1-container">
             <div id="container-1-contents">
                 <div class="margin-50px"></div>
-                <p>We are an environmentally-conscious organization committed to responsible e-waste disposal and recycling.<br>
-                Our mission is to reduce the environmental impact of electronic waste through sustainable collection,<br>
-                recycling, and resale of refurbished electronic items.</p>
+
                 <h1>Who are we</h1>
-                <p>test</p>
-                <h1>What do we do</h1>
-                <p>test</p>
+                <p class="container-1-paragraph">
+                    We are an environmentally-conscious organization committed<br>
+                    to responsible e-waste disposal and recycling.
+                </p>
+
+                <div class="margin-50px"></div>
+
                 <h1>Our Vision</h1>
-                <p>test</p>
+                <p class="container-1-paragraph">
+                    Our e-waste business save planet Earth.
+                </p>
+
+                <div class="margin-50px"></div>
+
                 <h1>Our Mission</h1>
-                <p>test</p>
+                <p class="container-1-paragraph">
+                    Reduce the environmental impact of hazardous electronic waste<br>
+                    through sustainable collection, recycling,<br>
+                    and the sale of electronic components.
+                </p>
 
                 <div class="margin-100px"></div>
             </div>

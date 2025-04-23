@@ -22,6 +22,7 @@ Student ID: Redacted
     height: 90px;
     width: 975px;
     border-style: solid;
+    border-color: black;
     border-radius: 20px;
     float: left;
     /* padding-left: 20px; */
@@ -29,26 +30,30 @@ Student ID: Redacted
     margin-right: 5px;
     border-width: 2px;
     text-align: center;
-    background-color: lightgray;
+    /* background-color: lightgray; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
     box-shadow: 0px 0px 16px 0px black;
+    color: white;
 }
 
 /* Home */
-.page-title-container-1 {
+.page-title-banner-container-1 {
     height: 75px;
     width: 15%;
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
     border-style: solid;
-    text-align: center;
     border-radius: 20px 20px 20px 20px;
+    text-align: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-left: 3%;
     box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
 }
 
-.page-title-content {
+.page-title-banner-content {
     margin: 0 auto;
     flex-direction: column;
     height: 60px;
@@ -65,13 +70,14 @@ Student ID: Redacted
     display: flex;
     justify-content: center;
     gap: 50px;
-    height: 550px;
+    height: 450px;
 }
 
 #contents-1-content {
     height: 375px;
     width: 875px;
     border-style: solid;
+    border-color: black;
     border-radius: 20px;
     float: left;
     /* padding-left: 20px; */
@@ -79,8 +85,10 @@ Student ID: Redacted
     margin-right: 5px;
     border-width: 2px;
     text-align: center;
-    background-color: lightyellow;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
     box-shadow: 0px 0px 16px 0px black;
+    color: white;
 }
 
 .contents-1-paragraph {

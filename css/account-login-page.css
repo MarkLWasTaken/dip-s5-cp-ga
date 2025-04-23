@@ -5,6 +5,7 @@ Developed by M1
 Student ID: Redacted
 */
 
+/* Account login */
 #login-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
@@ -20,6 +21,7 @@ Student ID: Redacted
     height: 550px;
     width: 750px;
     border-style: solid;
+    border-color: black;
     border-radius: 20px;
     float: left;
     /* padding-left: 20px; */
@@ -28,6 +30,9 @@ Student ID: Redacted
     border-width: 2px;
     text-align: center;
     background-color: lightyellow;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    box-shadow: 0px 0px 16px 0px black;
+    color: white;
 }
 
 #login-form {
@@ -35,17 +40,60 @@ Student ID: Redacted
     border-spacing: 0;
     background-color: #fafafa;
     border-radius: 16px;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
 }
 
 #login-form, #login-form th, #login-form td {
-    border: 1px solid;
+    border: 1px solid black;
     text-align: left;
     padding: 20px 20px;
+    color: white;
+}
+
+#login-form {
+    background: #696969; /* dimgray */
+}
+
+#login-form th, #login-form td {
+    background: #808080; /* gray */
+}
+
+#login-form td {
+    width: 68%;
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    font-size: 18px;
 }
 
 .login-button {
-    padding: 10px 30px;
+    padding: 10px 50px;
+    background: #808080; /* gray */
+    color: white;
+    border: 0px;
+    border-radius: 12px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
 }
+
+.login-button:hover {
+    background: #778899; /* lightslategray */
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+
+
 
 /* 
 End of the lines/blocks of codes

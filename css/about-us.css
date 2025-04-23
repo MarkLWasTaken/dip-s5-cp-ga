@@ -5,21 +5,24 @@ Developed by M1
 Student ID: Redacted
 */
 
-.page-title-container {
+/* About us */
+.page-title-banner-container {
     height: 75px;
     width: 20%;
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
     border-style: solid;
-    text-align: center;
     border-radius: 20px 20px 20px 20px;
+    text-align: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-left: 3%;
     box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
 }
 
-.page-title-content {
+.page-title-banner-content {
     margin: 0 auto;
     flex-direction: column;
     height: 60px;
@@ -28,7 +31,7 @@ Student ID: Redacted
     margin-top: 12px;
 }
 
-#container-1 {
+#container-1-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
     do not push the footer down and affect the overall website design.
@@ -43,6 +46,7 @@ Student ID: Redacted
     height: 100%;
     width: 100%;
     border-style: solid;
+    border-color: black;
     border-radius: 20px;
     float: left;
     /* padding-left: 20px; */
@@ -50,7 +54,9 @@ Student ID: Redacted
     margin-right: 5px;
     border-width: 2px;
     text-align: center;
-    background-color: lightyellow;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
     box-shadow: 0px 0px 16px 0px black;
 }
 

@@ -5,21 +5,24 @@ Developed by M1
 Student ID: Redacted
 */
 
-/* Database query title banner */
-.title-banner-container {
+/* Admin - Database/Table Query */
+.page-title-banner-container {
     height: 75px;
     width: 60%;
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
     border-style: solid;
-    text-align: center;
     border-radius: 20px 20px 20px 20px;
+    text-align: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
 }
 
-.title-banner-content {
+.page-title-banner-content {
     margin: 0 auto;
     flex-direction: column;
     height: 60px;

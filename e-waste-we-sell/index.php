@@ -317,8 +317,8 @@ Student ID: Redacted
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="title-banner-container">
-            <div class="title-banner-content">E-waste we sell</div>
+        <div class="page-title-banner-container">
+            <div class="page-title-banner-content">E-waste we sell</div>
         </div>
 
         <div class="margin-30px"></div>

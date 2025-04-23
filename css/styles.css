@@ -96,7 +96,8 @@ body {
 #header {
     height: 150px;
     width: 1080px;
-    background: linear-gradient(to right, #00f260, #0575e6);
+    background: linear-gradient(to right, #008033, #0575e6);
+    /* background: linear-gradient(to right, #00f260, #0575e6); */
     /* background-color: #4dcd4d; */
     /* background-color: #46bc46; */
     /* background-color: lightgreen; */

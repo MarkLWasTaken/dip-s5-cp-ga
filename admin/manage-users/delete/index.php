@@ -45,7 +45,7 @@ Student ID: Redacted
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Admin - Manage Users (Delete User)</title>
+    <title>Quantum E-waste Management System - Admin - Manage users (Delete user)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../../css/styles.css" rel="stylesheet">

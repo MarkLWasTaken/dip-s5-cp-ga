@@ -10,11 +10,11 @@ Student ID: Redacted
     session_start();
 
     // Unset all session variables.
-    // $_SESSION = array();
-    // session_unset();
+    $_SESSION = array();
+    session_unset();
 
     // Destroy the session.
-    // session_destroy();
+    session_destroy();
 
     // Redirect the user to the homepage.
     // header("Location: ../../index.php");
@@ -334,7 +334,7 @@ Student ID: Redacted
                     <h1 class="page-title">Account logout sucessful!</h1>
                     <br>
                     <p>You are now logged out of the website.</p>
-                    <p>You'll be redirected to the home page in 5 seconds.</p>
+                    <p>You'll be redirected to the homepage in 5 seconds.</p>
                     <!-- <meta http-equiv="refresh" content="5; url=../../index.php"> -->
                 <br>
             </div>
