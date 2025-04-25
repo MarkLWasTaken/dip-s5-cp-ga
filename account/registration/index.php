@@ -6,32 +6,32 @@ Student ID: Redacted
 -->
 
 <?php
-    // Start/Initialize the session.
-    session_start();
+// Start/Initialize the session.
+session_start();
 
-    // Include the PHP script for connecting to the database (DB).
-    include '../../php/connection.php';
+// Include the PHP script for connecting to the database (DB).
+include '../../php/connection.php';
 
-    // Declare the variable to get the user ID and hide the warning message.
-    @$user_id = $_SESSION['user_id'];
+// Declare the variable to get the user ID and hide the warning message.
+@$user_id = $_SESSION['user_id'];
 
-    // Check if the guest or user logged in is an admin or not.
-    if ($user_id != null) {
-        // Execute the query to get the user's role status.
-        $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
-        while ($row = $result->fetch_assoc()) {
-            $is_admin = (int) $row['is_admin']; // Cast to integer.
-        }
+// Check if the guest or user logged in is an admin or not.
+if ($user_id != null) {
+    // Execute the query to get the user's role status.
+    $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
+    while ($row = $result->fetch_assoc()) {
+        $is_admin = (int) $row['is_admin']; // Cast to integer.
     }
+}
 
-    // Users who are already logged are not allowed to access this page.
-    if (isset($_SESSION['email_address'])) {
-        header('Location: ../../index.php');
-    }
+// Users who are already logged are not allowed to access this page.
+if (isset($_SESSION['email_address'])) {
+    header('Location: ../../index.php');
+}
 
-    // Ensure the connection to the DB is closed, with or without
-    // any code or query execution for security reasons.
-    mysqli_close($connection);
+// Ensure the connection to the DB is closed, with or without
+// any code or query execution for security reasons.
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -69,48 +69,48 @@ Student ID: Redacted
         <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
         <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
         <?php
-            // If the user is logged in.
-            if (isset($_SESSION['email_address'])) {
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-                <a href="javascript:void(0)">User is logged in.</a>
-                <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
-                <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
-                <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-                <a href="../../e-waste-request-screening/index.php" onclick="closeNav()">E-waste request screening</a>
-                <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
-                <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
-                <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
-                <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
-                HTML;
-                echo $html;
-            }
-            // If the user is not logged in.
-            else {
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-                <a href="javascript:void(0)">User is not logged in.</a>
-                <a href="../../account/login/index.php" onclick="closeNav()">Login</a>
-                <a href="#" onclick="closeNav()">Register</a>
-                HTML;
-                echo $html;
-            }
-            // If the user is logged in as an admin.
-            if (@$is_admin == 1) {
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-                <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
-                <a href="../../admin/e-waste-request-screening/index.php" onclick="closeNav()">E-waste request acceptance (Admin)</a>
-                <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
-                HTML;
-                echo $html;
-            }
+        // If the user is logged in.
+        if (isset($_SESSION['email_address'])) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
+            <a href="javascript:void(0)">User is logged in.</a>
+            <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
+            <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
+            <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
+            <a href="../../e-waste-request-screening/index.php" onclick="closeNav()">E-waste request screening</a>
+            <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
+            <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
+            <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+            <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
+            HTML;
+            echo $html;
+        }
+        // If the user is not logged in.
+        else {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
+            <a href="javascript:void(0)">User is not logged in.</a>
+            <a href="../../account/login/index.php" onclick="closeNav()">Login</a>
+            <a href="#" onclick="closeNav()">Register</a>
+            HTML;
+            echo $html;
+        }
+        // If the user is logged in as an admin.
+        if (@$is_admin == 1) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+            <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
+            <a href="../../admin/e-waste-request-screening/index.php" onclick="closeNav()">E-waste request acceptance (Admin)</a>
+            <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+            HTML;
+            echo $html;
+        }
         ?>
     </div>
     <!-- Reference: https://www.w3schools.com/howto/howto_js_sidenav.asp -->
@@ -198,34 +198,36 @@ Student ID: Redacted
                     </div>
                 </a>
             </div>
-            <!-- ================================================== -->
-            <!-- A large comment block by M1 -->
+            <!--
+            ==================================================
+            A large comment block by M1
 
-            <!-- TODO: Need help to fix the dropdown menu. -->
-            <!-- I intended to have a fade out effect for the menu, but it didn't work. -->
-            <!-- If I try to move the menu down, the button will work as usual, -->
-            <!-- but stops responding to to any hover movements at certain margins, -->
-            <!-- and it will not show up. -->
+            TODO: Need help to fix the dropdown menu.
+            I intended to have a fade out effect for the menu, but it didn't work.
+            If I try to move the menu down, the button will work as usual,
+            but stops responding to to any hover movements at certain margins,
+            and it will not show up.
 
-            <!-- There is also another occurance where I changed the visibility -->
-            <!-- of the dropdown menu. The fade out effect works, but the menu -->
-            <!-- functions itself will still exist but invisible and will not disappear. -->
-            <!-- Leaving a hidden trace of invisible interacble dropdown menu.-->
-            <!-- I took so much time attempting to fix this issue, and still -->
-            <!-- therefore unable to fix the dropdown menu. So I left it as it is. -->
+            There is also another occurance where I changed the visibility
+            of the dropdown menu. The fade out effect works, but the menu
+            functions itself will still exist but invisible and will not disappear.
+            Leaving a hidden trace of invisible interacble dropdown menu.
+            I took so much time attempting to fix this issue, and still
+            therefore unable to fix the dropdown menu. So I left it as it is.
 
-            <!-- Instead, I took the opportunity to create a unique user session tracking. -->
-            <!-- These two buttons are affected by certain conditions and change the -->
-            <!-- The appearance of the buttons and the dropdown menu accordingly. -->
-            <!-- The function is simple. It will check if the user is logged in or not, -->
-            <!-- for the "Account" button. And if the user is and admin or not, -->
-            <!-- for the "Admin" button. -->
-            <!-- The button function of navigating to different pages will execute as usual. -->
+            Instead, I took the opportunity to create a unique user session tracking.
+            These two buttons are affected by certain conditions and change the
+            The appearance of the buttons and the dropdown menu accordingly.
+            The function is simple. It will check if the user is logged in or not,
+            for the "Account" button. And if the user is and admin or not,
+            for the "Admin" button.
+            The button function of navigating to different pages will execute as usual.
 
-            <!-- Any improvements made to fix the visual artifact is greatly appreciated. -->
-            <!-- Please do credit your name here, if possible. -->
-            <!-- Thanks in advance. -->
-            <!-- ================================================== -->
+            Any improvements made to fix the visual artifact is greatly appreciated.
+            Please do credit your name here, if possible.
+            Thanks in advance.
+            ==================================================
+            -->
             <div>
                 <!-- Prevent the user from scrolling to the top of the page when -->
                 <!-- clicking on the "Username" button that holds the dropdown menu. -->
@@ -233,63 +235,63 @@ Student ID: Redacted
                     <div class="dropdown">
                         <div class="menu-button">
                             <?php
-                                // Check if the user account is logged in or not and display
-                                // the relevant contents.
-                                if (isset($_SESSION['email_address'])) {
-                                    // Online.
-                                    echo "Account &#128994;";
-                                }
-                                else {
-                                    // Offline.
-                                    echo "Account &#128308;";
-                                }
+                            // Check if the user account is logged in or not and display
+                            // the relevant contents.
+                            if (isset($_SESSION['email_address'])) {
+                                // Online.
+                                echo "Account &#128994;";
+                            }
+                            else {
+                                // Offline.
+                                echo "Account &#128308;";
+                            }
                             ?>
                         </div>
                         <div class="dropdown-content">
                             <?php
-                                // Check if the user account is logged in or not and display
-                                // the relevant contents.
-                                if (isset($_SESSION['email_address'])) {
-                                    // Use heredoc syntax to make the code readable and easier to maintain.
-                                    // Very useful for handling large blocks of of codes.
-                                    $html = <<<HTML
-                                    User is logged in.
-                                    <a class="menu" href="../../dashboard/index.php">Dashboard</a>
-                                    <a class="menu" href="../../account/profile/index.php">Profile</a>
-                                    <a class="menu" href="../../account/logout/index.php">Logout</a>
-                                    HTML;
-                                    echo $html;
-                                }
-                                else {
-                                    // Use heredoc syntax to make the code readable and easier to maintain.
-                                    // Very useful for handling large blocks of of codes.
-                                    $html = <<<HTML
-                                    User is not logged in.
-                                    <a class="menu" href="../../account/login/index.php">Login</a>
-                                    <a class="menu" href="javascript:void(0)">Register</a>
-                                    HTML;
-                                    echo $html;
-                                }
+                            // Check if the user account is logged in or not and display
+                            // the relevant contents.
+                            if (isset($_SESSION['email_address'])) {
+                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                // Very useful for handling large blocks of of codes.
+                                $html = <<<HTML
+                                User is logged in.
+                                <a class="menu" href="../../dashboard/index.php">Dashboard</a>
+                                <a class="menu" href="../../account/profile/index.php">Profile</a>
+                                <a class="menu" href="../../account/logout/index.php">Logout</a>
+                                HTML;
+                                echo $html;
+                            }
+                            else {
+                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                // Very useful for handling large blocks of of codes.
+                                $html = <<<HTML
+                                User is not logged in.
+                                <a class="menu" href="../../account/login/index.php">Login</a>
+                                <a class="menu" href="javascript:void(0)">Register</a>
+                                HTML;
+                                echo $html;
+                            }
                             ?>
 		                </div>
                     </div>
                 </a>
             </div>
             <?php
-                if (@$is_admin == 1) {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                        <div>
-                            <a class='black-hyperlink' href='../../admin/index.php'>
-                                <div class='menu-button'>
-                                    Admin
-                                </div>
-                            </a>
-                        </div>
-                    HTML;
-                    echo $html;
-                }
+            if (@$is_admin == 1) {
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
+                    <div>
+                        <a class='black-hyperlink' href='../../admin/index.php'>
+                            <div class='menu-button'>
+                                Admin
+                            </div>
+                        </a>
+                    </div>
+                HTML;
+                echo $html;
+            }
             ?>
         </div>
 
@@ -305,7 +307,7 @@ Student ID: Redacted
                 <br>
 
                 <!-- Registration table form -->
-                <form action="process/index.php" method="post">
+                <form action="process.php" method="post">
                     <table id="registration-form">
                         <tr>
                             <th>First Name:</th>
