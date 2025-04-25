@@ -31,6 +31,7 @@ Student ID: Redacted
     margin-top: 12px;
 }
 
+/* Container 1 */
 #container-1-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
@@ -60,9 +61,143 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
-.container-1-paragraph {
+/* .container-1-paragraph {
     font-size: 24px;
     line-height: 50px;
+} */
+
+/* Container 2 */
+#container-2-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
+}
+
+#container-2-contents {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Container 3 */
+#container-3-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 100%;
+}
+
+#container-3-contents-1 {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    /* float: left; */
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.container-3-contents-2-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+
+.container-3-contents-2-shared {
+    height: 60px;
+    width: 15%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(rgb(95, 120, 120), rgba(27, 47, 48, 0.7));
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-3-contents-2-shared:hover {
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-3-contents-2-accept {
+    border-color: lightseagreen;
+    color: lightseagreen;
+	text-decoration: none;  /* Disable hyperlink decoration */
+}
+
+.container-3-contents-2-reject {
+    border-color: lightsalmon;
+    color: lightsalmon;
+	text-decoration: none;  /* Disable hyperlink decoration */
+}
+
+.container-3-contents-2-accept:hover {
+    background: darkgreen;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-3-contents-2-reject:hover {
+    background: darkred;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
 }
 
 /* Table query designs */
@@ -153,10 +288,6 @@ form {
 .requests-table td {
     padding: 10px;
 }
-
-
-
-
 
 /* 
 End of the lines/blocks of codes

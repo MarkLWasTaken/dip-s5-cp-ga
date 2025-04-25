@@ -323,8 +323,8 @@ mysqli_close($connection);
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="title-banner-container">
-            <div class="title-banner-content">Admin - Manage Users</div>
+        <div class="page-title-banner-container">
+            <div class="page-title-banner-content">Admin - Manage Users (Delete User)</div>
         </div>
 
         <div class="margin-30px"></div>

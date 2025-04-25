@@ -12,21 +12,11 @@ session_start();
 // Include the PHP script for connecting to the database (DB).
 include '../../php/connection.php';
 
-// Assigns the variables fetch values from the text fields.
-// Suppress the warning messages.
-@$email = $_POST['txtEmail'];
-@$password = $_POST['txtPassword'];
-
-// Query to execute (Fetch data from the DB).
-$query = "SELECT * FROM users WHERE email_address='$email' AND password='$password'";
-
-// Decalre variable to attempt to connect to the DB and execute the SQL query.
-$result = mysqli_query($connection, $query);
-
 // Declare the variable to get the user ID and hide the warning message.
 @$user_id = $_SESSION['user_id'];
 
-// Check if the guest or user logged in is an admin or not.
+// If user ID is not null,
+// check if the guest or user logged in is an admin or not.
 if ($user_id != null) {
     // Execute the query to get the user's role status.
     $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
@@ -35,8 +25,9 @@ if ($user_id != null) {
     }
 }
 
-// Users who are already logged are not allowed to access this page.
-if (isset($_SESSION['email_address'])) {
+// Users who are not system administrators (sysadmins)
+// are not allowed to access this page.
+if ($is_admin != 1) {
     header('Location: ../../index.php');
 }
 
@@ -54,13 +45,13 @@ mysqli_close($connection);
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Account Login Process</title>
+    <title>Quantum E-waste Management System - Admin - Manage users (Delete user)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
     <link href="../../css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="../../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../../css/account-login-process.css" rel="stylesheet">
+    <link href="../../css/e-waste-requests.css" rel="stylesheet">
     <link href="../../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -73,28 +64,29 @@ mysqli_close($connection);
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../about/index.php" onclick="closeNav()">About us</a>
-        <a href="../../e-waste/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="../../recycled-items/index.php" onclick="closeNav()">Recycled items we sell</a>
-        <a href="../../services/index.php" onclick="closeNav()">Services</a>
-        <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../about-us.php" onclick="closeNav()">About us</a>
+        <a href="../../e-waste/we-buy.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="../../e-waste/we-sell.php" onclick="closeNav()">E-waste we sell</a>
+        <a href="../../services.php" onclick="closeNav()">Services</a>
+        <a href="../../faq.php" onclick="closeNav()">FAQ</a>
+        <a href="../../contact-us.php" onclick="closeNav()">Contact us</a>
         <?php
         // If the user is logged in.
         if (isset($_SESSION['email_address'])) {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-            <a href="javascript:void(0)">User is logged in.</a>
-            <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
+            <div class="margin-50px"></div>
+            <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+            <a href="javascript:void(0)">&#128994; User is logged in.</a>
+            <a href="../../dashboard.php" onclick="closeNav()">Dashboard</a>
             <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="../../e-waste-request-screening/index.php" onclick="closeNav()">E-waste request screening</a>
             <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
             <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
-            <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
-            <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
+            <a href="../../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+            <a href="../../account/logout.php" onclick="closeNav()">Logout</a>
+            <div class="margin-50px"></div>
             HTML;
             echo $html;
         }
@@ -103,22 +95,38 @@ mysqli_close($connection);
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-            <a href="javascript:void(0)">User is not logged in.</a>
+            <div class="margin-50px"></div>
+            <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+            <a href="javascript:void(0)">&#128308; User is not logged in.</a>
             <a href="../../account/login/index.php" onclick="closeNav()">Login</a>
             <a href="../../account/registration/index.php" onclick="closeNav()">Register</a>
             HTML;
             echo $html;
         }
         // If the user is logged in as an admin.
+        // Check if the user is a System Admin or Office Admin.
+        // 1 = System Admin
+        // 2 = Office Admin
         if (@$is_admin == 1) {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
-            <a href="../../admin/e-waste-request-screening/index.php" onclick="closeNav()">E-waste request acceptance (Admin)</a>
-            <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+            <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
+            <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+            <a href="../../admin/database-query.php" onclick="closeNav()">Database Query</a>
+            <div class="margin-100px"></div>
+            HTML;
+            echo $html;
+        }
+        else if (@$is_admin == 2) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
+            <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+            <div class="margin-100px"></div>
             HTML;
             echo $html;
         }
@@ -150,7 +158,8 @@ mysqli_close($connection);
 
         <div class="hidden-header-mobile"></div>
 
-        <br>
+        <div class="margin-20px"></div>
+        <!-- <br> -->
 
         <div id="menu-buttons">
             <div>
@@ -168,42 +177,42 @@ mysqli_close($connection);
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../about-us/index.php">
+                <a class="black-hyperlink" href="../../about-us.php">
                     <div class="menu-button">
                         About us
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-buy/index.php">
+                <a class="black-hyperlink" href="../../e-waste/we-buy.php">
                     <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-sell/index.php">
+                <a class="black-hyperlink" href="../../e-waste/we-sell.php">
                     <div class="menu-button-2">
-                        Recycled items<br>we sell
+                        E-waste<br>we sell
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../services/index.php">
+                <a class="black-hyperlink" href="../../services.php">
                     <div class="menu-button">
                         Services
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../faq/index.php">
+                <a class="black-hyperlink" href="../../faq.php">
                     <div class="menu-button">
                         FAQ
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact-us/index.php">
+                <a class="black-hyperlink" href="../../contact-us.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -266,10 +275,11 @@ mysqli_close($connection);
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
-                                User is logged in.
-                                <a class="menu" href="../../dashboard/index.php">Dashboard</a>
+                                <!-- Online -->
+                                &#128994; User is logged in.
+                                <a class="menu" href="../../dashboard.php">Dashboard</a>
                                 <a class="menu" href="../../account/profile/index.php">Profile</a>
-                                <a class="menu" href="../../account/logout/index.php">Logout</a>
+                                <a class="menu" href="../../account/logout.php">Logout</a>
                                 HTML;
                                 echo $html;
                             }
@@ -277,7 +287,8 @@ mysqli_close($connection);
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
-                                User is not logged in.
+                                <!-- Offline -->
+                                &#128308; User is not logged in.
                                 <a class="menu" href="../../account/login/index.php">Login</a>
                                 <a class="menu" href="../../account/registration/index.php">Register</a>
                                 HTML;
@@ -289,7 +300,10 @@ mysqli_close($connection);
                 </a>
             </div>
             <?php
-            if (@$is_admin == 1) {
+            // Check if the user is logged in as an admin or not.
+            // 1 = System Admin
+            // 2 = Office Admin
+            if (@$is_admin == 1 || @$is_admin == 2) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
@@ -306,149 +320,153 @@ mysqli_close($connection);
             ?>
         </div>
 
-        <br><br><br>
+        <div class="margin-20px-desktop"></div>
+        <!-- <br class="desktop-line-break"> -->
 
-        <!-- Layout for the account login process container. -->
-        <div id="account-login-process-container">
-            <div id="account-login-process-content">
-                <br>
+        <div class="page-title-banner-container">
+            <div class="page-title-banner-content">E-waste requests (View)</div>
+        </div>
 
-                <?php
-                // Executes the code when the login button is pressed.
-                if (isset($_POST['btnLogin'])) {
-                    // Verify if the record exists in the DB.
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row=mysqli_fetch_assoc($result)) {
-                            $_SESSION['user_id'] = $row['user_id'];
-                            $_SESSION['email_address'] = $row['email_address'];
-                            $_SESSION['password'] = $row['password'];
-                        }
-                        loginSuccess();
-                    }
-                    // Check if the email address contains invalid characters or is empty.
-                    else if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || $email == '') {
-                        validateEmail();
-                    }
-                    // Check if the string length is less than 8 characters.
-                    else if (strlen($password) < 8) {
-                        passwordLessThan8();
-                    } else {
-                        otherErrors();
-                    }
+        <div class="margin-30px"></div>
+        <!-- <br> -->
+
+        <?php
+        // Check if the 'id' parameter is set in the URL
+        if (isset($_GET['id'])) {
+            // Retrieve the value of 'id' from the link.
+            $user_id = $_GET['id'];
+        }
+        else if (empty($_GET['id'])) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <style>
+                #container-2-container {
+                    display: none;
                 }
 
-                // Variety of PHP login messages to trigger when certain conditions are met.
-                // Function for successful login.
-                function loginSuccess() {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-
-                    <h1 class='page-title'>Account login sucessful!</h1>
-                    <br>
-                    <p>The email address and password matches the database.</p>
-                    <p>You are now logged in to the website.</p>
-                    <p>You'll be redirected to the home page in 5 seconds.</p>
-                    <meta http-equiv="refresh" content="5; url=../../index.php">
-                    HTML;
-                    echo $html;
+                .requests-table {
+                    display: none;
                 }
 
-                // Function to check if the email address contains invalid characters or is empty.
-                function validateEmail() {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-
-                    <?php // Adjust the style according to the available content. ?>
-                    <style>
-                        #account-login-process-container {
-                            height: 450px;
-                        }
-                        #account-login-process-content {
-                            height: 400px;
-                        }
-                    </style>
-                    <h1 class='page-title'>Account login failed!</h1>
-                    <br>
-                    <p>An error has occured while logging in to your account.</p>
-                    <p>The account you're trying to login with the email address<br>contains invalid characters.</p>
-                    <br>
-                    <p>Please try again later.</p>
-                    HTML;
-                    echo $html;
+                #container-3-container {
+                    display none;
                 }
 
-                // Function to check if the password length is less than 8.
-                function passwordLessThan8() {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-
-                    <?php // Adjust the style according to the available content. ?>
-                    <style>
-                        #account-login-process-container {
-                            height: 450px;
-                        }
-                        #account-login-process-content {
-                            height: 400px;
-                        }
-                    </style>
-                    <h1 class='page-title'>Account login failed!</h1>
-                    <br>
-                    <p>An error has occured while logging in to your account.</p>
-                    <p>The account you're trying to login with the password<br>is less than 8 characters.</p>
-                    <br>
-                    <p>Please try again later.</p>
-                    HTML;
-                    echo $html;
+                #container-3-contents-1{
+                    display: none;
                 }
+            </style>
+            HTML;
+            echo $html;
+        }
+        ?>
 
-                // Function for other errors encountered.
-                function otherErrors() {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-
-                    <?php // Adjust the style according to the available content. ?>
-                    <style>
-                        #account-login-process-container {
-                            height: 600px;
-                        }
-                        #account-login-process-content {
-                            height: 550px;
-                        }
-                    </style>
-                    <h1 class='page-title'>Account login failed!</h1>
-                    <br>
-                    <p>An error has occured while logging in to your account.</p>
-                    <p>There are a few resons why the login may have failed.</p>
-                    <br>
-                    <p>1. It does not match with the database records, or account does not exist.</p>
-                    <p>2. Incomplete details or contains invalid characters.</p>
-                    <p>3. The website and the database is currently overloaded.</p>
-                    <p>4. Internal website error.</p>
-                    <br>
-                    <p>Please try again later.</p>
-                    HTML;
-                    echo $html;
-                }
-                ?>
-                <br>
+        <!-- Layout for the container 2 -->
+        <div id="container-2-container">
+            <div id="container-2-contents">
+                <div class="margin-30px"></div>
+                <img src="$user_request_picture" alt="User's request picture" title="User's request picture" height="1024px" width="1024px">
+                <div class="margin-30px"></div>
             </div>
         </div>
 
-        <br>
-        <br>
+        <div class="margin-50px"></div>
+
+        <!-- Users table container -->
+        <div>
+            <div class="requests-table">
+                <?php
+                // Attempt to make a new connection to the database.
+                include '../../php/connection.php';
+
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
+                <table border=1>
+                    <tr>
+                        <th>ID</th>
+                        <th>Request Date</th>
+                        <th>Request Type</th>
+                        <th>Item Quantity</th>
+                        <th>User ID</th>
+                        <th>Item ID</th>
+                        <th>Accounts Payable ID</th>
+                        <th>Accounts Receivable ID</th>
+                    </tr>
+                HTML;
+                echo $html;
+
+                // Declare a variable for the query.
+                $query_table_rows = "SELECT *
+                                    FROM `requests`
+                                    WHERE user_id = $user_id";
+
+                // Attempt to connect to the database and execute the query.
+                $result_table_rows = mysqli_query($connection, $query_table_rows);
+
+                // Insert the each of the results into the table.
+                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
+                    <tr>
+                        <td>{$row['request_id']}</td>
+                        <td>{$row['request_date']}</td>
+                        <td>{$row['request_type']}</td>
+                        <td>{$row['item_quantity']}</td>
+                        <td>{$row['user_id']}</td>
+                        <td>{$row['item_id']}</td>
+                        <td>{$row['accounts_payable_id']}</td>
+                        <td>{$row['accounts_receivable_id']}</td>
+                    </tr>
+                    HTML;
+                    echo $html;
+                }
+                echo '</table>';
+
+                // Ensure the connection to the DB is closed, with or without
+                // any code or query execution for security reasons.
+                mysqli_close($connection);
+                ?>
+            </div>
+        </div>
+
+        <div class="margin-50px"></div>
+
+        <!-- Layout for the container 3. -->
+        <div id="container-3-container">
+            <div id="container-3-contents-1">
+                <h1>Accept/Reject Request</h1>
+                <p>Would you like to accept or reject this request?</p>
+                <p>This action is irreversible.</p>
+                <div class="margin-50px"></div>
+                <div class="container-3-contents-2-container">
+                    <a class="container-3-contents-2-shared container-3-contents-2-accept" href="../../admin/e-waste-requests/index.php">
+                        <p>Yes</p>
+                    </a>
+                    <a class="container-3-contents-2-shared container-3-contents-2-reject" href="../../admin/e-waste-requests/index.php">
+                        <p>No</p>
+                    </a>
+                </div>
+                <div class="margin-50px"></div>
+            </div>
+        </div>
+
+        <div class="margin-100px"></div>
+        <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">
+        <br class="desktop-line-break"> -->
 
         <div id="footer-container-3-mobile">
-            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p><br>
+            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p>
+            <div class="margin-30px"></div>
             <div class="subscription-form">
                 <form action="" method="post">
-                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
+                    <div class="margin-30px"></div>
                     <input type="submit" value="Subscribe" class="subscribe-button">
                 </form>
             </div>
@@ -456,9 +474,10 @@ mysqli_close($connection);
 
         <div class="hidden-footer-container-3-mobile"></div>
 
+        <div class="margin-60px-mobile"></div>
+        <!-- <br class="mobile-line-break">
         <br class="mobile-line-break">
-        <br class="mobile-line-break">
-        <br class="mobile-line-break">
+        <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">
             <div id="footer-container-2">
@@ -467,31 +486,33 @@ mysqli_close($connection);
                     <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about/index.php" class="white">
+                    <a class="white-hyperlink" href="../../about-us.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste/index.php" class="white">
+                    <a class="white-hyperlink" href="../../e-waste/we-buy.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="../../ecycled-items/index.php" class="white">
-                        <li class="padding-bottom">Recycled items we sell</li>
+                    <a class="white-hyperlink" href="../../e-waste/we-sell.php" class="white">
+                        <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../../services/index.php" class="white">
+                    <a class="white-hyperlink" href="../../services.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="../../faq/index.php" class="white">
+                    <a class="white-hyperlink" href="../../faq.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact/index.php" class="white">
+                    <a class="white-hyperlink" href="../../contact-us.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>
             </div>
             <div id="footer-container-3">
-                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p><br>
+                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p>
+                <div class="margin-24px"></div>
                 <div class="subscription-form">
                     <form action="" method="post">
-                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
+                        <div class="margin-30px"></div>
                         <input type="submit" value="Subscribe" class="subscribe-button">
                     </form>
                 </div>
