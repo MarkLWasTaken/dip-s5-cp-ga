@@ -60,7 +60,8 @@ $resultEmailCheck = mysqli_query($connection, $queryEmailCheck);
 // Declare the variable to get the user ID and hide the warning message.
 @$user_id = $_SESSION['user_id'];
 
-// Check if the guest or user logged in is an admin or not.
+// If user ID is not null,
+// check if the guest or user logged in is an admin or not.
 if ($user_id != null) {
     // Execute the query to get the user's role status.
     $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
@@ -90,7 +91,7 @@ if (isset($_SESSION['email_address'])) {
     <link href="../../css/styles.css" rel="stylesheet">
     <link href="../../css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="../../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../../css/account-registration-process.css" rel="stylesheet">
+    <link href="../../css/account-registration.css" rel="stylesheet">
     <link href="../../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../../css/side-navigation-menu.css" rel="stylesheet">
 

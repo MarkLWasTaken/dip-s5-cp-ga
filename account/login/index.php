@@ -49,7 +49,7 @@ mysqli_close($connection);
     <link href="../../css/styles.css" rel="stylesheet">
     <link href="../../css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="../../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../../css/account-login-page.css" rel="stylesheet">
+    <link href="../../css/account-login.css" rel="stylesheet">
     <link href="../../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../../css/side-navigation-menu.css" rel="stylesheet">
 

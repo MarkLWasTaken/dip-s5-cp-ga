@@ -331,12 +331,13 @@ mysqli_close($connection);
         <!-- <br> -->
 
         <?php
-        // Check if the 'id' parameter is set in the URL
-        if (isset($_GET['id'])) {
-            // Retrieve the value of 'id' from the link.
-            $user_id = $_GET['id'];
+        // Check if the 'request_id' and 'request_user_id' parameter is set in the URL.
+        if (isset($_GET['request_id']) && isset($_GET['request_user_id']) ) {
+            // Declare variable to retrieve the value of 'id' from the link.
+            $request_id = $_GET['request_id'];
+            $request_user_id = $_GET['request_user_id'];
         }
-        else if (empty($_GET['id'])) {
+        else if (empty($_GET['request_id'])) {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
@@ -360,13 +361,40 @@ mysqli_close($connection);
             HTML;
             echo $html;
         }
+        else if (empty($_GET['request_user_id'])) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <style>
+                #container-2-container {
+                    display: none;
+                }
+
+                .requests-table {
+                    display: none;
+                }
+
+                #container-3-container {
+                    display none;
+                }
+
+                #container-3-contents-1{
+                    display: none;
+                }
+            </style>
+            HTML;
+            echo $html;
+        }
+
+        // Determine the file name with request ID and user ID.
+        $filename = $request_id . "_" . $request_user_id;
         ?>
 
         <!-- Layout for the container 2 -->
         <div id="container-2-container">
             <div id="container-2-contents">
                 <div class="margin-30px"></div>
-                <img src="$user_request_picture" alt="User's request picture" title="User's request picture" height="1024px" width="1024px">
+                <img src="../../uploads/reqests/<?php echo $filename ?>" alt="User's request picture" title="User's request picture" height="1024px" width="1024px">
                 <div class="margin-30px"></div>
             </div>
         </div>
@@ -400,7 +428,8 @@ mysqli_close($connection);
                 // Declare a variable for the query.
                 $query_table_rows = "SELECT *
                                     FROM `requests`
-                                    WHERE user_id = $user_id";
+                                    WHERE request_id = $request_id AND
+                                    user_id = $request_user_id";
 
                 // Attempt to connect to the database and execute the query.
                 $result_table_rows = mysqli_query($connection, $query_table_rows);
@@ -442,11 +471,11 @@ mysqli_close($connection);
                 <p>This action is irreversible.</p>
                 <div class="margin-50px"></div>
                 <div class="container-3-contents-2-container">
-                    <a class="container-3-contents-2-shared container-3-contents-2-accept" href="../../admin/e-waste-requests/index.php">
-                        <p>Yes</p>
+                    <a class="container-3-contents-2-shared container-3-contents-2-accept" href="../../admin/e-waste-requests/index.php">   <!-- TODO -->
+                        <p>Accept</p>
                     </a>
                     <a class="container-3-contents-2-shared container-3-contents-2-reject" href="../../admin/e-waste-requests/index.php">
-                        <p>No</p>
+                        <p>Reject</p>
                     </a>
                 </div>
                 <div class="margin-50px"></div>

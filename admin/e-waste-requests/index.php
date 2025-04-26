@@ -516,7 +516,7 @@ mysqli_close($connection);
                         <td>{$row['item_id']}</td>
                         <td>{$row['accounts_payable_id']}</td>
                         <td>{$row['accounts_receivable_id']}</td>
-                        <td><a href="view.php?id={$row['request_id']}">View image</a></td>
+                        <td><a href="view.php?request_id={$row['request_id']}&request_user_id={$row['user_id']}">View image</a></td>
                         <!-- <td><a href="approve/index.php?id={$row['request_id']}">Approve</a></td>
                         <td><a href="reject/index.php?id={$row['request_id']}">Reject</a></td> -->
                     </tr>
