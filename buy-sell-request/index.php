@@ -331,134 +331,38 @@ mysqli_close($connection);
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <?php
-        // Unset the session variables to clear the form data.
-        unset($_SESSION['txtID']);
-        unset($_SESSION['txtItemName']);
-        unset($_SESSION['txtItemPrice']);
-        unset($_SESSION['txtItemType']);
+        // Include the PHP script for connecting to the database (DB).
+        include '../php/connection.php';
 
-        // Retrieve the values from the session.
-        $item_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
-        $item_name = isset($_SESSION['txtItemName']) ? $_SESSION['txtItemName'] : '';
-        $item_price = isset($_SESSION['txtItemPrice']) ? $_SESSION['txtItemPrice'] : '';
-        $item_type = isset($_SESSION['txtItemType']) ? $_SESSION['txtItemType'] : '';
+        // Check if the form has been submitted.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Get the value of the radio button submitted.
+            $selected_user_choice = @$_POST["rdoRequestType"];
+        }
         ?>
 
-
-
-
-
-
-        <!-- E-waste table container -->
+        <!-- Type of request form container -->
         <div>
-            <div class="e-waste-table">
-                <?php
-                // Attempt to make a new connection to the database.
-                include '../php/connection.php';
-
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <table border=1>
-                    <tr>
-                        <th>ID</th>
-                        <th>Item Name</th>
-                        <th>Item Price</th>
-                        <th>Item Type</th>
-                    </tr>
-                HTML;
-                echo $html;
-
-                // Declare a variable for the query.
-                $query_table_rows = "SELECT * FROM `items` WHERE
-                                    item_id LIKE '%$item_id%' AND
-                                    item_name LIKE '%$item_name%' AND
-                                    item_price LIKE '%$item_price%' AND
-                                    item_type LIKE '%$item_type%'
-                                    ORDER BY item_id ASC";
-
-                // Attempt to connect to the database and execute the query.
-                $result_table_rows = mysqli_query($connection, $query_table_rows);
-
-                // Insert the each of the results into the table.
-                while($row = mysqli_fetch_assoc($result_table_rows)) {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                    <tr>
-                        <td>{$row['item_id']}</td>
-                        <td>{$row['item_name']}</td>
-                        <td>{$row['item_price']}</td>
-                        <td>{$row['item_type']}</td>
-                    </tr>
-                    HTML;
-                    echo $html;
-                }
-                echo '</table>';
-
-                // Ensure the connection to the DB is closed, with or without
-                // any code or query execution for security reasons.
-                mysqli_close($connection);
-                ?>
-            </div>
-        </div>
-
-
-
-
-
-
-
-        <div class="margin-50px"></div>
-
-
-
-        <!-- Table query container -->
-        <div>
-            <form action="index.php" method="get">
-                <div class="query-table-content">
-                    <table id="table-query">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                <div class="table-contents">
+                    <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
                                 Select the type of request form.
                             </th>
                         </tr>
-                        <!-- "items" table query options. -->
                         <tr>
                             <th>User choice:</th>
+                            <?php // Retain the selected user choice after picking a form. ?>
                             <td>
                                 <div class="radio-choice">
                                     <div class="radio-choices">
-                                    <input type="radio" id="buy" name="rdoRequestType" value="buy">
+                                    <input type="radio" id="buy" name="rdoRequestType" value="buy" <?php if (isset($selected_user_choice) && $selected_user_choice == "buy") echo "checked";?>>
                                     <label for="buy">Buy</label><br>
                                 </div>
                                 <div class="radio-choices">
-                                    <input type="radio" id="sell" name="rdoRequestType" value="sell">
+                                    <input type="radio" id="sell" name="rdoRequestType" value="sell" <?php if (isset($selected_user_choice) && $selected_user_choice == "sell") echo "checked";?>>
                                     <label for="sell">Sell</label><br>
                                     </div>
                                 </div>
@@ -475,27 +379,18 @@ mysqli_close($connection);
             </form>
         </div>
 
-
-
-
-
-
-
         <div class="margin-50px"></div>
-
 
         <?php
         // Customer Buy Request Form
-        if ($_GET['rdoRequestType'] == 'buy') {
+        if (@$_POST['rdoRequestType'] == 'buy') {
         // Use heredoc syntax to make the code readable and easier to maintain.
         // Very useful for handling large blocks of of codes.
         $html = <<<HTML
-
-
         <div>
             <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
+                <div class="table-contents">
+                    <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
                                 Customer Buy Request Form
@@ -504,11 +399,31 @@ mysqli_close($connection);
                         <tr>
                             <th>Type of item to buy:</th>
                             <td>
-                            <select id="cars" name="cars">
-                            <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="fiat">Fiat</option>
-                                <option value="audi">Audi</option>
+                            <select id="item_name" name="item_name">
+        HTML;
+        echo $html;
+
+        // Declare a variable for the query.
+        $query_table_rows = "SELECT * FROM `items` WHERE
+                            item_type = 'buy'
+                            ORDER BY item_id ASC";
+
+        // Attempt to connect to the database and execute the query.
+        $result_table_rows = mysqli_query($connection, $query_table_rows);
+
+        // Insert each of the results into the table.
+        while($row = mysqli_fetch_assoc($result_table_rows)) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+                                <option value="{$row['item_id']}">{$row['item_name']}</option>
+            HTML;
+            echo $html;
+        }
+
+        // Use heredoc syntax to make the code readable and easier to maintain.
+        // Very useful for handling large blocks of of codes.
+        $html = <<<HTML
                             </select>
                             </td>
                         </tr>
@@ -536,14 +451,14 @@ mysqli_close($connection);
         echo $html;
         }
         // Supplier Sell Request Form
-        else if ($_GET['rdoRequestType'] == 'sell') {
+        else if (@$_POST['rdoRequestType'] == 'sell') {
         // Use heredoc syntax to make the code readable and easier to maintain.
         // Very useful for handling large blocks of of codes.
         $html = <<<HTML
         <div>
             <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
+                <div class="table-contents">
+                    <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
                                 Supplier Sell Request Form
@@ -552,11 +467,31 @@ mysqli_close($connection);
                         <tr>
                             <th>Type of item to sell:</th>
                             <td>
-                            <select id="cars" name="cars">
-                            <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
-                                <option value="fiat">Fiat</option>
-                                <option value="audi">Audi</option>
+                            <select id="item_name" name="item_name">
+        HTML;
+        echo $html;
+
+        // Declare a variable for the query.
+        $query_table_rows = "SELECT * FROM `items` WHERE
+                            item_type = 'sell'
+                            ORDER BY item_id ASC";
+
+        // Attempt to connect to the database and execute the query.
+        $result_table_rows = mysqli_query($connection, $query_table_rows);
+
+        // Insert each of the results into the table.
+        while($row = mysqli_fetch_assoc($result_table_rows)) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+                                <option value="{$row['item_id']}">{$row['item_name']}</option>
+            HTML;
+            echo $html;
+        }
+
+        // Use heredoc syntax to make the code readable and easier to maintain.
+        // Very useful for handling large blocks of of codes.
+        $html = <<<HTML
                             </select>
                             </td>
                         </tr>
@@ -591,12 +526,11 @@ mysqli_close($connection);
         }
         ?>
 
-
-
-
-
-
-
+        <?php
+        // Ensure the connection to the DB is closed, with or without
+        // any code or query execution for security reasons.
+        mysqli_close($connection);
+        ?>
 
         <div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">

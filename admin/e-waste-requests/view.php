@@ -332,7 +332,7 @@ mysqli_close($connection);
 
         <?php
         // Check if the 'request_id' and 'request_user_id' parameter is set in the URL.
-        if (isset($_GET['request_id']) && isset($_GET['request_user_id']) ) {
+        if (isset($_GET['request_id']) && isset($_GET['request_user_id'])) {
             // Declare variable to retrieve the value of 'id' from the link.
             $request_id = $_GET['request_id'];
             $request_user_id = $_GET['request_user_id'];
