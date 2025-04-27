@@ -360,7 +360,7 @@ $connection->close();
         <div class="contents-2-container">
             <div id="contents-2-content-2" class="contents-2-content">
                 <br>
-                <img class="content-2-circle-image" src="images/sample-code.png" alt="Sample code of the website." title="Sample code of the website.">
+                <img class="content-2-image" src="images/Sustainable_Development_Goals_logo.svg" alt="Sample code of the website." title="Sample code of the website.">
                 <br>
                 <p class="content-2-titles">Sustainable Development Goal (SDG)</p>
                 <p class="content-2-paragraphs">We fully support SDG.<br>Come join us to keep the planet earth safe.</p>
