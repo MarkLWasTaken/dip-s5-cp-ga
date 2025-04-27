@@ -343,21 +343,21 @@ $date = date('Y-m-d\TH:i:sP');
             @$request_item_quantity = $_POST["txtRequestQuantity"];
             @$request_picture_file = $_POST['filePicture'];
 
-            // Declare a variable for the query.
+            // Declare variables for the queries.
             // Insert the form data into the database
             // Note: $date and $user_id variables are already declared.
-            $sql_query = "INSERT INTO requests (request_date, request_type, request_item_name,
+            $sql_query_2 = "INSERT INTO requests (request_date, request_type, request_item_name,
                             item_quantity, request_status, user_id, item_id)
                             VALUES ('$date', 'sell', '$request_item_name', '$request_item_quantity',
                             'Pending', '$user_id', '$request_item_type')";
-            $sql_query_2 = "SELECT * FROM items WHERE item_id = $request_item_type";
+            $sql_query_3 = "SELECT * FROM items WHERE item_id = $request_item_type";
 
             // Attempt to connect to the database and execute the query.
-            $sql_query_execute = $connection->query($sql_query);
             $sql_query_execute_2 = $connection->query($sql_query_2);
+            $sql_query_execute_3 = $connection->query($sql_query_3);
 
             // Sort the data.
-            while($row = $sql_query_execute_2->fetch_assoc()) {
+            while($row = $sql_query_execute_3->fetch_assoc()) {
                 $items_item_name = $row['item_type'];
             }
 
@@ -381,6 +381,10 @@ $date = date('Y-m-d\TH:i:sP');
 
                 #contents-3-content {
                     height: 100%;
+                }
+
+                #contents-4-container {
+                    display: block;
                 }
             </style>
 
@@ -416,6 +420,25 @@ $date = date('Y-m-d\TH:i:sP');
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
+        // Declare a variable for "request_id".
+        $request_id = "";
+
+        // Declare a variable for the query.
+        // Insert the form data into the database
+        $sql_query_3 = "SELECT * FROM requests";
+
+        // Attempt to connect to the database and execute the query.
+        $sql_query_execute_3 = $connection->query($sql_query_3);
+
+        // Sort the data.
+        while($row = $sql_query_execute_3->fetch_assoc()) {
+            $request_id = $row['request_id'];
+        }
+
+        // Rename picture.
+        $newFileName = $request_id . "_" . $user_id . "." . $imageFileType;
+        $newTargetFile = $target_dir . $newFileName;
+
         // Declare the variables.
         $file_is_image = "";
         $file_not_image = "";
@@ -439,7 +462,7 @@ $date = date('Y-m-d\TH:i:sP');
         }
 
         // Check if file already exists
-        if (file_exists($target_file)) {
+        if (file_exists($newTargetFile)) {
             $file_already_exists = "&#x274C Sorry, file already exists.";
             $uploadOk = 0;
         }
@@ -478,11 +501,11 @@ $date = date('Y-m-d\TH:i:sP');
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             $file_not_uploaded = "&#x274C Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
         }
+        // if everything is ok, try to upload file
         else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                $file_upload_success = "&#x2705; The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newTargetFile)) {
+                $file_upload_success = "&#x2705; The file has been uploaded and renamed as " . $newFileName . ".";
             }
             else {
                 $file_upload_failed = "&#x274C Sorry, there was an error uploading your file.";
@@ -545,11 +568,11 @@ $date = date('Y-m-d\TH:i:sP');
                         </table>
                     </div>
                     <div class="margin-50px"></div>
-                    <img src="$target_file" width="50%" height="50%" alt="User's request picture." title="User's request picture.">
+                    <img src="$newTargetFile" width="50%" height="50%" alt="User's request picture." title="User's request picture.">
                 </div>
             </div>
 
-        <div class="margin-50px"></div>
+        <div class="margin-20px"></div>
         HTML;
         echo $html;
         ?>
@@ -574,12 +597,12 @@ $date = date('Y-m-d\TH:i:sP');
                                 <select id="txtRequestItemType" name="txtRequestItemType">
             <?php
             // Declare a variable for the query.
-            $query_table_rows = "SELECT * FROM `items` WHERE
+            $sql_query_1 = "SELECT * FROM `items` WHERE
                                 transaction_type = 'sell'
                                 ORDER BY item_id ASC";
 
             // Attempt to connect to the database and execute the query.
-            $result_table_rows = mysqli_query($connection, $query_table_rows);
+            $result_table_rows = mysqli_query($connection, $sql_query_1);
 
             // Insert each of the results into the table.
             while($row = mysqli_fetch_assoc($result_table_rows)) {

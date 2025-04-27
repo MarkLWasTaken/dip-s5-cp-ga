@@ -118,6 +118,7 @@ Student ID: Redacted
     justify-content: center;
     gap: 50px;
     height: 1000px;
+    display: none;
 }
 
 #contents-4-content {
