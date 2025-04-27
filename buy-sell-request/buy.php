@@ -27,26 +27,13 @@ if ($user_id != null) {
 
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
-mysqli_close($connection);
+$connection->close();
 
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
 
 // Get a date and time with a specific format.
 $date = date('Y-m-d\TH:i:sP');
-
-// Check if the form has been submitted.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the value of the radio button submitted in the first table.
-    $selected_user_choice = @$_POST["rdoRequestType"];
-
-    if ($selected_user_choice === "buy") {
-        header("Location: ../buy-sell-request/buy.php");
-    }
-    else if ($selected_user_choice === "sell") {
-        header("Location: ../buy-sell-request/sell.php");
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Buy/Sell Request</title>
+    <title>Quantum E-waste Management System - Buy Request Form</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
@@ -93,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
             <a href="javascript:void(0)">&#128994; User is logged in.</a>
             <a href="../dashboard.php" onclick="closeNav()">Dashboard</a>
-            <a href="#" onclick="closeNav()">Buy/Sell Request</a>
+            <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
             <a href="../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
             <a href="../requests-history/index.php" onclick="closeNav()">Requests history</a>
@@ -337,50 +324,163 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- <br class="desktop-line-break"> -->
 
         <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Buy/Sell Request</div>
+            <div class="page-title-banner-content">Buy Request Form</div>
         </div>
 
         <div class="margin-30px"></div>
         <!-- <br> -->
 
-        <!-- Layout for the contents 1 container. -->
-        <div id="contents-1-container">
-            <div id="contents-1-content">
-                <h2>Create a form for buy/sell request.</h2>
+        <!-- Layout for the contents 2 container. -->
+        <div id="contents-2-container">
+            <div id="contents-2-content">
+                <h2>Create a form for buy request.</h2>
             </div>
         </div>
 
-        <!-- Type of request form container -->
+        <?php
+        // PHP for Customer Buy Request Form.
+        // Check if the form has been submitted.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Get the form data from the tables.
+            @$item_type = $_POST["txtRequestItemType"];
+            @$request_item_name = $_POST["txtRequestItemName"];
+            @$item_quantity = $_POST["txtRequestQuantity"];
+
+            // Include the PHP script for connecting to the database (DB).
+            include '../php/connection.php';
+
+            // Declare a variable for the query.
+            // Insert the form data into the database
+            // Note: $date and $user_id variables are already declared.
+            $sql_query = "INSERT INTO requests (request_date, request_type, request_item_name,
+                            item_quantity, request_status, user_id, item_id)
+                            VALUES ('$date', 'buy', '$request_item_name', '$item_quantity',
+                            'Pending', '$user_id', '$item_type')";
+            $sql_query_2 = "SELECT * FROM items WHERE item_id = $item_type";
+
+            // Attempt to connect to the database and execute the query.
+            $sql_query_execute = $connection->query($sql_query);
+            $sql_query_execute_2 = $connection->query($sql_query_2);
+
+            // Sort the data.
+            while($row = $sql_query_execute_2->fetch_assoc()) {
+                $item_name = $row['item_name'];
+                $item_price = $row['item_price'];
+            }
+
+            // Ensure the connection to the DB is closed, with or without
+            // any code or query execution for security reasons.
+            $connection->close();
+
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <style>
+                #contents-2-container {
+                    display: none;
+                }
+
+                #customer-buy-request-form,
+                .action-1-button,
+                .action-2-button {
+                    display: none;
+                }
+
+                #contents-3-container {
+                    height: 270px;
+                }
+
+                #contents-3-content {
+                    height: 100%;
+                }
+            </style>
+
+            <script>
+                // Disable the form actions after submitting the request.
+                document.getElementById("customer-buy-request-form").disabled = true;
+            </script>
+
+            <!-- Layout for the contents 3 container. -->
+            <div id="contents-3-container">
+                <div id="contents-3-content">
+                    <h2>Buy request form has been successfully submitted!</h2>
+                    <div class="margin-20px"></div>
+                    <p>Here is the form details:</p>
+                    <p>Type of Request: Buy</p>
+                    <p>Type of item to buy: $item_name (RM $item_price)</p>
+                    <p>Item Name: $request_item_name</p>
+                    <p>Quantity: $item_quantity</p>
+                </div>
+            </div>
+
+            <div class="margin-50px"></div>
+            HTML;
+            echo $html;
+        }
+        ?>
+
+        <!-- Customer Buy Request Form -->
         <div>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <form id="customer-buy-request-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <div class="table-contents">
                     <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
-                                Select the type of request form.
+                                Customer Buy Request Form
                             </th>
                         </tr>
                         <tr>
-                            <th>User choice:</th>
-                            <?php // Retain the selected user choice after picking a form. ?>
+                            <th>Type of Request:</th>
+                            <td><input type="text" name="txtRequestType" value="Buy" disabled></td>
+                        </tr>
+                        <tr>
+                            <th>Type of item to buy:</th>
                             <td>
-                                <div class="radio-choice">
-                                    <div class="radio-choices">
-                                    <input type="radio" id="buy" name="rdoRequestType" value="buy" <?php if (isset($selected_user_choice) && $selected_user_choice == "buy") echo "checked";?>>
-                                    <label for="buy">Buy</label><br>
-                                </div>
-                                <div class="radio-choices">
-                                    <input type="radio" id="sell" name="rdoRequestType" value="sell" <?php if (isset($selected_user_choice) && $selected_user_choice == "sell") echo "checked";?>>
-                                    <label for="sell">Sell</label><br>
-                                    </div>
-                                </div>
+                                <select id="item_type" name="txtRequestItemType">
+            <?php
+            // Include the PHP script for connecting to the database (DB).
+            include '../php/connection.php';
+
+            // Declare a variable for the query.
+            $query_table_rows = "SELECT * FROM `items` WHERE
+                                item_type = 'buy'
+                                ORDER BY item_id ASC";
+
+            // Attempt to connect to the database and execute the query.
+            $result_table_rows = mysqli_query($connection, $query_table_rows);
+
+            // Insert each of the results into the table.
+            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
+                                    <option value="{$row['item_id']}">{$row['item_name']} (RM {$row['item_price']})</option>
+                HTML;
+                echo $html;
+            }
+
+            // Ensure the connection to the DB is closed, with or without
+            // any code or query execution for security reasons.
+            $connection->close();
+            ?>
+                                </select>
                             </td>
                         </tr>
                         <tr>
-                            <th>Action:</th>
-                            <td>
-                                <input type="submit" value="Display the form">
-                            </td>
+                            <th>Item Name:</th>
+                            <td><input type="text" name="txtRequestItemName" required></td>
+                        </tr>
+                        <tr>
+                            <th>Quantity:</th>
+                            <td><input type="text" name="txtRequestQuantity" required></td>
+                        </tr>
+                        <tr class="action-1-button">
+                            <th>Actions:</th>
+                            <td><input type="submit" name="submit" value="Submit request form"></td>
+                        </tr>
+                        <tr class="action-2-button">
+                            <th></th>
+                            <td><input type="submit" name="clear" value="Clear request form data"></td>
                         </tr>
                     </table>
                 </div>

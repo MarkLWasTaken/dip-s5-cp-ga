@@ -14,7 +14,11 @@ $username = 'root';
 $password = '';
 $database = 'ucdf2307_cp_group_9';
 
-$connection = mysqli_connect($hostname, $username, $password, $database);
+// Old procedural code.
+// $connection = mysqli_connect($hostname, $username, $password, $database);
+
+// New object-oriented code.
+$connection = new mysqli($hostname, $username, $password, $database);
 
 /*
 End of the lines/blocks of codes
