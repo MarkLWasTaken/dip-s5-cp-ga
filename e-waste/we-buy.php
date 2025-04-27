@@ -331,75 +331,6 @@ $connection->close();
             </div>
         </div>
 
-        <?php
-        // Unset the session variables to clear the form data.
-        unset($_SESSION['txtID']);
-        unset($_SESSION['txtItemName']);
-        unset($_SESSION['txtItemPrice']);
-
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
-            $_SESSION['txtID'] = $_POST['txtID'];
-            $_SESSION['txtItemName'] = $_POST['txtItemName'];
-            $_SESSION['txtItemPrice'] = $_POST['txtItemPrice'];
-            if (isset($_POST['clear'])) {
-                // Unset the session variables to clear the form data.
-                unset($_SESSION['txtID']);
-                unset($_SESSION['txtItemName']);
-                unset($_SESSION['txtItemPrice']);
-            }
-        } else if (isset($_POST['clear'])) {
-            // Unset the session variables to clear the form data.
-            unset($_SESSION['txtID']);
-            unset($_SESSION['txtItemName']);
-            unset($_SESSION['txtItemPrice']);
-        }
-
-        // Retrieve the values from the session.
-        $item_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
-        $item_name = isset($_SESSION['txtItemName']) ? $_SESSION['txtItemName'] : '';
-        $item_price = isset($_SESSION['txtItemPrice']) ? $_SESSION['txtItemPrice'] : '';
-        ?>
-
-        <!-- Table query container -->
-        <div>
-            <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                E-waste Table Query
-                            </th>
-                        </tr>
-                        <!-- "items" table query options. -->
-                        <tr>
-                        <th>ID:</th>
-                            <td><input type="text" name="txtID" value="<?php echo $item_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Name:</th>
-                            <td><input type="text" name="txtItemName" value="<?php echo $item_name ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Price:</th>
-                            <td><input type="text" name="txtItemPrice" value="<?php echo $item_price ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="submit" value="Search from the table"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="clear" value="Clear the query"></td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
-        </div>
-
-        <div class="margin-50px"></div>
-
         <!-- E-waste table container -->
         <div>
             <div class="e-waste-table">
@@ -420,11 +351,8 @@ $connection->close();
                 echo $html;
 
                 // Declare a variable for the query.
-                $query_table_rows = "SELECT * FROM `items` WHERE
-                                    item_id LIKE '%$item_id%' AND
-                                    item_name LIKE '%$item_name%' AND
-                                    item_price LIKE '%$item_price%' AND
-                                    item_type = 'buy'
+                $query_table_rows = "SELECT * FROM `items`
+                                    WHERE transaction_type = 'buy'
                                     ORDER BY item_id ASC";
 
                 // Attempt to connect to the database and execute the query.
@@ -437,7 +365,7 @@ $connection->close();
                     $html = <<<HTML
                     <tr>
                         <td>{$row['item_id']}</td>
-                        <td>{$row['item_name']}</td>
+                        <td>{$row['item_type']}</td>
                         <td>{$row['item_price']}</td>
                     </tr>
                     HTML;

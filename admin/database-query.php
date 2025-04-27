@@ -607,12 +607,16 @@ if ($is_admin != 1) {
                                 <td><input type="text" name="txtItemName" id=""></td>
                             </tr>
                             <tr>
+                                <th>Item Type:</th>
+                                <td><input type="text" name="txtItemType" id=""></td>
+                            </tr>
+                            <tr>
                                 <th>Item Price:</th>
                                 <td><input type="text" name="txtItemPrice" id=""></td>
                             </tr>
                             <tr>
-                                <th>Item Type:</th>
-                                <td><input type="text" name="txtItemType" id=""></td>
+                                <th>Transaction Type:</th>
+                                <td><input type="text" name="txtTransactionType" id=""></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -624,9 +628,9 @@ if ($is_admin != 1) {
                             // Declare the variables and store it in the session.
                             // Suppress the warning message when the variables are null or empty.
                             @$_SESSION['txtID'] = $_POST['txtID'];
-                            @$_SESSION['txtItemName'] = $_POST['txtItemName'];
-                            @$_SESSION['txtItemPrice'] = $_POST['txtItemPrice'];
                             @$_SESSION['txtItemType'] = $_POST['txtItemType'];
+                            @$_SESSION['txtItemPrice'] = $_POST['txtItemPrice'];
+                            @$_SESSION['txtTransactionType'] = $_POST['txtTransactionType'];
                         }
                         // "mailing_list" table query options.
                         else if ($_SESSION['selected_table'] == 'mailing_list') {
@@ -697,6 +701,10 @@ if ($is_admin != 1) {
                                 <td><input type="text" name="txtRequestType" id=""></td>
                             </tr>
                             <tr>
+                                <th>Request Item Name:</th>
+                                <td><input type="text" name="txtRequestItemName" id=""></td>
+                            </tr>
+                            <tr>
                                 <th>Item Quantity:</th>
                                 <td><input type="text" name="txtItemQuantity" id=""></td>
                             </tr>
@@ -732,6 +740,7 @@ if ($is_admin != 1) {
                             @$_SESSION['txtID'] = $_POST['txtID'];
                             @$_SESSION['txtRequestDate'] = $_POST['txtRequestDate'];
                             @$_SESSION['txtRequestType'] = $_POST['txtRequestType'];
+                            @$_SESSION['txtRequestItemName'] = $_POST['txtRequestItemName'];
                             @$_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
                             @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
                             @$_SESSION['txtUserID'] = $_POST['txtUserID'];
@@ -1105,25 +1114,25 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                                 <tr>
                                     <th>ID</th>
-                                    <th>Item Name</th>
-                                    <th>Item Price</th>
                                     <th>Item Type</th>
+                                    <th>Item Price</th>
+                                    <th>Transaction Type</th>
                                 </tr>
                             HTML;
                             echo $html;
 
                             // Declare variables to get the data.
                             $item_id  = $_SESSION['txtID'];
-                            $item_name = $_SESSION['txtItemName'];
-                            $item_price = $_SESSION['txtItemPrice'];
                             $item_type = $_SESSION['txtItemType'];
+                            $item_price = $_SESSION['txtItemPrice'];
+                            $transaction_type = $_SESSION['txtTransactionType'];
 
                             // Declare a variable for the query.
                             $query_table_rows = "SELECT * FROM `$selected_table` WHERE
                                                 item_id LIKE '%$item_id%' AND
-                                                item_name LIKE '%$item_name%' AND
+                                                item_type LIKE '%$item_type%' AND
                                                 item_price LIKE '%$item_price%' AND
-                                                item_type LIKE '%$item_type%'
+                                                transaction_type LIKE '%$transaction_type%'
                                                 ORDER BY item_id ASC";
 
                             // Attempt to connect to the database and execute the query.
@@ -1136,9 +1145,9 @@ if ($is_admin != 1) {
                                 $html = <<<HTML
                                 <tr>
                                     <td>{$row['item_id']}</td>
-                                    <td>{$row['item_name']}</td>
-                                    <td>{$row['item_price']}</td>
                                     <td>{$row['item_type']}</td>
+                                    <td>{$row['item_price']}</td>
+                                    <td>{$row['transaction_type']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1203,6 +1212,7 @@ if ($is_admin != 1) {
                                     <th>ID</th>
                                     <th>Request Date</th>
                                     <th>Request Type</th>
+                                    <th>Request Item Name</th>
                                     <th>Item Quantity</th>
                                     <th>Request Status</th>
                                     <th>User ID</th>
@@ -1217,6 +1227,7 @@ if ($is_admin != 1) {
                             $request_id = $_SESSION['txtID'];
                             $request_date = $_SESSION['txtRequestDate'];
                             $request_type = $_SESSION['txtRequestType'];
+                            $request_item_name = $_SESSION['txtRequestItemName'];
                             $item_quantity = $_SESSION['txtItemQuantity'];
                             $request_status = $_SESSION['txtRequestStatus'];
                             $user_id = $_SESSION['txtUserID'];
@@ -1229,6 +1240,7 @@ if ($is_admin != 1) {
                                                 request_id LIKE '%$request_id%' AND
                                                 request_date LIKE '%$request_date%' AND
                                                 request_type LIKE '%$request_type%' AND
+                                                request_item_name LIKE '%$request_item_name%' AND
                                                 item_quantity LIKE '%$item_quantity%' AND
                                                 request_status LIKE '%$request_status%' AND
                                                 user_id LIKE '%$user_id%' AND

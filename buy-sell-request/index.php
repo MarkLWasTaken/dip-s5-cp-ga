@@ -353,7 +353,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Type of request form container -->
         <div>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                <div class="table-contents">
+                <div class="type-of-request-form-table-contents">
                     <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">

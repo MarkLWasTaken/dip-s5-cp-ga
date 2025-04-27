@@ -41,11 +41,16 @@ Student ID: Redacted
 }
 
 .query-table-content-1 th {
-    background-color: rgb(150, 255, 150);
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
 }
 
 .query-table-content-1 td {
-    background-color: rgb(225, 255, 225);
+    color: white;
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
 }
 
 .query-table-content-1 tr {
@@ -78,11 +83,16 @@ Student ID: Redacted
 }
 
 .query-table-content-2 th {
-    background-color: rgb(150, 255, 150);
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
 }
 
 .query-table-content-2 td {
-    background-color: rgb(225, 255, 225);
+    color: white;
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
 }
 
 .query-table-content-2 tr {
@@ -115,11 +125,16 @@ Student ID: Redacted
 }
 
 .query-table-content-3 th {
-    background-color: rgb(150, 255, 150);
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
 }
 
 .query-table-content-3 td {
-    background-color: rgb(225, 255, 225);
+    color: white;
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
 }
 
 .query-table-content-3 tr {

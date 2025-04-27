@@ -60,69 +60,6 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
-/* Table query designs */
-.query-table-content table {
-    border: 2px solid black;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.query-table-content th {
-    background-color: rgb(150, 255, 150);
-}
-
-.query-table-content td {
-    background-color: rgb(225, 255, 225);
-}
-
-.query-table-content tr {
-    height: 40px;
-}
-
-.query-table-content th,
-.query-table-content td {
-    border: 1px solid black;
-}
-
-.query-table-content th {
-    width: 40%;
-    padding-left: 10px;
-    text-align: left;
-}
-
-.query-table-content td {
-    width: 375px;
-    padding: 10px;
-}
-
-/* Input text fields designs */
-input[type="text"] {
-    width: 350px;
-    font-size: 18px;
-}
-
-/* Input email address text field designs */
-.query-table-email-field {
-    width: 350px;
-    font-size: 18px;
-}
-
-/* Radio buttons designs */
-.radio-choice {
-    height: 50px;
-}
-
-.radio-choice-2 {
-    height: 80px;
-}
-
-.radio-choices {
-    width: 350px;
-    height: 30px;
-}
-
 form {
     margin: 0 auto;     /* Center the form horizontally */
 }
@@ -134,14 +71,21 @@ form {
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .e-waste-table th {
-    background-color: rgb(150, 255, 150);
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
 }
 
 .e-waste-table td {
-    background-color: rgb(225, 255, 225);
+    color: white;
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
 }
 
 .e-waste-table tr {

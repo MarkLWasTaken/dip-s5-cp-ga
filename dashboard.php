@@ -399,7 +399,7 @@ $connection->close();
                 <div id="buttons-container-2">
                     <a class="black-hyperlink-display" href="buy-sell-request/index.php">
                         <div class="button">
-                            <p class="button-content">Buy/Sell Request (Unavailable)</p>
+                            <p class="button-content">Buy/Sell Request</p>
                         </div>
                     </a>
 
