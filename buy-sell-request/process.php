@@ -28,12 +28,6 @@ if ($user_id != null) {
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
 mysqli_close($connection);
-
-// Set a the default timezone for date and time.
-date_default_timezone_set('Asia/Singapore');
-
-// Get a date and time with a specific format.
-$date = date('Y-m-d\TH:i:sP');
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +39,7 @@ $date = date('Y-m-d\TH:i:sP');
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Buy/Sell Request</title>
+    <title>Quantum E-waste Management System - Buy/Sell Request Process</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
@@ -80,7 +74,7 @@ $date = date('Y-m-d\TH:i:sP');
             <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
             <a href="javascript:void(0)">&#128994; User is logged in.</a>
             <a href="../dashboard.php" onclick="closeNav()">Dashboard</a>
-            <a href="#" onclick="closeNav()">Buy/Sell Request</a>
+            <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
             <a href="../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
             <a href="../requests-history/index.php" onclick="closeNav()">Requests history</a>
@@ -323,162 +317,13 @@ $date = date('Y-m-d\TH:i:sP');
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Buy/Sell Request</div>
+        <div class="page-title-banner-2-container">
+            <div class="page-title-banner-2-content">Buy/Sell Request Process</div>
         </div>
 
         <div class="margin-30px"></div>
         <!-- <br> -->
 
-        <!-- Layout for the contents 1 container. -->
-        <div id="contents-1-container">
-            <div id="contents-1-content">
-                <h2>Create a form for buy/sell request.</h2>
-            </div>
-        </div>
-
-        <?php
-        // Include the PHP script for connecting to the database (DB).
-        include '../php/connection.php';
-
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Get the value of the radio button submitted in the first table.
-            $selected_user_choice = @$_POST["rdoRequestType"];
-
-            // Get form data from other tables.
-            @$request_type = $_POST["txtRequestType"];
-            @$item_type = $_POST["txtRequestItemType"];
-            @$request_item_name = $_POST["txtRequestItemName"];
-            @$item_quantity = $_POST["txtRequestQuantity"];
-            @$picturefile = $_POST['filePicture'];
-
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-            Request type: $selected_user_choice<br>
-            Request type: $request_type<br>
-            Item Type: $item_type<br>
-            Request Item Name: $request_item_name<br>
-            Quantity: $item_quantity<br>
-            Picture: $picturefile<br>
-            HTML;
-            echo $html;
-
-            // Reference: https://www.w3schools.com/php/php_file_upload.asp
-
-            // Handle file upload
-            $target_dir = "../uploads/requests/";
-            @$target_file = $target_dir . basename(@$_FILES["picture"]["name"]);
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-            // Check if the file is an image
-            if (isset($_FILES["picture"]) && $_FILES["picture"]["tmp_name"] != "") {
-                $check = getimagesize($_FILES["picture"]["tmp_name"]);
-                if ($check !== false) {
-                    $uploadOk = 1;
-                } else {
-                    echo "File is not an image.";
-                    $uploadOk = 0;
-                }
-            }
-
-            // Check if the file already exists
-            if (file_exists($target_file)) {
-                if ($picturefile == '') {
-                    // Do nothing.
-                }
-                else {
-                    echo "Sorry, file already exists." . "<br>";
-                    $uploadOk = 0;
-                }
-            }
-
-            // Check file size (maximum 20MB)
-            if (@$_FILES["picture"]["size"] > 20000000) {
-                if ($picturefile == '') {
-                    // Do nothing.
-                }
-                else {
-                    echo "Sorry, your file is too large." . "<br>";
-                    $uploadOk = 0;
-                }
-            }
-
-            // Allow certain file formats
-            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-                if ($picturefile == '') {
-                    // Do nothing.
-                }
-                else {
-                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed." . "<br>";
-                    $uploadOk = 0;
-                }
-            }
-
-            // Check if $uploadOk is set to 0 by an error
-            if ($uploadOk == 0) {
-                if ($picturefile == '') {
-                    // Do nothing.
-                }
-                else {
-                    echo "Sorry, your file was not uploaded." . "<br>";
-                }
-            }
-            else {
-                // If everything is ok, try to upload the file
-                if (move_uploaded_file(@$_FILES["picture"]["tmp_name"], $target_file)) {
-                    // Declare a variable for the query.
-                    // Insert the form data into the database
-                    // Note: $date and $user_id variables are already declared.
-                    $sql_query = "INSERT INTO requests (request_date, request_type, request_item_name,
-                                        item_quantity, request_status, user_id, item_id)
-                                        VALUES ('$date', '$request_type', '$request_item_name', '$item_quantity',
-                                        'Pending', '$user_id', '$item_type')" 
-                                        . basename($_FILES["fileToUpload"]["name"]) . "')";
-
-                    // Attempt to connect to the database and execute the query.
-                    $sql_query_execute = mysqli_query($connection, $sql_query);
-
-                    if ($sql_query_execute === TRUE) {
-                        // Declare a variable for another query.
-                        // Count the number of rows in the database table.
-                        $sql_query_2 = "SELECT COUNT(*) AS row_count FROM requests";
-
-                        // Attempt to connect to the database and execute the query.
-                        $sql_query_execute_2 = mysqli_query($connection, $sql_query);
-
-                        // Get the row count from the database table.
-                        $row = mysqli_fetch_assoc($sql_query_execute_2);
-                        $rowCount = $row['row_count'];
-
-                        // Rename the uploaded file based on the table ID.
-                        $new_file_name = "file_" . $rowCount . "." . $imageFileType;
-
-                        $new_target_file = $target_dir . $new_file_name;
-                        if (rename($target_file, $new_target_file)) {
-                            echo "The file has been uploaded and renamed successfully." . "<br>";
-                        } else {
-                            echo "There was an error renaming the file." . "<br>";
-                        }
-                    } else {
-                        echo "Error: " . $sql_query . "<br>" . "Unable to connect to the database and execute the query." . "<br>";
-                    }
-                }
-                else {
-                    if ($picturefile == '') {
-                        // Do nothing.
-                    }
-                    else {
-                        echo "Sorry, there was an error uploading your file." . "<br>";
-                    }
-                }
-            }
-            
-            // Reference: https://www.w3schools.com/php/php_file_upload.asp
-        }
-        ?>
 
 
 
@@ -495,205 +340,39 @@ $date = date('Y-m-d\TH:i:sP');
 
 
 
-        <!-- Type of request form container -->
-        <div>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                <div class="table-contents">
-                    <table>
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                Select the type of request form.
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>User choice:</th>
-                            <?php // Retain the selected user choice after picking a form. ?>
-                            <td>
-                                <div class="radio-choice">
-                                    <div class="radio-choices">
-                                    <input type="radio" id="buy" name="rdoRequestType" value="buy" <?php if (isset($selected_user_choice) && $selected_user_choice == "buy") echo "checked";?>>
-                                    <label for="buy">Buy</label><br>
-                                </div>
-                                <div class="radio-choices">
-                                    <input type="radio" id="sell" name="rdoRequestType" value="sell" <?php if (isset($selected_user_choice) && $selected_user_choice == "sell") echo "checked";?>>
-                                    <label for="sell">Sell</label><br>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td>
-                                <input type="submit" value="Display the form">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
-        </div>
 
-        <div class="margin-50px"></div>
 
-        <?php
-        // Customer Buy Request Form
-        if (@$_POST['rdoRequestType'] == 'buy') {
-            echo "<div>";
-                echo "<form action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" method=\"post\">";
 
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-                    <div class="table-contents">
-                        <table>
-                            <tr>
-                                <th colspan="2" style="padding-left: 0; text-align: center;">
-                                    Customer Buy Request Form
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Type of Request:</th>
-                                <td><input type="text" name="txtRequestType" value="buy" disabled></td>
-                            </tr>
-                            <tr>
-                                <th>Type of item to buy:</th>
-                                <td>
-                                <select id="item_type" name="txtRequestItemType">
-            HTML;
-            echo $html;
 
-            // Declare a variable for the query.
-            $query_table_rows = "SELECT * FROM `items` WHERE
-                                item_type = 'buy'
-                                ORDER BY item_id ASC";
 
-            // Attempt to connect to the database and execute the query.
-            $result_table_rows = mysqli_query($connection, $query_table_rows);
 
-            // Insert each of the results into the table.
-            while($row = mysqli_fetch_assoc($result_table_rows)) {
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                                    <option value="{$row['item_id']}">{$row['item_name']} (RM {$row['item_price']})</option>
-                HTML;
-                echo $html;
-            }
 
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-                                </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Item Name:</th>
-                                <td><input type="text" name="txtRequestItemName"></td>
-                            </tr>
-                            <tr>
-                                <th>Quantity:</th>
-                                <td><input type="text" name="txtRequestQuantity"></td>
-                            </tr>
-                            <tr>
-                                <th>Action:</th>
-                                <td><input type="submit" name="submit" value="Submit request form"></td>
-                            </tr>
-                            <tr>
-                                <th>Action:</th>
-                                <td><input type="submit" name="clear" value="Clear request form data"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </form>
-            </div>
-            HTML;
-            echo $html;
-        }
-        // Supplier Sell Request Form
-        else if (@$_POST['rdoRequestType'] == 'sell') {
-            echo "<div>";
-                echo "<form action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" method=\"post\">";
 
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-                    <div class="table-contents">
-                        <table>
-                            <tr>
-                                <th colspan="2" style="padding-left: 0; text-align: center;">
-                                    Supplier Sell Request Form
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Type of Request:</th>
-                                <td><input type="text" name="txtRequestType" value="sell" disabled></td>
-                            </tr>
-                            <tr>
-                                <th>Type of item to sell:</th>
-                                <td>
-                                <select id="item_type" name="txtRequestItemType">
-            HTML;
-            echo $html;
 
-            // Declare a variable for the query.
-            $query_table_rows = "SELECT * FROM `items` WHERE
-                                item_type = 'sell'
-                                ORDER BY item_id ASC";
 
-            // Attempt to connect to the database and execute the query.
-            $result_table_rows = mysqli_query($connection, $query_table_rows);
 
-            // Insert each of the results into the table.
-            while($row = mysqli_fetch_assoc($result_table_rows)) {
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                                    <option value="{$row['item_id']}">{$row['item_name']} (RM {$row['item_price']})</option>
-                HTML;
-                echo $html;
-            }
 
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-                                </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Item Name:</th>
-                                <td><input type="text" name="txtRequestItemName"></td>
-                            </tr>
-                            <tr>
-                                <th>Quantity:</th>
-                                <td><input type="text" name="txtRequestQuantity"></td>
-                            </tr>
-                            <tr>
-                                <th>Picture:</th>
-                                <td>
-                                    <input type="file" id="filePicture" name="filePicture">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Action:</th>
-                                <td><input type="submit" name="submit" value="Submit request form"></td>
-                            </tr>
-                            <tr>
-                                <th>Action:</th>
-                                <td><input type="submit" name="clear" value="Clear request form data"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </form>
-            </div>
-            HTML;
-            echo $html;
-        }
-        ?>
 
-        <?php
-        // Ensure the connection to the DB is closed, with or without
-        // any code or query execution for security reasons.
-        mysqli_close($connection);
-        ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">
