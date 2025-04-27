@@ -335,82 +335,7 @@ $date = date('Y-m-d\TH:i:sP');
 
         <?php
         // PHP for Customer Sell Request Form.
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Get the form data from the tables.
-            @$request_item_type = $_POST["txtRequestItemType"];
-            @$request_item_name = $_POST["txtRequestItemName"];
-            @$request_item_quantity = $_POST["txtRequestQuantity"];
-            @$request_picture_file = $_POST['filePicture'];
 
-            // Declare variables for the queries.
-            // Insert the form data into the database
-            // Note: $date and $user_id variables are already declared.
-            $sql_query_2 = "INSERT INTO requests (request_date, request_type, request_item_name,
-                            item_quantity, request_status, user_id, item_id)
-                            VALUES ('$date', 'sell', '$request_item_name', '$request_item_quantity',
-                            'Pending', '$user_id', '$request_item_type')";
-            $sql_query_3 = "SELECT * FROM items WHERE item_id = $request_item_type";
-
-            // Attempt to connect to the database and execute the query.
-            $sql_query_execute_2 = $connection->query($sql_query_2);
-            $sql_query_execute_3 = $connection->query($sql_query_3);
-
-            // Sort the data.
-            while($row = $sql_query_execute_3->fetch_assoc()) {
-                $items_item_name = $row['item_type'];
-            }
-
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-            <style>
-                #contents-2-container {
-                    display: none;
-                }
-
-                #customer-sell-request-form,
-                .action-1-button,
-                .action-2-button {
-                    display: none;
-                }
-
-                #contents-3-container {
-                    height: 300px;
-                }
-
-                #contents-3-content {
-                    height: 100%;
-                }
-
-                #contents-4-container {
-                    display: block;
-                }
-            </style>
-
-            <script>
-                // Disable the form actions after submitting the request.
-                document.getElementById("customer-sell-request-form").disabled = true;
-            </script>
-
-            <!-- Layout for the contents 3 container. -->
-            <div id="contents-3-container">
-                <div id="contents-3-content">
-                    <h2>Sell request form has been successfully submitted!</h2>
-                    <div class="margin-30px"></div>
-                    <p>Here is the form details:</p>
-                    <p>Type of Request: Sell</p>
-                    <p>Item Type: $items_item_name</p>
-                    <p>Item Name: $request_item_name</p>
-                    <p>Quantity: $request_item_quantity</p>
-                    <div class="margin-50px"></div>
-                </div>
-            </div>
-
-            <div class="margin-50px"></div>
-            HTML;
-            echo $html;
-        }
         // File upload module.
 
         // Reference: https://www.w3schools.com/php/php_file_upload.asp
@@ -425,18 +350,17 @@ $date = date('Y-m-d\TH:i:sP');
 
         // Declare a variable for the query.
         // Insert the form data into the database
-        $sql_query_3 = "SELECT * FROM requests";
+        $sql_query_1 = "SELECT * FROM requests";
 
         // Attempt to connect to the database and execute the query.
-        $sql_query_execute_3 = $connection->query($sql_query_3);
+        $sql_query_1_execute = $connection->query($sql_query_1);
 
-        // Sort the data.
-        while($row = $sql_query_execute_3->fetch_assoc()) {
-            $request_id = $row['request_id'];
-        }
+        // Get the row count
+        $requests_row_count = $sql_query_1_execute->num_rows;
+        $requests_row_count++;
 
         // Rename picture.
-        $newFileName = $request_id . "_" . $user_id . "." . $imageFileType;
+        $newFileName = "request_id_" . $requests_row_count . "_" . "user_id_" . $user_id . "." . $imageFileType;
         $newTargetFile = $target_dir . $newFileName;
 
         // Declare the variables.
@@ -501,15 +425,107 @@ $date = date('Y-m-d\TH:i:sP');
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             $file_not_uploaded = "&#x274C Sorry, your file was not uploaded.";
+            $form_status = "Sell request form has not been successfully submitted!";
         }
         // if everything is ok, try to upload file
         else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $newTargetFile)) {
                 $file_upload_success = "&#x2705; The file has been uploaded and renamed as " . $newFileName . ".";
+
+                // Check if the form has been submitted.
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Get the form data from the tables.
+                    @$request_item_type = $_POST["txtRequestItemType"];
+                    @$request_item_name = $_POST["txtRequestItemName"];
+                    @$request_item_quantity = $_POST["txtRequestQuantity"];
+                    // Declare a variable for the query.
+                    // Insert the form data into the database
+                    // Note: $date and $user_id variables are already declared.
+                    $sql_query_2 = "INSERT INTO requests (request_date, request_type, request_item_name,
+                                    item_quantity, request_status, user_id, item_id)
+                                    VALUES ('$date', 'sell', '$request_item_name', '$request_item_quantity',
+                                    'Pending', '$user_id', '$request_item_type')";
+
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_2_execute = $connection->query($sql_query_2);
+                }
+                $form_status = "Sell request form has been successfully submitted!";
             }
             else {
                 $file_upload_failed = "&#x274C Sorry, there was an error uploading your file.";
+                $form_status = "Sell request form has not been successfully submitted!";
             }
+        }
+
+        // Reference: https://www.w3schools.com/php/php_file_upload.asp
+
+        // Check if the form has been submitted.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Get the form data from the tables.
+            @$request_item_type = $_POST["txtRequestItemType"];
+            @$request_item_name = $_POST["txtRequestItemName"];
+            @$request_item_quantity = $_POST["txtRequestQuantity"];
+
+            // Declare a variable for the query.
+            $sql_query_3 = "SELECT * FROM items WHERE item_id = $request_item_type";
+
+            // Attempt to connect to the database and execute the query.
+            $sql_query_3_execute = $connection->query($sql_query_3);
+
+            // Sort the data.
+            while($row = $sql_query_3_execute->fetch_assoc()) {
+                $items_item_name = $row['item_type'];
+            }
+
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <style>
+                #contents-2-container {
+                    display: none;
+                }
+
+                #customer-sell-request-form,
+                .action-1-button,
+                .action-2-button {
+                    display: none;
+                }
+
+                #contents-3-container {
+                    height: 300px;
+                }
+
+                #contents-3-content {
+                    height: 100%;
+                }
+
+                #contents-4-container {
+                    display: block;
+                }
+            </style>
+
+            <script>
+                // Disable the form actions after submitting the request.
+                document.getElementById("customer-sell-request-form").disabled = true;
+            </script>
+
+            <!-- Layout for the contents 3 container. -->
+            <div id="contents-3-container">
+                <div id="contents-3-content">
+                    <h2>$form_status</h2>
+                    <div class="margin-30px"></div>
+                    <p>Here is the form details:</p>
+                    <p>Type of Request: Sell</p>
+                    <p>Item Type: $items_item_name</p>
+                    <p>Item Name: $request_item_name</p>
+                    <p>Quantity: $request_item_quantity</p>
+                    <div class="margin-50px"></div>
+                </div>
+            </div>
+
+            <div class="margin-50px"></div>
+            HTML;
+            echo $html;
         }
 
         // Use heredoc syntax to make the code readable and easier to maintain.
@@ -568,7 +584,8 @@ $date = date('Y-m-d\TH:i:sP');
                         </table>
                     </div>
                     <div class="margin-50px"></div>
-                    <img src="$newTargetFile" width="50%" height="50%" alt="User's request picture." title="User's request picture.">
+                    <img src="$newTargetFile" alt="User's request picture." title="User's request picture.">
+                    <div class="margin-50px"></div>
                 </div>
             </div>
 
