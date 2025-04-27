@@ -410,7 +410,7 @@ $date = date('Y-m-d\TH:i:sP');
         <!-- Customer Buy Request Form -->
         <div>
             <form id="customer-buy-request-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <div class="table-contents">
+                <div class="buy-table-contents">
                     <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">

@@ -400,7 +400,6 @@ $date = date('Y-m-d\TH:i:sP');
                     <p>Item Name: $request_item_name</p>
                     <p>Quantity: $request_item_quantity</p>
                     <div class="margin-50px"></div>
-                    <p>The picture... TODO</p>
                 </div>
             </div>
 
@@ -408,12 +407,157 @@ $date = date('Y-m-d\TH:i:sP');
             HTML;
             echo $html;
         }
+        // File upload module.
+
+        // Reference: https://www.w3schools.com/php/php_file_upload.asp
+
+        $target_dir = "../uploads/requests/";
+        $target_file = $target_dir . basename(@$_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Declare the variables.
+        $file_is_image = "";
+        $file_not_image = "";
+        $file_already_exists = "";
+        $file_file_size = "";
+        $file_image_type = "";
+        $file_upload_success = "";
+        $file_upload_failed = "";
+        $file_not_uploaded = "";
+
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check !== false) {
+                $file_is_image =  "&#x2705; The file is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                $file_not_image = "&#x274C The file is not an image.";
+                $uploadOk = 0;
+            }
+        }
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            $file_already_exists = "&#x274C Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        else {
+            $file_already_exists = "&#x2705; The file does not exist.";
+        }
+
+        // Check file size (limit to 20 MB)
+        if (@$_FILES["fileToUpload"]["size"] > 20000000) {
+            $file_file_size = "&#x274C Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        else {
+            $file_file_size = "&#x2705; The file is within the upload size limit.";
+        }
+
+        // Allow certain file formats
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            $file_image_type = "&#x274C Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+        else if ($imageFileType == "jpg") {
+            $file_image_type = "&#x2705; The file is a jpg.";
+        }
+        else if ($imageFileType == "png") {
+            $file_image_type = "&#x2705; The file is a png.";
+        }
+        else if ($imageFileType == "jpeg") {
+            $file_image_type = "&#x2705; The file is a jpeg.";
+        }
+        else if ($imageFileType == "gif") {
+            $file_image_type = "&#x2705; The file is a gif.";
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            $file_not_uploaded = "&#x274C Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+        }
+        else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                $file_upload_success = "&#x2705; The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+            }
+            else {
+                $file_upload_failed = "&#x274C Sorry, there was an error uploading your file.";
+            }
+        }
+
+        // Use heredoc syntax to make the code readable and easier to maintain.
+        // Very useful for handling large blocks of of codes.
+        $html = <<<HTML
+            <!-- Layout for the contents 3 container. -->
+            <div id="contents-4-container">
+                <div id="contents-4-content">
+                    <h2>Picture results</h2>
+                    <div class="margin-30px"></div>
+                    <div class="picture-table-contents">
+                        <table>
+                            <tr>
+                                <th colspan="2" style="padding-left: 0; text-align: center;">Picture/Image Conditions</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Is the file an image?
+                                </th>
+                                <td>
+                                    $file_is_image$file_not_image
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Does the file already exists?
+                                </th>
+                                <td>
+                                    $file_already_exists
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Is the file size over the limit?
+                                </th>
+                                <td>
+                                    $file_file_size
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Is the file type an image?
+                                </th>
+                                <td>
+                                    $file_image_type
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Is the file upload successful?
+                                </th>
+                                <td>
+                                    $file_not_uploaded$file_upload_success$file_upload_failed
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="margin-50px"></div>
+                    <img src="$target_file" width="50%" height="50%" alt="User's request picture." title="User's request picture.">
+                </div>
+            </div>
+
+        <div class="margin-50px"></div>
+        HTML;
+        echo $html;
         ?>
 
         <!-- Customer Sell Request Form -->
         <div>
-            <form id="customer-sell-request-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <div class="table-contents">
+            <form id="customer-sell-request-form" method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <div class="sell-table-contents">
                     <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
@@ -465,7 +609,7 @@ $date = date('Y-m-d\TH:i:sP');
                         <tr>
                             <th>Picture:</th>
                             <td>
-                                <input type="file" id="filePicture" name="filePicture">
+                                <input type="file" id="fileToUpload" name="fileToUpload">
                             </td>
                         </tr>
                         <tr class="action-1-button">

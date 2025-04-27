@@ -109,40 +109,158 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
-/* Table contents designs */
-.table-contents table {
+#contents-4-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 1000px;
+}
+
+#contents-4-content {
+    height: 950px;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Buy table contents designs */
+.buy-table-contents table {
     border: 2px solid black;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.table-contents th {
-    background-color: rgb(150, 255, 150);
+.buy-table-contents th {
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
 }
 
-.table-contents td {
-    background-color: rgb(225, 255, 225);
+.buy-table-contents td {
+    background-color: rgb(125, 150, 125);
+    /* background-color: rgb(225, 255, 225); */
 }
 
-.table-contents tr {
+.buy-table-contents tr {
     height: 40px;
 }
 
-.table-contents th,
-.table-contents td {
+.buy-table-contents th,
+.buy-table-contents td {
     border: 1px solid black;
 }
 
-.table-contents th {
+.buy-table-contents th {
     width: 38%;
     padding-left: 10px;
     text-align: left;
 }
 
-.table-contents td {
+.buy-table-contents td {
     width: 375px;
+    padding: 10px;
+}
+
+/* Sell table contents designs */
+.sell-table-contents table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sell-table-contents th {
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
+}
+
+.sell-table-contents td {
+    background-color: rgb(125, 150, 125);
+    /* background-color: rgb(225, 255, 225); */
+}
+
+.sell-table-contents tr {
+    height: 40px;
+}
+
+.sell-table-contents th,
+.sell-table-contents td {
+    border: 1px solid black;
+}
+
+.sell-table-contents th {
+    width: 30%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.sell-table-contents td {
+    width: 375px;
+    padding: 10px;
+}
+
+/* Picture table contents designs */
+.picture-table-contents table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.picture-table-contents th {
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
+}
+
+.picture-table-contents td {
+    background-color: rgb(125, 150, 125);
+    /* background-color: rgb(225, 255, 225); */
+}
+
+.picture-table-contents tr {
+    height: 40px;
+}
+
+.picture-table-contents th,
+.picture-table-contents td {
+    border: 1px solid black;
+}
+
+.picture-table-contents th {
+    width: 45%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.picture-table-contents td {
+    width: 100%;
     padding: 10px;
 }
 
@@ -162,60 +280,24 @@ Student ID: Redacted
 
 /* Input text fields designs */
 input[type="text"] {
-    width: 350px;
+    width: 100%;
     font-size: 18px;
 }
 
 /* Input select combo box designs */
 select {
-    width: 350px;
+    width: 100%;
     font-size: 18px;
 }
 
 /* Input file upload designs */
 input[type="file"] {
-    width: 450px;
+    width: 500px;
     font-size: 18px;
 }
 
 form {
     margin: 0 auto;     /* Center the form horizontally */
-}
-
-/* E-waste table designs */
-.e-waste-table table {
-    border: 2px solid black;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.e-waste-table th {
-    background-color: rgb(150, 255, 150);
-}
-
-.e-waste-table td {
-    background-color: rgb(225, 255, 225);
-}
-
-.e-waste-table tr {
-    height: 40px;
-}
-
-.e-waste-table th,
-.e-waste-table td {
-    border: 1px solid black;
-}
-
-.e-waste-table th {
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: left;
-}
-
-.e-waste-table td {
-    padding: 10px;
 }
 
 /* 
