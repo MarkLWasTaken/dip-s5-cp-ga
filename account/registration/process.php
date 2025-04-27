@@ -369,7 +369,7 @@ if (isset($_SESSION['email_address'])) {
                     echo $html;
 
                     // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    mysqli_close($connection);
+                    $connection->close();
                 }
                 // Check if the string length is less than 8 characters.
                 else if (strlen($password) < 8) {
@@ -396,7 +396,7 @@ if (isset($_SESSION['email_address'])) {
                     echo $html;
 
                     // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    mysqli_close($connection);
+                    $connection->close();
                 }
                 // Check if the email address already exists in the database.
                 else if (mysqli_num_rows($resultEmailCheck)) {
@@ -423,7 +423,7 @@ if (isset($_SESSION['email_address'])) {
                     echo $html;
 
                     // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    mysqli_close($connection);
+                    $connection->close();
                 }
                 // Register the account details into the database.
                 else if (mysqli_query($connection, $queryRegister)) {
@@ -439,7 +439,7 @@ if (isset($_SESSION['email_address'])) {
                     echo $html;
 
                     // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    mysqli_close($connection);
+                    $connection->close();
                 }
                 // If other errors were encountered.
                 else {
@@ -471,7 +471,7 @@ if (isset($_SESSION['email_address'])) {
                     echo $html;
 
                     // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    mysqli_close($connection);
+                    $connection->close();
                 }
                 ?>
                 <br>

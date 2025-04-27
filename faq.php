@@ -27,7 +27,7 @@ if ($user_id != null) {
 
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
-mysqli_close($connection);
+$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -355,7 +355,7 @@ mysqli_close($connection);
 
                 // Ensure the connection to the DB is closed, with or without
                 // any code or query execution for security reasons.
-                mysqli_close($connection);
+                $connection->close();
                 ?>
 
                 <div class="margin-100px"></div>

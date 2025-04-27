@@ -27,7 +27,7 @@ if ($user_id != null) {
 
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
-mysqli_close($connection);
+$connection->close();
 
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
@@ -361,7 +361,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </th>
                         </tr>
                         <tr>
-                            <th>User choice:</th>
+                            <th>Transaction type:</th>
                             <?php // Retain the selected user choice after picking a form. ?>
                             <td>
                                 <div class="radio-choice">

@@ -1376,8 +1376,9 @@ if ($is_admin != 1) {
                                 echo $html;
                             }
                         }
-                        // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                        mysqli_close($connection);
+                        // Ensure the connection to the DB is closed, with or without
+                        // any code or query execution for security reasons.
+                        $connection->close();
                     echo '</table>';
                 }
                 ?>

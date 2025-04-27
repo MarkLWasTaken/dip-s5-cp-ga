@@ -27,7 +27,7 @@ Student ID: Redacted
 
     // Ensure the connection to the DB is closed, with or without
     // any code or query execution for security reasons.
-    mysqli_close($connection);
+    $connection->close();
 ?>
 
 <!DOCTYPE html>

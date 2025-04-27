@@ -25,10 +25,6 @@ if ($user_id != null) {
     }
 }
 
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-mysqli_close($connection);
-
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
 
@@ -331,8 +327,8 @@ $date = date('Y-m-d\TH:i:sP');
         <!-- <br> -->
 
         <!-- Layout for the contents 1 container. -->
-        <div id="contents-1-container">
-            <div id="contents-1-content">
+        <div id="contents-2-container">
+            <div id="contents-2-content">
                 <h2>Create a form for sell request.</h2>
             </div>
         </div>
@@ -342,36 +338,28 @@ $date = date('Y-m-d\TH:i:sP');
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Get the form data from the tables.
-            @$item_type = $_POST["txtRequestItemType"];
+            @$request_item_type = $_POST["txtRequestItemType"];
             @$request_item_name = $_POST["txtRequestItemName"];
-            @$item_quantity = $_POST["txtRequestQuantity"];
-            @$picturefile = $_POST['filePicture'];
-
-            // Include the PHP script for connecting to the database (DB).
-            include '../php/connection.php';
+            @$request_item_quantity = $_POST["txtRequestQuantity"];
+            @$request_picture_file = $_POST['filePicture'];
 
             // Declare a variable for the query.
             // Insert the form data into the database
             // Note: $date and $user_id variables are already declared.
             $sql_query = "INSERT INTO requests (request_date, request_type, request_item_name,
-                                item_quantity, request_status, user_id, item_id)
-                                VALUES ('$date', 'sell', '$request_item_name', '$item_quantity',
-                                'Pending', '$user_id', '$item_type')";
-            $sql_query_2 = "SELECT * FROM items WHERE item_id = $item_type";
+                            item_quantity, request_status, user_id, item_id)
+                            VALUES ('$date', 'sell', '$request_item_name', '$request_item_quantity',
+                            'Pending', '$user_id', '$request_item_type')";
+            $sql_query_2 = "SELECT * FROM items WHERE item_id = $request_item_type";
 
             // Attempt to connect to the database and execute the query.
-            $sql_query_execute = mysqli_query($connection, $sql_query);
-            $sql_query_execute_2 = mysqli_query($connection, $sql_query_2);
+            $sql_query_execute = $connection->query($sql_query);
+            $sql_query_execute_2 = $connection->query($sql_query_2);
 
-            // Fetch the data and assign it into variables.
-            while($sql_query_execute_2_data = mysqli_fetch_assoc($sql_query_execute_2)) {
-                $item_name = $sql_query_execute_2_data['item_name'];
-                $item_price = $sql_query_execute_2_data['item_price'];
+            // Sort the data.
+            while($row = $sql_query_execute_2->fetch_assoc()) {
+                $items_item_name = $row['item_type'];
             }
-
-            // Ensure the connection to the DB is closed, with or without
-            // any code or query execution for security reasons.
-            mysqli_close($connection);
 
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
@@ -405,12 +393,12 @@ $date = date('Y-m-d\TH:i:sP');
             <div id="contents-3-container">
                 <div id="contents-3-content">
                     <h2>Sell request form has been successfully submitted!</h2>
-                    <div class="margin-20px"></div>
+                    <div class="margin-30px"></div>
                     <p>Here is the form details:</p>
                     <p>Type of Request: Sell</p>
-                    <p>Type of item to buy: $item_type - $item_name (RM $item_price)</p>
+                    <p>Item Type: $items_item_name</p>
                     <p>Item Name: $request_item_name</p>
-                    <p>Quantity: $item_quantity</p>
+                    <p>Quantity: $request_item_quantity</p>
                     <div class="margin-50px"></div>
                     <p>The picture... TODO</p>
                 </div>
@@ -429,24 +417,21 @@ $date = date('Y-m-d\TH:i:sP');
                     <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
-                                Customer Sell Request Form
+                                Supplier Sell Request Form
                             </th>
                         </tr>
                         <tr>
-                            <th>Type of Request:</th>
+                            <th>Transaction type:</th>
                             <td><input type="text" name="txtRequestType" value="Sell" disabled></td>
                         </tr>
                         <tr>
-                            <th>Type of item to sell:</th>
+                            <th>Item Type:</th>
                             <td>
-                                <select id="item_type" name="txtRequestItemType">
+                                <select id="txtRequestItemType" name="txtRequestItemType">
             <?php
-            // Include the PHP script for connecting to the database (DB).
-            include '../php/connection.php';
-
             // Declare a variable for the query.
             $query_table_rows = "SELECT * FROM `items` WHERE
-                                item_type = 'sell'
+                                transaction_type = 'sell'
                                 ORDER BY item_id ASC";
 
             // Attempt to connect to the database and execute the query.
@@ -457,14 +442,14 @@ $date = date('Y-m-d\TH:i:sP');
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                                    <option value="{$row['item_id']}">{$row['item_name']} (RM {$row['item_price']})</option>
+                                    <option value="{$row['item_id']}">{$row['item_type']}</option>
                 HTML;
                 echo $html;
             }
 
             // Ensure the connection to the DB is closed, with or without
             // any code or query execution for security reasons.
-            mysqli_close($connection);
+            $connection->close();
             ?>
                                 </select>
                             </td>
@@ -475,7 +460,7 @@ $date = date('Y-m-d\TH:i:sP');
                         </tr>
                         <tr>
                             <th>Quantity:</th>
-                            <td><input type="text" name="txtRequestQuantity" required></td>
+                            <td><input type="text" name="txtRequestQuantity" pattern="[0-9]*" placeholder="Enter only numbers." required></td>
                         </tr>
                         <tr>
                             <th>Picture:</th>
@@ -495,66 +480,6 @@ $date = date('Y-m-d\TH:i:sP');
                 </div>
             </form>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">
