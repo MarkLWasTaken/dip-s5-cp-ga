@@ -487,7 +487,7 @@ $connection->close();
                 echo $html;
 
                 // Declare a variable for the query.
-                $query_table_rows = "SELECT * FROM `requests` WHERE
+                $sql_query_1 = "SELECT * FROM `requests` WHERE
                                     request_id LIKE '%$request_id%' AND
                                     request_date LIKE '%$request_date%' AND
                                     request_type LIKE '%$request_type%' AND
@@ -500,10 +500,10 @@ $connection->close();
                                     ORDER BY request_id ASC";
 
                 // Attempt to connect to the database and execute the query.
-                $result_table_rows = mysqli_query($connection, $query_table_rows);
+                $sql_query_1_result = $connection->query($sql_query_1);
 
                 // Insert the each of the results into the table.
-                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
@@ -516,7 +516,14 @@ $connection->close();
                         <td>{$row['item_id']}</td>
                         <td>{$row['accounts_payable_id']}</td>
                         <td>{$row['accounts_receivable_id']}</td>
-                        <td><a href="view.php?request_id={$row['request_id']}&request_user_id={$row['user_id']}">View image</a></td>
+                        <td>
+                            <form id="post_request_id_{$row['request_id']}" method="post" action="../../admin/e-waste-requests/view.php">
+                                <input type="hidden" name="request_id" value="{$row['request_id']}">
+                                <input type="hidden" name="request_user_id" value="{$row['user_id']}">
+                                <input type="submit" name="submit" value="View details">
+                            </form>
+                        </td>
+                        <!-- <td><a href="" onclick="document.getElementById('post_request_id_{$row['request_id']}').submit();">View details</a></td> -->
                         <!-- <td><a href="approve/index.php?id={$row['request_id']}">Approve</a></td>
                         <td><a href="reject/index.php?id={$row['request_id']}">Reject</a></td> -->
                     </tr>

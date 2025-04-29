@@ -34,7 +34,7 @@ Student ID: Redacted
 /* Admin - Screen user requests (Accept/Reject) (View) */
 .page-title-banner-2-container {
     height: 75px;
-    width: 50%;
+    width: 52%;
     /* background-color: lightgreen; */
     border-style: solid;
     border-radius: 20px 20px 20px 20px;
@@ -49,6 +49,32 @@ Student ID: Redacted
 }
 
 .page-title-banner-2-content {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
+/* Admin - Screen user requests (Accept/Reject) (Approve) */
+.page-title-banner-3-container {
+    height: 75px;
+    width: 60%;
+    /* background-color: lightgreen; */
+    border-style: solid;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+}
+
+.page-title-banner-3-content {
     margin: 0 auto;
     flex-direction: column;
     height: 60px;
@@ -226,6 +252,81 @@ Student ID: Redacted
     transition: background-color 0.3s, transform 0.3s linear;
 }
 
+/* Container 4 */
+#container-4-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
+}
+
+#container-4-contents {
+    height: 80px;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.container-3-contents-3-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+.container-3-contents-3 {
+    height: 60px;
+    width: 40%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(rgb(95, 120, 120), rgba(27, 47, 48, 0.7));
+    color: white;
+    text-decoration: none;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-3-contents-3:hover {
+    background-color: white;
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
 /* Table query designs */
 .query-table-content table {
     border: 2px solid black;
@@ -313,6 +414,21 @@ form {
 
 .requests-table td {
     padding: 10px;
+}
+
+.no-decoration-button {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    font-weight: bold;
 }
 
 /* 

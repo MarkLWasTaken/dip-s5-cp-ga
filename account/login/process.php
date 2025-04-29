@@ -18,10 +18,10 @@ include '../../php/connection.php';
 @$password = $_POST['txtPassword'];
 
 // Query to execute (Fetch data from the DB).
-$query = "SELECT * FROM users WHERE email_address='$email' AND password='$password'";
+$sql_query_1 = "SELECT * FROM users WHERE email_address='$email' AND password='$password'";
 
 // Decalre variable to attempt to connect to the DB and execute the SQL query.
-$result = mysqli_query($connection, $query);
+$sql_query_1_execute = $connection->query($sql_query_1);
 
 // Declare the variable to get the user ID and hide the warning message.
 @$user_id = $_SESSION['user_id'];
@@ -317,8 +317,8 @@ $connection->close();
                 // Executes the code when the login button is pressed.
                 if (isset($_POST['btnLogin'])) {
                     // Verify if the record exists in the DB.
-                    if (mysqli_num_rows($result) > 0) {
-                        while($row=mysqli_fetch_assoc($result)) {
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
                             $_SESSION['user_id'] = $row['user_id'];
                             $_SESSION['email_address'] = $row['email_address'];
                             $_SESSION['password'] = $row['password'];

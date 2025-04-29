@@ -13,7 +13,7 @@ session_start();
 include '../../php/connection.php';
 
 // MySQLi statement.
-$mysqli = new mysqli($hostname, $username, $password, $database);
+// $mysqli = new mysqli($hostname, $username, $password, $database);
 
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
@@ -31,21 +31,22 @@ $dateCreated = date('Y/m/d h:i:s a', time());
 @$country = $_POST['selCountry'];
 
 // Query to execute for registering the account.
-$queryRegister = "INSERT INTO `users`(`first_name`, `last_name`, `email_address`, `password`, `gender`, `country`, `is_admin`, `date_created`) 
-            VALUES ('$fname', '$lname', '$email', '$password', '$gender', '$country', 0, '$dateCreated')";
+$sql_query_1 = "INSERT INTO `users`(`first_name`, `last_name`, `email_address`, `password`,
+                `gender`, `country`, `is_admin`, `date_created`) 
+                VALUES ('$fname', '$lname', '$email', '$password', '$gender', '$country', 0, '$dateCreated')";
 
 // Query to execute and check if the email address exists in the DB
 // by counting the number of rows containing the email address.
-$queryEmailCheck = ("SELECT `email_address` FROM `users` WHERE `email_address` = '$email'");
+$sql_query_2 = ("SELECT `email_address` FROM `users` WHERE `email_address` = '$email'");
 
 // Query to execute and check if the user credentials exists in the DB.
 // $queryUserCheck = "SELECT * FROM users WHERE email='$email' AND password='$password'";
 
 // Decalre variable to attempt to connect to the DB and execute the SQL query (Registration).
-// $resultRegister = mysqli_query($connection, $queryRegister);
+// $resultRegister = mysqli_query($connection, $sql_query_1);
 
 // Decalre variable to attempt to connect to the DB and execute the SQL query (Check email).
-$resultEmailCheck = mysqli_query($connection, $queryEmailCheck);
+$sql_query_2_result = $connection->query($sql_query_2);
 
 // Decalre variable to attempt to connect to the DB and execute the SQL query.
 // $resultUserCheck = mysqli_query($connection, $queryUserCheck);
@@ -55,7 +56,7 @@ $resultEmailCheck = mysqli_query($connection, $queryEmailCheck);
 // $getEmail = $mysqli->prepare("SELECT * FROM `users` WHERE email='$email'");
 // $getEmail->bind_param("s", $email);
 // $getEmail->execute();
-// $resultEmailCheck = $getEmail->get_result();
+// $sql_query_2_result = $getEmail->get_result();
 
 // Declare the variable to get the user ID and hide the warning message.
 @$user_id = $_SESSION['user_id'];
@@ -352,13 +353,13 @@ if (isset($_SESSION['email_address'])) {
                     
                     <!-- Adjust the style according to the available content. -->
                     <style>
-                                #account-registration-success-container {
-                                    height: 400px;
-                                }
-                                #account-registration-success-content {
-                                    height: 350px;
-                                }
-                            </style>
+                        #account-registration-success-container {
+                            height: 400px;
+                        }
+                        #account-registration-success-content {
+                            height: 350px;
+                        }
+                    </style>
                     <h1 class='page-title'>Account registration failed!</h1>
                     <br>
                     <p>An error has occured while registering your account.</p>
@@ -379,13 +380,13 @@ if (isset($_SESSION['email_address'])) {
                     
                     <!-- Adjust the style according to the available content. -->
                     <style>
-                                #account-registration-success-container {
-                                    height: 400px;
-                                }
-                                #account-registration-success-content {
-                                    height: 350px;
-                                }
-                            </style>
+                        #account-registration-success-container {
+                            height: 400px;
+                        }
+                        #account-registration-success-content {
+                            height: 350px;
+                        }
+                    </style>
                     <h1 class='page-title'>Account registration failed!</h1>
                     <br>
                     <p>An error has occured while registering your account.</p>
@@ -399,20 +400,20 @@ if (isset($_SESSION['email_address'])) {
                     $connection->close();
                 }
                 // Check if the email address already exists in the database.
-                else if (mysqli_num_rows($resultEmailCheck)) {
+                else if ($sql_query_2_result->num_rows) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
 
                     <!-- Adjust the style according to the available content. -->
                     <style>
-                                #account-registration-success-container {
-                                    height: 400px;
-                                }
-                                #account-registration-success-content {
-                                    height: 350px;
-                                }
-                            </style>
+                        #account-registration-success-container {
+                            height: 400px;
+                        }
+                        #account-registration-success-content {
+                            height: 350px;
+                        }
+                    </style>
                     <h1 class='page-title'>Account registration failed!</h1>
                     <br>
                     <p>An error has occured while registering your account.</p>
@@ -426,7 +427,7 @@ if (isset($_SESSION['email_address'])) {
                     $connection->close();
                 }
                 // Register the account details into the database.
-                else if (mysqli_query($connection, $queryRegister)) {
+                else if ($connection->query($sql_query_1)) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
@@ -449,13 +450,13 @@ if (isset($_SESSION['email_address'])) {
 
                     <!-- Adjust the style according to the available content. -->
                     <style>
-                                #account-registration-success-container {
-                                    height: 550px;
-                                }
-                                #account-registration-success-content {
-                                    height: 500px;
-                                }
-                            </style>
+                        #account-registration-success-container {
+                            height: 550px;
+                        }
+                        #account-registration-success-content {
+                            height: 500px;
+                        }
+                    </style>
                     <h1 class='page-title'>Account registration failed!</h1>
                     <br>
                     <p>An error has occured while registering your account.</p>

@@ -45,7 +45,7 @@ $connection->close();
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Admin - Screen user requests (View)</title>
+    <title>Quantum E-waste Management System - Admin - Screen user requests (Approve)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
@@ -323,186 +323,202 @@ $connection->close();
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-2-container">
-            <div class="page-title-banner-2-content">Screen user requests (View)</div>
+        <div class="page-title-banner-3-container">
+            <div class="page-title-banner-3-content">Screen user requests (Approve)</div>
         </div>
 
         <div class="margin-30px"></div>
         <!-- <br> -->
 
-        <?php
-        // Check if the 'request_id' and 'request_user_id' parameter is set.
-        if (isset($_POST['request_id']) && isset($_POST['request_user_id'])) {
-            // Declare variable to retrieve the value of 'id' from the link.
-            $request_id = $_POST['request_id'];
-            $request_user_id = $_POST['request_user_id'];
-        }
-        else if (empty($_POST['request_id'])) {
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-            <style>
-                #container-2-container {
-                    display: none;
-                }
+        <!-- Layout for the container 4. -->
+        <div id="container-4-container">
+            <div id="container-4-contents">
 
-                .requests-table {
-                    display: none;
-                }
-
-                #container-3-container {
-                    display none;
-                }
-
-                #container-3-contents-1{
-                    display: none;
-                }
-            </style>
-            HTML;
-            echo $html;
-        }
-        else if (empty($_POST['request_user_id'])) {
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-            <style>
-                #container-2-container {
-                    display: none;
-                }
-
-                .requests-table {
-                    display: none;
-                }
-
-                #container-3-container {
-                    display none;
-                }
-
-                #container-3-contents-1{
-                    display: none;
-                }
-            </style>
-            HTML;
-            echo $html;
-        }
-
-        // Include the PHP script for re-connecting to the database (DB).
-        include '../../php/connection.php';
-
-        // Declare a variable for the query.
-        $sql_query_1 = "SELECT * FROM `requests`
-                        WHERE request_id = $request_id AND
-                        user_id = $request_user_id";
-
-        // Attempt to connect to the database and execute the query.
-        $sql_query_1_result = $connection->query($sql_query_1);
-
-        // Determine the file name with request ID and user ID.
-        while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-            $pictureFile = $row['picture_id'];
-        }
-
-        // Ensure the connection to the DB is closed, with or without
-        // any code or query execution for security reasons.
-        $connection->close();
-        ?>
-
-        <!-- Layout for the container 2 -->
-        <div id="container-2-container">
-            <div id="container-2-contents">
-                <div class="margin-30px"></div>
-                <img src="../../uploads/requests/<?php echo $pictureFile ?>" alt="User's request picture" title="User's request picture" height="1024px" width="1024px">
-                <div class="margin-30px"></div>
-            </div>
-        </div>
-
-        <div class="margin-50px"></div>
-
-        <!-- Requests table container -->
-        <div>
-            <div class="requests-table">
                 <?php
-                // Attempt to make a new connection to the database.
+                // Include the PHP script for re-connecting to the database (DB).
                 include '../../php/connection.php';
 
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <table border=1>
-                    <tr>
-                        <th>ID</th>
-                        <th>Request Date</th>
-                        <th>Request Type</th>
-                        <th>Item Quantity</th>
-                        <th>User ID</th>
-                        <th>Item ID</th>
-                        <th>Accounts Payable ID</th>
-                        <th>Accounts Receivable ID</th>
-                    </tr>
-                HTML;
-                echo $html;
+                // Check if the form has been submitted.
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Get the form data from the previous webpage.
+                    @$request_id = $_POST["request_id"];
 
-                // Declare a variable for the query.
-                $sql_query_2 = "SELECT * FROM `requests`
-                                    WHERE request_id = $request_id AND
-                                    user_id = $request_user_id";
+                    // Get the request type.
+                    // Declare a variable for the query.
+                    $sql_query_1 = "SELECT * FROM `requests` WHERE
+                                    request_id = '$request_id' AND
+                                    request_type = 'Buy'";
 
-                // Attempt to connect to the database and execute the query.
-                $sql_query_2_result = mysqli_query($connection, $sql_query_2);
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_1_result = $connection->query($sql_query_1);
 
-                // Insert the each of the results into the table.
-                while($sql_query_2_row = mysqli_fetch_assoc($sql_query_2_result)) {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                    <tr>
-                        <td>{$row['request_id']}</td>
-                        <td>{$row['request_date']}</td>
-                        <td>{$row['request_type']}</td>
-                        <td>{$row['item_quantity']}</td>
-                        <td>{$row['user_id']}</td>
-                        <td>{$row['item_id']}</td>
-                        <td>{$row['accounts_payable_id']}</td>
-                        <td>{$row['accounts_receivable_id']}</td>
-                    </tr>
-                    HTML;
-                    echo $html;
+                    // Get the result and inset into the variable.
+                    while ($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
+                        $request_status = $result['request_type'];
+                        $item_quantity = $result['item_quantity'];
+                        $item_id = $result['item_id'];
+                    }
+
+                    // Get the item price.
+                    // Declare a variable for the query.
+                    $sql_query_2 = "SELECT * FROM `items` WHERE
+                                    item_id = '$item_id'";
+
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_2_result = $connection->query($sql_query_2);
+
+                    // Get the result and inset into the variable.
+                    while ($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
+                        $item_price = $result['item_price'];
+                    }
+
+                    // Price calculation for the sum of the item(s).
+                    settype($item_price, "integer");
+                    settype($item_quantity, "integer");
+                    settype($total_cost, "integer");
+                    $total_cost = $item_price * $item_quantity;
+
+                    echo "REQUEST_METHOD<br>";
+                    echo "Request ID:" . $request_id . "<br>";
+                    echo "Request status: " . $request_status . "<br>";
+                    echo "Item quantity: " . $item_quantity . "<br>";
+                    echo "Item ID: " . $item_id . "<br>";
+                    echo "Item Price: " . $item_price . "<br>";
+                    echo "Total cost: " . $total_cost;
+
+                    // Determine if the request type is a "Buy" or "Sell".
+                    // Customer buy = Receivable
+                    // Supplier sell = Payable
+                    if ($request_status = "Buy") {
+                        // Declare a variable for the query.
+                        $sql_query_3 = "INSERT INTO `accounts_receivable` (amount_receivable,
+                                        receivable_date, request_id)
+                                        VALUES ('$total_cost', '$date', '$request_id')";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_3_result = $connection->query($sql_query_3);
+
+                        // Declare a variable for the query.
+                        $sql_query_4 = "UPDATE `requests`
+                                        SET request_status = 'Approved'
+                                        WHERE requests_id = '$requests_id'
+                                        AND request_status = 'Pending'";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_4_result = $connection->query($sql_query_4);
+                    }
+                    else if ($request_status = "Sell") {
+                        // Declare a variable for the query.
+                        $sql_query_5 = "INSERT INTO `accounts_payable` (amount_payable,
+                                        payable_date, request_id)
+                                        VALUES ('$total_cost', '$date', '$request_id')";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_5_result = $connection->query($sql_query_5);
+
+                        // Declare a variable for the query.
+                        $sql_query_6 = "UPDATE `requests`
+                                        SET request_status = 'Approved'
+                                        WHERE requests_id = '$requests_id'
+                                        AND request_status = 'Pending'";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_6_result = $connection->query($sql_query_6);
+                    }
+
+                    // Declare a variable for the query.
+                    $sql_query_7 = "SELECT * FROM requests
+                                    WHERE request_id = '$request_id'";
+
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_7_result = $connection->query($sql_query_7);
+
+                    while ($sql_query_7_row = $sql_query_7_result->fetch_assoc()) {
+                        $request_status = $row['request_status'];
+                    }
+
+                    if ($request_status == "Approved") {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <h2>User request has been successfully approved!</h2>
+                        HTML;
+                        echo $html;
+                    }
+                    else  {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <h2>User request approval is unsuccessful.</h2>
+                        HTML;
+                        echo $html;
+                    }
                 }
-                echo '</table>';
 
                 // Ensure the connection to the DB is closed, with or without
                 // any code or query execution for security reasons.
                 $connection->close();
                 ?>
-            </div>
-        </div>
 
-        <div class="margin-50px"></div>
+                <p>Here are the details of the user's request.</p>
 
-        <!-- Layout for the container 3. -->
-        <div id="container-3-container">
-            <div id="container-3-contents-1">
-                <h1>Accept/Reject Request</h1>
-                <p>Would you like to accept or reject this request?</p>
-                <p>This action is irreversible.</p>
-                <div class="margin-50px"></div>
-                <div class="container-3-contents-2-container">
-                    <form id="approve" method="post" action="../../admin/e-waste-requests/approve.php" class="container-3-contents-2-shared container-3-contents-2-accept">
-                        <input type="hidden" name="request_id" value="<?php echo $request_id; ?>">
-                        <input type="submit" name="submit" value="Approve" class="container-3-contents-2-accept no-decoration-button">
-                    </form>
-                    <form id="reject" method="post" action="../../admin/e-waste-requests/reject.php" class="container-3-contents-2-shared container-3-contents-2-reject">
-                        <input type="hidden" name="request_id" value="<?php echo $request_id; ?>">
-                        <input type="submit" name="submit" value="Reject" class="container-3-contents-2-reject no-decoration-button">
-                    </form>
+                <!-- Requests table container -->
+                <div>
+                    <div class="requests-table">
+                        <?php
+                        // Attempt to make a new connection to the database.
+                        include '../../php/connection.php';
+
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <table border=1>
+                            <tr>
+                                <th>ID</th>
+                                <th>Request Date</th>
+                                <th>Request Type</th>
+                                <th>request Item Name</th>
+                                <th>Item Quantity</th>
+                                <th>Request Status</th>
+                                <th>User ID</th>
+                                <th>Item ID</th>
+                            </tr>
+                        HTML;
+                        echo $html;
+
+                        // Declare a variable for the query.
+                        $sql_query_8 = "SELECT * FROM `requests`
+                                        WHERE request_id = $request_id";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_8_result = $connection->query($sql_query_8);
+                        
+                        // Insert the each of the results into the table.
+                        while($sql_query_8_row = $sql_query_8_result->fetch_assoc()) {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <tr>
+                                <td>{$row['request_id']}</td>
+                                <td>{$row['request_date']}</td>
+                                <td>{$row['request_type']}</td>
+                                <td>{$row['request_item_name']}</td>
+                                <td>{$row['item_quantity']}</td>
+                                <td>{$row['request_status']}</td>
+                                <td>{$row['user_id']}</td>
+                                <td>{$row['item_id']}</td>
+                            </tr>
+                            HTML;
+                            echo $html;
+                        }
+                        echo '</table>';
+
+                        // Ensure the connection to the DB is closed, with or without
+                        // any code or query execution for security reasons.
+                        $connection->close();
+                        ?>
+                    </div>
                 </div>
-                <div class="margin-60px"></div>
-                <div class="container-3-contents-3-container">
-                    <a class="container-3-contents-3" href="../../admin/e-waste-requests/index.php">
-                        <p>Return to screen e-waste requests</p>
-                    </a>
-                </div>
-                <div class="margin-60px"></div>
             </div>
         </div>
 

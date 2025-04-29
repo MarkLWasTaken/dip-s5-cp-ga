@@ -349,7 +349,6 @@ $date = date('Y-m-d\TH:i:sP');
         $request_id = "";
 
         // Declare a variable for the query.
-        // Insert the form data into the database
         $sql_query_1 = "SELECT * FROM requests";
 
         // Attempt to connect to the database and execute the query.
@@ -438,13 +437,23 @@ $date = date('Y-m-d\TH:i:sP');
                     @$request_item_type = $_POST["txtRequestItemType"];
                     @$request_item_name = $_POST["txtRequestItemName"];
                     @$request_item_quantity = $_POST["txtRequestQuantity"];
+
                     // Declare a variable for the query.
                     // Insert the form data into the database
                     // Note: $date and $user_id variables are already declared.
                     $sql_query_2 = "INSERT INTO requests (request_date, request_type, request_item_name,
-                                    item_quantity, request_status, user_id, item_id)
-                                    VALUES ('$date', 'sell', '$request_item_name', '$request_item_quantity',
-                                    'Pending', '$user_id', '$request_item_type')";
+                    item_quantity, request_status, picture_id, user_id, item_id)
+                    VALUES ('$date', 'Sell', '$request_item_name', '$request_item_quantity',
+                    'Pending', '$newFileName', '$user_id', '$request_item_type')";
+
+                    /*
+                    Added "picture_id" column in "requests" database table.
+                    Each time a user submits and uploads a picture to the system,
+                    the database keeps a record of the file name and extension type in the table.
+                    So that I don't have to code another module for retrieving the picture file and
+                    instead refer back to the database for the file name and extension type.
+                    Because it's a hassle to go around to retrieve the requests ID and user ID again.
+                    */
 
                     // Attempt to connect to the database and execute the query.
                     $sql_query_2_execute = $connection->query($sql_query_2);
@@ -584,7 +593,7 @@ $date = date('Y-m-d\TH:i:sP');
                         </table>
                     </div>
                     <div class="margin-50px"></div>
-                    <img src="$newTargetFile" alt="User's request picture." title="User's request picture.">
+                    <img src="$newTargetFile" width="90%" height ="50%" alt="User's request picture." title="User's request picture.">
                     <div class="margin-50px"></div>
                 </div>
             </div>
@@ -615,7 +624,7 @@ $date = date('Y-m-d\TH:i:sP');
             <?php
             // Declare a variable for the query.
             $sql_query_1 = "SELECT * FROM `items` WHERE
-                                transaction_type = 'sell'
+                                transaction_type = 'Sell'
                                 ORDER BY item_id ASC";
 
             // Attempt to connect to the database and execute the query.

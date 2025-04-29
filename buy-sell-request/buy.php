@@ -347,7 +347,7 @@ $date = date('Y-m-d\TH:i:sP');
             // Note: $date and $user_id variables are already declared.
             $sql_query = "INSERT INTO requests (request_date, request_type, request_item_name,
                             item_quantity, request_status, user_id, item_id)
-                            VALUES ('$date', 'buy', '$request_item_name', '$request_item_quantity',
+                            VALUES ('$date', 'Buy', '$request_item_name', '$request_item_quantity',
                             'Pending', '$user_id', '$request_item_type')";
             $sql_query_2 = "SELECT * FROM items WHERE item_id = $request_item_type";
 
@@ -428,7 +428,7 @@ $date = date('Y-m-d\TH:i:sP');
             <?php
             // Declare a variable for the query.
             $query_table_rows = "SELECT * FROM `items` WHERE
-                                transaction_type = 'buy'
+                                transaction_type = 'Buy'
                                 ORDER BY item_id ASC";
 
             // Attempt to connect to the database and execute the query.

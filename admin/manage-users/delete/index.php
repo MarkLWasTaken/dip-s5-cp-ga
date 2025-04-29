@@ -362,15 +362,14 @@ $connection->close();
                 echo $html;
 
                 // Declare a variable for the query.
-                $query_table_rows = "SELECT *
-                                    FROM `users`
-                                    WHERE user_id = $user_id";
+                $sql_query_1 = "SELECT * FROM `users`
+                                WHERE user_id = $user_id";
 
                 // Attempt to connect to the database and execute the query.
-                $result_table_rows = mysqli_query($connection, $query_table_rows);
+                $sql_query_1_result = $connection->query($sql_query_1);
 
                 // Insert the each of the results into the table.
-                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
