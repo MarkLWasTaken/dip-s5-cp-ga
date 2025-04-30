@@ -31,6 +31,12 @@ if ($is_admin != 1) {
     header('Location: ../../index.php');
 }
 
+// Set a the default timezone for date and time.
+date_default_timezone_set('Asia/Singapore');
+
+// Set the date and time format.
+$date = date('Y-m-d H:i:s P');
+
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
 $connection->close();
@@ -333,6 +339,7 @@ $connection->close();
         <!-- Layout for the container 4. -->
         <div id="container-4-container">
             <div id="container-4-contents">
+            <div class="margin-30px"></div>
 
                 <?php
                 // Include the PHP script for re-connecting to the database (DB).
@@ -346,16 +353,16 @@ $connection->close();
                     // Get the request type.
                     // Declare a variable for the query.
                     $sql_query_1 = "SELECT * FROM `requests` WHERE
-                                    request_id = '$request_id' AND
-                                    request_type = 'Buy'";
+                                    request_id = '$request_id'";
 
                     // Attempt to connect to the database and execute the query.
                     $sql_query_1_result = $connection->query($sql_query_1);
 
-                    // Get the result and inset into the variable.
+                    // Get the result and insert into the variable.
                     while ($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-                        $request_status = $sql_query_1_row['request_type'];
+                        $request_type = $sql_query_1_row['request_type'];
                         $item_quantity = $sql_query_1_row['item_quantity'];
+                        $request_status = $sql_query_1_row['request_status'];
                         $item_id = $sql_query_1_row['item_id'];
                     }
 
@@ -378,18 +385,20 @@ $connection->close();
                     settype($total_cost, "integer");
                     $total_cost = $item_price * $item_quantity;
 
+                    // For debugging only.
                     echo "REQUEST_METHOD<br>";
-                    echo "Request ID:" . $request_id . "<br>";
-                    echo "Request status: " . $request_status . "<br>";
+                    echo "Request ID: " . $request_id . "<br>";
+                    echo "Request type: " . $request_type . "<br>";
                     echo "Item quantity: " . $item_quantity . "<br>";
+                    echo "Request status: " . $request_status . "<br>";
                     echo "Item ID: " . $item_id . "<br>";
                     echo "Item Price: " . $item_price . "<br>";
-                    echo "Total cost: " . $total_cost;
+                    echo "Total cost: " . $total_cost . "<br><br>";
 
                     // Determine if the request type is a "Buy" or "Sell".
                     // Customer buy = Receivable
                     // Supplier sell = Payable
-                    if ($request_status = "Buy") {
+                    if ($request_type == "Buy") {
                         // Declare a variable for the query.
                         $sql_query_3 = "INSERT INTO `accounts_receivable` (amount_receivable,
                                         receivable_date, request_id)
@@ -399,42 +408,84 @@ $connection->close();
                         $sql_query_3_result = $connection->query($sql_query_3);
 
                         // Declare a variable for the query.
-                        $sql_query_4 = "UPDATE `requests`
-                                        SET request_status = 'Approved'
-                                        WHERE requests_id = '$requests_id'
-                                        AND request_status = 'Pending'";
+                        $sql_query_4 = "SELECT * FROM `accounts_receivable`";
 
                         // Attempt to connect to the database and execute the query.
                         $sql_query_4_result = $connection->query($sql_query_4);
-                    }
-                    else if ($request_status = "Sell") {
+
+                        // Get the row count.
+                        $sql_query_4_row_count = $sql_query_4_result->num_rows;
+                        // $sql_query_4_row_count++;
+
                         // Declare a variable for the query.
-                        $sql_query_5 = "INSERT INTO `accounts_payable` (amount_payable,
-                                        payable_date, request_id)
-                                        VALUES ('$total_cost', '$date', '$request_id')";
+                        $sql_query_5 = "UPDATE `requests`
+                                        SET request_status = 'Approved',
+                                        accounts_receivable_id = '$sql_query_4_row_count'
+                                        WHERE request_id = '$request_id'
+                                        AND request_status = 'Pending'";
 
                         // Attempt to connect to the database and execute the query.
                         $sql_query_5_result = $connection->query($sql_query_5);
 
+                        // For debugging only.
+                        echo "<br>Update tables when request type is 'Buy'<br>";
+                        echo "Request ID: " . $request_id . "<br>";
+                        echo "Request type: " . $request_type . "<br>";
+                        echo "Item quantity: " . $item_quantity . "<br>";
+                        echo "Request status: " . $request_status . "<br>";
+                        echo "Item ID: " . $item_id . "<br>";
+                        echo "Item Price: " . $item_price . "<br>";
+                        echo "Total cost: " . $total_cost . "<br>";
+                    }
+                    else if ($request_type == "Sell") {
                         // Declare a variable for the query.
-                        $sql_query_6 = "UPDATE `requests`
-                                        SET request_status = 'Approved'
-                                        WHERE requests_id = '$requests_id'
-                                        AND request_status = 'Pending'";
+                        $sql_query_6 = "INSERT INTO `accounts_payable` (amount_payable,
+                                        payable_date, request_id)
+                                        VALUES ('$total_cost', '$date', '$request_id')";
 
                         // Attempt to connect to the database and execute the query.
                         $sql_query_6_result = $connection->query($sql_query_6);
+
+                        // Declare a variable for the query.
+                        $sql_query_7 = "SELECT * FROM `accounts_payable`";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_7_result = $connection->query($sql_query_7);
+
+                        // Get the row count
+                        $sql_query_7_row_count = $sql_query_7_result->num_rows;
+                        // $sql_query_7_row_count++;
+
+                        // Declare a variable for the query.
+                        $sql_query_8 = "UPDATE `requests`
+                                        SET request_status = 'Approved',
+                                        accounts_payable_id = '$sql_query_7_row_count'
+                                        WHERE request_id = '$request_id'
+                                        AND request_status = 'Pending'";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_8_result = $connection->query($sql_query_8);
+
+                        // For debugging only.
+                        echo "<br>Update tables when request type is 'Sell'<br>";
+                        echo "Request ID: " . $request_id . "<br>";
+                        echo "Request type: " . $request_type . "<br>";
+                        echo "Item quantity: " . $item_quantity . "<br>";
+                        echo "Request status: " . $request_status . "<br>";
+                        echo "Item ID: " . $item_id . "<br>";
+                        echo "Item Price: " . $item_price . "<br>";
+                        echo "Total cost: " . $total_cost . "<br>";
                     }
 
                     // Declare a variable for the query.
-                    $sql_query_7 = "SELECT * FROM requests
+                    $sql_query_9 = "SELECT * FROM requests
                                     WHERE request_id = '$request_id'";
 
                     // Attempt to connect to the database and execute the query.
-                    $sql_query_7_result = $connection->query($sql_query_7);
+                    $sql_query_9_result = $connection->query($sql_query_9);
 
-                    while ($sql_query_7_row = $sql_query_7_result->fetch_assoc()) {
-                        $request_status = $sql_query_7_row['request_status'];
+                    while ($sql_query_9_row = $sql_query_9_result->fetch_assoc()) {
+                        $request_status = $sql_query_9_row['request_status'];
                     }
 
                     if ($request_status == "Approved") {
@@ -477,48 +528,94 @@ $connection->close();
                                 <th>ID</th>
                                 <th>Request Date</th>
                                 <th>Request Type</th>
-                                <th>request Item Name</th>
+                                <th>Request Item Name</th>
                                 <th>Item Quantity</th>
                                 <th>Request Status</th>
                                 <th>User ID</th>
                                 <th>Item ID</th>
-                            </tr>
                         HTML;
                         echo $html;
 
+                        if ($request_type == "Buy") {
+                            echo "<th>Accounts Receivable ID</th>";
+                        }
+                        else if ($request_type == "Sell") {
+                            echo "<th>Accounts Payable ID</th>";
+                        }
+
+                        echo "</tr>";
+
                         // Declare a variable for the query.
-                        $sql_query_8 = "SELECT * FROM `requests`
+                        $sql_query_10 = "SELECT * FROM `requests`
                                         WHERE request_id = $request_id";
 
                         // Attempt to connect to the database and execute the query.
-                        $sql_query_8_result = $connection->query($sql_query_8);
+                        $sql_query_10_result = $connection->query($sql_query_10);
                         
                         // Insert the each of the results into the table.
-                        while($sql_query_8_row = $sql_query_8_result->fetch_assoc()) {
+                        while($sql_query_10_row = $sql_query_10_result->fetch_assoc()) {
                             // Use heredoc syntax to make the code readable and easier to maintain.
                             // Very useful for handling large blocks of of codes.
                             $html = <<<HTML
                             <tr>
-                                <td>{$sql_query_8_row['request_id']}</td>
-                                <td>{$sql_query_8_row['request_date']}</td>
-                                <td>{$sql_query_8_row['request_type']}</td>
-                                <td>{$sql_query_8_row['request_item_name']}</td>
-                                <td>{$sql_query_8_row['item_quantity']}</td>
-                                <td>{$sql_query_8_row['request_status']}</td>
-                                <td>{$sql_query_8_row['user_id']}</td>
-                                <td>{$sql_query_8_row['item_id']}</td>
-                            </tr>
+                                <td>{$sql_query_10_row['request_id']}</td>
+                                <td>{$sql_query_10_row['request_date']}</td>
+                                <td>{$sql_query_10_row['request_type']}</td>
+                                <td>{$sql_query_10_row['request_item_name']}</td>
+                                <td>{$sql_query_10_row['item_quantity']}</td>
+                                <td>{$sql_query_10_row['request_status']}</td>
+                                <td>{$sql_query_10_row['user_id']}</td>
+                                <td>{$sql_query_10_row['item_id']}</td>
                             HTML;
                             echo $html;
                         }
-                        echo '</table>';
 
+                        if ($request_type == "Buy") {
+                            // Declare a variable for the query.
+                            $sql_query_11 = "SELECT * FROM `requests`
+                                            WHERE request_id = $request_id";
+
+                            // Attempt to connect to the database and execute the query.
+                            $sql_query_11_result = $connection->query($sql_query_11);
+                            
+                            // Insert the each of the results into the table.
+                            while($sql_query_11_row = $sql_query_11_result->fetch_assoc()) {
+                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                // Very useful for handling large blocks of of codes.
+                                $html = <<<HTML
+                                    <td>{$sql_query_11_row['accounts_receivable_id']}</td>
+                                HTML;
+                                echo $html;
+                            }
+                        }
+                        else if ($request_type == "Sell") {
+                            // Declare a variable for the query.
+                            $sql_query_12 = "SELECT * FROM `requests`
+                                            WHERE request_id = $request_id";
+
+                            // Attempt to connect to the database and execute the query.
+                            $sql_query_12_result = $connection->query($sql_query_12);
+                            
+                            // Insert the each of the results into the table.
+                            while($sql_query_12_row = $sql_query_12_result->fetch_assoc()) {
+                                // Use heredoc syntax to make the code readable and easier to maintain.
+                                // Very useful for handling large blocks of of codes.
+                                $html = <<<HTML
+                                    <td>{$sql_query_12_row['accounts_payable_id']}</td>
+                                HTML;
+                                echo $html;
+                            }
+                        }
                         // Ensure the connection to the DB is closed, with or without
                         // any code or query execution for security reasons.
                         $connection->close();
                         ?>
+
+                            </div>
+                        </table>
                     </div>
                 </div>
+                <div class="margin-100px"></div>
             </div>
         </div>
 

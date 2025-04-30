@@ -19,7 +19,7 @@ include '../../php/connection.php';
 date_default_timezone_set('Asia/Singapore');
 
 // Set the date and time format.
-$dateCreated = date('Y/m/d h:i:s a', time());
+$date = date('Y-m-d H:i:s P');
 
 // Retrieve the values from the account registration page.
 // Hide warning messages when the input fields are null or empty.

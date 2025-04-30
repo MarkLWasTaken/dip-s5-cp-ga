@@ -265,7 +265,7 @@ Student ID: Redacted
 }
 
 #container-4-contents {
-    height: 80px;
+    height: 100%;
     width: 100%;
     border-style: solid;
     border-color: black;
@@ -380,13 +380,14 @@ form {
     margin: 0 auto;     /* Center the form horizontally */
 }
 
-/* E-waste table designs */
+/* E-waste requests table designs */
 .requests-table table {
     border: 2px solid black;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
+    color: black;
 }
 
 .requests-table th {
