@@ -346,12 +346,11 @@ $connection->close();
         unset($_SESSION['txtID']);
         unset($_SESSION['txtRequestDate']);
         unset($_SESSION['txtRequestType']);
+        unset($_SESSION['txtRequestItemName']);
         unset($_SESSION['txtItemQuantity']);
         unset($_SESSION['txtRequestStatus']);
         unset($_SESSION['txtUserID']);
         unset($_SESSION['txtItemID']);
-        unset($_SESSION['txtAccountsPayableID']);
-        unset($_SESSION['txtAccountsReceivableID']);
 
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -359,47 +358,43 @@ $connection->close();
             $_SESSION['txtID'] = $_POST['txtID'];
             $_SESSION['txtRequestDate'] = $_POST['txtRequestDate'];
             $_SESSION['txtRequestType'] = $_POST['txtRequestType'];
+            $_SESSION['txtRequestItemName'] = $_POST['txtRequestItemName'];
             $_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
             @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
             $_SESSION['txtUserID'] = $_POST['txtUserID'];
             @$_SESSION['txtItemID'] = $_POST['txtItemID'];
-            $_SESSION['txtAccountsPayableID'] = $_POST['txtAccountsPayableID'];
-            $_SESSION['txtAccountsReceivableID'] = $_POST['txtAccountsReceivableID'];
             if (isset($_POST['clear'])) {
                 // Unset the session variables to clear the form data.
                 unset($_SESSION['txtID']);
                 unset($_SESSION['txtRequestDate']);
                 unset($_SESSION['txtRequestType']);
+                unset($_SESSION['txtRequestItemName']);
                 unset($_SESSION['txtItemQuantity']);
                 unset($_SESSION['txtRequestStatus']);
                 unset($_SESSION['txtUserID']);
                 unset($_SESSION['txtItemID']);
-                unset($_SESSION['txtAccountsPayableID']);
-                unset($_SESSION['txtAccountsReceivableID']);
             }
         } else if (isset($_POST['clear'])) {
             // Unset the session variables to clear the form data.
             unset($_SESSION['txtID']);
             unset($_SESSION['txtRequestDate']);
             unset($_SESSION['txtRequestType']);
+            unset($_SESSION['txtRequestItemName']);
             unset($_SESSION['txtItemQuantity']);
             unset($_SESSION['txtRequestStatus']);
             unset($_SESSION['txtUserID']);
             unset($_SESSION['txtItemID']);
-            unset($_SESSION['txtAccountsPayableID']);
-            unset($_SESSION['txtAccountsReceivableID']);
         }
 
         // Retrieve the values from the session.
         $request_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
         $request_date = isset($_SESSION['txtRequestDate']) ? $_SESSION['txtRequestDate'] : '';
         $request_type = isset($_SESSION['txtRequestType']) ? $_SESSION['txtRequestType'] : '';
+        $request_item_name = isset($_SESSION['txtRequestItemName']) ? $_SESSION['txtRequestItemName'] : '';
         $item_quantity = isset($_SESSION['txtItemQuantity']) ? $_SESSION['txtItemQuantity'] : '';
         $request_status = isset($_SESSION['txtRequestStatus']) ? $_SESSION['txtRequestStatus'] : '';
         $user_id = isset($_SESSION['txtUserID']) ? $_SESSION['txtUserID'] : '';
         $item_id = isset($_SESSION['txtItemID']) ? $_SESSION['txtItemID'] : '';
-        $accounts_payable_id = isset($_SESSION['txtAccountsPayableID']) ? $_SESSION['txtAccountsPayableID'] : '';
-        $accounts_receivable_id = isset($_SESSION['txtAccountsReceivableID']) ? $_SESSION['txtAccountsReceivableID'] : '';
         ?>
 
         <!-- Table query container -->
@@ -424,6 +419,10 @@ $connection->close();
                         <tr>
                             <th>Request Type:</th>
                             <td><input type="text" name="txtRequestType" value="<?php echo $request_type ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Request Item Name:</th>
+                            <td><input type="text" name="txtRequestItemName" value="<?php echo $request_item_name ?>"></td>
                         </tr>
                         <tr>
                             <th>Item Quantity:</th>
@@ -476,11 +475,10 @@ $connection->close();
                         <th>ID</th>
                         <th>Request Date</th>
                         <th>Request Type</th>
+                        <th>Request Item Name</th>
                         <th>Item Quantity</th>
                         <th>User ID</th>
                         <th>Item ID</th>
-                        <th>Accounts Payable ID</th>
-                        <th>Accounts Receivable ID</th>
                         <th colspan="2" style="text-align: center;">Actions</th>
                     </tr>
                 HTML;
@@ -491,14 +489,13 @@ $connection->close();
                                 request_id LIKE '%$request_id%' AND
                                 request_date LIKE '%$request_date%' AND
                                 request_type LIKE '%$request_type%' AND
+                                request_item_name LIKE '%$request_item_name%' AND
                                 item_quantity LIKE '%$item_quantity%' AND
                                 request_status = 'Pending' AND
                                 user_id LIKE '%$user_id%' AND
-                                item_id LIKE '%$item_id%' AND
-                                accounts_payable_id LIKE '%$accounts_payable_id%' AND
-                                accounts_receivable_id LIKE '%$accounts_receivable_id%'
+                                item_id LIKE '%$item_id%'
                                 ORDER BY request_id ASC";
-                // "picture_id" is excluded.
+                // "picture_id", "accounts_payable" and "accounts_receivable" is excluded.
 
                 // Attempt to connect to the database and execute the query.
                 $sql_query_1_result = $connection->query($sql_query_1);
@@ -512,11 +509,10 @@ $connection->close();
                         <td>{$sql_query_1_row['request_id']}</td>
                         <td>{$sql_query_1_row['request_date']}</td>
                         <td>{$sql_query_1_row['request_type']}</td>
+                        <td>{$sql_query_1_row['request_item_name']}</td>
                         <td>{$sql_query_1_row['item_quantity']}</td>
                         <td>{$sql_query_1_row['user_id']}</td>
                         <td>{$sql_query_1_row['item_id']}</td>
-                        <td>{$sql_query_1_row['accounts_payable_id']}</td>
-                        <td>{$sql_query_1_row['accounts_receivable_id']}</td>
                         <td>
                             <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../../admin/e-waste-requests/view.php">
                                 <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
@@ -524,9 +520,6 @@ $connection->close();
                                 <input type="submit" name="submit" value="View details">
                             </form>
                         </td>
-                        <!-- <td><a href="" onclick="document.getElementById('post_request_id_{$sql_query_1_row['request_id']}').submit();">View details</a></td> -->
-                        <!-- <td><a href="approve/index.php?id={$sql_query_1_row['request_id']}">Approve</a></td>
-                        <td><a href="reject/index.php?id={$sql_query_1_row['request_id']}">Reject</a></td> -->
                     </tr>
                     HTML;
                     echo $html;

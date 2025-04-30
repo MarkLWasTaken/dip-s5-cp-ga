@@ -433,11 +433,10 @@ $connection->close();
                         <th>ID</th>
                         <th>Request Date</th>
                         <th>Request Type</th>
+                        <th>Request Item Name</th>
                         <th>Item Quantity</th>
                         <th>User ID</th>
                         <th>Item ID</th>
-                        <th>Accounts Payable ID</th>
-                        <th>Accounts Receivable ID</th>
                     </tr>
                 HTML;
                 echo $html;
@@ -459,11 +458,10 @@ $connection->close();
                         <td>{$sql_query_2_row['request_id']}</td>
                         <td>{$sql_query_2_row['request_date']}</td>
                         <td>{$sql_query_2_row['request_type']}</td>
+                        <td>{$sql_query_2_row['request_item_name']}</td>
                         <td>{$sql_query_2_row['item_quantity']}</td>
                         <td>{$sql_query_2_row['user_id']}</td>
                         <td>{$sql_query_2_row['item_id']}</td>
-                        <td>{$sql_query_2_row['accounts_payable_id']}</td>
-                        <td>{$sql_query_2_row['accounts_receivable_id']}</td>
                     </tr>
                     HTML;
                     echo $html;

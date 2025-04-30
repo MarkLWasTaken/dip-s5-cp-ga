@@ -28,8 +28,8 @@ if ($user_id != null) {
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
 
-// Get a date and time with a specific format.
-$date = date('Y-m-d\TH:i:sP');
+// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
+$date = date('Y-m-d H:i:s P');
 ?>
 
 <!DOCTYPE html>
@@ -352,10 +352,10 @@ $date = date('Y-m-d\TH:i:sP');
         $sql_query_1 = "SELECT * FROM requests";
 
         // Attempt to connect to the database and execute the query.
-        $sql_query_1_execute = $connection->query($sql_query_1);
+        $sql_query_1_result = $connection->query($sql_query_1);
 
         // Get the row count
-        $requests_row_count = $sql_query_1_execute->num_rows;
+        $requests_row_count = $sql_query_1_result->num_rows;
         $requests_row_count++;
 
         // Rename picture.
@@ -442,12 +442,12 @@ $date = date('Y-m-d\TH:i:sP');
                     // Insert the form data into the database
                     // Note: $date and $user_id variables are already declared.
                     $sql_query_2 = "INSERT INTO requests (request_date, request_type, request_item_name,
-                    item_quantity, request_status, picture_id, user_id, item_id)
-                    VALUES ('$date', 'Sell', '$request_item_name', '$request_item_quantity',
-                    'Pending', '$newFileName', '$user_id', '$request_item_type')";
+                                    item_quantity, request_status, picture_id, user_id, item_id)
+                                    VALUES ('$date', 'Sell', '$request_item_name', '$request_item_quantity',
+                                    'Pending', '$newFileName', '$user_id', '$request_item_type')";
 
                     /*
-                    Added "picture_id" column in "requests" database table.
+                    Added "picture_id" column in "requests" database table. There's a reason for it.
                     Each time a user submits and uploads a picture to the system,
                     the database keeps a record of the file name and extension type in the table.
                     So that I don't have to code another module for retrieving the picture file and
@@ -456,7 +456,7 @@ $date = date('Y-m-d\TH:i:sP');
                     */
 
                     // Attempt to connect to the database and execute the query.
-                    $sql_query_2_execute = $connection->query($sql_query_2);
+                    $sql_query_2_result = $connection->query($sql_query_2);
                 }
                 $form_status = "Sell request form has been successfully submitted!";
             }
@@ -476,13 +476,14 @@ $date = date('Y-m-d\TH:i:sP');
             @$request_item_quantity = $_POST["txtRequestQuantity"];
 
             // Declare a variable for the query.
-            $sql_query_3 = "SELECT * FROM items WHERE item_id = $request_item_type";
+            $sql_query_3 = "SELECT * FROM items
+                            WHERE item_id = $request_item_type";
 
             // Attempt to connect to the database and execute the query.
-            $sql_query_3_execute = $connection->query($sql_query_3);
+            $sql_query_3_result = $connection->query($sql_query_3);
 
             // Sort the data.
-            while($row = $sql_query_3_execute->fetch_assoc()) {
+            while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
                 $items_item_name = $row['item_type'];
             }
 
@@ -623,19 +624,19 @@ $date = date('Y-m-d\TH:i:sP');
                                 <select id="txtRequestItemType" name="txtRequestItemType">
             <?php
             // Declare a variable for the query.
-            $sql_query_1 = "SELECT * FROM `items` WHERE
+            $sql_query_4 = "SELECT * FROM `items` WHERE
                                 transaction_type = 'Sell'
                                 ORDER BY item_id ASC";
 
             // Attempt to connect to the database and execute the query.
-            $result_table_rows = mysqli_query($connection, $sql_query_1);
+            $sql_query_4_result = $connection->query($sql_query_4);
 
             // Insert each of the results into the table.
-            while($row = mysqli_fetch_assoc($result_table_rows)) {
+            while($sql_query_4_row = $sql_query_4_result->fetch_assoc()) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                                    <option value="{$row['item_id']}">{$row['item_type']}</option>
+                                    <option value="{$sql_query_4_row['item_id']}">{$sql_query_4_row['item_type']}</option>
                 HTML;
                 echo $html;
             }

@@ -32,12 +32,12 @@ $connection->close();
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
 
-// Get a date and time with a specific format.
-$date = date('Y-m-d\TH:i:sP');
+// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
+$date = date('Y-m-d H:i:s P');
 
 // Check if the form has been submitted.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the value of the radio button submitted in the first table.
+    // Get the value of the radio button submitted in the table.
     $selected_user_choice = @$_POST["rdoRequestType"];
 
     if ($selected_user_choice === "buy") {

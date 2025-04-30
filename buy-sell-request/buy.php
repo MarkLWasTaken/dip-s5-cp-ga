@@ -28,8 +28,8 @@ if ($user_id != null) {
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
 
-// Get a date and time with a specific format.
-$date = date('Y-m-d\TH:i:sP');
+// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
+$date = date('Y-m-d H:i:s P');
 ?>
 
 <!DOCTYPE html>
@@ -345,19 +345,19 @@ $date = date('Y-m-d\TH:i:sP');
             // Declare a variable for the query.
             // Insert the form data into the database
             // Note: $date and $user_id variables are already declared.
-            $sql_query = "INSERT INTO requests (request_date, request_type, request_item_name,
+            $sql_query_1 = "INSERT INTO requests (request_date, request_type, request_item_name,
                             item_quantity, request_status, user_id, item_id)
                             VALUES ('$date', 'Buy', '$request_item_name', '$request_item_quantity',
                             'Pending', '$user_id', '$request_item_type')";
             $sql_query_2 = "SELECT * FROM items WHERE item_id = $request_item_type";
 
             // Attempt to connect to the database and execute the query.
-            $sql_query_execute = $connection->query($sql_query);
-            $sql_query_execute_2 = $connection->query($sql_query_2);
+            $sql_query_1_result = $connection->query($sql_query_1);
+            $sql_query_2_result = $connection->query($sql_query_2);
 
             // Sort the data.
-            while($row = $sql_query_execute_2->fetch_assoc()) {
-                $items_item_name = $row['item_type'];
+            while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
+                $items_item_name = $sql_query_2_row['item_type'];
             }
 
             // Use heredoc syntax to make the code readable and easier to maintain.
@@ -427,19 +427,19 @@ $date = date('Y-m-d\TH:i:sP');
                                 <select id="txtRequestItemType" name="txtRequestItemType">
             <?php
             // Declare a variable for the query.
-            $query_table_rows = "SELECT * FROM `items` WHERE
-                                transaction_type = 'Buy'
-                                ORDER BY item_id ASC";
+            $sql_query_3 = "SELECT * FROM `items` WHERE
+                            transaction_type = 'Buy'
+                            ORDER BY item_id ASC";
 
             // Attempt to connect to the database and execute the query.
-            $result_table_rows = mysqli_query($connection, $query_table_rows);
+            $sql_query_3_result = $connection->query($sql_query_3);
 
             // Insert each of the results into the table.
-            while($row = mysqli_fetch_assoc($result_table_rows)) {
+            while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                                    <option value="{$row['item_id']}">{$row['item_type']}</option>
+                                    <option value="{$sql_query_3_row['item_id']}">{$sql_query_3_row['item_type']}</option>
                 HTML;
                 echo $html;
             }

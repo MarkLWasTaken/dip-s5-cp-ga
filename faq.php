@@ -335,20 +335,20 @@ $connection->close();
                 include 'php/connection.php';
 
                 // Declare a variable for the query.
-                $query_table_rows = "SELECT * FROM `faq`
-                                    ORDER BY faq_id ASC";
+                $sql_query_1 = "SELECT * FROM `faq`
+                                ORDER BY faq_id ASC";
 
                 // Attempt to connect to the database and execute the query.
-                $result_table_rows = mysqli_query($connection, $query_table_rows);
+                $sql_query_1_result = $connection->query($sql_query_1);
 
                 // Insert the each of the results into the table.
-                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
                     <div class="margin-50px"></div>
-                    <h3>{$row['faq_question']}</h3>
-                    <p>{$row['faq_answer']}</p>
+                    <h3>{$sql_query_1_row['faq_question']}</h3>
+                    <p>{$sql_query_1_row['faq_answer']}</p>
                     HTML;
                     echo $html;
                 }
