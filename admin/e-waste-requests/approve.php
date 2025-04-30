@@ -354,9 +354,9 @@ $connection->close();
 
                     // Get the result and inset into the variable.
                     while ($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-                        $request_status = $result['request_type'];
-                        $item_quantity = $result['item_quantity'];
-                        $item_id = $result['item_id'];
+                        $request_status = $sql_query_1_row['request_type'];
+                        $item_quantity = $sql_query_1_row['item_quantity'];
+                        $item_id = $sql_query_1_row['item_id'];
                     }
 
                     // Get the item price.
@@ -369,7 +369,7 @@ $connection->close();
 
                     // Get the result and inset into the variable.
                     while ($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
-                        $item_price = $result['item_price'];
+                        $item_price = $sql_query_2_row['item_price'];
                     }
 
                     // Price calculation for the sum of the item(s).
@@ -434,7 +434,7 @@ $connection->close();
                     $sql_query_7_result = $connection->query($sql_query_7);
 
                     while ($sql_query_7_row = $sql_query_7_result->fetch_assoc()) {
-                        $request_status = $row['request_status'];
+                        $request_status = $sql_query_7_row['request_status'];
                     }
 
                     if ($request_status == "Approved") {
@@ -499,14 +499,14 @@ $connection->close();
                             // Very useful for handling large blocks of of codes.
                             $html = <<<HTML
                             <tr>
-                                <td>{$row['request_id']}</td>
-                                <td>{$row['request_date']}</td>
-                                <td>{$row['request_type']}</td>
-                                <td>{$row['request_item_name']}</td>
-                                <td>{$row['item_quantity']}</td>
-                                <td>{$row['request_status']}</td>
-                                <td>{$row['user_id']}</td>
-                                <td>{$row['item_id']}</td>
+                                <td>{$sql_query_8_row['request_id']}</td>
+                                <td>{$sql_query_8_row['request_date']}</td>
+                                <td>{$sql_query_8_row['request_type']}</td>
+                                <td>{$sql_query_8_row['request_item_name']}</td>
+                                <td>{$sql_query_8_row['item_quantity']}</td>
+                                <td>{$sql_query_8_row['request_status']}</td>
+                                <td>{$sql_query_8_row['user_id']}</td>
+                                <td>{$sql_query_8_row['item_id']}</td>
                             </tr>
                             HTML;
                             echo $html;

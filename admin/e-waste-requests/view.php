@@ -399,7 +399,7 @@ $connection->close();
 
         // Determine the file name with request ID and user ID.
         while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-            $pictureFile = $row['picture_id'];
+            $pictureFile = $sql_query_1_row['picture_id'];
         }
 
         // Ensure the connection to the DB is closed, with or without
@@ -444,8 +444,8 @@ $connection->close();
 
                 // Declare a variable for the query.
                 $sql_query_2 = "SELECT * FROM `requests`
-                                    WHERE request_id = $request_id AND
-                                    user_id = $request_user_id";
+                                WHERE request_id = $request_id AND
+                                user_id = $request_user_id";
 
                 // Attempt to connect to the database and execute the query.
                 $sql_query_2_result = mysqli_query($connection, $sql_query_2);
@@ -456,14 +456,14 @@ $connection->close();
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
                     <tr>
-                        <td>{$row['request_id']}</td>
-                        <td>{$row['request_date']}</td>
-                        <td>{$row['request_type']}</td>
-                        <td>{$row['item_quantity']}</td>
-                        <td>{$row['user_id']}</td>
-                        <td>{$row['item_id']}</td>
-                        <td>{$row['accounts_payable_id']}</td>
-                        <td>{$row['accounts_receivable_id']}</td>
+                        <td>{$sql_query_2_row['request_id']}</td>
+                        <td>{$sql_query_2_row['request_date']}</td>
+                        <td>{$sql_query_2_row['request_type']}</td>
+                        <td>{$sql_query_2_row['item_quantity']}</td>
+                        <td>{$sql_query_2_row['user_id']}</td>
+                        <td>{$sql_query_2_row['item_id']}</td>
+                        <td>{$sql_query_2_row['accounts_payable_id']}</td>
+                        <td>{$sql_query_2_row['accounts_receivable_id']}</td>
                     </tr>
                     HTML;
                     echo $html;

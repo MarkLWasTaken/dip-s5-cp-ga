@@ -488,16 +488,17 @@ $connection->close();
 
                 // Declare a variable for the query.
                 $sql_query_1 = "SELECT * FROM `requests` WHERE
-                                    request_id LIKE '%$request_id%' AND
-                                    request_date LIKE '%$request_date%' AND
-                                    request_type LIKE '%$request_type%' AND
-                                    item_quantity LIKE '%$item_quantity%' AND
-                                    request_status = 'Pending' AND
-                                    user_id LIKE '%$user_id%' AND
-                                    item_id LIKE '%$item_id%' AND
-                                    accounts_payable_id LIKE '%$accounts_payable_id%' AND
-                                    accounts_receivable_id LIKE '%$accounts_receivable_id%'
-                                    ORDER BY request_id ASC";
+                                request_id LIKE '%$request_id%' AND
+                                request_date LIKE '%$request_date%' AND
+                                request_type LIKE '%$request_type%' AND
+                                item_quantity LIKE '%$item_quantity%' AND
+                                request_status = 'Pending' AND
+                                user_id LIKE '%$user_id%' AND
+                                item_id LIKE '%$item_id%' AND
+                                accounts_payable_id LIKE '%$accounts_payable_id%' AND
+                                accounts_receivable_id LIKE '%$accounts_receivable_id%'
+                                ORDER BY request_id ASC";
+                // "picture_id" is excluded.
 
                 // Attempt to connect to the database and execute the query.
                 $sql_query_1_result = $connection->query($sql_query_1);
@@ -508,24 +509,24 @@ $connection->close();
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
                     <tr>
-                        <td>{$row['request_id']}</td>
-                        <td>{$row['request_date']}</td>
-                        <td>{$row['request_type']}</td>
-                        <td>{$row['item_quantity']}</td>
-                        <td>{$row['user_id']}</td>
-                        <td>{$row['item_id']}</td>
-                        <td>{$row['accounts_payable_id']}</td>
-                        <td>{$row['accounts_receivable_id']}</td>
+                        <td>{$sql_query_1_row['request_id']}</td>
+                        <td>{$sql_query_1_row['request_date']}</td>
+                        <td>{$sql_query_1_row['request_type']}</td>
+                        <td>{$sql_query_1_row['item_quantity']}</td>
+                        <td>{$sql_query_1_row['user_id']}</td>
+                        <td>{$sql_query_1_row['item_id']}</td>
+                        <td>{$sql_query_1_row['accounts_payable_id']}</td>
+                        <td>{$sql_query_1_row['accounts_receivable_id']}</td>
                         <td>
-                            <form id="post_request_id_{$row['request_id']}" method="post" action="../../admin/e-waste-requests/view.php">
-                                <input type="hidden" name="request_id" value="{$row['request_id']}">
-                                <input type="hidden" name="request_user_id" value="{$row['user_id']}">
+                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../../admin/e-waste-requests/view.php">
+                                <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
+                                <input type="hidden" name="request_user_id" value="{$sql_query_1_row['user_id']}">
                                 <input type="submit" name="submit" value="View details">
                             </form>
                         </td>
-                        <!-- <td><a href="" onclick="document.getElementById('post_request_id_{$row['request_id']}').submit();">View details</a></td> -->
-                        <!-- <td><a href="approve/index.php?id={$row['request_id']}">Approve</a></td>
-                        <td><a href="reject/index.php?id={$row['request_id']}">Reject</a></td> -->
+                        <!-- <td><a href="" onclick="document.getElementById('post_request_id_{$sql_query_1_row['request_id']}').submit();">View details</a></td> -->
+                        <!-- <td><a href="approve/index.php?id={$sql_query_1_row['request_id']}">Approve</a></td>
+                        <td><a href="reject/index.php?id={$sql_query_1_row['request_id']}">Reject</a></td> -->
                     </tr>
                     HTML;
                     echo $html;

@@ -374,13 +374,13 @@ $connection->close();
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
                     <tr>
-                        <td>{$row['user_id']}</td>
-                        <td>{$row['first_name']}</td>
-                        <td>{$row['last_name']}</td>
-                        <td>{$row['email_address']}</td>
-                        <td>{$row['gender']}</td>
-                        <td>{$row['country']}</td>
-                        <td>{$row['is_admin']}</td>
+                        <td>{$sql_query_1_row['user_id']}</td>
+                        <td>{$sql_query_1_row['first_name']}</td>
+                        <td>{$sql_query_1_row['last_name']}</td>
+                        <td>{$sql_query_1_row['email_address']}</td>
+                        <td>{$sql_query_1_row['gender']}</td>
+                        <td>{$sql_query_1_row['country']}</td>
+                        <td>{$sql_query_1_row['is_admin']}</td>
                     </tr>
                     HTML;
                     echo $html;

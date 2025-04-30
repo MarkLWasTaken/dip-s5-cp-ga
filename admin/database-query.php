@@ -340,10 +340,10 @@ if ($is_admin != 1) {
                                 <!-- Combo box for list of tables found in the database. -->
                                 <?php
                                 // Declare a variable for the query.
-                                $query_show_tables = "SHOW TABLES";
+                                $sql_query_1 = "SHOW TABLES";
 
                                 // Attempt to conenct to the DB, execute the query and get results.
-                                $result_show_tables = mysqli_query($connection, $query_show_tables);
+                                $sql_query_1_result = $connection->query($sql_query_1);
 
                                 // Suppress the warning message when the variables are null or empty.
                                 // Get the selected value from the combo box.
@@ -359,7 +359,7 @@ if ($is_admin != 1) {
                                 // Check if 'selected_table' is not set.
                                 if (!isset($_SESSION['selected_table'])) {
                                     // Insert the each of the results into combo box.
-                                    while ($table_name = $result_show_tables->fetch_assoc()) {
+                                    while ($table_name = $sql_query_1_result->fetch_assoc()) {
                                         // Check if the current table name is the selected one
                                         if ($table_name['Tables_in_' . $database] == $selected_table) {
                                             echo '<option selected="selected" value="' . $selected_table . '">' . $selected_table . '</option>';
@@ -904,24 +904,24 @@ if ($is_admin != 1) {
                             $request_id = $_SESSION['txtRequestID'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                accounts_payable_id LIKE '%$accounts_payable_id%' AND
-                                                amount_payable LIKE '%$amount_payable%' AND
-                                                request_id LIKE '%$request_id%'
-                                                ORDER BY accounts_payable_id ASC";
+                            $sql_query_2 = "SELECT * FROM `$selected_table` WHERE
+                                            accounts_payable_id LIKE '%$accounts_payable_id%' AND
+                                            amount_payable LIKE '%$amount_payable%' AND
+                                            request_id LIKE '%$request_id%'
+                                            ORDER BY accounts_payable_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_2_result = $connection->query($sql_query_2);
 
                             // Insert each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['accounts_payable_id']}</td>
-                                    <td>{$row['amount_payable']}</td>
-                                    <td>{$row['request_id']}</td>
+                                    <td>{$sql_query_2_row['accounts_payable_id']}</td>
+                                    <td>{$sql_query_2_row['amount_payable']}</td>
+                                    <td>{$sql_query_2_row['request_id']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -946,24 +946,24 @@ if ($is_admin != 1) {
                             $request_id = $_SESSION['txtRequestID'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                accounts_receivable_id LIKE '%$accounts_receivable_id%' AND
-                                                amount_receivable LIKE '%$amount_receivable%' AND
-                                                request_id LIKE '%$request_id%'
-                                                ORDER BY accounts_receivable_id ASC";
+                            $sql_query_3 = "SELECT * FROM `$selected_table` WHERE
+                                            accounts_receivable_id LIKE '%$accounts_receivable_id%' AND
+                                            amount_receivable LIKE '%$amount_receivable%' AND
+                                            request_id LIKE '%$request_id%'
+                                            ORDER BY accounts_receivable_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_3_result = $connection->query($sql_query_3);
 
                             // Insert each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['accounts_receivable_id']}</td>
-                                    <td>{$row['amount_receivable']}</td>
-                                    <td>{$row['request_id']}</td>
+                                    <td>{$sql_query_3_row['accounts_receivable_id']}</td>
+                                    <td>{$sql_query_3_row['amount_receivable']}</td>
+                                    <td>{$sql_query_3_row['request_id']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -992,28 +992,28 @@ if ($is_admin != 1) {
                             $date_submitted = $_SESSION['txtDateSubmitted'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                contact_us_id LIKE '%$contact_us_id%' AND
-                                                name LIKE '%$name%' AND
-                                                email_address LIKE '%$email_address%' AND
-                                                message LIKE '%$message%' AND
-                                                date_submitted LIKE '%$date_submitted%'
-                                                ORDER BY contact_us_id ASC";
+                            $sql_query_4 = "SELECT * FROM `$selected_table` WHERE
+                                            contact_us_id LIKE '%$contact_us_id%' AND
+                                            name LIKE '%$name%' AND
+                                            email_address LIKE '%$email_address%' AND
+                                            message LIKE '%$message%' AND
+                                            date_submitted LIKE '%$date_submitted%'
+                                            ORDER BY contact_us_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_4_result = $connection->query($sql_query_4);
 
                             // Insert each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_4_row = $sql_query_4_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['contact_us_id']}</td>
-                                    <td>{$row['name']}</td>
-                                    <td>{$row['email_address']}</td>
-                                    <td>{$row['message']}</td>
-                                    <td>{$row['date_submitted']}</td>
+                                    <td>{$sql_query_4_row['contact_us_id']}</td>
+                                    <td>{$sql_query_4_row['name']}</td>
+                                    <td>{$sql_query_4_row['email_address']}</td>
+                                    <td>{$sql_query_4_row['message']}</td>
+                                    <td>{$sql_query_4_row['date_submitted']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1038,24 +1038,24 @@ if ($is_admin != 1) {
                             $faq_answer = $_SESSION['txtFAQAnswer'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                faq_id LIKE '%$faq_id%' AND
-                                                faq_question LIKE '%$faq_question%' AND
-                                                faq_answer LIKE '%$faq_answer%'
-                                                ORDER BY faq_id ASC";
+                            $sql_query_5 = "SELECT * FROM `$selected_table` WHERE
+                                            faq_id LIKE '%$faq_id%' AND
+                                            faq_question LIKE '%$faq_question%' AND
+                                            faq_answer LIKE '%$faq_answer%'
+                                            ORDER BY faq_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_5_result = $connection->query($sql_query_5);
 
                             // Insert each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_5_row = $sql_query_5_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['faq_id']}</td>
-                                    <td>{$row['faq_question']}</td>
-                                    <td>{$row['faq_answer']}</td>
+                                    <td>{$sql_query_5_row['faq_id']}</td>
+                                    <td>{$sql_query_5_row['faq_question']}</td>
+                                    <td>{$sql_query_5_row['faq_answer']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1082,26 +1082,26 @@ if ($is_admin != 1) {
                             $user_id = $_SESSION['txtUserID'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                feedbacks_id LIKE '%$feedbacks_id%' AND
-                                                feedback_date LIKE '%$feedback_date%' AND
-                                                content LIKE '%$content%' AND
-                                                user_id LIKE '%$user_id%'
-                                                ORDER BY feedbacks_id ASC";
+                            $sql_query_6 = "SELECT * FROM `$selected_table` WHERE
+                                            feedbacks_id LIKE '%$feedbacks_id%' AND
+                                            feedback_date LIKE '%$feedback_date%' AND
+                                            content LIKE '%$content%' AND
+                                            user_id LIKE '%$user_id%'
+                                            ORDER BY feedbacks_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_6_result = $connection->query($sql_query_6);
 
                             // Insert each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_6_row = $sql_query_6_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['feedbacks_id']}</td>
-                                    <td>{$row['feedback_date']}</td>
-                                    <td>{$row['content']}</td>
-                                    <td>{$row['user_id']}</td>
+                                    <td>{$sql_query_6_row['feedbacks_id']}</td>
+                                    <td>{$sql_query_6_row['feedback_date']}</td>
+                                    <td>{$sql_query_6_row['content']}</td>
+                                    <td>{$sql_query_6_row['user_id']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1128,26 +1128,26 @@ if ($is_admin != 1) {
                             $transaction_type = $_SESSION['txtTransactionType'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                item_id LIKE '%$item_id%' AND
-                                                item_type LIKE '%$item_type%' AND
-                                                item_price LIKE '%$item_price%' AND
-                                                transaction_type LIKE '%$transaction_type%'
-                                                ORDER BY item_id ASC";
+                            $sql_query_7 = "SELECT * FROM `$selected_table` WHERE
+                                            item_id LIKE '%$item_id%' AND
+                                            item_type LIKE '%$item_type%' AND
+                                            item_price LIKE '%$item_price%' AND
+                                            transaction_type LIKE '%$transaction_type%'
+                                            ORDER BY item_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_7_result = $connection->query($sql_query_7);
 
                             // Insert each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_7_row = $sql_query_7_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['item_id']}</td>
-                                    <td>{$row['item_type']}</td>
-                                    <td>{$row['item_price']}</td>
-                                    <td>{$row['transaction_type']}</td>
+                                    <td>{$sql_query_7_row['item_id']}</td>
+                                    <td>{$sql_query_7_row['item_type']}</td>
+                                    <td>{$sql_query_7_row['item_price']}</td>
+                                    <td>{$sql_query_7_row['transaction_type']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1176,28 +1176,28 @@ if ($is_admin != 1) {
                             $date_modified = $_SESSION['txtDateModified'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                mailing_list_id LIKE '%$mailing_list_id%' AND
-                                                email_address LIKE '%$email_address%' AND
-                                                is_subscribed LIKE '%$is_subscribed%' AND
-                                                date_first_subscribed LIKE '%$date_first_subscribed%' AND
-                                                date_modified LIKE '%$date_modified%'
-                                                ORDER BY mailing_list_id ASC";
+                            $sql_query_8 = "SELECT * FROM `$selected_table` WHERE
+                                            mailing_list_id LIKE '%$mailing_list_id%' AND
+                                            email_address LIKE '%$email_address%' AND
+                                            is_subscribed LIKE '%$is_subscribed%' AND
+                                            date_first_subscribed LIKE '%$date_first_subscribed%' AND
+                                            date_modified LIKE '%$date_modified%'
+                                            ORDER BY mailing_list_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_8_result = $connection->query($sql_query_8);
 
                             // Insert the each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_8_row = $sql_query_8_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['mailing_list_id']}</td>
-                                    <td>{$row['email_address']}</td>
-                                    <td>{$row['is_subscribed']}</td>
-                                    <td>{$row['date_first_subscribed']}</td>
-                                    <td>{$row['date_modified']}</td>
+                                    <td>{$sql_query_8_row['mailing_list_id']}</td>
+                                    <td>{$sql_query_8_row['email_address']}</td>
+                                    <td>{$sql_query_8_row['is_subscribed']}</td>
+                                    <td>{$sql_query_8_row['date_first_subscribed']}</td>
+                                    <td>{$sql_query_8_row['date_modified']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1236,37 +1236,37 @@ if ($is_admin != 1) {
                             $accounts_receivable_id = $_SESSION['txtAccountsReceivableID'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                request_id LIKE '%$request_id%' AND
-                                                request_date LIKE '%$request_date%' AND
-                                                request_type LIKE '%$request_type%' AND
-                                                request_item_name LIKE '%$request_item_name%' AND
-                                                item_quantity LIKE '%$item_quantity%' AND
-                                                request_status LIKE '%$request_status%' AND
-                                                user_id LIKE '%$user_id%' AND
-                                                item_id LIKE '%$item_id%' AND
-                                                accounts_payable_id LIKE '%$accounts_payable_id%' AND
-                                                accounts_receivable_id LIKE '%$accounts_receivable_id%'
-                                                ORDER BY request_id ASC";
+                            $sql_query_9 = "SELECT * FROM `$selected_table` WHERE
+                                            request_id LIKE '%$request_id%' AND
+                                            request_date LIKE '%$request_date%' AND
+                                            request_type LIKE '%$request_type%' AND
+                                            request_item_name LIKE '%$request_item_name%' AND
+                                            item_quantity LIKE '%$item_quantity%' AND
+                                            request_status LIKE '%$request_status%' AND
+                                            user_id LIKE '%$user_id%' AND
+                                            item_id LIKE '%$item_id%' AND
+                                            accounts_payable_id LIKE '%$accounts_payable_id%' AND
+                                            accounts_receivable_id LIKE '%$accounts_receivable_id%'
+                                            ORDER BY request_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_9_result = $connection->query($sql_query_9);
 
                             // Insert the each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_9_row = $sql_query_9_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['request_id']}</td>
-                                    <td>{$row['request_date']}</td>
-                                    <td>{$row['request_type']}</td>
-                                    <td>{$row['item_quantity']}</td>
-                                    <td>{$row['request_status']}</td>
-                                    <td>{$row['user_id']}</td>
-                                    <td>{$row['item_id']}</td>
-                                    <td>{$row['accounts_payable_id']}</td>
-                                    <td>{$row['accounts_receivable_id']}</td>
+                                    <td>{$sql_query_9_row['request_id']}</td>
+                                    <td>{$sql_query_9_row['request_date']}</td>
+                                    <td>{$sql_query_9_row['request_type']}</td>
+                                    <td>{$sql_query_9_row['item_quantity']}</td>
+                                    <td>{$sql_query_9_row['request_status']}</td>
+                                    <td>{$sql_query_9_row['user_id']}</td>
+                                    <td>{$sql_query_9_row['item_id']}</td>
+                                    <td>{$sql_query_9_row['accounts_payable_id']}</td>
+                                    <td>{$sql_query_9_row['accounts_receivable_id']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1295,28 +1295,28 @@ if ($is_admin != 1) {
                             $request_id = $_SESSION['txtRequestID'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                sales_request_tracking_id LIKE '%$sales_request_tracking_id%' AND
-                                                packing_date LIKE '%$packing_date%' AND
-                                                delivery_date LIKE '%$delivery_date%' AND
-                                                delivery_status LIKE '%$delivery_status%' AND
-                                                request_id LIKE '%$request_id%'
-                                                ORDER BY sales_request_tracking_id ASC";
+                            $sql_query_10 = "SELECT * FROM `$selected_table` WHERE
+                                            sales_request_tracking_id LIKE '%$sales_request_tracking_id%' AND
+                                            packing_date LIKE '%$packing_date%' AND
+                                            delivery_date LIKE '%$delivery_date%' AND
+                                            delivery_status LIKE '%$delivery_status%' AND
+                                            request_id LIKE '%$request_id%'
+                                            ORDER BY sales_request_tracking_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_10_result = $connection->query($sql_query_10);
 
                             // Insert the each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_10_row = $sql_query_10_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                 <tr>
-                                    <td>{$row['sales_request_tracking_id']}</td>
-                                    <td>{$row['packing_date']}</td>
-                                    <td>{$row['delivery_date']}</td>
-                                    <td>{$row['delivery_status']}</td>
-                                    <td>{$row['request_id']}</td>
+                                    <td>{$sql_query_10_row['sales_request_tracking_id']}</td>
+                                    <td>{$sql_query_10_row['packing_date']}</td>
+                                    <td>{$sql_query_10_row['delivery_date']}</td>
+                                    <td>{$sql_query_10_row['delivery_status']}</td>
+                                    <td>{$sql_query_10_row['request_id']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1351,32 +1351,32 @@ if ($is_admin != 1) {
                             $is_admin = $_SESSION['rdoAdmin'];
 
                             // Declare a variable for the query.
-                            $query_table_rows = "SELECT * FROM `$selected_table` WHERE
-                                                user_id LIKE '%$user_id%' AND
-                                                first_name LIKE '%$first_name%' AND
-                                                last_name LIKE '%$last_name%' AND
-                                                email_address LIKE '%$email_address%' AND
-                                                gender LIKE '%$gender%' AND
-                                                country LIKE '%$country%' AND
-                                                is_admin LIKE '%$is_admin%'
-                                                ORDER BY user_id ASC";
+                            $sql_query_11 = "SELECT * FROM `$selected_table` WHERE
+                                            user_id LIKE '%$user_id%' AND
+                                            first_name LIKE '%$first_name%' AND
+                                            last_name LIKE '%$last_name%' AND
+                                            email_address LIKE '%$email_address%' AND
+                                            gender LIKE '%$gender%' AND
+                                            country LIKE '%$country%' AND
+                                            is_admin LIKE '%$is_admin%'
+                                            ORDER BY user_id ASC";
 
                             // Attempt to connect to the database and execute the query.
-                            $result_table_rows = mysqli_query($connection, $query_table_rows);
+                            $sql_query_11_result = $connection->query($sql_query_11);
 
                             // Insert the each of the results into the table.
-                            while($row = mysqli_fetch_assoc($result_table_rows)) {
+                            while($sql_query_11_row = $sql_query_11_result->fetch_assoc()) {
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
                                     <tr>
-                                    <td>{$row['user_id']}</td>
-                                    <td>{$row['first_name']}</td>
-                                    <td>{$row['last_name']}</td>
-                                    <td>{$row['email_address']}</td>
-                                    <td>{$row['gender']}</td>
-                                    <td>{$row['country']}</td>
-                                    <td>{$row['is_admin']}</td>
+                                    <td>{$sql_query_11_row['user_id']}</td>
+                                    <td>{$sql_query_11_row['first_name']}</td>
+                                    <td>{$sql_query_11_row['last_name']}</td>
+                                    <td>{$sql_query_11_row['email_address']}</td>
+                                    <td>{$sql_query_11_row['gender']}</td>
+                                    <td>{$sql_query_11_row['country']}</td>
+                                    <td>{$sql_query_11_row['is_admin']}</td>
                                     <!-- 
                                     <td><a href="javascript:void(0)">Edit</a></td>
                                     <td><a href="javascript:void(0)">Delete</a></td>

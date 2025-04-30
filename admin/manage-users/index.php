@@ -517,34 +517,34 @@ $connection->close();
                 //                     ORDER BY user_id ASC";
 
                 // Declare a variable for the query.
-                $query_table_rows = "SELECT * FROM `users` WHERE
-                                    user_id LIKE '%$user_id%' AND
-                                    first_name LIKE '%$first_name%' AND
-                                    last_name LIKE '%$last_name%' AND
-                                    email_address LIKE '%$email_address%' AND
-                                    gender LIKE '%$gender%' AND
-                                    country LIKE '%$country%' AND
-                                    is_admin LIKE '%$is_admin%'
-                                    ORDER BY user_id ASC";
+                $sql_query_1 = "SELECT * FROM `users` WHERE
+                                user_id LIKE '%$user_id%' AND
+                                first_name LIKE '%$first_name%' AND
+                                last_name LIKE '%$last_name%' AND
+                                email_address LIKE '%$email_address%' AND
+                                gender LIKE '%$gender%' AND
+                                country LIKE '%$country%' AND
+                                is_admin LIKE '%$is_admin%'
+                                ORDER BY user_id ASC";
 
                 // Attempt to connect to the database and execute the query.
-                $result_table_rows = mysqli_query($connection, $query_table_rows);
+                $sql_query_1_result = $connection->query($sql_query_1);
 
                 // Insert the each of the results into the table.
-                while($row = mysqli_fetch_assoc($result_table_rows)) {
+                while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
                     <tr>
-                        <td>{$row['user_id']}</td>
-                        <td>{$row['first_name']}</td>
-                        <td>{$row['last_name']}</td>
-                        <td>{$row['email_address']}</td>
-                        <td>{$row['gender']}</td>
-                        <td>{$row['country']}</td>
-                        <td>{$row['is_admin']}</td>
-                        <td><a href="edit/index.php?id={$row['user_id']}">Edit</a></td>
-                        <td><a href="delete/index.php?id={$row['user_id']}">Delete</a></td>
+                        <td>{$sql_query_1_row['user_id']}</td>
+                        <td>{$sql_query_1_row['first_name']}</td>
+                        <td>{$sql_query_1_row['last_name']}</td>
+                        <td>{$sql_query_1_row['email_address']}</td>
+                        <td>{$sql_query_1_row['gender']}</td>
+                        <td>{$sql_query_1_row['country']}</td>
+                        <td>{$sql_query_1_row['is_admin']}</td>
+                        <td><a href="edit/index.php?id={$sql_query_1_row['user_id']}">Edit</a></td>
+                        <td><a href="delete/index.php?id={$sql_query_1_row['user_id']}">Delete</a></td>
                     </tr>
                     HTML;
                     echo $html;
