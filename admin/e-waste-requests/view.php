@@ -124,7 +124,7 @@ $connection->close();
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
+            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
@@ -400,11 +400,29 @@ $connection->close();
         // Determine the file name with request ID and user ID.
         while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
             $pictureFile = $sql_query_1_row['picture_id'];
+            $request_type = $sql_query_1_row['request_type'];
         }
 
         // Ensure the connection to the DB is closed, with or without
         // any code or query execution for security reasons.
         $connection->close();
+
+        if ($request_type != "Sell") {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+                <style>
+                    #container-2-container {
+                        display: none;
+                    }
+
+                    #container-2-contents {
+                        display: none;
+                    }
+                </style>
+            HTML;
+            echo $html;
+        }
         ?>
 
         <!-- Layout for the container 2 -->
@@ -420,7 +438,7 @@ $connection->close();
 
         <!-- Requests table container -->
         <div>
-            <div class="requests-table">
+            <div class="requests-table auto-center">
                 <?php
                 // Attempt to make a new connection to the database.
                 include '../../php/connection.php';
@@ -428,7 +446,7 @@ $connection->close();
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
-                <table border=1>
+                <table border=1 class="auto-center">
                     <tr>
                         <th>ID</th>
                         <th>Request Date</th>
@@ -480,14 +498,14 @@ $connection->close();
         <!-- Layout for the container 3. -->
         <div id="container-3-container">
             <div id="container-3-contents-1">
-                <h1>Accept/Reject Request</h1>
-                <p>Would you like to accept or reject this request?</p>
+                <h1>Approve/Reject Request</h1>
+                <p>Would you like to approve or reject this request?</p>
                 <p>This action is irreversible.</p>
                 <div class="margin-50px"></div>
                 <div class="container-3-contents-2-container">
-                    <form id="approve" method="post" action="../../admin/e-waste-requests/approve.php" class="container-3-contents-2-shared container-3-contents-2-accept">
+                    <form id="approve" method="post" action="../../admin/e-waste-requests/approve.php" class="container-3-contents-2-shared container-3-contents-2-approve">
                         <input type="hidden" name="request_id" value="<?php echo $request_id; ?>">
-                        <input type="submit" name="submit" value="Approve" class="container-3-contents-2-accept no-decoration-button">
+                        <input type="submit" name="submit" value="Approve" class="container-3-contents-2-approve no-decoration-button">
                     </form>
                     <form id="reject" method="post" action="../../admin/e-waste-requests/reject.php" class="container-3-contents-2-shared container-3-contents-2-reject">
                         <input type="hidden" name="request_id" value="<?php echo $request_id; ?>">
@@ -497,7 +515,7 @@ $connection->close();
                 <div class="margin-60px"></div>
                 <div class="container-3-contents-3-container">
                     <a class="container-3-contents-3" href="../../admin/e-waste-requests/index.php">
-                        <p>Return to screen e-waste requests</p>
+                        <p>Return to screen user requests page</p>
                     </a>
                 </div>
                 <div class="margin-60px"></div>

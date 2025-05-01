@@ -9,14 +9,26 @@ Remember the entries the user typed in the table query forms (Optional).
 [Priority] Update Account Registration Process
 [Priority] Update Account Login
 [Priority] Update Account Login Process
-[To-do] About us webpage.
 [To-do] Contact us webpage.
-[To-do] Dashboard webpage.
+[To-do] Dashboard webpage (50%).
 [To-do] Requests history webpage.
 [To-do] Tracking webpage.
 [To-do] Transactions history webpage.
 [To-do] Manage profile webpage.
 [To-do] Admin - Statistics webpage.
-[Priority] Admin - E-waste requests screen/acceptance webpage.
+[Priority] Admin - Screen user requests (Approve/Reject) webpage (90%).
 [Priority] Manage users (Edit).
 [Priority] Manage users (Delete confirmation).
+
+
+Services (Unavailable)
+Contact us (Unavailable)
+
+Tracking (Unavailable)
+Transactions history (Unavailable)
+Requests history (Unavailable)
+Manage/Edit Profile (Unavailable)
+
+Screen user requests (Accept/Reject) (90%)
+Statistics (Unavailable)
+Manage users (60%)

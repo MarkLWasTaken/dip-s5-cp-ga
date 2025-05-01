@@ -130,7 +130,7 @@ $connection->close();
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
+            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
@@ -386,6 +386,7 @@ $connection->close();
                     $total_cost = $item_price * $item_quantity;
 
                     // For debugging only.
+                    /*
                     echo "REQUEST_METHOD<br>";
                     echo "Request ID: " . $request_id . "<br>";
                     echo "Request type: " . $request_type . "<br>";
@@ -394,6 +395,7 @@ $connection->close();
                     echo "Item ID: " . $item_id . "<br>";
                     echo "Item Price: " . $item_price . "<br>";
                     echo "Total cost: " . $total_cost . "<br><br>";
+                    */
 
                     // Determine if the request type is a "Buy" or "Sell".
                     // Customer buy = Receivable
@@ -428,6 +430,7 @@ $connection->close();
                         $sql_query_5_result = $connection->query($sql_query_5);
 
                         // For debugging only.
+                        /*
                         echo "<br>Update tables when request type is 'Buy'<br>";
                         echo "Request ID: " . $request_id . "<br>";
                         echo "Request type: " . $request_type . "<br>";
@@ -436,6 +439,7 @@ $connection->close();
                         echo "Item ID: " . $item_id . "<br>";
                         echo "Item Price: " . $item_price . "<br>";
                         echo "Total cost: " . $total_cost . "<br>";
+                        */
                     }
                     else if ($request_type == "Sell") {
                         // Declare a variable for the query.
@@ -467,6 +471,7 @@ $connection->close();
                         $sql_query_8_result = $connection->query($sql_query_8);
 
                         // For debugging only.
+                        /*
                         echo "<br>Update tables when request type is 'Sell'<br>";
                         echo "Request ID: " . $request_id . "<br>";
                         echo "Request type: " . $request_type . "<br>";
@@ -475,6 +480,7 @@ $connection->close();
                         echo "Item ID: " . $item_id . "<br>";
                         echo "Item Price: " . $item_price . "<br>";
                         echo "Total cost: " . $total_cost . "<br>";
+                        */
                     }
 
                     // Declare a variable for the query.
@@ -493,6 +499,7 @@ $connection->close();
                         // Very useful for handling large blocks of of codes.
                         $html = <<<HTML
                         <h2>User request has been successfully approved!</h2>
+                        <div class="margin-30px"></div>
                         HTML;
                         echo $html;
                     }
@@ -501,6 +508,7 @@ $connection->close();
                         // Very useful for handling large blocks of of codes.
                         $html = <<<HTML
                         <h2>User request approval is unsuccessful.</h2>
+                        <div class="margin-30px"></div>
                         HTML;
                         echo $html;
                     }
@@ -512,6 +520,7 @@ $connection->close();
                 ?>
 
                 <p>Here are the details of the user's request.</p>
+                <div class="margin-30px"></div>
 
                 <!-- Requests table container -->
                 <div>
@@ -614,6 +623,12 @@ $connection->close();
                             </div>
                         </table>
                     </div>
+                </div>
+                <div class="margin-60px"></div>
+                <div class="container-3-contents-3-container">
+                    <a class="container-3-contents-3" href="../../admin/e-waste-requests/index.php">
+                        <p>Return to screen user requests page</p>
+                    </a>
                 </div>
                 <div class="margin-100px"></div>
             </div>

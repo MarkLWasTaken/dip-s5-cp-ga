@@ -120,7 +120,7 @@ $date = date('Y-m-d H:i:s P');
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="../admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
+            <a href="../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
@@ -462,10 +462,6 @@ $date = date('Y-m-d H:i:s P');
                         <tr class="action-1-button">
                             <th>Actions:</th>
                             <td><input type="submit" name="submit" value="Submit request form"></td>
-                        </tr>
-                        <tr class="action-2-button">
-                            <th></th>
-                            <td><input type="submit" name="clear" value="Clear request form data"></td>
                         </tr>
                     </table>
                 </div>

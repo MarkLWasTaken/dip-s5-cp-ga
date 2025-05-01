@@ -31,6 +31,12 @@ if ($is_admin != 1) {
     header('Location: ../../index.php');
 }
 
+// Set a the default timezone for date and time.
+date_default_timezone_set('Asia/Singapore');
+
+// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
+$date = date('Y-m-d H:i:s P');
+
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
 $connection->close();
@@ -45,7 +51,7 @@ $connection->close();
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Admin - Screen user requests (Approve/Reject)</title>
+    <title>Quantum E-waste Management System - Admin - Screen user requests (Reject)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../css/styles.css" rel="stylesheet">
@@ -124,7 +130,7 @@ $connection->close();
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="#" onclick="closeNav()">Screen user request (Approve/Reject)</a>
+            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
@@ -323,213 +329,147 @@ $connection->close();
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container">
-            <!-- Formerly "E-waste request screening/acceptance" -->
-            <div class="page-title-banner-content">Screen user requests (Approve/Reject)</div>
+        <div class="page-title-banner-3-container">
+            <div class="page-title-banner-3-content">Screen user requests (Reject)</div>
         </div>
 
         <div class="margin-30px"></div>
-        <!-- <br>
-        <div class="hidden-block">
-            <h1>Blank space.</h1>
-        </div> -->
+        <!-- <br> -->
 
-        <!-- Layout for the contents 1 container. -->
-        <div id="container-1-container">
-            <div id="container-1-contents">
-                <h2>Approve or reject e-waste requests here.</h2>
-            </div>
-        </div>
+        <!-- Layout for the container 4. -->
+        <div id="container-4-container">
+            <div id="container-4-contents">
+            <div class="margin-30px"></div>
 
-        <?php
-        // Unset the session variables to clear the form data.
-        unset($_SESSION['txtID']);
-        unset($_SESSION['txtRequestDate']);
-        unset($_SESSION['txtRequestType']);
-        unset($_SESSION['txtRequestItemName']);
-        unset($_SESSION['txtItemQuantity']);
-        unset($_SESSION['txtRequestStatus']);
-        unset($_SESSION['txtUserID']);
-        unset($_SESSION['txtItemID']);
-
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
-            $_SESSION['txtID'] = $_POST['txtID'];
-            $_SESSION['txtRequestDate'] = $_POST['txtRequestDate'];
-            $_SESSION['txtRequestType'] = $_POST['txtRequestType'];
-            $_SESSION['txtRequestItemName'] = $_POST['txtRequestItemName'];
-            $_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
-            @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
-            $_SESSION['txtUserID'] = $_POST['txtUserID'];
-            @$_SESSION['txtItemID'] = $_POST['txtItemID'];
-            if (isset($_POST['clear'])) {
-                // Unset the session variables to clear the form data.
-                unset($_SESSION['txtID']);
-                unset($_SESSION['txtRequestDate']);
-                unset($_SESSION['txtRequestType']);
-                unset($_SESSION['txtRequestItemName']);
-                unset($_SESSION['txtItemQuantity']);
-                unset($_SESSION['txtRequestStatus']);
-                unset($_SESSION['txtUserID']);
-                unset($_SESSION['txtItemID']);
-            }
-        } else if (isset($_POST['clear'])) {
-            // Unset the session variables to clear the form data.
-            unset($_SESSION['txtID']);
-            unset($_SESSION['txtRequestDate']);
-            unset($_SESSION['txtRequestType']);
-            unset($_SESSION['txtRequestItemName']);
-            unset($_SESSION['txtItemQuantity']);
-            unset($_SESSION['txtRequestStatus']);
-            unset($_SESSION['txtUserID']);
-            unset($_SESSION['txtItemID']);
-        }
-
-        // Retrieve the values from the session.
-        $request_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
-        $request_date = isset($_SESSION['txtRequestDate']) ? $_SESSION['txtRequestDate'] : '';
-        $request_type = isset($_SESSION['txtRequestType']) ? $_SESSION['txtRequestType'] : '';
-        $request_item_name = isset($_SESSION['txtRequestItemName']) ? $_SESSION['txtRequestItemName'] : '';
-        $item_quantity = isset($_SESSION['txtItemQuantity']) ? $_SESSION['txtItemQuantity'] : '';
-        $request_status = isset($_SESSION['txtRequestStatus']) ? $_SESSION['txtRequestStatus'] : '';
-        $user_id = isset($_SESSION['txtUserID']) ? $_SESSION['txtUserID'] : '';
-        $item_id = isset($_SESSION['txtItemID']) ? $_SESSION['txtItemID'] : '';
-        ?>
-
-        <!-- Table query container -->
-        <div>
-            <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                "requests" Table Query
-                            </th>
-                        </tr>
-                        <!-- "requests" table query options. -->
-                        <tr>
-                            <th>ID:</th>
-                            <td><input type="text" name="txtID" value="<?php echo $request_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Request Date:</th>
-                            <td><input type="text" name="txtRequestDate" value="<?php echo $request_date ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Request Type:</th>
-                            <td><input type="text" name="txtRequestType" value="<?php echo $request_type ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Request Item Name:</th>
-                            <td><input type="text" name="txtRequestItemName" value="<?php echo $request_item_name ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Quantity:</th>
-                            <td><input type="text" name="txtItemQuantity" value="<?php echo $item_quantity ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>User ID:</th>
-                            <td><input type="text" name="txtUserID" value="<?php $user_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item ID:</th>
-                            <td><input type="text" name="txtItemID" value="<?php $item_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Accounts Payable ID:</th>
-                            <td><input type="text" name="txtAccountsPayableID" value="<?php $accounts_payable_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Accounts Receivable ID:</th>
-                            <td><input type="text" name="txtAccountsReceivableID" value="<?php $accounts_receivable_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="submit" value="Search from the table"></td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="clear" value="Clear the query"></td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
-        </div>
-
-        <div class="margin-50px"></div>
-
-        <!-- E-waste requests table container -->
-        <div>
-            <div class="requests-table">
                 <?php
-                // Attempt to make a new connection to the database.
+                // Include the PHP script for re-connecting to the database (DB).
                 include '../../php/connection.php';
 
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <table border=1>
-                    <tr>
-                        <th>ID</th>
-                        <th>Request Date</th>
-                        <th>Request Type</th>
-                        <th>Request Item Name</th>
-                        <th>Item Quantity</th>
-                        <th>User ID</th>
-                        <th>Item ID</th>
-                        <th colspan="2" style="text-align: center;">Actions</th>
-                    </tr>
-                HTML;
-                echo $html;
+                // Check if the form has been submitted.
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Get the form data from the previous webpage.
+                    @$request_id = $_POST["request_id"];
 
-                // Declare a variable for the query.
-                $sql_query_1 = "SELECT * FROM `requests` WHERE
-                                request_id LIKE '%$request_id%' AND
-                                request_date LIKE '%$request_date%' AND
-                                request_type LIKE '%$request_type%' AND
-                                request_item_name LIKE '%$request_item_name%' AND
-                                item_quantity LIKE '%$item_quantity%' AND
-                                request_status = 'Pending' AND
-                                user_id LIKE '%$user_id%' AND
-                                item_id LIKE '%$item_id%'
-                                ORDER BY request_id ASC";
-                // "picture_id", "accounts_payable" and "accounts_receivable" is excluded.
+                    // Customer buy = Receivable
+                    // Supplier sell = Payable
 
-                // Attempt to connect to the database and execute the query.
-                $sql_query_1_result = $connection->query($sql_query_1);
+                    // Declare a variable for the query.
+                    // Set "request_status" from "Pending" to "Rejected".
+                    $sql_query_1 = "UPDATE `requests`
+                                    SET request_status = 'Rejected'
+                                    WHERE request_id = '$request_id'
+                                    AND request_status = 'Pending'";
 
-                // Insert the each of the results into the table.
-                while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                    <tr>
-                        <td>{$sql_query_1_row['request_id']}</td>
-                        <td>{$sql_query_1_row['request_date']}</td>
-                        <td>{$sql_query_1_row['request_type']}</td>
-                        <td>{$sql_query_1_row['request_item_name']}</td>
-                        <td>{$sql_query_1_row['item_quantity']}</td>
-                        <td>{$sql_query_1_row['user_id']}</td>
-                        <td>{$sql_query_1_row['item_id']}</td>
-                        <td>
-                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../../admin/e-waste-requests/view.php">
-                                <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
-                                <input type="hidden" name="request_user_id" value="{$sql_query_1_row['user_id']}">
-                                <input type="submit" name="submit" value="View details">
-                            </form>
-                        </td>
-                    </tr>
-                    HTML;
-                    echo $html;
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_1_result = $connection->query($sql_query_1);
+
+                    // Declare a variable for the query.
+                    // Get data from the table for the request ID.
+                    $sql_query_2 = "SELECT * FROM requests
+                                    WHERE request_id = '$request_id'";
+
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_2_result = $connection->query($sql_query_2);
+
+                    // Get the data for "request_status" after updating it.
+                    while ($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
+                        $request_status = $sql_query_2_row['request_status'];
+                    }
+
+                    // Determine if the request is rejected or not.
+                    if ($request_status == "Rejected") {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <h2>User request has been successfully rejected!</h2>
+                        <div class="margin-30px"></div>
+                        HTML;
+                        echo $html;
+                    }
+                    else  {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <h2>User request rejection is unsuccessful.</h2>
+                        <div class="margin-30px"></div>
+                        HTML;
+                        echo $html;
+                    }
                 }
-                echo '</table>';
 
                 // Ensure the connection to the DB is closed, with or without
                 // any code or query execution for security reasons.
                 $connection->close();
                 ?>
+
+                <p>Here are the details of the user's request.</p>
+                <div class="margin-30px"></div>
+
+                <!-- Requests table container -->
+                <div>
+                    <div class="requests-table">
+                        <?php
+                        // Attempt to make a new connection to the database.
+                        include '../../php/connection.php';
+
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <table border=1>
+                            <tr>
+                                <th>ID</th>
+                                <th>Request Date</th>
+                                <th>Request Type</th>
+                                <th>Request Item Name</th>
+                                <th>Item Quantity</th>
+                                <th>Request Status</th>
+                                <th>User ID</th>
+                                <th>Item ID</th>
+                            </tr>
+                        HTML;
+                        echo $html;
+
+                        // Declare a variable for the query.
+                        $sql_query_3 = "SELECT * FROM `requests`
+                                        WHERE request_id = $request_id";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_3_result = $connection->query($sql_query_3);
+                        
+                        // Insert the each of the results into the table.
+                        while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <tr>
+                                <td>{$sql_query_3_row['request_id']}</td>
+                                <td>{$sql_query_3_row['request_date']}</td>
+                                <td>{$sql_query_3_row['request_type']}</td>
+                                <td>{$sql_query_3_row['request_item_name']}</td>
+                                <td>{$sql_query_3_row['item_quantity']}</td>
+                                <td>{$sql_query_3_row['request_status']}</td>
+                                <td>{$sql_query_3_row['user_id']}</td>
+                                <td>{$sql_query_3_row['item_id']}</td>
+                            HTML;
+                            echo $html;
+                        }
+
+                        // Ensure the connection to the DB is closed, with or without
+                        // any code or query execution for security reasons.
+                        $connection->close();
+                        ?>
+
+                            </div>
+                        </table>
+                    </div>
+                </div>
+                <div class="margin-60px"></div>
+                <div class="container-3-contents-3-container">
+                    <a class="container-3-contents-3" href="../../admin/e-waste-requests/index.php">
+                        <p>Return to screen user requests page</p>
+                    </a>
+                </div>
+                <div class="margin-100px"></div>
             </div>
         </div>
 
@@ -556,6 +496,7 @@ $connection->close();
 
         <div class="margin-60px-mobile"></div>
         <!-- <br class="mobile-line-break">
+        <br class="mobile-line-break">
         <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">

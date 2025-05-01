@@ -1,0 +1,49 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/
+
+/* E-waste we buy/sell */
+.page-title-banner-container {
+    height: 75px;
+    width: 20%;
+    /* background-color: lightgreen; */
+    border-style: solid;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+}
+
+.page-title-banner-content {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/

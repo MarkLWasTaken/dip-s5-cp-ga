@@ -5,7 +5,7 @@ Developed by M1
 Student ID: Redacted
 */
 
-/* E-waste we buy/sell */
+/* Transaction history */
 .page-title-banner-container {
     height: 75px;
     width: 20%;
@@ -60,10 +60,6 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
-form {
-    margin: 0 auto;     /* Center the form horizontally */
-}
-
 /* Services table designs */
 .services-table table {
     border: 2px solid black;
@@ -73,6 +69,7 @@ form {
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .services-table th {
@@ -98,9 +95,11 @@ form {
 }
 
 .services-table th {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .services-table td {

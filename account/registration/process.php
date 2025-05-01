@@ -122,7 +122,7 @@ if (isset($_SESSION['email_address'])) {
             <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
             <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="../../e-waste-request-screening/index.php" onclick="closeNav()">E-waste request screening</a>
+            <a href="../../e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
             <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
             <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
@@ -149,7 +149,7 @@ if (isset($_SESSION['email_address'])) {
             $html = <<<HTML
             <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
             <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
-            <a href="../../admin/e-waste-request-screening/index.php" onclick="closeNav()">E-waste request acceptance (Admin)</a>
+            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
             HTML;
             echo $html;

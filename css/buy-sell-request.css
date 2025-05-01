@@ -148,6 +148,7 @@ Student ID: Redacted
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .type-of-request-form-table-contents th {
@@ -176,6 +177,8 @@ Student ID: Redacted
     width: 38%;
     padding-left: 10px;
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .type-of-request-form-table-contents td {
@@ -192,6 +195,7 @@ Student ID: Redacted
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .buy-table-contents th {
@@ -219,6 +223,8 @@ Student ID: Redacted
     width: 38%;
     padding-left: 10px;
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .buy-table-contents td {
@@ -235,6 +241,7 @@ Student ID: Redacted
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .sell-table-contents th {
@@ -262,6 +269,8 @@ Student ID: Redacted
     width: 30%;
     padding-left: 10px;
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .sell-table-contents td {
@@ -278,6 +287,7 @@ Student ID: Redacted
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .picture-table-contents th {
@@ -311,6 +321,8 @@ Student ID: Redacted
     width: 100%;
     padding: 10px;
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /* Radio buttons designs */

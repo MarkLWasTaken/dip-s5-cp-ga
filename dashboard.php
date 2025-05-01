@@ -76,7 +76,7 @@ $connection->close();
             <a href="#" onclick="closeNav()">Dashboard</a>
             <a href="buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="transactions-history/index.php" onclick="closeNav()">Transactions history</a>
+            <a href="transactions-history.php" onclick="closeNav()">Transactions history</a>
             <a href="requests-history/index.php" onclick="closeNav()">Requests history</a>
             <a href="account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="account/logout.php" onclick="closeNav()">Logout</a>
@@ -118,7 +118,7 @@ $connection->close();
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="admin/e-waste-requests/index.php" onclick="closeNav()">E-waste request screening/acceptance</a>
+            <a href="admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
@@ -370,7 +370,7 @@ $connection->close();
 
                     <a class="black-hyperlink-display" href="services.php">
                         <div class="button">
-                            <p class="button-content">Services (Unavailable)</p>
+                            <p class="button-content">Services</p>
                         </div>
                     </a>
 
@@ -386,7 +386,7 @@ $connection->close();
 
                     <a class="black-hyperlink-display" href="contact-us.php">
                         <div class="button">
-                            <p class="button-content">Contact us (Unavailable)</p>
+                            <p class="button-content">Contact us</p>
                         </div>
                     </a>
                 </div>
@@ -407,15 +407,15 @@ $connection->close();
 
                     <a class="black-hyperlink-display" href="tracking/index.php">
                         <div class="button">
-                            <p class="button-content">Tracking (Unavailable)</p>
+                            <p class="button-content">Tracking</p>
                         </div>
                     </a>
 
                     <div class="margin-20px"></div>
 
-                    <a class="black-hyperlink-display" href="transactions-history/index.php">
+                    <a class="black-hyperlink-display" href="transactions-history.php">
                         <div class="button">
-                            <p class="button-content">Transactions history (Unavailable)</p>
+                            <p class="button-content">Transactions history</p>
                         </div>
                     </a>
 
@@ -423,7 +423,7 @@ $connection->close();
 
                     <a class="black-hyperlink-display" href="requests-history/index.php">
                         <div class="button">
-                            <p class="button-content">Requests history (Unavailable)</p>
+                            <p class="button-content">Requests history</p>
                         </div>
                     </a>
 
@@ -431,7 +431,7 @@ $connection->close();
 
                     <a class="black-hyperlink-display" href="account/profile/index.php">
                         <div class="button">
-                            <p class="button-content">Manage/Edit Profile (Unavailable)</p>
+                            <p class="button-content">Manage/Edit Profile</p>
                         </div>
                     </a>
 
@@ -452,7 +452,7 @@ $connection->close();
                 <div id="buttons-container-2">
                     <a class="black-hyperlink-display" href="admin/e-waste-requests/index.php">
                         <div class="button">
-                            <p class="button-content">Screen user requests (Accept/Reject) (70%)</p>
+                            <p class="button-content">Screen user requests (Approve/Reject)</p>
                         </div>
                     </a>
 
@@ -460,7 +460,7 @@ $connection->close();
 
                     <a class="black-hyperlink-display" href="admin/statistics/index.php">
                         <div class="button">
-                            <p class="button-content">Statistics (Unavailable)</p>
+                            <p class="button-content">Statistics</p>
                         </div>
                     </a>
 
@@ -468,7 +468,7 @@ $connection->close();
 
                     <a class="black-hyperlink-display" href="admin/manage-users/index.php">
                         <div class="button">
-                            <p class="button-content">Manage users (60%)</p>
+                            <p class="button-content">Manage users</p>
                         </div>
                     </a>
 
