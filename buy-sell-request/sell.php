@@ -78,7 +78,7 @@ $date = date('Y-m-d H:i:s P');
             <a href="../dashboard.php" onclick="closeNav()">Dashboard</a>
             <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
+            <a href="../view-transactions/index.php" onclick="closeNav()">View transactions</a>
             <a href="../requests-history/index.php" onclick="closeNav()">Requests history</a>
             <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="../account/logout.php" onclick="closeNav()">Logout</a>
@@ -625,8 +625,8 @@ $date = date('Y-m-d H:i:s P');
             <?php
             // Declare a variable for the query.
             $sql_query_4 = "SELECT * FROM `items` WHERE
-                                transaction_type = 'Sell'
-                                ORDER BY item_id ASC";
+                            transaction_type = 'Sell'
+                            ORDER BY item_id ASC";
 
             // Attempt to connect to the database and execute the query.
             $sql_query_4_result = $connection->query($sql_query_4);

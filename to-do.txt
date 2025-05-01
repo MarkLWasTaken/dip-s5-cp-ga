@@ -28,6 +28,7 @@ Change Requests history to View Requests
 
 For Supplier Sell after clicking on "View details" button on Transaction history
 A notification will be sent to your email account regarding arrangements for the sale of your item(s) to Quantum.
+Thank you for your support.
 (This is for future enhancement)
 
 Services (Unavailable)

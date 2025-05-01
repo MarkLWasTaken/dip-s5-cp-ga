@@ -10,7 +10,7 @@ Student ID: Redacted
 session_start();
 
 // Include the PHP script for connecting to the database (DB).
-include 'php/connection.php';
+include '../php/connection.php';
 
 // Declare the variable to get the user ID and hide the warning message.
 @$user_id = $_SESSION['user_id'];
@@ -39,31 +39,31 @@ $connection->close();
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Transaction history</title>
+    <title>Quantum E-waste Management System - View transactions</title>
 
     <!-- Cascading Style Sheets -->
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/navigation-bar-buttons.css" rel="stylesheet">
-    <link href="css/dropdown-menu.css" rel="stylesheet">
-    <link href="css/transaction-history.css" rel="stylesheet">
-    <link href="css/styles-cp-mobile.css" rel="stylesheet">
-    <link href="css/side-navigation-menu.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/navigation-bar-buttons.css" rel="stylesheet">
+    <link href="../css/dropdown-menu.css" rel="stylesheet">
+    <link href="../css/transactions.css" rel="stylesheet">
+    <link href="../css/styles-cp-mobile.css" rel="stylesheet">
+    <link href="../css/side-navigation-menu.css" rel="stylesheet">
 
     <!-- JavaScripts -->
-    <script src="js/side-navigation-menu.js"></script>
+    <script src="../js/side-navigation-menu.js"></script>
 </head>
 
 <body>
     <!-- Reference: https://www.w3schools.com/howto/howto_js_sidenav.asp -->
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
-        <a href="index.php" onclick="closeNav()">Home</a>
-        <a href="about-us.php" onclick="closeNav()">About us</a>
-        <a href="e-waste/we-buy.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="e-waste/we-sell.php" onclick="closeNav()">E-waste we sell</a>
-        <a href="services.php" onclick="closeNav()">Services</a>
-        <a href="faq.php" onclick="closeNav()">FAQ</a>
-        <a href="contact-us.php" onclick="closeNav()">Contact us</a>
+        <a href="../index.php" onclick="closeNav()">Home</a>
+        <a href="../about-us.php" onclick="closeNav()">About us</a>
+        <a href="../e-waste/we-buy.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="../e-waste/we-sell.php" onclick="closeNav()">E-waste we sell</a>
+        <a href="../services.php" onclick="closeNav()">Services</a>
+        <a href="../faq.php" onclick="closeNav()">FAQ</a>
+        <a href="../contact-us.php" onclick="closeNav()">Contact us</a>
         <?php
         // If the user is logged in.
         if (isset($_SESSION['email_address'])) {
@@ -73,13 +73,13 @@ $connection->close();
             <div class="margin-50px"></div>
             <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
             <a href="javascript:void(0)">&#128994; User is logged in.</a>
-            <a href="dashboard.php" onclick="closeNav()">Dashboard</a>
-            <a href="buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
-            <a href="tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="transactions-history/index.php" onclick="closeNav()">Transactions history</a>
-            <a href="requests-history/index.php" onclick="closeNav()">Requests history</a>
-            <a href="account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
-            <a href="account/logout.php" onclick="closeNav()">Logout</a>
+            <a href="../dashboard.php" onclick="closeNav()">Dashboard</a>
+            <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
+            <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
+            <a href="#" onclick="closeNav()">View transactions</a>
+            <a href="../requests-history/index.php" onclick="closeNav()">Requests history</a>
+            <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+            <a href="../account/logout.php" onclick="closeNav()">Logout</a>
             <div class="margin-50px"></div>
             HTML;
             echo $html;
@@ -92,8 +92,8 @@ $connection->close();
             <div class="margin-50px"></div>
             <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
             <a href="javascript:void(0)">&#128308; User is not logged in.</a>
-            <a href="account/login/index.php" onclick="closeNav()">Login</a>
-            <a href="account/registration/index.php" onclick="closeNav()">Register</a>
+            <a href="../account/login/index.php" onclick="closeNav()">Login</a>
+            <a href="../account/registration/index.php" onclick="closeNav()">Register</a>
             HTML;
             echo $html;
         }
@@ -105,10 +105,10 @@ $connection->close();
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
-            <a href="admin/statistics/index.php" onclick="closeNav()">Statistics</a>
-            <a href="admin/database-query.php" onclick="closeNav()">Database Query</a>
+            <a href="../admin/index.php" onclick="closeNav()">Admin control panel</a>
+            <a href="../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
+            <a href="../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+            <a href="../admin/database-query.php" onclick="closeNav()">Database Query</a>
             <div class="margin-100px"></div>
             HTML;
             echo $html;
@@ -117,9 +117,9 @@ $connection->close();
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="#" onclick="closeNav()">Screen user request (Approve/Reject)</a>
-            <a href="admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+            <a href="../admin/index.php" onclick="closeNav()">Admin control panel</a>
+            <a href="../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user request (Approve/Reject)</a>
+            <a href="../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
             echo $html;
@@ -133,7 +133,7 @@ $connection->close();
         <div style="position: absolute, sticky;">
             <a class="black-hyperlink" href="javascript:void(0)" onclick="openNav()">
                 <div class="side-navigation-menu-button-mobile">
-                    <img src="images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
+                    <img src="../images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
                 </div>
             </a>
         </div>
@@ -141,8 +141,8 @@ $connection->close();
         <div id="header" class="website-title">
             <div class="title-and-image-container">
                 <div class="title-and-image-content">
-                    <img class="header-image" src="images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
-                    <!-- <img class="header-image" src="images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
+                    <img class="header-image" src="../images/logo-image.png" alt="Greening planet earth." title="Greening planet earth.">
+                    <!-- <img class="header-image" src="../images/desktop-computer-svgrepo-com.svg" alt="Computer." title="Computer."> -->
                 </div>
                 <div class="title-and-image-content">
                     Quantum E-waste
@@ -159,54 +159,54 @@ $connection->close();
             <div>
                 <a class="black-hyperlink" href="javascript:void(0)" onclick="openNav()">
                     <div class="menu-button">
-                        <img src="images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
+                        <img src="../images/Hamburger_icon.svg" alt="Hamburger button icon for side navigation menu." title="Hamburger button icon for side navigation menu.">
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="index.php">
+                <a class="black-hyperlink" href="../index.php">
                     <div class="menu-button">
                         Home
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="about-us.php">
+                <a class="black-hyperlink" href="../about-us.php">
                     <div class="menu-button">
                         About us
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="e-waste/we-buy.php">
+                <a class="black-hyperlink" href="../e-waste/we-buy.php">
                     <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="e-waste/we-sell.php">
+                <a class="black-hyperlink" href="../e-waste/we-sell.php">
                     <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="services.php">
+                <a class="black-hyperlink" href="../services.php">
                     <div class="menu-button">
                         Services
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="faq.php">
+                <a class="black-hyperlink" href="../faq.php">
                     <div class="menu-button">
                         FAQ
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="contact-us.php">
+                <a class="black-hyperlink" href="../contact-us.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -271,9 +271,9 @@ $connection->close();
                                 $html = <<<HTML
                                 <!-- Online -->
                                 &#128994; User is logged in.
-                                <a class="menu" href="dashboard.php">Dashboard</a>
-                                <a class="menu" href="account/profile/index.php">Profile</a>
-                                <a class="menu" href="account/logout.php">Logout</a>
+                                <a class="menu" href="../dashboard.php">Dashboard</a>
+                                <a class="menu" href="../account/profile/index.php">Profile</a>
+                                <a class="menu" href="../account/logout.php">Logout</a>
                                 HTML;
                                 echo $html;
                             }
@@ -283,8 +283,8 @@ $connection->close();
                                 $html = <<<HTML
                                 <!-- Offline -->
                                 &#128308; User is not logged in.
-                                <a class="menu" href="account/login/index.php">Login</a>
-                                <a class="menu" href="account/registration/index.php">Register</a>
+                                <a class="menu" href="../account/login/index.php">Login</a>
+                                <a class="menu" href="../account/registration/index.php">Register</a>
                                 HTML;
                                 echo $html;
                             }
@@ -302,7 +302,7 @@ $connection->close();
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
                     <div>
-                        <a class='black-hyperlink' href='admin/index.php'>
+                        <a class='black-hyperlink' href='../admin/index.php'>
                             <div class='menu-button'>
                                 Admin
                             </div>
@@ -318,7 +318,7 @@ $connection->close();
         <!-- <br class="desktop-line-break"> -->
 
         <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Transaction history</div>
+            <div class="page-title-banner-content">View transactions</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -403,10 +403,10 @@ $connection->close();
         <div>
             <form action="" method="post">
                 <div class="table-content">
-                    <table id="transaction-history">
+                    <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
-                                Transaction History Table Query
+                                Transactions Table Query
                             </th>
                         </tr>
                         <!-- "requests" table query options. -->
@@ -535,7 +535,7 @@ $connection->close();
                         <td>{$sql_query_1_row['accounts_payable_id']}</td>
                         <td>{$sql_query_1_row['accounts_receivable_id']}</td>
                         <td>
-                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="admin/e-waste-requests/view.php">
+                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../view-transactions/view.php">
                                 <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
                                 <input type="hidden" name="request_user_id" value="{$sql_query_1_row['user_id']}">
                                 <input type="submit" name="submit" value="View details">
@@ -583,25 +583,25 @@ $connection->close();
             <div id="footer-container-2">
                 <p class="footer-text-2">Sitemap</p>
                 <ul>
-                    <a class="white-hyperlink" href="index.php" class="white">
+                    <a class="white-hyperlink" href="../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="about-us.php" class="white">
+                    <a class="white-hyperlink" href="../about-us.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="e-waste/we-buy.php" class="white">
+                    <a class="white-hyperlink" href="../e-waste/we-buy.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="e-waste/we-sell.php" class="white">
+                    <a class="white-hyperlink" href="../e-waste/we-sell.php" class="white">
                         <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="services.php" class="white">
+                    <a class="white-hyperlink" href="../services.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="faq.php" class="white">
+                    <a class="white-hyperlink" href="../faq.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="contact-us.php" class="white">
+                    <a class="white-hyperlink" href="../contact-us.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

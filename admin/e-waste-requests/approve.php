@@ -88,7 +88,7 @@ $connection->close();
             <a href="../../dashboard.php" onclick="closeNav()">Dashboard</a>
             <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
+            <a href="../../view-transactions/index.php" onclick="closeNav()">View transactions</a>
             <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
             <a href="../../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="../../account/logout.php" onclick="closeNav()">Logout</a>
