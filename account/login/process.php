@@ -21,7 +21,7 @@ include '../../php/connection.php';
 $sql_query_1 = "SELECT * FROM users WHERE email_address='$email' AND password='$password'";
 
 // Decalre variable to attempt to connect to the DB and execute the SQL query.
-$sql_query_1_execute = $connection->query($sql_query_1);
+$sql_query_1_result = $connection->query($sql_query_1);
 
 // Declare the variable to get the user ID and hide the warning message.
 @$user_id = $_SESSION['user_id'];
@@ -73,28 +73,28 @@ $connection->close();
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../about/index.php" onclick="closeNav()">About us</a>
-        <a href="../../e-waste/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="../../recycled-items/index.php" onclick="closeNav()">Recycled items we sell</a>
-        <a href="../../services/index.php" onclick="closeNav()">Services</a>
-        <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../about-us.php" onclick="closeNav()">About us</a>
+        <a href="../../e-waste/we-buy.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="../../e-waste/we-sell.php" onclick="closeNav()">E-waste we sell</a>
+        <a href="../../services.php" onclick="closeNav()">Services</a>
+        <a href="../../faq.php" onclick="closeNav()">FAQ</a>
+        <a href="../../contact-us.php" onclick="closeNav()">Contact us</a>
         <?php
         // If the user is logged in.
         if (isset($_SESSION['email_address'])) {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-            <a href="javascript:void(0)">User is logged in.</a>
-            <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
+            <div class="margin-50px"></div>
+            <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+            <a href="javascript:void(0)">&#128994; User is logged in.</a>
+            <a href="../../dashboard.php" onclick="closeNav()">Dashboard</a>
             <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="../../e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
             <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
-            <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
-            <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
+            <a href="../../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+            <a href="../../account/logout.php" onclick="closeNav()">Logout</a>
             HTML;
             echo $html;
         }
@@ -103,22 +103,38 @@ $connection->close();
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-            <a href="javascript:void(0)">User is not logged in.</a>
+            <div class="margin-50px"></div>
+            <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+            <a href="javascript:void(0)">&#128308; User is not logged in.</a>
             <a href="../../account/login/index.php" onclick="closeNav()">Login</a>
             <a href="../../account/registration/index.php" onclick="closeNav()">Register</a>
             HTML;
             echo $html;
         }
         // If the user is logged in as an admin.
+        // Check if the user is a System Admin or Office Admin.
+        // 1 = System Admin
+        // 2 = Office Admin
         if (@$is_admin == 1) {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
-            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
+            <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
             <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+            <a href="../../admin/database-query.php" onclick="closeNav()">Database Query</a>
+            <div class="margin-100px"></div>
+            HTML;
+            echo $html;
+        }
+        else if (@$is_admin == 2) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <a href="admin/index.php" onclick="closeNav()">Admin control panel</a>
+            <a href="admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
+            <a href="admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+            <div class="margin-100px"></div>
             HTML;
             echo $html;
         }
@@ -150,7 +166,8 @@ $connection->close();
 
         <div class="hidden-header-mobile"></div>
 
-        <br>
+        <div class="margin-20px"></div>
+        <!-- <br> -->
 
         <div id="menu-buttons">
             <div>
@@ -168,42 +185,42 @@ $connection->close();
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../about-us/index.php">
+                <a class="black-hyperlink" href="../../about-us.php">
                     <div class="menu-button">
                         About us
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-buy/index.php">
+                <a class="black-hyperlink" href="../../e-waste/we-buy.php">
                     <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-sell/index.php">
+                <a class="black-hyperlink" href="../../e-waste/we-sell.php">
                     <div class="menu-button-2">
-                        Recycled items<br>we sell
+                        E-waste<br>we sell
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../services/index.php">
+                <a class="black-hyperlink" href="../../services.php">
                     <div class="menu-button">
                         Services
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../faq/index.php">
+                <a class="black-hyperlink" href="../../faq.php">
                     <div class="menu-button">
                         FAQ
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact-us/index.php">
+                <a class="black-hyperlink" href="../../contact-us.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -266,7 +283,8 @@ $connection->close();
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
-                                User is logged in.
+                                <!-- Online -->
+                                &#128994; User is logged in.
                                 <a class="menu" href="../../dashboard/index.php">Dashboard</a>
                                 <a class="menu" href="../../account/profile/index.php">Profile</a>
                                 <a class="menu" href="../../account/logout/index.php">Logout</a>
@@ -277,7 +295,8 @@ $connection->close();
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
-                                User is not logged in.
+                                <!-- Offline -->
+                                &#128308; User is not logged in.
                                 <a class="menu" href="../../account/login/index.php">Login</a>
                                 <a class="menu" href="../../account/registration/index.php">Register</a>
                                 HTML;
@@ -289,7 +308,10 @@ $connection->close();
                 </a>
             </div>
             <?php
-            if (@$is_admin == 1) {
+            // Check if the user is logged in as an admin or not.
+            // 1 = System Admin
+            // 2 = Office Admin
+            if (@$is_admin == 1 || @$is_admin == 2) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
@@ -306,7 +328,8 @@ $connection->close();
             ?>
         </div>
 
-        <br><br><br>
+        <div style="margin:80px;"></div>
+        <!-- <br><br><br> -->
 
         <!-- Layout for the account login process container. -->
         <div id="account-login-process-container">
@@ -317,11 +340,11 @@ $connection->close();
                 // Executes the code when the login button is pressed.
                 if (isset($_POST['btnLogin'])) {
                     // Verify if the record exists in the DB.
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $_SESSION['user_id'] = $row['user_id'];
-                            $_SESSION['email_address'] = $row['email_address'];
-                            $_SESSION['password'] = $row['password'];
+                    if ($sql_query_1_result->num_rows > 0) {
+                        while ($sql_query_1_result_row = $sql_query_1_result->fetch_assoc()) {
+                            $_SESSION['user_id'] = $sql_query_1_result_row['user_id'];
+                            $_SESSION['email_address'] = $sql_query_1_result_row['email_address'];
+                            $_SESSION['password'] = $sql_query_1_result_row['password'];
                         }
                         loginSuccess();
                     }

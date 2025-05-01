@@ -328,9 +328,9 @@ $connection->close();
         </div> -->
 
         <!-- Layout for the contents 1 container. -->
-        <div id="container-1-container">
-            <div id="container-1-contents">
-                <h2>Approve or reject e-waste requests here.</h2>
+        <div id="contents-1-container">
+            <div id="contents-1-content">
+                <h2>View all the transactions here.</h2>
             </div>
         </div>
 
@@ -344,6 +344,8 @@ $connection->close();
         unset($_SESSION['txtRequestStatus']);
         unset($_SESSION['txtUserID']);
         unset($_SESSION['txtItemID']);
+        unset($_SESSION['txtAccountsPayableID']);
+        unset($_SESSION['txtAccountsReceivableID']);
 
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -356,6 +358,8 @@ $connection->close();
             @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
             $_SESSION['txtUserID'] = $_POST['txtUserID'];
             @$_SESSION['txtItemID'] = $_POST['txtItemID'];
+            @$_SESSION['txtAccountsPayableID'] = $_POST['txtAccountsPayableID'];
+            @$_SESSION['txtAccountsReceivableID'] = $_POST['txtAccountsReceivableID'];
             if (isset($_POST['clear'])) {
                 // Unset the session variables to clear the form data.
                 unset($_SESSION['txtID']);
@@ -366,6 +370,8 @@ $connection->close();
                 unset($_SESSION['txtRequestStatus']);
                 unset($_SESSION['txtUserID']);
                 unset($_SESSION['txtItemID']);
+                unset($_SESSION['txtAccountsPayableID']);
+                unset($_SESSION['txtAccountsReceivableID']);
             }
         } else if (isset($_POST['clear'])) {
             // Unset the session variables to clear the form data.
@@ -377,6 +383,8 @@ $connection->close();
             unset($_SESSION['txtRequestStatus']);
             unset($_SESSION['txtUserID']);
             unset($_SESSION['txtItemID']);
+            unset($_SESSION['txtAccountsPayableID']);
+            unset($_SESSION['txtAccountsReceivableID']);
         }
 
         // Retrieve the values from the session.
@@ -386,18 +394,19 @@ $connection->close();
         $request_item_name = isset($_SESSION['txtRequestItemName']) ? $_SESSION['txtRequestItemName'] : '';
         $item_quantity = isset($_SESSION['txtItemQuantity']) ? $_SESSION['txtItemQuantity'] : '';
         $request_status = isset($_SESSION['txtRequestStatus']) ? $_SESSION['txtRequestStatus'] : '';
-        $user_id = isset($_SESSION['txtUserID']) ? $_SESSION['txtUserID'] : '';
         $item_id = isset($_SESSION['txtItemID']) ? $_SESSION['txtItemID'] : '';
+        $accounts_payable_id = isset($_SESSION['txtAccountsPayableID']) ? $_SESSION['txtAccountsPayableID'] : '';
+        $accounts_receivable_id = isset($_SESSION['txtAccountsReceivableID']) ? $_SESSION['txtAccountsReceivableID'] : '';
         ?>
 
         <!-- Table query container -->
         <div>
-            <form action="index.php" method="post">
-                <div class="query-table-content">
-                    <table id="table-query">
+            <form action="" method="post">
+                <div class="table-content">
+                    <table id="transaction-history">
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
-                                "requests" Table Query
+                                Transaction History Table Query
                             </th>
                         </tr>
                         <!-- "requests" table query options. -->
@@ -422,8 +431,8 @@ $connection->close();
                             <td><input type="text" name="txtItemQuantity" value="<?php echo $item_quantity ?>"></td>
                         </tr>
                         <tr>
-                            <th>User ID:</th>
-                            <td><input type="text" name="txtUserID" value="<?php $user_id ?>"></td>
+                            <th>Request Status:</th>
+                            <td><input type="text" name="txtRequestStatus" value="<?php echo $request_status ?>"></td>
                         </tr>
                         <tr>
                             <th>Item ID:</th>
@@ -455,10 +464,10 @@ $connection->close();
 
         <!-- E-waste requests table container -->
         <div>
-            <div class="requests-table">
+            <div class="table-content">
                 <?php
                 // Attempt to make a new connection to the database.
-                include '../../php/connection.php';
+                include 'php/connection.php';
 
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
@@ -470,12 +479,28 @@ $connection->close();
                         <th>Request Type</th>
                         <th>Request Item Name</th>
                         <th>Item Quantity</th>
-                        <th>User ID</th>
+                        <th>Request Status</th>
                         <th>Item ID</th>
+                        <th>Accounts Payable ID</th>
+                        <th>Accounts Receivable ID</th>
                         <th colspan="2" style="text-align: center;">Actions</th>
                     </tr>
                 HTML;
                 echo $html;
+
+                // For debugging only
+                /*
+                echo "Request ID: " . $request_id . "<br>";
+                echo "Request Date: " . $request_date . "<br>";
+                echo "Request Type: " . $request_type . "<br>";
+                echo "Request Item Name: " . $request_item_name . "<br>";
+                echo "item Quantity: " . $item_quantity . "<br>";
+                echo "Request Status: " . $request_status . "<br>";
+                echo "User ID: " . $user_id . "<br>";
+                echo "Item ID: " . $item_id . "<br>";
+                echo "Accounts Payable ID: " . $accounts_payable_id . "<br>";
+                echo "Accounts Receivable ID: " . $accounts_receivable_id . "<br>";
+                */
 
                 // Declare a variable for the query.
                 $sql_query_1 = "SELECT * FROM `requests` WHERE
@@ -484,11 +509,12 @@ $connection->close();
                                 request_type LIKE '%$request_type%' AND
                                 request_item_name LIKE '%$request_item_name%' AND
                                 item_quantity LIKE '%$item_quantity%' AND
-                                request_status = 'Pending' AND
-                                user_id LIKE '%$user_id%' AND
-                                item_id LIKE '%$item_id%'
+                                request_status LIKE '%$request_status%' AND
+                                user_id = '$user_id' AND
+                                item_id LIKE '%$item_id%' AND
+                                accounts_payable_id LIKE '%$accounts_payable_id%' AND
+                                accounts_receivable_id LIKE '%$accounts_receivable_id%'
                                 ORDER BY request_id ASC";
-                // "picture_id", "accounts_payable" and "accounts_receivable" is excluded.
 
                 // Attempt to connect to the database and execute the query.
                 $sql_query_1_result = $connection->query($sql_query_1);
@@ -504,10 +530,12 @@ $connection->close();
                         <td>{$sql_query_1_row['request_type']}</td>
                         <td>{$sql_query_1_row['request_item_name']}</td>
                         <td>{$sql_query_1_row['item_quantity']}</td>
-                        <td>{$sql_query_1_row['user_id']}</td>
+                        <td>{$sql_query_1_row['request_status']}</td>
                         <td>{$sql_query_1_row['item_id']}</td>
+                        <td>{$sql_query_1_row['accounts_payable_id']}</td>
+                        <td>{$sql_query_1_row['accounts_receivable_id']}</td>
                         <td>
-                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../../admin/e-waste-requests/view.php">
+                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="admin/e-waste-requests/view.php">
                                 <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
                                 <input type="hidden" name="request_user_id" value="{$sql_query_1_row['user_id']}">
                                 <input type="submit" name="submit" value="View details">
@@ -517,7 +545,7 @@ $connection->close();
                     HTML;
                     echo $html;
                 }
-                echo '</table>';
+                echo "</table>";
 
                 // Ensure the connection to the DB is closed, with or without
                 // any code or query execution for security reasons.
@@ -555,25 +583,25 @@ $connection->close();
             <div id="footer-container-2">
                 <p class="footer-text-2">Sitemap</p>
                 <ul>
-                    <a class="white-hyperlink" href="../../index.php" class="white">
+                    <a class="white-hyperlink" href="index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about-us.php" class="white">
+                    <a class="white-hyperlink" href="about-us.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste/we-buy.php" class="white">
+                    <a class="white-hyperlink" href="e-waste/we-buy.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste/we-sell.php" class="white">
+                    <a class="white-hyperlink" href="e-waste/we-sell.php" class="white">
                         <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../../services.php" class="white">
+                    <a class="white-hyperlink" href="services.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="../../faq.php" class="white">
+                    <a class="white-hyperlink" href="faq.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact-us.php" class="white">
+                    <a class="white-hyperlink" href="contact-us.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>

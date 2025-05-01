@@ -329,7 +329,7 @@ $connection->close();
 
         <!-- Layout for the Contact us container. -->
         <div id="container-1-container">
-            <div id="container-1-contents">
+            <div id="container-1-contents ">
                 <p>Thank you for your interest in <b>Quantum E-waste Management System</b>.</p>
                 <p>Need to get in touch with us?</p>
                 <p>Please use this form to contact us.</p>

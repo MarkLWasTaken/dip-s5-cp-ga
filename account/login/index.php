@@ -15,7 +15,8 @@ include '../../php/connection.php';
 // Declare the variable to get the user ID and hide the warning message.
 @$user_id = $_SESSION['user_id'];
 
-// Check if the guest or user logged in is an admin or not.
+// If user ID is not null,
+// check if the guest or user logged in is an admin or not.
 if ($user_id != null) {
     // Execute the query to get the user's role status.
     $result = $connection->query("SELECT is_admin FROM users WHERE user_id = $user_id");
@@ -62,28 +63,28 @@ $connection->close();
     <div id="side-navigation-menu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" title="Close the side navigation menu.">&times;</a>
         <a href="../../index.php" onclick="closeNav()">Home</a>
-        <a href="../../about/index.php" onclick="closeNav()">About us</a>
-        <a href="../../e-waste/index.php" onclick="closeNav()">E-waste we buy</a>
-        <a href="../../recycled-items/index.php" onclick="closeNav()">Recycled items we sell</a>
-        <a href="../../services/index.php" onclick="closeNav()">Services</a>
-        <a href="../../faq/index.php" onclick="closeNav()">FAQ</a>
-        <a href="../../contact/index.php" onclick="closeNav()">Contact us</a>
+        <a href="../../about-us.php" onclick="closeNav()">About us</a>
+        <a href="../../e-waste/we-buy.php" onclick="closeNav()">E-waste we buy</a>
+        <a href="../../e-waste/we-sell.php" onclick="closeNav()">E-waste we sell</a>
+        <a href="../../services.php" onclick="closeNav()">Services</a>
+        <a href="../../faq.php" onclick="closeNav()">FAQ</a>
+        <a href="../../contact-us.php" onclick="closeNav()">Contact us</a>
         <?php
         // If the user is logged in.
         if (isset($_SESSION['email_address'])) {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-            <a href="javascript:void(0)">User is logged in.</a>
+            <div class="margin-50px"></div>
+            <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+            <a href="javascript:void(0)">&#128994; User is logged in.</a>
             <a href="../../dashboard/index.php" onclick="closeNav()">Dashboard</a>
             <a href="../../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../../tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="../../e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
             <a href="../../transactions-history/index.php" onclick="closeNav()">Transactions history</a>
             <a href="../../requests-history/index.php" onclick="closeNav()">Requests history</a>
-            <a href="../../profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
-            <a href="../../account/logout/index.php" onclick="closeNav()">Logout</a>
+            <a href="../../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
+            <a href="../../account/logout.php" onclick="closeNav()">Logout</a>
             HTML;
             echo $html;
         }
@@ -92,22 +93,38 @@ $connection->close();
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="javascript:void(0)" style="opacity: 0;">Blank space</a>
-            <a href="javascript:void(0)">User is not logged in.</a>
+            <div class="margin-50px"></div>
+            <!-- <a href="javascript:void(0)" style="opacity: 0;">Blank space</a> -->
+            <a href="javascript:void(0)">&#128308; User is not logged in.</a>
             <a href="#" onclick="closeNav()">Login</a>
-            <a href="../../account/login/index.php" onclick="closeNav()">Register</a>
+            <a href="../../account/registration/index.php" onclick="closeNav()">Register</a>
             HTML;
             echo $html;
         }
         // If the user is logged in as an admin.
+        // Check if the user is a System Admin or Office Admin.
+        // 1 = System Admin
+        // 2 = Office Admin
         if (@$is_admin == 1) {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users (Admin)</a>
-            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
+            <a href="../../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
             <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics (Admin)</a>
+            <a href="../../admin/database-query.php" onclick="closeNav()">Database Query</a>
+            <div class="margin-100px"></div>
+            HTML;
+            echo $html;
+        }
+        else if (@$is_admin == 2) {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <a href="../../admin/index.php" onclick="closeNav()">Admin control panel</a>
+            <a href="../../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
+            <a href="../../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
+            <div class="margin-100px"></div>
             HTML;
             echo $html;
         }
@@ -139,7 +156,8 @@ $connection->close();
 
         <div class="hidden-header-mobile"></div>
 
-        <br>
+        <div class="margin-20px"></div>
+        <!-- <br> -->
 
         <div id="menu-buttons">
             <div>
@@ -164,35 +182,35 @@ $connection->close();
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-buy/index.php">
+                <a class="black-hyperlink" href="../../e-waste/we-buy.php">
                     <div class="menu-button-2">
                         E-waste<br>we buy
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../e-waste-we-sell/index.php">
+                <a class="black-hyperlink" href="../../e-waste/we-sell.php">
                     <div class="menu-button-2">
                         E-waste<br>we sell
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../services/index.php">
+                <a class="black-hyperlink" href="../../services.php">
                     <div class="menu-button">
                         Services
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../faq/index.php">
+                <a class="black-hyperlink" href="../../faq.php">
                     <div class="menu-button">
                         FAQ
                     </div>
                 </a>
             </div>
             <div>
-                <a class="black-hyperlink" href="../../contact-us/index.php">
+                <a class="black-hyperlink" href="../../contact-us.php">
                     <div class="menu-button">
                         Contact us
                     </div>
@@ -255,10 +273,11 @@ $connection->close();
                                 // Use heredoc syntax to make the code readable and easier to maintain.
                                 // Very useful for handling large blocks of of codes.
                                 $html = <<<HTML
-                                User is logged in.
-                                <a class="menu" href="../../dashboard/index.php">Dashboard</a>
+                                <!-- Online -->
+                                &#128994; User is logged in.
+                                <a class="menu" href="../../dashboard.php">Dashboard</a>
                                 <a class="menu" href="../../account/profile/index.php">Profile</a>
-                                <a class="menu" href="../../account/logout/index.php">Logout</a>
+                                <a class="menu" href="../../account/logout.php">Logout</a>
                                 HTML;
                                 echo $html;
                             }
@@ -278,7 +297,10 @@ $connection->close();
                 </a>
             </div>
             <?php
-            if (@$is_admin == 1) {
+            // Check if the user is logged in as an admin or not.
+            // 1 = System Admin
+            // 2 = Office Admin
+            if (@$is_admin == 1 || @$is_admin == 2) {
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
@@ -295,7 +317,8 @@ $connection->close();
             ?>
         </div>
 
-        <br><br><br>
+        <div style="margin:80px;"></div>
+        <!-- <br><br><br> -->
 
         <!-- Layout for the account login form. -->
         <div id="login-container">
@@ -311,11 +334,11 @@ $connection->close();
                     <table id="login-form">
                         <tr>
                             <th>Email Address:</th>
-                            <td><input type="email" name="txtEmail" required></td>
+                            <td><input class="input-field" type="email" name="txtEmail" required></td>
                         </tr>
                         <tr>
                             <th>Password:</th>
-                            <td><input type="password" name="txtPassword" required></td>
+                            <td><input class="input-field" type="password" name="txtPassword" required></td>
                         </tr>
                     </table>
                     <br><br>
@@ -324,17 +347,20 @@ $connection->close();
             </div>
         </div>
 
+        <div class="margin-160px"></div>
+        <!-- <br>
         <br>
-        <br>
         <br class="desktop-line-break">
         <br class="desktop-line-break">
-        <br class="desktop-line-break">
+        <br class="desktop-line-break"> -->
 
         <div id="footer-container-3-mobile">
-            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p><br>
+            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p><!-- <br> -->
+            <div class="margin-30px"></div>
             <div class="subscription-form">
                 <form action="" method="post">
-                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                    <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox input-field" required><!-- <br><br> -->
+                    <div class="margin-30px"></div>
                     <input type="submit" value="Subscribe" class="subscribe-button">
                 </form>
             </div>
@@ -342,9 +368,10 @@ $connection->close();
 
         <div class="hidden-footer-container-3-mobile"></div>
 
+        <div class="margin-60px-mobile"></div>
+        <!-- <br class="mobile-line-break">
         <br class="mobile-line-break">
-        <br class="mobile-line-break">
-        <br class="mobile-line-break">
+        <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">
             <div id="footer-container-2">
@@ -353,31 +380,33 @@ $connection->close();
                     <a class="white-hyperlink" href="../../index.php" class="white">
                         <li class="padding-bottom">Home</li>
                     </a>
-                    <a class="white-hyperlink" href="../../about/index.php" class="white">
+                    <a class="white-hyperlink" href="../../about-us.php" class="white">
                         <li class="padding-bottom">About us</li>
                     </a>
-                    <a class="white-hyperlink" href="../../e-waste/index.php" class="white">
+                    <a class="white-hyperlink" href="../../e-waste/we-buy.php" class="white">
                         <li class="padding-bottom">E-waste we buy</li>
                     </a>
-                    <a class="white-hyperlink" href="../../recycled-items/index.php" class="white">
-                        <li class="padding-bottom">Recycled items we sell</li>
+                    <a class="white-hyperlink" href="../../e-waste/we-sell.php" class="white">
+                        <li class="padding-bottom">E-waste we sell</li>
                     </a>
-                    <a class="white-hyperlink" href="../../services/index.php" class="white">
+                    <a class="white-hyperlink" href="../../services.php" class="white">
                         <li class="padding-bottom">Services</li>
                     </a>
-                    <a class="white-hyperlink" href="../../faq/index.php" class="white">
+                    <a class="white-hyperlink" href="../../faq.php" class="white">
                         <li class="padding-bottom">FAQ</li>
                     </a>
-                    <a class="white-hyperlink" href="../../contact/index.php" class="white">
+                    <a class="white-hyperlink" href="../../contact-us.php" class="white">
                         <li class="padding-bottom">Contact us</li>
                     </a>
                 </ul>
             </div>
             <div id="footer-container-3">
-                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p><br>
+                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p><!-- <br> -->
+                <div class="margin-24px"></div>
                 <div class="subscription-form">
                     <form action="" method="post">
-                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><br><br>
+                        <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required><!-- <br><br> -->
+                        <div class="margin-30px"></div>
                         <input type="submit" value="Subscribe" class="subscribe-button">
                     </form>
                 </div>

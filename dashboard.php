@@ -76,7 +76,7 @@ $connection->close();
             <a href="#" onclick="closeNav()">Dashboard</a>
             <a href="buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="transactions-history.php" onclick="closeNav()">Transactions history</a>
+            <a href="transaction-history.php" onclick="closeNav()">Transaction history</a>
             <a href="requests-history/index.php" onclick="closeNav()">Requests history</a>
             <a href="account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="account/logout.php" onclick="closeNav()">Logout</a>
@@ -413,9 +413,9 @@ $connection->close();
 
                     <div class="margin-20px"></div>
 
-                    <a class="black-hyperlink-display" href="transactions-history.php">
+                    <a class="black-hyperlink-display" href="transaction-history.php">
                         <div class="button">
-                            <p class="button-content">Transactions history</p>
+                            <p class="button-content">Transaction history</p>
                         </div>
                     </a>
 

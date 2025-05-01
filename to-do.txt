@@ -20,6 +20,15 @@ Remember the entries the user typed in the table query forms (Optional).
 [Priority] Manage users (Edit).
 [Priority] Manage users (Delete confirmation).
 
+Add "Amount payable" to the table after approval
+Add return to screen user requests button after aprroval or rejection
+Only approve or reject suppliers requests, not the custoomers request (canceled)
+Make pictures only viewable to Supplier Sell
+Change Requests history to View Requests
+
+For Supplier Sell after clicking on "View details" button on Transaction history
+A notification will be sent to your email account regarding arrangements for the sale of your item(s) to Quantum.
+(This is for future enhancement)
 
 Services (Unavailable)
 Contact us (Unavailable)
@@ -32,3 +41,15 @@ Manage/Edit Profile (Unavailable)
 Screen user requests (Accept/Reject) (90%)
 Statistics (Unavailable)
 Manage users (60%)
+
+List of webapges that includes date assignment:
+Account registration process
+Buy request form
+Sell request form
+Screen user requests (approve)
+Screen user requests (reject)
+
+
+
+
+

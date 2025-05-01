@@ -31,9 +31,42 @@ Student ID: Redacted
     margin-top: 12px;
 }
 
+/* Container 1 designs */
+#container-1-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
+    font-size: 20px;
+}
 
+#container-1-contents {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: left;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+    padding-left: 5%;
+    padding-right: 5%;
+}
 
-
+.container-1-paragraph {
+    font-size: 20px;
+}
 
 
 
