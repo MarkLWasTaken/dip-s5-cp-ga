@@ -342,10 +342,7 @@ $connection->close();
         unset($_SESSION['txtRequestItemName']);
         unset($_SESSION['txtItemQuantity']);
         unset($_SESSION['txtRequestStatus']);
-        unset($_SESSION['txtUserID']);
         unset($_SESSION['txtItemID']);
-        unset($_SESSION['txtAccountsPayableID']);
-        unset($_SESSION['txtAccountsReceivableID']);
 
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -356,10 +353,7 @@ $connection->close();
             $_SESSION['txtRequestItemName'] = $_POST['txtRequestItemName'];
             $_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
             @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
-            $_SESSION['txtUserID'] = $_POST['txtUserID'];
             @$_SESSION['txtItemID'] = $_POST['txtItemID'];
-            @$_SESSION['txtAccountsPayableID'] = $_POST['txtAccountsPayableID'];
-            @$_SESSION['txtAccountsReceivableID'] = $_POST['txtAccountsReceivableID'];
             if (isset($_POST['clear'])) {
                 // Unset the session variables to clear the form data.
                 unset($_SESSION['txtID']);
@@ -368,10 +362,7 @@ $connection->close();
                 unset($_SESSION['txtRequestItemName']);
                 unset($_SESSION['txtItemQuantity']);
                 unset($_SESSION['txtRequestStatus']);
-                unset($_SESSION['txtUserID']);
                 unset($_SESSION['txtItemID']);
-                unset($_SESSION['txtAccountsPayableID']);
-                unset($_SESSION['txtAccountsReceivableID']);
             }
         } else if (isset($_POST['clear'])) {
             // Unset the session variables to clear the form data.
@@ -381,10 +372,7 @@ $connection->close();
             unset($_SESSION['txtRequestItemName']);
             unset($_SESSION['txtItemQuantity']);
             unset($_SESSION['txtRequestStatus']);
-            unset($_SESSION['txtUserID']);
             unset($_SESSION['txtItemID']);
-            unset($_SESSION['txtAccountsPayableID']);
-            unset($_SESSION['txtAccountsReceivableID']);
         }
 
         // Retrieve the values from the session.
@@ -395,8 +383,6 @@ $connection->close();
         $item_quantity = isset($_SESSION['txtItemQuantity']) ? $_SESSION['txtItemQuantity'] : '';
         $request_status = isset($_SESSION['txtRequestStatus']) ? $_SESSION['txtRequestStatus'] : '';
         $item_id = isset($_SESSION['txtItemID']) ? $_SESSION['txtItemID'] : '';
-        $accounts_payable_id = isset($_SESSION['txtAccountsPayableID']) ? $_SESSION['txtAccountsPayableID'] : '';
-        $accounts_receivable_id = isset($_SESSION['txtAccountsReceivableID']) ? $_SESSION['txtAccountsReceivableID'] : '';
         ?>
 
         <!-- Table query container -->
@@ -439,14 +425,6 @@ $connection->close();
                             <td><input type="text" name="txtItemID" value="<?php $item_id ?>"></td>
                         </tr>
                         <tr>
-                            <th>Accounts Payable ID:</th>
-                            <td><input type="text" name="txtAccountsPayableID" value="<?php $accounts_payable_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Accounts Receivable ID:</th>
-                            <td><input type="text" name="txtAccountsReceivableID" value="<?php $accounts_receivable_id ?>"></td>
-                        </tr>
-                        <tr>
                             <th>Action:</th>
                             <td><input type="submit" name="submit" value="Search from the table"></td>
                         </tr>
@@ -461,33 +439,22 @@ $connection->close();
         </div>
 
         <div class="margin-50px"></div>
+        <!-- Layout for the contents 2 container. -->
+        <div id="contents-2-container">
+            <div id="contents-2-content">
+                <h2>What's next?</h2>
+                <div class="margin-30px"></div>
+                <p>Thank you for your support.</p>
+                <p class="contents-2-paragraph">When a request has been approved, a notification will be sent to your email account regarding arrangements for the sale of your item(s) to Quantum.</p>
+                <div class="margin-40px"></div>
+            </div>
+        </div>
 
+        <div class="margin-50px"></div>
         <!-- E-waste requests table container -->
         <div>
             <div class="table-content">
                 <?php
-                // Attempt to make a new connection to the database.
-                include 'php/connection.php';
-
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <table border=1>
-                    <tr>
-                        <th>ID</th>
-                        <th>Request Date</th>
-                        <th>Request Type</th>
-                        <th>Request Item Name</th>
-                        <th>Item Quantity</th>
-                        <th>Request Status</th>
-                        <th>Item ID</th>
-                        <th>Accounts Payable ID</th>
-                        <th>Accounts Receivable ID</th>
-                        <th colspan="2" style="text-align: center;">Actions</th>
-                    </tr>
-                HTML;
-                echo $html;
-
                 // For debugging only
                 /*
                 echo "Request ID: " . $request_id . "<br>";
@@ -498,10 +465,30 @@ $connection->close();
                 echo "Request Status: " . $request_status . "<br>";
                 echo "User ID: " . $user_id . "<br>";
                 echo "Item ID: " . $item_id . "<br>";
-                echo "Accounts Payable ID: " . $accounts_payable_id . "<br>";
-                echo "Accounts Receivable ID: " . $accounts_receivable_id . "<br>";
+                echo "Amount Payable: " . $amount_payable . "<br>";
+                echo "Amount Receivable : " . $amount_receivable . "<br>";
                 */
+                ?>
 
+                <table border=1>
+                    <tr>
+                        <th>ID</th>
+                        <th>Request Date</th>
+                        <th>Request Type</th>
+                        <th>Request Item Name</th>
+                        <th>Item Quantity</th>
+                        <th>Request Status</th>
+                        <th>Item ID</th>
+                        <th>Amount Payable</th>
+                        <th>Amount Receivable</th>
+                        <th colspan="2" style="text-align: center;">Actions</th>
+                    </tr>
+
+                <?php
+                // Attempt to make a new connection to the database.
+                include '../php/connection.php';
+
+                // Get data from the "requests" table.
                 // Declare a variable for the query.
                 $sql_query_1 = "SELECT * FROM `requests` WHERE
                                 request_id LIKE '%$request_id%' AND
@@ -511,10 +498,9 @@ $connection->close();
                                 item_quantity LIKE '%$item_quantity%' AND
                                 request_status LIKE '%$request_status%' AND
                                 user_id = '$user_id' AND
-                                item_id LIKE '%$item_id%' AND
-                                accounts_payable_id LIKE '%$accounts_payable_id%' AND
-                                accounts_receivable_id LIKE '%$accounts_receivable_id%'
+                                item_id LIKE '%$item_id%'
                                 ORDER BY request_id ASC";
+                // "picture_id", "accounts_payable_id" and "accounts_receivable_id" is excluded.
 
                 // Attempt to connect to the database and execute the query.
                 $sql_query_1_result = $connection->query($sql_query_1);
@@ -532,8 +518,66 @@ $connection->close();
                         <td>{$sql_query_1_row['item_quantity']}</td>
                         <td>{$sql_query_1_row['request_status']}</td>
                         <td>{$sql_query_1_row['item_id']}</td>
-                        <td>{$sql_query_1_row['accounts_payable_id']}</td>
-                        <td>{$sql_query_1_row['accounts_receivable_id']}</td>
+                    HTML;
+                    echo $html;
+
+
+
+
+
+                // Get data from the "accounts_payable" table.
+                // Declare a variable for the query.
+                $sql_query_2 = "SELECT * FROM `accounts_payable` WHERE
+                                request_id LIKE '%$request_id%'
+                                ORDER BY request_id ASC";
+
+                // Attempt to connect to the database and execute the query.
+                $sql_query_2_result = $connection->query($sql_query_2);
+
+                // Insert the each of the results into the table.
+                while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
+                        <td>{$sql_query_2_row['amount_payable']}</td>
+                    HTML;
+                    echo $html;
+                }
+
+
+
+
+
+
+                // Get data from the "accounts_receivable" table.
+                // Declare a variable for the query.
+                $sql_query_3 = "SELECT * FROM `accounts_receivable` WHERE
+                                request_id LIKE '%$request_id%'
+                                ORDER BY request_id ASC";
+
+                // Attempt to connect to the database and execute the query.
+                $sql_query_3_result = $connection->query($sql_query_3);
+
+                // Insert the each of the results into the table.
+                while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
+                        <td>{$sql_query_3_row['amount_receivable']}</td>
+                    HTML;
+                    echo $html;
+                }
+
+
+
+
+
+
+
+
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
                         <td>
                             <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../view-transactions/view.php">
                                 <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">

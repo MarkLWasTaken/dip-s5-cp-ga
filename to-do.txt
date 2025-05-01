@@ -26,9 +26,10 @@ Only approve or reject suppliers requests, not the custoomers request (canceled)
 Make pictures only viewable to Supplier Sell
 Change Requests history to View Requests
 
-For Supplier Sell after clicking on "View details" button on Transaction history
-A notification will be sent to your email account regarding arrangements for the sale of your item(s) to Quantum.
+What's next?
+(For Supplier Sell after clicking on "View details" button on Transaction history)
 Thank you for your support.
+A notification will be sent to your email account regarding arrangements for the sale of your item(s) to Quantum.
 (This is for future enhancement)
 
 Services (Unavailable)

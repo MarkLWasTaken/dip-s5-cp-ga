@@ -27,7 +27,7 @@ if ($user_id != null) {
 
 // Users who are not system administrators (sysadmins)
 // are not allowed to access this page.
-if ($is_admin != 1) {
+if ($is_admin != 2) {
     header('Location: ../../index.php');
 }
 
