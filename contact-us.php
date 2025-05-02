@@ -25,6 +25,12 @@ if ($user_id != null) {
     }
 }
 
+// Set a the default timezone for date and time.
+date_default_timezone_set('Asia/Singapore');
+
+// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
+$date = date('Y-m-d H:i:s P');
+
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
 $connection->close();
@@ -327,52 +333,126 @@ $connection->close();
             <h1>Blank space.</h1>
         </div> -->
 
-        <!-- Layout for the Contact us container. -->
-        <div id="container-1-container">
-            <div id="container-1-contents ">
+        <?php
+            // Include the PHP script for re-connecting to the database (DB).
+            include 'php/connection.php';
+
+            // Check if the form has been submitted.
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Get the form data
+                $name = $_POST["txtName"];
+                $email_address = $_POST["txtEmailAddress"];
+                $message = $_POST["txtMessage"];
+
+                // Insert the data into the database table.
+                // Declare a variable for the query.
+                $sql_query_1 = "INSERT INTO `contact_us` (name,
+                                email_address, message, date_submitted)
+                                VALUES ('$name', '$email_address', '$message', '$date')";
+
+                // Attempt to connect to the database and execute the query.
+                $sql_query_1_result = $connection->query($sql_query_1);
+
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
+                    <style>
+                        #container-1 {
+                            display: none;
+                        }
+
+                        #container-1-contents {
+                            display: none;
+                        }
+
+                        #container-2 {
+                            display: block;
+                        }
+
+                        #container-2-contents {
+                            display: block;
+                        }
+
+                        .contact-us-table {
+                            display: none;
+                        }
+                    </style>
+                HTML;
+                echo $html;
+            }
+
+        // Ensure the connection to the DB is closed, with or without
+        // any code or query execution for security reasons.
+        $connection->close();
+        ?>
+
+        <!-- Layout for the Container 1. -->
+        <div id="container-1">
+            <div id="container-1-contents">
+                <div class="margin-30px"></div>
                 <p>Thank you for your interest in <b>Quantum E-waste Management System</b>.</p>
                 <p>Need to get in touch with us?</p>
                 <p>Please use this form to contact us.</p>
                 <p>We will get back to you as soon as we can.</p>
-                <div class="margin-100px"></div>
+                <div class="margin-60px"></div>
             </div>
         </div>
 
+        <div class="margin-60px"></div>
 
+        <!-- Layout for the Container 2 (Confirmation message). -->
+        <div id="container-2">
+            <div id="container-2-contents">
+                <div class="margin-30px"></div>
+                <p>Your message has been submitted to us.</p>
+                <p>We'll review the message and get back to you as soon as we can.</p>
+                <p>Thank you for your support.</p>
+                <div class="margin-40px"></div>
+                <div class="container-3">
+                    <a class="container-3-contents" href="contact-us.php">
+                        <p>Return to contact us page</p>
+                    </a>
+                </div>
+            </div>
+        </div>
 
-
-
-
-
+        <div class="margin-60px"></div>
 
         <!-- Contact us table container -->
         <div>
             <div class="contact-us-table">
-                <table border=1>
-                    <tr>
-                        <th>Name:</th>
-                        <th>Email Address:</th>
-                        <th>Message:</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
+                <form method="post" action="">
+                    <table border=1>
+                        <tr>
+                            <th>Name:</th>
+                            <td>
+                                <input class="text-field" type="text" name="txtName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email Address:</th>
+                            <td>
+                                <input class="text-field" type="text" name="txtEmailAddress">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Message:</th>
+                            <td>
+                                <textarea class="text-field" name="txtMessage" rows="15"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Actions:</th>
+                            <td>
+                                <input type="submit" value="Submit the form">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-        <div class="margin-100px"></div>
+        <div class="margin-120px"></div>
         <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">
