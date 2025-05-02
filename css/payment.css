@@ -133,7 +133,7 @@ Student ID: Redacted
     padding: 10px;
 }
 
-/* E-waste requests table designs */
+/* E-waste requests made by the user (table designs) */
 .requests-table table {
     border: 2px solid black;
     border-collapse: separate;

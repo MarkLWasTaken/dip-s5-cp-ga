@@ -337,7 +337,6 @@ $date = date('Y-m-d H:i:s P');
         // PHP for Customer Sell Request Form.
 
         // File upload module.
-
         // Reference: https://www.w3schools.com/php/php_file_upload.asp
 
         $target_dir = "../uploads/requests/";
@@ -362,7 +361,7 @@ $date = date('Y-m-d H:i:s P');
         $newFileName = "request_id_" . $requests_row_count . "_" . "user_id_" . $user_id . "." . $imageFileType;
         $newTargetFile = $target_dir . $newFileName;
 
-        // Declare the variables.
+        // Declare the variables as empty.
         $file_is_image = "";
         $file_not_image = "";
         $file_already_exists = "";
@@ -424,7 +423,7 @@ $date = date('Y-m-d H:i:s P');
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             $file_not_uploaded = "&#x274C Sorry, your file was not uploaded.";
-            $form_status = "Sell request form has not been successfully submitted!";
+            $form_status = "Sell request form has not been successfully submitted.";
         }
         // if everything is ok, try to upload file
         else {
@@ -462,12 +461,15 @@ $date = date('Y-m-d H:i:s P');
             }
             else {
                 $file_upload_failed = "&#x274C Sorry, there was an error uploading your file.";
-                $form_status = "Sell request form has not been successfully submitted!";
+                $form_status = "Sell request form has not been successfully submitted.";
             }
         }
 
+        // File upload module.
         // Reference: https://www.w3schools.com/php/php_file_upload.asp
+        ?>
 
+        <?php
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Get the form data from the tables.
