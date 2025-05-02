@@ -205,6 +205,32 @@ Student ID: Redacted
     font-size: 20px;
 }
 
+.submit-button {
+    width: 100%;
+    height: 60px;
+    border-radius: 10%/100%;
+    background: #808080; /* gray */
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.submit-button:hover {
+    background: #778899; /* lightslategray */
+    transform: scale(1.03);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
 /* 
 End of the lines/blocks of codes
 Developed by M1

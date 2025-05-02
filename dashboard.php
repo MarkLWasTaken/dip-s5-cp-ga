@@ -429,6 +429,14 @@ $connection->close();
 
                     <div class="margin-20px"></div>
 
+                    <a class="black-hyperlink-display" href="payment/index.php">
+                        <div class="button">
+                            <p class="button-content">Proof of Payment</p>
+                        </div>
+                    </a>
+
+                    <div class="margin-20px"></div>
+
                     <a class="black-hyperlink-display" href="account/profile/index.php">
                         <div class="button">
                             <p class="button-content">Manage/Edit Profile</p>

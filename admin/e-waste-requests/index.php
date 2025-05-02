@@ -445,13 +445,12 @@ $connection->close();
                             <td><input type="text" name="txtAccountsReceivableID" value="<?php $accounts_receivable_id ?>"></td>
                         </tr>
                         <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="submit" value="Search from the table"></td>
-                        </tr>
-                        </tr>
-                        <tr>
-                            <th>Action:</th>
-                            <td><input type="submit" name="clear" value="Clear the query"></td>
+                            <th>Actions:</th>
+                            <td>
+                                <input class="submit-button" type="submit" name="submit" value="Search from the table">
+                                <div class="margin-20px"></div>
+                                <input class="submit-button" type="submit" name="clear" value="Clear the query">
+                            </td>
                         </tr>
                     </table>
                 </div>
