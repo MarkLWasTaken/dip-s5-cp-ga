@@ -431,19 +431,19 @@ $connection->close();
                         <tr>
                             <th>Name:</th>
                             <td>
-                                <input class="text-field" type="text" name="txtName">
+                                <input class="text-field" type="text" name="txtName" required>
                             </td>
                         </tr>
                         <tr>
                             <th>Email Address:</th>
                             <td>
-                                <input class="text-field" type="text" name="txtEmailAddress">
+                                <input class="text-field" type="email" name="txtEmailAddress" required>
                             </td>
                         </tr>
                         <tr>
                             <th>Message:</th>
                             <td>
-                                <textarea class="text-field" name="txtMessage" rows="15"></textarea>
+                                <textarea class="text-field" name="txtMessage" rows="15" required></textarea>
                             </td>
                         </tr>
                         <tr>

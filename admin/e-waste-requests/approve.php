@@ -421,7 +421,7 @@ $connection->close();
 
                         // Declare a variable for the query.
                         $sql_query_5 = "UPDATE `requests`
-                                        SET request_status = 'Approved',
+                                        SET request_status = 'Pending payment',
                                         accounts_receivable_id = '$sql_query_4_row_count'
                                         WHERE request_id = '$request_id'
                                         AND request_status = 'Pending'";

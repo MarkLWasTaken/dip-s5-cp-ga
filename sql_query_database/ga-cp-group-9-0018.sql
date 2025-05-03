@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2025 at 12:41 PM
+-- Generation Time: May 03, 2025 at 02:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,8 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accounts_payable` (
   `accounts_payable_id` int(11) NOT NULL,
+  `payable_date` varchar(300) NOT NULL,
   `amount_payable` int(11) NOT NULL,
-  `request_id` int(11) NOT NULL
+  `request_id` int(11) NOT NULL,
+  `picture_id` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -41,8 +43,10 @@ CREATE TABLE `accounts_payable` (
 
 CREATE TABLE `accounts_receivable` (
   `accounts_receivable_id` int(11) NOT NULL,
+  `receivable_date` varchar(300) NOT NULL,
   `amount_receivable` int(11) NOT NULL,
-  `request_id` int(11) NOT NULL
+  `request_id` int(11) NOT NULL,
+  `picture_id` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -102,16 +106,16 @@ CREATE TABLE `feedbacks` (
 
 CREATE TABLE `items` (
   `item_id` int(11) NOT NULL,
-  `item_name` varchar(300) NOT NULL,
+  `item_type` varchar(300) NOT NULL,
   `item_price` decimal(11,2) NOT NULL,
-  `item_type` varchar(300) NOT NULL
+  `transaction_type` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`item_id`, `item_name`, `item_price`, `item_type`) VALUES
+INSERT INTO `items` (`item_id`, `item_type`, `item_price`, `transaction_type`) VALUES
 (1, 'Processor', 200.00, 'buy'),
 (2, 'Graphics card', 100.00, 'buy'),
 (3, 'Memory (16 GB)', 70.00, 'buy'),
@@ -126,7 +130,10 @@ INSERT INTO `items` (`item_id`, `item_name`, `item_price`, `item_type`) VALUES
 (12, 'Smartphone', 5.00, 'sell'),
 (13, 'Tablet', 5.00, 'sell'),
 (14, 'Monitor', 2.00, 'sell'),
-(15, 'Printer', 2.00, 'sell');
+(15, 'Printer', 2.00, 'sell'),
+(16, 'Pickup', 50.00, 'service'),
+(17, 'Buy B2B Bins', 300.00, 'service'),
+(18, 'Destroy Data Securely', 80.00, 'service');
 
 -- --------------------------------------------------------
 
@@ -142,22 +149,6 @@ CREATE TABLE `mailing_list` (
   `date_modified` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `mailing_list`
---
-
-INSERT INTO `mailing_list` (`mailing_list_id`, `email_address`, `is_subscribed`, `date_first_subscribed`, `date_modified`) VALUES
-(1, 'ewhitehall0@mozilla.com', 1, '2024-12-09', ''),
-(2, 'cfrancesco1@yellowpages.com', 1, '2024-11-06', ''),
-(3, 'bmccolgan2@topsy.com', 1, '2024-09-19', ''),
-(4, 'clago3@dedecms.com', 1, '2024-11-08', ''),
-(5, 'eyitzovitz4@java.com', 1, '2024-10-19', ''),
-(6, 'mmeadmore5@so-net.ne.jp', 1, '2024-10-13', ''),
-(7, 'mprangle6@tripod.com', 1, '2024-12-11', ''),
-(8, 'hmartonfi7@guardian.co.uk', 1, '2024-09-16', ''),
-(9, 'hsuddock8@irs.gov', 1, '2024-11-15', ''),
-(10, 'caizikovitz9@time.com', 1, '2024-12-17', '');
-
 -- --------------------------------------------------------
 
 --
@@ -171,18 +162,12 @@ CREATE TABLE `requests` (
   `request_item_name` varchar(300) NOT NULL,
   `item_quantity` int(11) NOT NULL,
   `request_status` varchar(300) NOT NULL,
+  `picture_id` varchar(300) NOT NULL,
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `accounts_payable_id` int(11) NOT NULL,
   `accounts_receivable_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `requests`
---
-
-INSERT INTO `requests` (`request_id`, `request_date`, `request_type`, `request_item_name`, `item_quantity`, `request_status`, `user_id`, `item_id`, `accounts_payable_id`, `accounts_receivable_id`) VALUES
-(1, '1', '1', '', 1, 'Pending', 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -223,13 +208,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email_address`, `password`, `gender`, `country`, `is_admin`, `date_created`, `date_modified`) VALUES
 (6, 'Ashly', 'Wray', 'awray5@hibu.com', 'zF7*6uF1r', 'Female', 'Azerbaijan', 1, '2024-10-02', ''),
-(7, 'Arne', 'Calltone', 'acalltone6@hugedomains.com', 'zK5\'dV%S', 'Male', 'Brazil', 0, '2024-12-05', ''),
+(7, 'Arne', 'Calltone', 'acalltone6@hugedomains.com', 'zK5cdV%S', 'Male', 'Brazil', 2, '2024-12-05', ''),
 (8, 'Horton', 'Seaman', 'hseaman7@1688.com', 'aX9(ZCGGwQk', 'Male', 'China', 0, '2024-11-04', ''),
 (9, 'Margi', 'Petru', 'mpetru8@state.tx.us', 'pN7&>)XQft`1q/`', 'Female', 'Nepal', 0, '2024-10-25', ''),
 (10, 'Kellina', 'Senyard', 'ksenyard9@simplemachines.org', 'sF8>Bs!g,', 'Female', 'China', 0, '2024-12-11', ''),
 (11, 'Nanny', 'Wardley', 'nwardleya@scientificamerican.com', 'xM2\\9b%`X@H,N<_', 'Female', 'Russia', 0, '2024-12-03', ''),
 (12, 'Cesya', 'McTerrelly', 'cmcterrellyb@sbwire.com', 'tZ7+t9#a\"lUC', 'Female', 'Indonesia', 0, '2024-11-28', ''),
-(13, 'Lonnard', 'Linnemann', 'llinnemannc@comsenz.com', 'cD5\'I&&Xc', 'Male', 'Brazil', 0, '2024-11-28', ''),
+(13, 'Lonnard', 'Linnemann', 'llinnemannc@comsenz.com', 'cD5zI&&Xc', 'Male', 'Brazil', 0, '2024-11-28', ''),
 (14, 'Witty', 'Coop', 'wcoopd@google.com', 'oZ3@mR0Z9H1fe', 'Male', 'China', 0, '2024-11-09', ''),
 (15, 'Gerrie', 'Hannigan', 'ghannigane@lulu.com', 'bQ6,KmKCZ+Z9\"f', 'Female', 'Russia', 0, '2024-11-02', ''),
 (16, 'Olva', 'Manolov', 'omanolovf@google.com.br', 'mL4,Ji>Z3', 'Female', 'United States', 0, '2024-10-16', ''),
@@ -243,7 +228,7 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email_address`, `pas
 (24, 'Leeann', 'Vedeneev', 'lvedeneevn@ebay.co.uk', 'xC0_!KlD', 'Female', 'United Kingdom', 0, '2024-10-23', ''),
 (25, 'Darin', 'Lavielle', 'dlavielleo@springer.com', 'oP2?FE+\"89~x', 'Bigender', 'Chile', 0, '2024-11-26', ''),
 (26, 'Curtice', 'Triggel', 'ctriggelp@mediafire.com', 'lP4$|.gbp', 'Male', 'Russia', 0, '2024-12-06', ''),
-(27, 'Catrina', 'Sutworth', 'csutworthq@google.it', 'eR4\'8OrXLDcD', 'Female', 'Greece', 0, '2024-09-20', ''),
+(27, 'Catrina', 'Sutworth', 'csutworthq@google.it', 'eR4z8OrXLDcD', 'Female', 'Greece', 0, '2024-09-20', ''),
 (28, 'Tiffanie', 'Waitland', 'twaitlandr@lulu.com', 'vQ8@ax3L@GkA', 'Female', 'Colombia', 0, '2024-09-22', ''),
 (29, 'Pace', 'Kuhndel', 'pkuhndels@multiply.com', 'pT8~6~CiSx=&AqH%', 'Male', 'Japan', 0, '2024-12-03', ''),
 (30, 'Tara', 'Stilldale', 'tstilldalet@infoseek.co.jp', 'dD8=5\\W|8q', 'Female', 'Norfolk Island', 0, '2024-10-12', ''),
@@ -276,13 +261,22 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email_address`, `pas
 -- Indexes for table `accounts_payable`
 --
 ALTER TABLE `accounts_payable`
-  ADD PRIMARY KEY (`accounts_payable_id`);
+  ADD PRIMARY KEY (`accounts_payable_id`),
+  ADD KEY `request_id` (`request_id`);
+
+--
+-- Indexes for table `accounts_receivable`
+--
+ALTER TABLE `accounts_receivable`
+  ADD PRIMARY KEY (`accounts_receivable_id`),
+  ADD KEY `request_id` (`request_id`);
 
 --
 -- Indexes for table `contact_us`
 --
 ALTER TABLE `contact_us`
-  ADD PRIMARY KEY (`contact_us_id`);
+  ADD PRIMARY KEY (`contact_us_id`),
+  ADD KEY `email_address` (`email_address`);
 
 --
 -- Indexes for table `faq`
@@ -314,13 +308,18 @@ ALTER TABLE `mailing_list`
 -- Indexes for table `requests`
 --
 ALTER TABLE `requests`
-  ADD PRIMARY KEY (`request_id`);
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `accounts_payable_id` (`accounts_payable_id`),
+  ADD KEY `accounts_receivable_id` (`accounts_receivable_id`);
 
 --
 -- Indexes for table `sales_request_tracking`
 --
 ALTER TABLE `sales_request_tracking`
-  ADD PRIMARY KEY (`sales_request_tracking_id`);
+  ADD PRIMARY KEY (`sales_request_tracking_id`),
+  ADD KEY `request_id` (`request_id`);
 
 --
 -- Indexes for table `users`
@@ -338,6 +337,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `accounts_payable`
   MODIFY `accounts_payable_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `accounts_receivable`
+--
+ALTER TABLE `accounts_receivable`
+  MODIFY `accounts_receivable_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
@@ -361,7 +366,7 @@ ALTER TABLE `feedbacks`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `mailing_list`
@@ -373,7 +378,7 @@ ALTER TABLE `mailing_list`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sales_request_tracking`
@@ -392,10 +397,35 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `accounts_payable`
+--
+ALTER TABLE `accounts_payable`
+  ADD CONSTRAINT `accounts_payable_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`request_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `accounts_receivable`
+--
+ALTER TABLE `accounts_receivable`
+  ADD CONSTRAINT `accounts_receivable_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`request_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
   ADD CONSTRAINT `feedbacks_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `requests`
+--
+ALTER TABLE `requests`
+  ADD CONSTRAINT `requests_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `requests_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sales_request_tracking`
+--
+ALTER TABLE `sales_request_tracking`
+  ADD CONSTRAINT `sales_request_tracking_ibfk_1` FOREIGN KEY (`request_id`) REFERENCES `requests` (`request_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

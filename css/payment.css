@@ -197,17 +197,6 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* Container 5 */
 /* Return to the proof of payment page */
 .container-5-container {
@@ -255,17 +244,6 @@ Student ID: Redacted
 	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
     transition: background-color 0.3s, transform 0.3s linear;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* Table query designs */
 /* index.php */
@@ -408,12 +386,6 @@ Student ID: Redacted
     padding: 10px;
 }
 
-
-
-
-
-
-
 /* Upload picture status (table designs) */
 /* upload.php */
 /* Upload picture status table */
@@ -461,24 +433,6 @@ Student ID: Redacted
     width: 375px;
     padding: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Input text fields designs */
 input[type="text"] {

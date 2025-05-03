@@ -375,7 +375,7 @@ $date = date('Y-m-d H:i:s P');
                 }
 
                 #contents-3-container {
-                    height: 270px;
+                    height: 100%;
                 }
 
                 #contents-3-content {
@@ -391,6 +391,7 @@ $date = date('Y-m-d H:i:s P');
             <!-- Layout for the contents 3 container. -->
             <div id="contents-3-container">
                 <div id="contents-3-content">
+                    <div class="margin-30px"></div>
                     <h2>Buy request form has been successfully submitted!</h2>
                     <div class="margin-30px"></div>
                     <p>Here is the form details:</p>
@@ -398,6 +399,12 @@ $date = date('Y-m-d H:i:s P');
                     <p>Item Type: $items_item_name</p>
                     <p>Item Name: $request_item_name</p>
                     <p>Quantity: $request_item_quantity</p>
+                    <div class="container-5-container">
+                        <a class="container-5-contents" href="../buy-sell-request/index.php">
+                            <p>Return to the buy/sell request page</p>
+                        </a>
+                    </div>
+                    <div class="margin-80px"></div>
                 </div>
             </div>
 

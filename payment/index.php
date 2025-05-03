@@ -459,10 +459,10 @@ $connection->close();
                 $sql_query_1 = "SELECT * FROM `requests` WHERE
                                 request_id LIKE '%$request_id%' AND
                                 request_date LIKE '%$request_date%' AND
-                                request_type LIKE '%$request_type%' AND
+                                request_type = 'Buy' AND
                                 request_item_name LIKE '%$request_item_name%' AND
                                 item_quantity LIKE '%$item_quantity%' AND
-                                request_status = 'Approved' AND
+                                request_status = 'Pending payment' AND
                                 item_id LIKE '%$item_id%'
                                 ORDER BY request_id ASC";
                 // "picture_id", "user_id", "accounts_payable" and "accounts_receivable" is excluded.

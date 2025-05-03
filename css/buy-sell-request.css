@@ -139,6 +139,54 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
+/* Container 5 */
+/* Return to the buy/sell request page */
+.container-5-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+
+.container-5-contents {
+    height: 60px;
+    width: 40%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(rgb(95, 120, 120), rgba(27, 47, 48, 0.7));
+    color: white;
+    text-decoration: none;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-5-contents:hover {
+    background-color: white;
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
 /* Type of request form table contents designs */
 .type-of-request-form-table-contents table {
     border: 2px solid black;

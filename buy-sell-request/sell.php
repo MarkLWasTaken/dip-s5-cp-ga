@@ -524,6 +524,7 @@ $date = date('Y-m-d H:i:s P');
             <!-- Layout for the contents 3 container. -->
             <div id="contents-3-container">
                 <div id="contents-3-content">
+                    <div class="margin-30px"></div>
                     <h2>$form_status</h2>
                     <div class="margin-30px"></div>
                     <p>Here is the form details:</p>
@@ -598,6 +599,12 @@ $date = date('Y-m-d H:i:s P');
                     <div class="margin-50px"></div>
                     <img src="$newTargetFile" width="90%" height ="50%" alt="User's request picture." title="User's request picture.">
                     <div class="margin-50px"></div>
+                    <div class="container-5-container">
+                        <a class="container-5-contents" href="../buy-sell-request/index.php">
+                            <p>Return to the buy/sell request page</p>
+                        </a>
+                    </div>
+                    <div class="margin-80px"></div>
                 </div>
             </div>
 

@@ -414,19 +414,19 @@ $connection->close();
 
                 // Get the data from the database table.
                 // Declare a variable for the query.
-                $sql_query_1 = "SELECT * FROM `accounts_payable`
+                $sql_query_1 = "SELECT * FROM `accounts_receivable`
                                 WHERE request_id = '$request_id'";
 
                 // Attempt to connect to the database and execute the query.
                 $sql_query_1_result = $connection->query($sql_query_1);
 
-                // Get the "accounts_payable_id" data.
+                // Get the "accounts_receivable_id" data.
                 while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-                    $accounts_payable_id = $sql_query_1_row['accounts_payable_id'];
+                    $accounts_receivable_id = $sql_query_1_row['accounts_receivable_id'];
                 }
 
                 // Rename picture.
-                $newFileName = "accounts_payable_id_" . $accounts_payable_id . "_" . "request_id_" . $request_id . "." . $imageFileType;
+                $newFileName = "accounts_receivable_id_" . $accounts_receivable_id . "_" . "request_id_" . $request_id . "." . $imageFileType;
                 $newTargetFile = $target_dir . $newFileName;
 
                 // Declare and initialize the variables as empty.
@@ -502,12 +502,12 @@ $connection->close();
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Declare a variable for the query.
                             // Update the data into the database table row.
-                            $sql_query_2 = "UPDATE `accounts_payable`
+                            $sql_query_2 = "UPDATE `accounts_receivable`
                                             SET `picture_id` = '$newFileName'
-                                            WHERE `accounts_payable`.`accounts_payable_id` = '$accounts_payable_id';";
+                                            WHERE `accounts_receivable_id` = '$accounts_receivable_id';";
 
                             /*
-                            Added "picture_id" column in "accounts_payable" database table. There's a reason for it.
+                            Added "picture_id" column in "accounts_receivable" database table. There's a reason for it.
                             Each time a user submits and uploads a picture to the system,
                             the database keeps a record of the file name and extension type in the table.
                             So that I don't have to code another module for retrieving the picture file and
@@ -517,6 +517,15 @@ $connection->close();
 
                             // Attempt to connect to the database and execute the query.
                             $sql_query_2_result = $connection->query($sql_query_2);
+
+                            // Declare a variable for the query.
+                            // Update the data into the database table row.
+                            $sql_query_3 = "UPDATE `requests`
+                                            SET `request_status` = 'Approve delivery'
+                                            WHERE `request_id` = '$request_id';";
+
+                            // Attempt to connect to the database and execute the query.
+                            $sql_query_3_result = $connection->query($sql_query_3);
                         }
                         $form_status = "The picture has been successfully submitted!";
                     }
