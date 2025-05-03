@@ -79,7 +79,7 @@ if ($is_admin != 1) {
             <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
             <a href="../view-transactions/index.php" onclick="closeNav()">View transactions</a>
-            <a href="../requests-history/index.php" onclick="closeNav()">Requests history</a>
+            <a href="../payment/index.php" onclick="closeNav()">Proof of Payment</a>
             <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="../account/logout.php" onclick="closeNav()">Logout</a>
             <div class="margin-50px"></div>
@@ -304,7 +304,7 @@ if ($is_admin != 1) {
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML
                     <div>
-                        <a class='black-hyperlink' href='../admin/index.php'>
+                        <a class='black-hyperlink' href='../dashboard.php#admin-navigation'>
                             <div class='menu-button'>
                                 Admin
                             </div>
