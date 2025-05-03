@@ -58,7 +58,9 @@ Student ID: Redacted
 }
 
 /* Container 1 */
-#container-1-container {
+/* Upload the picture here. */
+/* Please select a request before uploading a picture here. */
+.container-1-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
     do not push the footer down and affect the overall website design.
@@ -69,7 +71,7 @@ Student ID: Redacted
     height: 100%;
 }
 
-#container-1-contents {
+.container-1-contents {
     height: 100%;
     width: 100%;
     border-style: solid;
@@ -87,7 +89,186 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
+/* Container 2 */
+/* Return to the proof of payment page */
+.container-2-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+
+.container-2-contents {
+    height: 60px;
+    width: 40%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(rgb(95, 120, 120), rgba(27, 47, 48, 0.7));
+    color: white;
+    text-decoration: none;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-2-contents:hover {
+    background-color: white;
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+/* Form status */
+.container-3-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 130px;
+}
+
+.container-3-contents {
+    height: 80px;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Picture results */
+.container-4-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
+}
+
+.container-4-contents {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container 5 */
+/* Return to the proof of payment page */
+.container-5-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+
+.container-5-contents {
+    height: 60px;
+    width: 40%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(rgb(95, 120, 120), rgba(27, 47, 48, 0.7));
+    color: white;
+    text-decoration: none;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-5-contents:hover {
+    background-color: white;
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* Table query designs */
+/* index.php */
 .table-query-content table {
     border: 2px solid black;
     border-collapse: separate;
@@ -134,6 +315,7 @@ Student ID: Redacted
 }
 
 /* E-waste requests made by the user (table designs) */
+/* index.php */
 .requests-table table {
     border: 2px solid black;
     border-collapse: separate;
@@ -178,13 +360,140 @@ Student ID: Redacted
     padding: 10px;
 }
 
+/* Upload picture (table designs) */
+/* upload.php */
+/* Upload picture table */
+.upload-picture-table-contents table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.upload-picture-table-contents th {
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
+}
+
+.upload-picture-table-contents td {
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
+}
+
+.upload-picture-table-contents tr {
+    height: 40px;
+}
+
+.upload-picture-table-contents th,
+.upload-picture-table-contents td {
+    border: 1px solid black;
+}
+
+.upload-picture-table-contents th {
+    width: 30%;
+    padding-left: 10px;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.upload-picture-table-contents td {
+    width: 375px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+/* Upload picture status (table designs) */
+/* upload.php */
+/* Upload picture status table */
+.upload-picture-status-table-contents table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.upload-picture-status-table-contents th {
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
+}
+
+.upload-picture-status-table-contents td {
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
+}
+
+.upload-picture-status-table-contents tr {
+    height: 40px;
+}
+
+.upload-picture-status-table-contents th,
+.upload-picture-status-table-contents td {
+    border: 1px solid black;
+}
+
+.upload-picture-status-table-contents th {
+    width: 30%;
+    padding-left: 10px;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.upload-picture-status-table-contents td {
+    width: 375px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Input text fields designs */
 input[type="text"] {
     width: 100%;
     font-size: 18px;
 }
 
-.submit-button {
+/* Input file upload designs */
+input[type="file"] {
+    width: 500px;
+    font-size: 18px;
+}
+
+.submit-button,
+.upload-button {
     width: 250px;
 }
 

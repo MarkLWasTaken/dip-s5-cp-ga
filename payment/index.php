@@ -328,8 +328,8 @@ $connection->close();
         </div> -->
 
         <!-- Layout for the contents 1 container. -->
-        <div id="container-1-container">
-            <div id="container-1-contents">
+        <div class="container-1-container">
+            <div class="container-1-contents">
                 <h2>To begin, select a request here.</h2>
             </div>
         </div>
@@ -485,7 +485,7 @@ $connection->close();
                         <td>
                             <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../payment/upload.php">
                                 <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
-                                <input type="submit" name="submit" value="View details">
+                                <input type="submit" name="submit" value="Upload picture">
                             </form>
                         </td>
                     </tr>
