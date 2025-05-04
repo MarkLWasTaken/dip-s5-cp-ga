@@ -323,16 +323,16 @@ $connection->close();
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Admin - Manage users</div>
+        <div class="page-title-banner-container-1">
+            <div class="page-title-banner-content-1">Manage users</div>
         </div>
 
         <div class="margin-30px"></div>
         <!-- <br> -->
 
         <!-- Layout for the contents 1 container. -->
-        <div id="contents-1-container">
-            <div id="contents-1-content">
+        <div class="container-1-container">
+            <div class="container-1-content">
                 <h2>Manage, edit and delete users here.</h2>
             </div>
         </div>
@@ -411,15 +411,15 @@ $connection->close();
                         <!-- "users" table query options. -->
                         <tr>
                             <th>ID:</th>
-                            <td><input type="text" name="txtID" value="<?php echo $user_id ?>"></td>
+                            <td><input class="text-field-query-table" type="text" name="txtID" value="<?php echo $user_id ?>"></td>
                         </tr>
                         <tr>
                             <th>First Name:</th>
-                            <td><input type="text" name="txtFName" value="<?php echo $first_name ?>"></td>
+                            <td><input class="text-field-query-table" type="text" name="txtFName" value="<?php echo $first_name ?>"></td>
                         </tr>
                         <tr>
                             <th>Last Name:</th>
-                            <td><input type="text" name="txtLName" value="<?php echo $last_name ?>"></td>
+                            <td><input class="text-field-query-table" type="text" name="txtLName" value="<?php echo $last_name ?>"></td>
                         </tr>
                         <tr>
                             <th>Email Address:</th>
@@ -442,43 +442,43 @@ $connection->close();
                         </tr>
                         <tr>
                             <th>Country:</th>
-                            <td><input type="text" name="txtCountry" value="<?php $country ?>"></td>
+                            <td><input class="text-field-query-table" type="text" name="txtCountry" value="<?php $country ?>"></td>
                         </tr>
                         <tr>
                             <th>Is admin?</th>
                             <td>
                                 <div class="radio-choice-2">
                                     <div class="radio-choices">
-                                        <input type="radio" id="user" name="rdoAdmin" value="0" <?php echo ($gender == '0') ? 'checked' : ''; ?>>
-                                        <label for="no">User</label><br>
+                                        <input type="radio" id="user" name="rdoAdmin" value="0" <?php echo ($is_admin == '0') ? 'checked' : ''; ?>>
+                                        <label for="user">User</label><br>
                                     </div>
                                     <div class="radio-choices">
-                                        <input type="radio" id="systemadmin" name="rdoAdmin" value="1" <?php echo ($gender == '1') ? 'checked' : ''; ?>>
-                                        <label for="yes">System Admin</label><br>
+                                        <input type="radio" id="systemadmin" name="rdoAdmin" value="1" <?php echo ($is_admin == '1') ? 'checked' : ''; ?>>
+                                        <label for="systemadmin">System Admin</label><br>
                                     </div>
                                     <div class="radio-choices">
-                                        <input type="radio" id="officeadmin" name="rdoAdmin" value="2" <?php echo ($gender == '2') ? 'checked' : ''; ?>>
-                                        <label for="yes">Office Admin</label><br>
+                                        <input type="radio" id="officead" name="rdoAdmin" value="2" <?php echo ($is_admin == '2') ? 'checked' : ''; ?>>
+                                        <label for="officead">Office Admin</label><br>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>Date Created:</th>
-                            <td><input type="text" name="txtDateCreated" value="<?php $date_created ?>"></td>
+                            <td><input class="text-field-query-table" type="text" name="txtDateCreated" value="<?php $date_created ?>"></td>
                         </tr>
                         <tr>
                             <th>Date Modified:</th>
-                            <td><input type="text" name="txtDateModified" value="<?php $date_modified ?>"></td>
+                            <td><input class="text-field-query-table" type="text" name="txtDateModified" value="<?php $date_modified ?>"></td>
                         </tr>
                         <tr>
                             <th>Action:</th>
-                            <td><input type="submit" name="submit" value="Search from the table"></td>
+                            <td><input class="submit-button" type="submit" name="submit" value="Search from the table"></td>
                         </tr>
                         </tr>
                         <tr>
                             <th>Action:</th>
-                            <td><input type="submit" name="clear" value="Clear the query"></td>
+                            <td><input class="clear-button" type="submit" name="clear" value="Clear the query"></td>
                         </tr>
                     </table>
                 </div>
@@ -543,8 +543,18 @@ $connection->close();
                         <td>{$sql_query_1_row['gender']}</td>
                         <td>{$sql_query_1_row['country']}</td>
                         <td>{$sql_query_1_row['is_admin']}</td>
-                        <td><a href="edit/index.php?id={$sql_query_1_row['user_id']}">Edit</a></td>
-                        <td><a href="delete/index.php?id={$sql_query_1_row['user_id']}">Delete</a></td>
+                        <td>
+                            <form id="post_user_id_{$sql_query_1_row['user_id']}" method="post" action="edit/index.php">
+                                <input type="hidden" name="user_id" value="{$sql_query_1_row['user_id']}">
+                                <input type="submit" name="submit" value="Edit">
+                            </form>
+                        </td>
+                        <td>
+                            <form id="post_user_id_{$sql_query_1_row['user_id']}" method="post" action="delete/index.php">
+                                <input type="hidden" name="user_id" value="{$sql_query_1_row['user_id']}">
+                                <input type="submit" name="submit" value="Delete">
+                            </form>
+                        </td>
                     </tr>
                     HTML;
                     echo $html;

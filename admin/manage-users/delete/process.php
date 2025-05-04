@@ -45,7 +45,7 @@ $connection->close();
     <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Management System Group">
 
-    <title>Quantum E-waste Management System - Admin - Manage users (Edit user)</title>
+    <title>Quantum E-waste Management System - Admin - Manage users (Delete user) (Process)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../../css/styles.css" rel="stylesheet">
@@ -324,7 +324,7 @@ $connection->close();
         <!-- <br class="desktop-line-break"> -->
 
         <div class="page-title-banner-container-2">
-            <div class="page-title-banner-content-2">Manage Users (Edit User)</div>
+            <div class="page-title-banner-content-2">Manage Users (Delete User) (Process)</div>
         </div>
 
         <div class="margin-40px"></div>
@@ -332,48 +332,41 @@ $connection->close();
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Get the data from the submitted form.
+            $users_user_id = $_POST["users_user_id"];
+
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <!-- Layout for the contents 2 container. -->
-            <div class="container-2-container">
-                <div class="container-2-content">
-                    <h2>Edit user details here.</h2>
+            <div class="container--container">
+                <div class="container--content">
+                    <h2>User ID $users_user_id has been successfully deleted.</h2>
                 </div>
             </div>
             HTML;
             echo $html;
-
-            // Get the user ID from POST request.
-            @$users_user_id = $_POST["user_id"];
         }
         else if ($_SERVER["REQUEST_METHOD"] != "POST") {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <style>
-                .container-6-container {
+                container-2-container {
                     display: none;
                     opacity: 0%;
                 }
 
-                .container-6-content {
+                container-2-content {
                     display: none;
                     opacity: 0%;
                 }
             </style>
 
             <!-- Layout for the contents 5 container. -->
-            <div class="container-5-container">
+            <div class="container-2-container">
                 <div class="container-5-content">
-                    <h2>Please select a user to edit in manage users page.</h2>
-                    <div class="margin-60px"></div>
-                    <div class="container-8-container">
-                        <a class="container-8-contents" href="../../../admin/manage-users/index.php">
-                            <p>Return to the manage users page</p>
-                        </a>
-                    </div>
-                    <div class="margin-80px"></div>
+                    <h2>Please select a user to delete in manage users page.</h2>
                 </div>
             </div>
             HTML;
@@ -381,141 +374,49 @@ $connection->close();
         }
         ?>
 
-        <?php
-        // Include the PHP script for connecting to the database (DB).
-        include '../../../php/connection.php';
 
-        // Declare a variable for the query.
-        $sql_query_1 = "SELECT * FROM `users`
-                        WHERE user_id = $users_user_id";
 
-        // Attempt to connect to the database and execute the query.
-        $sql_query_1_result = $connection->query($sql_query_1);
 
-        // Determine the file name with request ID and user ID.
-        while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-            $users_first_name = $sql_query_1_row['first_name'];
-            $users_last_name = $sql_query_1_row['last_name'];
-            $users_email_address = $sql_query_1_row['email_address'];
-            $users_gender = $sql_query_1_row['gender'];
-            $users_country = $sql_query_1_row['country'];
-            $users_is_admin = $sql_query_1_row['is_admin'];
-        }
-        ?>
 
-        <!-- Edit user table form -->
-        <div class="container-6-container">
-            <div class="container-6-content">
-                <div class="margin-60px"></div>
-                <form class="edit-user-table" action="process.php" method="post">
-                    <table>
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
 
-                            <?php
-                            echo "Edit user table for User ID " . $users_user_id;
-                            ?>
 
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>First Name:</th>
-                            <td><input class="name-field" type="text" name="txtFName" value="<?php echo $users_first_name; ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Last Name:</th>
-                            <td><input class="name-field" type="text" name="txtLName" value="<?php echo $users_last_name; ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Email Address*:</th>
-                            <td><input class="email-field" type="email" name="txtEmail" required value="<?php echo $users_email_address; ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Password*:</th>
-                            <td><input class="password-field" type="password" name="txtPassword" required></td>
-                        </tr>
-                        <tr>
-                            <th>Gender:</th>
-                            <td>
-                                <div class="radio-choice">
-                                    <div class="radio-choices">
-                                        <input type="radio" id="male" name="rdoGender" value="Male" required <?php echo ($users_gender == 'Male') ? 'checked' : ''; ?>>
-                                        <label for="male">Male</label>
-                                    </div>
-                                    <div class="radio-choices">
-                                        <input type="radio" id="female" name="rdoGender" value="Female" <?php echo ($users_gender == 'Female') ? 'checked' : ''; ?>>
-                                        <label for="female">Female</label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Country:</th>
-                            <td>
-                                <!-- Reference: https://gist.github.com/danrovito/977bcb97c9c2dfd3398a -->
-                                <select class="country-field" name="selCountry" required>
 
-                                <?php
-                                // Include the PHP script for connecting to the database (DB).
-                                include '../../../php/list-of-countries.php';
-                                ?>
 
-                                </select>
-                                <!-- Reference: https://gist.github.com/danrovito/977bcb97c9c2dfd3398a -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Is admin?</th>
-                            <td>
-                                <div class="radio-choice-2">
-                                    <div class="radio-choices">
-                                        <input type="radio" id="user" name="rdoAdmin" value="0"' <?php echo ($users_is_admin == '0') ? 'checked' : ''; ?>>
-                                        <label for="user">User</label><br>
-                                    </div>
-                                    <div class="radio-choices">
-                                        <input type="radio" id="systemadmin" name="rdoAdmin" value="1" <?php echo ($users_is_admin == '1') ? 'checked' : ''; ?>>
-                                        <label for="systemadmin">System Admin</label><br>
-                                    </div>
-                                    <div class="radio-choices">
-                                        <input type="radio" id="officead" name="rdoAdmin" value="2" <?php echo ($users_is_admin == '2') ? 'checked' : ''; ?>>
-                                        <label for="officead">Office Admin</label><br>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="margin-40px"></div>
 
-                    <!--
-                    Temporary workaround to get the button to display.
-                    This set of code is set not to display on the webpage.
-                    I only want a single set of code instead of duplicate codes.
-                    But I can't seem to get it to display normally without another
-                    set of code with the same style.
-                    -->
-                    <div style="display: none;" class="container-7">
-                        <div id="" method="post" action="" class="container-7-content container-7-content-edit">
-                            <input type="submit" name="" value="" class="container-7-content-edit no-decoration-button">
-                        </div>
-                    </div>
 
-                    <div class="container-7">
-                        <div class="container-7-content container-7-content-edit">
-                            <input type="hidden" name="users_user_id" value="$users_user_id">
-                            <input type="submit" name="edit" value="Edit User" class="container-7-content-edit no-decoration-button">
-                        </div>
-                    </div>
-                </form>
-                <div class="margin-60px"></div>
-                <div class="container-8-container">
-                    <a class="container-8-contents" href="../../../admin/manage-users/index.php">
-                        <p>Return to the manage users page</p>
-                    </a>
-                </div>
-            </div>
-        </div>
 
-        <div class="margin-100px"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">

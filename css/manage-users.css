@@ -5,10 +5,11 @@ Developed by M1
 Student ID: Redacted
 */
 
-/* Admin - Manage users */
-.page-title-banner-container {
+/* Page title banner container 1 */
+/* Manage users */
+.page-title-banner-container-1 {
     height: 75px;
-    width: 45%;
+    width: 35%;
     /* background-color: lightgreen; */
     border-style: solid;
     border-radius: 20px 20px 20px 20px;
@@ -22,7 +23,7 @@ Student ID: Redacted
     background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
 }
 
-.page-title-banner-content {
+.page-title-banner-content-1 {
     margin: 0 auto;
     flex-direction: column;
     height: 60px;
@@ -31,7 +32,63 @@ Student ID: Redacted
     margin-top: 12px;
 }
 
-#contents-1-container {
+/* Page title banner container 2 */
+/* Manage users (Edit User) */
+.page-title-banner-container-2 {
+    height: 75px;
+    width: 50%;
+    /* background-color: lightgreen; */
+    border-style: solid;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+}
+
+.page-title-banner-content-2 {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
+/* Page title banner container 3 */
+/* Manage users (Delete User) */
+.page-title-banner-container-3 {
+    height: 75px;
+    width: 70%;
+    /* background-color: lightgreen; */
+    border-style: solid;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+}
+
+.page-title-banner-content-3 {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
+/* Container 1 designs */
+/* Manage, edit and delete users here. */
+.container-1-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
     do not push the footer down and affect the overall website design.
@@ -42,7 +99,7 @@ Student ID: Redacted
     height: 130px;
 }
 
-#contents-1-content {
+.container-1-content {
     height: 80px;
     width: 100%;
     border-style: solid;
@@ -60,7 +117,42 @@ Student ID: Redacted
     box-shadow: 0px 0px 16px 0px black;
 }
 
-#contents-2-container {
+/* Container 2 designs */
+/* Edit user details here. */
+.container-2-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 130px;
+}
+
+.container-2-content {
+    height: 80px;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Container 3 designs */
+/* Delete User Confirmation */
+/* Are you sure you want to delete the following user? */
+/* This action is irreversible. */
+.container-3-container {
     /*
     A hidden container to ensure the contents tabs animations (if any)
     do not push the footer down and affect the overall website design.
@@ -71,7 +163,7 @@ Student ID: Redacted
     height: 300px;
 }
 
-#contents-2-content {
+.container-3-content {
     height: 300px;
     width: 100%;
     border-style: solid;
@@ -85,6 +177,351 @@ Student ID: Redacted
     background-color: lightyellow;
 }
 
+/* Container 4 designs */
+/* Yes and No buttons */
+.container-4-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+
+/* Container 4 content 1 designs */
+.container-4-content-1 {
+    height: 60px;
+    width: 15%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    border-color: lightseagreen;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+
+    background-color: lightgray;
+    /* background-color: rgb(225, 255, 225); */
+}
+
+.container-4-content-1:hover {
+    margin-top: 5px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+.container-4-content-1-title {
+    font-weight: bold;
+}
+
+/* Container 4 content 2 designs */
+.container-4-content-2 {
+    height: 60px;
+    width: 15%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    border-color: lightsalmon;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+
+    background-color: lightgray;
+    /* background-color: lightpink; */
+}
+
+.container-4-content-2:hover {
+    margin-top: 5px;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, margin-top 0.3s linear;
+}
+
+.container-4-content-2-title {
+    font-weight: bold;
+}
+
+/* Container 5 designs */
+/* Please select a user to edit in manage users page. */
+.container-5-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 100%;
+}
+
+.container-5-content {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Container 6 designs */
+/* For edit user table form */
+.container-6-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 860px;
+}
+
+.container-6-content {
+    height: 860px;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Container 7 designs */
+/* Edit User */
+.container-7 {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+
+.container-7-content {
+    height: 60px;
+    width: 15%;
+    border-style: solid;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(rgb(95, 120, 120), rgba(27, 47, 48, 0.7));
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-7-content:hover {
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-7-content-edit {
+    border-color: lightseagreen;
+    color: lightseagreen;
+	text-decoration: none;  /* Disable hyperlink decoration */
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-7-content-edit:hover {
+    background: darkgreen;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.no-decoration-button {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Container 8 designs */
+/* Return to the manage users page */
+.container-8-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 50px;
+    /* margin-right: 25%; */
+}
+
+.container-8-contents {
+    height: 60px;
+    width: 40%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 4px;
+    text-align: center;
+    font-weight: bold;
+    background: linear-gradient(rgb(95, 120, 120), rgba(27, 47, 48, 0.7));
+    color: white;
+    text-decoration: none;
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+.container-8-contents:hover {
+    background-color: white;
+    transform: scale(1.15);
+
+    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
+	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
+	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
+	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
+    transition: background-color 0.3s, transform 0.3s linear;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Container 9 design */
+/* User ID (number) has been successfully edited. */
+.container-9-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    height: 130px;
+}
+
+.container-9-content {
+    height: 80px;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    float: left;
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Table query designs */
 .query-table-content table {
     border: 2px solid black;
@@ -92,14 +529,22 @@ Student ID: Redacted
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .query-table-content th {
-    background-color: rgb(150, 255, 150);
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
 }
 
 .query-table-content td {
-    background-color: rgb(225, 255, 225);
+    color: white;
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
 }
 
 .query-table-content tr {
@@ -115,6 +560,8 @@ Student ID: Redacted
     width: 40%;
     padding-left: 10px;
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .query-table-content td {
@@ -129,14 +576,22 @@ Student ID: Redacted
     border-spacing: 0;
     border-radius: 10px;
     overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
 }
 
 .manage-user-table th {
-    background-color: rgb(150, 255, 150);
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
 }
 
 .manage-user-table td {
-    background-color: rgb(225, 255, 225);
+    color: white;
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
 }
 
 .manage-user-table tr {
@@ -152,21 +607,69 @@ Student ID: Redacted
     padding-left: 10px;
     padding-right: 10px;
     text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .manage-user-table td {
     padding: 10px;
 }
 
-/* Input text fields designs */
-input[type="text"] {
-    width: 350px;
+/* Edit user table designs */
+.edit-user-table table {
+    border: 2px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+.edit-user-table th {
+    color: white;
+    background-color: rgb(70, 129, 70);
+    /* background-color: rgb(150, 255, 150); */
+}
+
+.edit-user-table td {
+    color: white;
+    background-color: rgb(100, 120, 100);
+    /* background-color: rgb(125, 150, 125); */
+    /* background-color: rgb(225, 255, 225); */
+    text-align: left;
+}
+
+.edit-user-table tr {
+    height: 60px;
+}
+
+.edit-user-table th,
+.edit-user-table td {
+    border: 1px solid black;
+}
+
+.edit-user-table th {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.edit-user-table td {
+    padding: 10px;
+}
+
+.text-field-query-table {
+    width: 400px;
     font-size: 18px;
 }
 
 /* Input email address text field designs */
 .query-table-email-field {
-    width: 350px;
+    width: 400px;
     font-size: 18px;
 }
 
@@ -188,100 +691,26 @@ form {
     margin: 0 auto;     /* Center the form horizontally */
 }
 
-/* Contents 3 container designs */
-#contents-3-container {
-    /*
-    A hidden container to ensure the contents tabs animations (if any)
-    do not push the footer down and affect the overall website design.
-    */
-    display: flex;
-    justify-content: center;
-    gap: 75px;
-    height: 50px;
-    /* margin-right: 25%; */
-}
-
-/* Contents 3 content 1 designs */
-.contents-3-content-1 {
-    height: 60px;
-    width: 15%;
-    border-style: solid;
-    border-radius: 20px;
-    float: left;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-width: 4px;
-    text-align: center;
-    border-color: lightseagreen;
-
-    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
-	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
-	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
-	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
-    transition: background-color 0.3s, margin-top 0.3s linear;
-}
-
-.contents-3-content-1:hover {
-    margin-top: 5px;
-
-    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
-	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
-	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
-	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
-    transition: background-color 0.3s, margin-top 0.3s linear;
-}
-
-#contents-3-content-1 {
-    background-color: lightgray;
-    /* background-color: rgb(225, 255, 225); */
-}
-
-.contents-3-content-1-title {
-    font-weight: bold;
-}
-
-/* Contents 3 content 2 designs */
-.contents-3-content-2 {
-    height: 60px;
-    width: 15%;
-    border-style: solid;
-    border-radius: 20px;
-    float: left;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-width: 4px;
-    text-align: center;
-    border-color: lightsalmon;
-
-    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
-	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
-	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
-	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
-    transition: background-color 0.3s, margin-top 0.3s linear;
-}
-
-.contents-3-content-2:hover {
-    margin-top: 5px;
-
-    -webkit-transition: background-color 0.3s, transform 0.3s linear; /* Safari, Chrome and Opera > 12.1 */
-	-moz-transition: background-color 0.3s, transform 0.3s linear; /* Firefox < 16 */
-	-ms-transition: background-color 0.3s, transform 0.3s linear; /* Internet Explorer */
-	-o-transition: background-color 0.3s, transform 0.3s linear; /* Opera < 12.1 */
-    transition: background-color 0.3s, margin-top 0.3s linear;
-}
-
-#contents-3-content-2 {
-    background-color: lightgray;
-    /* background-color: lightpink; */
-}
-
-.contents-3-content-2-title {
-    font-weight: bold;
-}
-
 .black-hyperlink-display {
 	color: black;
 	text-decoration: none;
+}
+
+.submit-button,
+.clear-button {
+    width: 250px;
+}
+
+.name-field,
+.email-field,
+.password-field,
+.country-field {
+    width: 500px;
+    font-size: 18px;
+}
+
+input[type='radio'] {
+    transform: scale(1.25);
 }
 
 /* 

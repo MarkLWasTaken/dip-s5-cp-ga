@@ -323,8 +323,8 @@ $connection->close();
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Admin - Manage Users (Delete User)</div>
+        <div class="page-title-banner-container-3">
+            <div class="page-title-banner-content-3">Admin - Manage Users (Delete User)</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -396,24 +396,24 @@ $connection->close();
 
         <div class="margin-50px"></div>
 
-        <!-- Layout for the contents 2 container. -->
-        <div id="contents-2-container">
-            <div id="contents-2-content">
+        <!-- Layout for the container 3. -->
+        <div class="container-3-container">
+            <div class="container-3-content">
                 <h1>Delete User Confirmation</h1>
                 <p>Are you sure you want to delete the following user?</p>
                 <p>This action is irreversible.</p>
                 <div class="margin-50px"></div>
 
-                <!-- Layout for the contents 3 container. -->
-                <div id="contents-3-container">
-                    <div id="contents-3-content-1" class="contents-3-content-1">
+                <!-- Layout for the container 4. -->
+                <div class="container-4-container">
+                    <div class="container-4-content-1">
                         <a class="black-hyperlink-display" href="../../../admin/manage-users/index.php">    <!-- TODO -->
-                            <p class="contents-3-content-1-title">Yes</p>
+                            <p class="container-4-content-1-title">Yes</p>
                         </a>
                     </div>
-                    <div id="contents-3-content-2" class="contents-3-content-2">
+                    <div class="container-4-content-2">
                         <a class="black-hyperlink-display" href="../../../admin/manage-users/index.php">
-                            <p class="contents-3-content-2-title">No</p>
+                            <p class="container-4-content-2-title">No</p>
                         </a>
                     </div>
                 </div>
