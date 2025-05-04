@@ -42,10 +42,10 @@ $connection->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="E-waste management system for everyone.">
-    <meta name="keywords" content="Quantum E-waste Management System, built with HTML, CSS, JS, PHP and SQL">
-    <meta name="author" content="Quantum E-waste Management System Group">
+    <meta name="keywords" content="Quantum E-waste Solution (Management System), built with HTML, CSS, JS, PHP and SQL">
+    <meta name="author" content="Quantum E-waste Solution Group">
 
-    <title>Quantum E-waste Management System - Admin - Manage users (Edit user)</title>
+    <title>Quantum E-waste Solution - Admin - Manage users (Edit user)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../../../css/styles.css" rel="stylesheet">
