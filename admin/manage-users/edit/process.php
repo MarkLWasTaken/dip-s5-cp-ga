@@ -31,6 +31,12 @@ if ($is_admin != 1) {
     header('Location: ../../../index.php');
 }
 
+// Set a the default timezone for date and time.
+date_default_timezone_set('Asia/Singapore');
+
+// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
+$date = date('Y-m-d H:i:s P');
+
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
 $connection->close();
@@ -332,9 +338,44 @@ $connection->close();
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Get the data from the submitted form.
+            // Get the data from the form with submitted POST request.
             $users_user_id = $_POST['users_user_id'];
-            echo $users_user_id;
+            $users_first_name = $_POST['txtFName'];
+            $users_last_name = $_POST['txtLName'];
+            $users_email_address = $_POST['txtEmail'];
+            $users_password = $_POST['txtPassword'];
+            $users_gender = $_POST['rdoGender'];
+            $users_country = $_POST['selCountry'];
+            $users_is_admin = $_POST['rdoAdmin'];
+
+            // For debugging only.
+            // echo "User ID: " . $users_user_id . "<br>";
+            // echo "First name: " . $users_first_name . "<br>";
+            // echo "Last name: " . $users_last_name . "<br>";
+            // echo "Email address: " . $users_email_address . "<br>";
+            // echo "Password: " . $users_password . "<br>";
+            // echo "Gender: " . $users_gender . "<br>";
+            // echo "Country: " . $users_country . "<br>";
+            // echo "Is admin: " . $users_is_admin . "<br>" . "<br>";
+
+            // Include the PHP script for connecting to the database (DB).
+            include '../../../php/connection.php';
+
+            // Update the user details.
+            // Declare a variable for the query.
+            $sql_query_1 = "UPDATE `users`
+                            SET first_name = '$users_first_name',
+                            last_name = '$users_last_name',
+                            email_address = '$users_email_address',
+                            password = '$users_password',
+                            gender = '$users_gender',
+                            country = '$users_country',
+                            is_admin = '$users_is_admin',
+                            date_modified = '$date'
+                            WHERE user_id = '$users_user_id'";
+
+            // Attempt to connect to the database and execute the query.
+            $sql_query_1_result = $connection->query($sql_query_1);
 
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
@@ -342,12 +383,80 @@ $connection->close();
             <!-- Layout for the contents 2 container. -->
             <div class="container-9-container">
                 <div class="container-9-content">
+                    <h2>User details has been successfully edited!</h2>
+                </div>
+            </div>
+            <div class="container-10-container">
+                <div class="container-10-content">
+                    <div class="margin-30px"></div>
+                    <p class="container-10-content-paragraph">Here are the user details:</p>
+                    <div class="margin-30px"></div>
+                    <div class="manage-user-table">
+                        <table class="manage-rows-table" border=1>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Gender</th>
+                                <th>Country</th>
+                                <th>Is Admin</th>
+                                <th>Date Modified</th>
+                            </tr>
             HTML;
             echo $html;
-                    echo "<h2>User ID " . $users_user_id . " has been successfully edited.</h2>";
-                echo "</div>";
-            echo "</div>";
 
+            // Get data from the database table with the specified user ID.
+            // Declare a variable for the query.
+            $sql_query_2 = "SELECT * FROM `users`
+                            WHERE user_id = '$users_user_id'";
+
+            // Attempt to connect to the database and execute the query.
+            $sql_query_2_result = $connection->query($sql_query_2);
+
+            // Determine the file name with request ID and user ID.
+            while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
+                // Use heredoc syntax to make the code readable and easier to maintain.
+                // Very useful for handling large blocks of of codes.
+                $html = <<<HTML
+                            <tr>
+                                <td>$users_user_id</td>
+                                <td>{$sql_query_2_row['first_name']}</td>
+                                <td>{$sql_query_2_row['last_name']}</td>
+                                <td>{$sql_query_2_row['email_address']}</td>
+                                <td>{$sql_query_2_row['gender']}</td>
+                                <td>{$sql_query_2_row['country']}</td>
+                                <td>{$sql_query_2_row['is_admin']}</td>
+                                <td>{$sql_query_2_row['date_modified']}</td>
+                            </tr>
+                        </table>
+                        <div class="margin-50px"></div>
+                        <div class="container-11-container">
+                            <a class="container-11-contents" href="../../../admin/manage-users/index.php">
+                                <p>Return to the manage users page</p>
+                            </a>
+                        </div>
+                        <div class="margin-80px"></div>
+                    </div>
+                </div>
+            </div>
+            HTML;
+            echo $html;
+            }
+
+            // For debugging only.
+            // echo "User ID: " . $users_user_id . "<br>";
+            // echo "First name: " . $users_first_name . "<br>";
+            // echo "Last name: " . $users_last_name . "<br>";
+            // echo "Email address: " . $users_email_address . "<br>";
+            // echo "Password: " . $users_password . "<br>";
+            // echo "Gender: " . $users_gender . "<br>";
+            // echo "Country: " . $users_country . "<br>";
+            // echo "Is admin: " . $users_is_admin . "<br>" . "<br>";
+
+            // Ensure the connection to the DB is closed, with or without
+            // any code or query execution for security reasons.
+            $connection->close();
         }
         else if ($_SERVER["REQUEST_METHOD"] != "POST") {
             // Use heredoc syntax to make the code readable and easier to maintain.

@@ -420,11 +420,11 @@ $connection->close();
                         </tr>
                         <tr>
                             <th>First Name:</th>
-                            <td><input class="name-field" type="text" name="txtFName" value="<?php echo $users_first_name; ?>"></td>
+                            <td><input class="name-field" type="text" name="txtFName" required value="<?php echo $users_first_name; ?>"></td>
                         </tr>
                         <tr>
                             <th>Last Name:</th>
-                            <td><input class="name-field" type="text" name="txtLName" value="<?php echo $users_last_name; ?>"></td>
+                            <td><input class="name-field" type="text" name="txtLName" required value="<?php echo $users_last_name; ?>"></td>
                         </tr>
                         <tr>
                             <th>Email Address*:</th>
@@ -469,7 +469,7 @@ $connection->close();
                             <td>
                                 <div class="radio-choice-2">
                                     <div class="radio-choices">
-                                        <input type="radio" id="user" name="rdoAdmin" value="0"' <?php echo ($users_is_admin == '0') ? 'checked' : ''; ?>>
+                                        <input type="radio" id="user" name="rdoAdmin" value="0" required <?php echo ($users_is_admin == '0') ? 'checked' : ''; ?>>
                                         <label for="user">User</label><br>
                                     </div>
                                     <div class="radio-choices">
@@ -501,7 +501,7 @@ $connection->close();
 
                     <div class="container-7">
                         <div class="container-7-content container-7-content-edit">
-                            <input type="hidden" name="users_user_id" value="$users_user_id">
+                            <input type="hidden" name="users_user_id" value="<?php echo $users_user_id; ?>">
                             <input type="submit" name="edit" value="Edit User" class="container-7-content-edit no-decoration-button">
                         </div>
                     </div>
