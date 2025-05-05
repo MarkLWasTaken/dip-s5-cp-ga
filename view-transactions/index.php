@@ -344,10 +344,12 @@ if ($user_id == null) {
         unset($_SESSION['txtItemQuantity']);
         unset($_SESSION['txtRequestStatus']);
         unset($_SESSION['txtItemID']);
+        unset($_SESSION['txtAmountPayable']);
+        unset($_SESSION['txtAmountReceivable']);
 
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
+            // Store the values in the session.
             $_SESSION['txtID'] = $_POST['txtID'];
             $_SESSION['txtRequestDate'] = $_POST['txtRequestDate'];
             $_SESSION['txtRequestType'] = $_POST['txtRequestType'];
@@ -355,6 +357,8 @@ if ($user_id == null) {
             $_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
             @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
             @$_SESSION['txtItemID'] = $_POST['txtItemID'];
+            @$_SESSION['txtAmountPayable'] = $_POST['txtAmountPayable'];
+            @$_SESSION['txtAmountReceivable'] = $_POST['txtAmountReceivable'];
             if (isset($_POST['clear'])) {
                 // Unset the session variables to clear the form data.
                 unset($_SESSION['txtID']);
@@ -364,6 +368,8 @@ if ($user_id == null) {
                 unset($_SESSION['txtItemQuantity']);
                 unset($_SESSION['txtRequestStatus']);
                 unset($_SESSION['txtItemID']);
+                unset($_SESSION['txtAmountPayable']);
+                unset($_SESSION['txtAmountReceivable']);
             }
         } else if (isset($_POST['clear'])) {
             // Unset the session variables to clear the form data.
@@ -374,6 +380,8 @@ if ($user_id == null) {
             unset($_SESSION['txtItemQuantity']);
             unset($_SESSION['txtRequestStatus']);
             unset($_SESSION['txtItemID']);
+            unset($_SESSION['txtAmountPayable']);
+            unset($_SESSION['txtAmountReceivable']);
         }
 
         // Retrieve the values from the session.
@@ -384,6 +392,8 @@ if ($user_id == null) {
         $item_quantity = isset($_SESSION['txtItemQuantity']) ? $_SESSION['txtItemQuantity'] : '';
         $request_status = isset($_SESSION['txtRequestStatus']) ? $_SESSION['txtRequestStatus'] : '';
         $item_id = isset($_SESSION['txtItemID']) ? $_SESSION['txtItemID'] : '';
+        $amount_payable = isset($_SESSION['txtAmountPayable']) ? $_SESSION['txtAmountPayable'] : '';
+        $amount_receivable = isset($_SESSION['txtAmountReceivable']) ? $_SESSION['txtAmountReceivable'] : '';
         ?>
 
         <!-- Table query container -->
@@ -424,6 +434,14 @@ if ($user_id == null) {
                         <tr>
                             <th>Item ID:</th>
                             <td><input type="text" name="txtItemID" value="<?php $item_id ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Amount Payable:</th>
+                            <td><input type="text" name="txtAmountPayable" value="<?php $amount_payable ?>"></td>
+                        </tr>
+                        <tr>
+                            <th>Amount Receivable:</th>
+                            <td><input type="text" name="txtAmountReceivable" value="<?php $amount_receivable ?>"></td>
                         </tr>
                         <tr>
                             <th>Action:</th>
@@ -496,7 +514,9 @@ if ($user_id == null) {
                                 item_quantity LIKE '%$item_quantity%' AND
                                 request_status LIKE '%$request_status%' AND
                                 user_id = '$user_id' AND
-                                item_id LIKE '%$item_id%'
+                                item_id LIKE '%$item_id%' AND
+                                amount_payable LIKE '%$amount_payable%' AND
+                                amount_receivable LIKE '%$amount_receivable%'
                                 ORDER BY request_id ASC";
                 // "picture_id", "accounts_payable_id" and "accounts_receivable_id" is excluded.
 
@@ -516,66 +536,8 @@ if ($user_id == null) {
                         <td>{$sql_query_1_row['item_quantity']}</td>
                         <td>{$sql_query_1_row['request_status']}</td>
                         <td>{$sql_query_1_row['item_id']}</td>
-                    HTML;
-                    echo $html;
-
-
-
-
-
-                // Get data from the "accounts_payable" table.
-                // Declare a variable for the query.
-                $sql_query_2 = "SELECT * FROM `accounts_payable` WHERE
-                                request_id LIKE '%$request_id%'
-                                ORDER BY request_id ASC";
-
-                // Attempt to connect to the database and execute the query.
-                $sql_query_2_result = $connection->query($sql_query_2);
-
-                // Insert the each of the results into the table.
-                while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                        <td>{$sql_query_2_row['amount_payable']}</td>
-                    HTML;
-                    echo $html;
-                }
-
-
-
-
-
-
-                // Get data from the "accounts_receivable" table.
-                // Declare a variable for the query.
-                $sql_query_3 = "SELECT * FROM `accounts_receivable` WHERE
-                                request_id LIKE '%$request_id%'
-                                ORDER BY request_id ASC";
-
-                // Attempt to connect to the database and execute the query.
-                $sql_query_3_result = $connection->query($sql_query_3);
-
-                // Insert the each of the results into the table.
-                while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                        <td>{$sql_query_3_row['amount_receivable']}</td>
-                    HTML;
-                    echo $html;
-                }
-
-
-
-
-
-
-
-
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
+                        <td>{$sql_query_1_row['amount_payable']}</td>
+                        <td>{$sql_query_1_row['amount_receivable']}</td>
                         <td>
                             <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../view-transactions/view.php">
                                 <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
@@ -587,6 +549,26 @@ if ($user_id == null) {
                     HTML;
                     echo $html;
                 }
+
+                /*
+                Unused queries.
+                $sql_query_2 = "SELECT * FROM `accounts_payable` WHERE
+                                request_id LIKE '%$request_id%'
+                                ORDER BY request_id ASC";
+                $sql_query_2_result = $connection->query($sql_query_2);
+                $sql_query_2_row = $result->fetch_assoc()
+
+                $sql_query_3 = "SELECT * FROM `accounts_receivable` WHERE
+                                request_id LIKE '%$request_id%'
+                                ORDER BY request_id ASC";
+                $sql_query_3_result = $connection->query($sql_query_3);
+                $sql_query_3_row = $result->fetch_assoc()
+
+                $sql_query_4 = "SELECT COUNT(*) AS row_count FROM `requests`";
+                $sql_query_4_result = $connection->query($sql_query_4);
+                $sql_query_4_row_count = $sql_query_4_result->fetch_row()[0];
+                */
+
                 echo "</table>";
 
                 // Ensure the connection to the DB is closed, with or without

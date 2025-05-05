@@ -29,12 +29,6 @@ if ($user_id != null) {
 if ($user_id == null) {
     header('Location: ../index.php');
 }
-
-// Set a the default timezone for date and time.
-date_default_timezone_set('Asia/Singapore');
-
-// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
-$date = date('Y-m-d H:i:s P');
 ?>
 
 <!DOCTYPE html>
@@ -46,13 +40,13 @@ $date = date('Y-m-d H:i:s P');
     <meta name="keywords" content="Quantum E-waste Solution (Management System), built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Solution Group">
 
-    <title>Quantum E-waste Solution - Buy Request Form</title>
+    <title>Quantum E-waste Solution - View transactions (View details)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../css/buy-sell-request.css" rel="stylesheet">
+    <link href="../css/transactions.css" rel="stylesheet">
     <link href="../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -83,7 +77,7 @@ $date = date('Y-m-d H:i:s P');
             <a href="../dashboard.php" onclick="closeNav()">Dashboard</a>
             <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
-            <a href="../view-transactions/index.php" onclick="closeNav()">View transactions</a>
+            <a href="#" onclick="closeNav()">View transactions</a>
             <a href="../payment/index.php" onclick="closeNav()">Proof of Payment</a>
             <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="../account/logout.php" onclick="closeNav()">Logout</a>
@@ -125,7 +119,7 @@ $date = date('Y-m-d H:i:s P');
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <a href="../admin/index.php" onclick="closeNav()">Admin control panel</a>
-            <a href="../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
+            <a href="../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user request (Approve/Reject)</a>
             <a href="../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
@@ -324,160 +318,181 @@ $date = date('Y-m-d H:i:s P');
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Buy Request Form</div>
+        <div class="page-title-banner-container-2">
+            <div class="page-title-banner-content-2">View transactions (View details)</div>
         </div>
 
         <div class="margin-30px"></div>
-        <!-- <br> -->
-
-        <!-- Layout for the contents 2 container. -->
-        <div id="contents-2-container">
-            <div id="contents-2-content">
-                <h2>Create a form for buy request.</h2>
-            </div>
-        </div>
+        <!-- <br>
+        <div class="hidden-block">
+            <h1>Blank space.</h1>
+        </div> -->
 
         <?php
-        // PHP for Customer Buy Request Form.
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Get the form data from the tables.
-            @$request_item_type = $_POST["txtRequestItemType"];
-            @$request_item_name = $_POST["txtRequestItemName"];
-            @$request_item_quantity = $_POST["txtRequestQuantity"];
-
-            // Declare a variable for the query.
-            // Insert the form data into the database
-            // Note: $date and $user_id variables are already declared.
-            $sql_query_1 = "INSERT INTO requests (request_date, request_type, request_item_name,
-                            item_quantity, request_status, user_id, item_id)
-                            VALUES ('$date', 'Buy', '$request_item_name', '$request_item_quantity',
-                            'Pending', '$user_id', '$request_item_type')";
-            $sql_query_2 = "SELECT * FROM items WHERE item_id = $request_item_type";
-
-            // Attempt to connect to the database and execute the query.
-            $sql_query_1_result = $connection->query($sql_query_1);
-            $sql_query_2_result = $connection->query($sql_query_2);
-
-            // Sort the data.
-            while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
-                $items_item_name = $sql_query_2_row['item_type'];
-            }
-
-            // Use heredoc syntax to make the code readable and easier to maintain.
-            // Very useful for handling large blocks of of codes.
-            $html = <<<HTML
-            <style>
-                #contents-2-container {
-                    display: none;
-                }
-
-                #customer-buy-request-form,
-                .action-1-button,
-                .action-2-button {
-                    display: none;
-                }
-
-                #contents-3-container {
-                    height: 100%;
-                }
-
-                #contents-3-content {
-                    height: 100%;
-                }
-            </style>
-
-            <script>
-                // Disable the form actions after submitting the request.
-                document.getElementById("customer-buy-request-form").disabled = true;
-            </script>
-
-            <!-- Layout for the contents 3 container. -->
-            <div id="contents-3-container">
-                <div id="contents-3-content">
-                    <div class="margin-30px"></div>
-                    <h2>Buy request form has been successfully submitted!</h2>
-                    <div class="margin-30px"></div>
-                    <p>Here is the form details:</p>
-                    <p>Type of Request: Buy</p>
-                    <p>Item Type: $items_item_name</p>
-                    <p>Item Name: $request_item_name</p>
-                    <p>Quantity: $request_item_quantity</p>
-                    <div class="container-5-container">
-                        <a class="container-5-contents" href="../buy-sell-request/index.php">
-                            <p>Return to the buy/sell request page</p>
-                        </a>
-                    </div>
-                    <div class="margin-80px"></div>
-                </div>
-            </div>
-
-            <div class="margin-50px"></div>
-            HTML;
-            echo $html;
+            $request_id = $_POST['request_id'];
+            $request_user_id = $_POST['request_user_id'];
         }
         ?>
 
-        <!-- Customer Buy Request Form -->
-        <div>
-            <form id="customer-buy-request-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <div class="buy-table-contents">
-                    <table>
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                Customer Buy Request Form
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Transaction type:</th>
-                            <td><input type="text" name="txtRequestType" value="Buy" disabled></td>
-                        </tr>
-                        <tr>
-                            <th>Item Type:</th>
-                            <td>
-                                <select id="txtRequestItemType" name="txtRequestItemType">
-            <?php
-            // Declare a variable for the query.
-            $sql_query_3 = "SELECT * FROM `items` WHERE
-                            transaction_type = 'Buy'
-                            ORDER BY item_id ASC";
+        <!-- Layout for the container 3. -->
+        <div class="container-3-container">
+            <div class="container-3-content">
+                <h2>View the transaction details here.</h2>
+            </div>
+        </div>
 
-            // Attempt to connect to the database and execute the query.
-            $sql_query_3_result = $connection->query($sql_query_3);
-
-            // Insert each of the results into the table.
-            while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                                    <option value="{$sql_query_3_row['item_id']}">{$sql_query_3_row['item_type']}</option>
-                HTML;
-                echo $html;
-            }
-
-            // Ensure the connection to the DB is closed, with or without
-            // any code or query execution for security reasons.
-            $connection->close();
-            ?>
-                                </select>
-                            </td>
-                        </tr>
+        <!-- Layout for the container 4. -->
+        <div class="container-4-container">
+            <div class="container-4-content">
+                <div class="margin-30px"></div>
+                <p class="font-size-20px">Request details:</p>
+                <div class="table-content">
+                    <table border=1>
                         <tr>
-                            <th>Item Name:</th>
-                            <td><input type="text" name="txtRequestItemName" required></td>
+                            <th>ID</th>
+                            <th>Request Date</th>
+                            <th>Request Type</th>
+                            <th>Request Item Name</th>
+                            <th>Item Quantity</th>
+                            <th>Request Status</th>
+                            <th>Item ID</th>
+                            <th>Amount Payable</th>
+                            <th>Amount Receivable</th>
                         </tr>
-                        <tr>
-                            <th>Quantity:</th>
-                            <td><input type="text" name="txtRequestQuantity" pattern="[0-9]*" placeholder="Enter only numbers." required></td>
-                        </tr>
-                        <tr class="action-1-button">
-                            <th>Actions:</th>
-                            <td><input type="submit" name="submit" value="Submit request form"></td>
-                        </tr>
+
+                        <?php
+                        // Get data from the "requests" table with specific request ID for the user.
+                        // Declare a variable for the query.
+                        $sql_query_1 = "SELECT * FROM `requests`
+                                        WHERE request_id = '$request_id'";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_1_result = $connection->query($sql_query_1);
+
+                        // Insert the each of the results into the table.
+                        while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <tr>
+                                <td>{$sql_query_1_row['request_id']}</td>
+                                <td>{$sql_query_1_row['request_date']}</td>
+                                <td>{$sql_query_1_row['request_type']}</td>
+                                <td>{$sql_query_1_row['request_item_name']}</td>
+                                <td>{$sql_query_1_row['item_quantity']}</td>
+                                <td>{$sql_query_1_row['request_status']}</td>
+                                <td>{$sql_query_1_row['item_id']}</td>
+                                <td>{$sql_query_1_row['amount_payable']}</td>
+                                <td>{$sql_query_1_row['amount_receivable']}</td>
+                            </tr>
+                            HTML;
+                            echo $html;
+
+                            $request_type = $sql_query_1_row['request_type'];
+                            $request_picture_id = $sql_query_1_row['picture_id'];
+                        }
+
+                        // Get data from the "accounts_receivable" table with specific request ID for the user.
+                        // Declare a variable for the query.
+                        $sql_query_2 = "SELECT * FROM `accounts_receivable`
+                                        WHERE request_id = '$request_id'";
+
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_2_result = $connection->query($sql_query_2);
+
+                        // Insert the each of the results into the table.
+                        while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
+                            $accounts_receivable_picture_id = $sql_query_2_row['picture_id'];
+                        }
+
+                        // Ensure the connection to the DB is closed, with or without
+                        // any code or query execution for security reasons.
+                        $connection->close();
+
+                        if ($request_type == "Buy") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #user-request-picture {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        else if ($request_type == "Sell") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+
+                        if (@$accounts_receivable_picture_id == "") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        else if (@$accounts_receivable_picture_id != "") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-no-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        ?>
                     </table>
                 </div>
-            </form>
+
+                <div id="user-request-picture">
+                    <div class="margin-60px"></div>
+                    <p class="font-size-20px">Request picture:</p>
+                    <img src="../uploads/requests/<?php echo $request_picture_id; ?>" width="90%" height ="50%" alt="User's request picture." title="User's request picture.">
+                </div>
+
+                <div id="receivable-payment-picture">
+                    <div class="margin-60px"></div>
+                    <p class="font-size-20px">Proof of Payment picture:</p>
+                    <div id="receivable-payment-picture-no-exist">
+                        You have not uploaded the Proof of Payment picture yet.
+                    </div>
+                    <div id="receivable-payment-picture-exist">
+                        <img src="../uploads/payments/<?php echo $accounts_receivable_picture_id; ?>" width="90%" height ="50%" alt="User's request picture." title="User's request picture.">
+                    </div>
+                </div>
+
+                <div class="margin-60px"></div>
+                <div class="container-5-container">
+                    <a class="container-5-contents" href="../view-transactions/index.php">
+                        <p>Return to view transactions page</p>
+                    </a>
+                </div>
+                <div class="margin-80px"></div>
+            </div>
         </div>
 
         <div class="margin-100px"></div>
@@ -503,7 +518,6 @@ $date = date('Y-m-d H:i:s P');
 
         <div class="margin-60px-mobile"></div>
         <!-- <br class="mobile-line-break">
-        <br class="mobile-line-break">
         <br class="mobile-line-break"> -->
 
         <div id="footer-container" class="footer-text">

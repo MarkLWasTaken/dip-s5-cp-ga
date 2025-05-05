@@ -31,7 +31,7 @@ $connection->close();
 
 // Only users who are already logged in are allow to view and use the webpage.
 if ($user_id == null) {
-    header('Location: ../index.php');
+    header('Location: index.php');
 }
 ?>
 
@@ -410,9 +410,9 @@ if ($user_id == null) {
 
                     <div class="margin-20px"></div>
 
-                    <a class="black-hyperlink-display" href="tracking/index.php">
+                    <a class="black-hyperlink-display" href="payment/index.php">
                         <div class="button">
-                            <p class="button-content">Tracking</p>
+                            <p class="button-content">Proof of Payment</p>
                         </div>
                     </a>
 
@@ -426,11 +426,13 @@ if ($user_id == null) {
 
                     <div class="margin-20px"></div>
 
-                    <a class="black-hyperlink-display" href="payment/index.php">
+                    <a class="black-hyperlink-display" href="tracking/index.php">
                         <div class="button">
-                            <p class="button-content">Proof of Payment</p>
+                            <p class="button-content">Tracking</p>
                         </div>
                     </a>
+
+                    <div class="margin-20px"></div>
 
                     <div id="admin-navigation" class="margin-20px"></div>
 
@@ -463,14 +465,6 @@ if ($user_id == null) {
 
                     <div class="margin-20px"></div>
 
-                    <a class="black-hyperlink-display" href="admin/statistics/index.php">
-                        <div class="button">
-                            <p class="button-content">Statistics</p>
-                        </div>
-                    </a>
-
-                    <div class="margin-20px"></div>
-
                     <a class="black-hyperlink-display" href="admin/manage-users/index.php">
                         <div class="button">
                             <p class="button-content">Manage users</p>
@@ -482,6 +476,14 @@ if ($user_id == null) {
                     <a class="black-hyperlink-display" href="admin/database-query.php">
                         <div class="button">
                             <p class="button-content">Database query</p>
+                        </div>
+                    </a>
+
+                    <div class="margin-20px"></div>
+
+                    <a class="black-hyperlink-display" href="admin/statistics/index.php">
+                        <div class="button">
+                            <p class="button-content">Statistics</p>
                         </div>
                     </a>
                 </div>

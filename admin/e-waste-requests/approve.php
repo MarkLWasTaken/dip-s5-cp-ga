@@ -415,7 +415,8 @@ $date = date('Y-m-d H:i:s P');
                         // Declare a variable for the query.
                         $sql_query_5 = "UPDATE `requests`
                                         SET request_status = 'Pending payment',
-                                        accounts_receivable_id = '$sql_query_4_row_count'
+                                        accounts_receivable_id = '$sql_query_4_row_count',
+                                        amount_receivable = '$total_cost'
                                         WHERE request_id = '$request_id'
                                         AND request_status = 'Pending'";
 
@@ -456,7 +457,8 @@ $date = date('Y-m-d H:i:s P');
                         // Declare a variable for the query.
                         $sql_query_8 = "UPDATE `requests`
                                         SET request_status = 'Approved',
-                                        accounts_payable_id = '$sql_query_7_row_count'
+                                        accounts_payable_id = '$sql_query_7_row_count',
+                                        amount_payable = '$total_cost'
                                         WHERE request_id = '$request_id'
                                         AND request_status = 'Pending'";
 

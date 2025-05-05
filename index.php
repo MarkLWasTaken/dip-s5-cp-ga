@@ -363,7 +363,7 @@ $connection->close();
                 <img class="content-2-image" src="images/Sustainable_Development_Goals_logo.svg" alt="Sample code of the website." title="Sample code of the website.">
                 <br>
                 <p class="content-2-titles">Sustainable Development Goal (SDG)</p>
-                <p class="content-2-paragraphs">We fully support SDG.<br>Come join us to keep the planet earth safe.</p>
+                <p class="content-2-paragraphs">We fully support SDG.<br><br>Come join us to keep the planet earth safe.</p>
             </div>
         </div>
 
