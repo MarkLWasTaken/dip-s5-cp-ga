@@ -36,10 +36,6 @@ date_default_timezone_set('Asia/Singapore');
 
 // Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
 $date = date('Y-m-d H:i:s P');
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -358,9 +354,6 @@ $connection->close();
             // echo "Country: " . $users_country . "<br>";
             // echo "Is admin: " . $users_is_admin . "<br>" . "<br>";
 
-            // Include the PHP script for connecting to the database (DB).
-            include '../../../php/connection.php';
-
             // Update the user details.
             // Declare a variable for the query.
             $sql_query_1 = "UPDATE `users`
@@ -453,10 +446,6 @@ $connection->close();
             // echo "Gender: " . $users_gender . "<br>";
             // echo "Country: " . $users_country . "<br>";
             // echo "Is admin: " . $users_is_admin . "<br>" . "<br>";
-
-            // Ensure the connection to the DB is closed, with or without
-            // any code or query execution for security reasons.
-            $connection->close();
         }
         else if ($_SERVER["REQUEST_METHOD"] != "POST") {
             // Use heredoc syntax to make the code readable and easier to maintain.
@@ -490,6 +479,10 @@ $connection->close();
             HTML;
             echo $html;
         }
+
+        // Ensure the connection to the DB is closed, with or without
+        // any code or query execution for security reasons.
+        $connection->close();
         ?>
 
 

@@ -28,6 +28,11 @@ if ($user_id != null) {
 // Ensure the connection to the DB is closed, with or without
 // any code or query execution for security reasons.
 $connection->close();
+
+// Only users who are already logged in are allow to view and use the webpage.
+if ($user_id == null) {
+    header('Location: ../index.php');
+}
 ?>
 
 <!DOCTYPE html>

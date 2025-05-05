@@ -30,10 +30,6 @@ date_default_timezone_set('Asia/Singapore');
 
 // Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
 $date = date('Y-m-d H:i:s P');
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -334,52 +330,49 @@ $connection->close();
         </div> -->
 
         <?php
-            // Include the PHP script for re-connecting to the database (DB).
-            include 'php/connection.php';
+        // Check if the form has been submitted.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Get the form data
+            $name = $_POST["txtName"];
+            $email_address = $_POST["txtEmailAddress"];
+            $message = $_POST["txtMessage"];
 
-            // Check if the form has been submitted.
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Get the form data
-                $name = $_POST["txtName"];
-                $email_address = $_POST["txtEmailAddress"];
-                $message = $_POST["txtMessage"];
+            // Insert the data into the database table.
+            // Declare a variable for the query.
+            $sql_query_1 = "INSERT INTO `contact_us` (name,
+                            email_address, message, date_submitted)
+                            VALUES ('$name', '$email_address', '$message', '$date')";
 
-                // Insert the data into the database table.
-                // Declare a variable for the query.
-                $sql_query_1 = "INSERT INTO `contact_us` (name,
-                                email_address, message, date_submitted)
-                                VALUES ('$name', '$email_address', '$message', '$date')";
+            // Attempt to connect to the database and execute the query.
+            $sql_query_1_result = $connection->query($sql_query_1);
 
-                // Attempt to connect to the database and execute the query.
-                $sql_query_1_result = $connection->query($sql_query_1);
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+                <style>
+                    #container-1 {
+                        display: none;
+                    }
 
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                    <style>
-                        #container-1 {
-                            display: none;
-                        }
+                    #container-1-contents {
+                        display: none;
+                    }
 
-                        #container-1-contents {
-                            display: none;
-                        }
+                    #container-2 {
+                        display: block;
+                    }
 
-                        #container-2 {
-                            display: block;
-                        }
+                    #container-2-contents {
+                        display: block;
+                    }
 
-                        #container-2-contents {
-                            display: block;
-                        }
-
-                        .contact-us-table {
-                            display: none;
-                        }
-                    </style>
-                HTML;
-                echo $html;
-            }
+                    .contact-us-table {
+                        display: none;
+                    }
+                </style>
+            HTML;
+            echo $html;
+        }
 
         // Ensure the connection to the DB is closed, with or without
         // any code or query execution for security reasons.

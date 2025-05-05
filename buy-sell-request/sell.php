@@ -25,6 +25,11 @@ if ($user_id != null) {
     }
 }
 
+// Only users who are already logged in are allow to view and use the webpage.
+if ($user_id == null) {
+    header('Location: ../index.php');
+}
+
 // Set a the default timezone for date and time.
 date_default_timezone_set('Asia/Singapore');
 

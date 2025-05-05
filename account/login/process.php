@@ -35,14 +35,14 @@ if ($user_id != null) {
     }
 }
 
+// Ensure the connection to the DB is closed, with or without
+// any code or query execution for security reasons.
+$connection->close();
+
 // Users who are already logged are not allowed to access this page.
 if (isset($_SESSION['email_address'])) {
     header('Location: ../../index.php');
 }
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>

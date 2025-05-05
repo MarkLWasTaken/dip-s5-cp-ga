@@ -30,10 +30,6 @@ if ($user_id != null) {
 if ($is_admin != 1) {
     header('Location: ../../../index.php');
 }
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -401,6 +397,10 @@ $connection->close();
             $users_country = $sql_query_1_row['country'];
             $users_is_admin = $sql_query_1_row['is_admin'];
         }
+
+        // Ensure the connection to the DB is closed, with or without
+        // any code or query execution for security reasons.
+        $connection->close();
         ?>
 
         <!-- Edit user table form -->

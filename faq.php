@@ -24,10 +24,6 @@ if ($user_id != null) {
         $is_admin = (int) $row['is_admin']; // Cast to integer.
     }
 }
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -331,9 +327,6 @@ $connection->close();
         <div id="container-1-container">
             <div id="container-1-contents">
                 <?php
-                // Attempt to make a new connection to the database.
-                include 'php/connection.php';
-
                 // Declare a variable for the query.
                 $sql_query_1 = "SELECT * FROM `faq`
                                 ORDER BY faq_id ASC";

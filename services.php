@@ -24,10 +24,6 @@ if ($user_id != null) {
         $is_admin = (int) $row['is_admin']; // Cast to integer.
     }
 }
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -335,9 +331,6 @@ $connection->close();
         <div>
             <div class="services-table">
                 <?php
-                // Include the PHP script for connecting to the database (DB).
-                include 'php/connection.php';
-
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML

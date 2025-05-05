@@ -25,9 +25,10 @@ if ($user_id != null) {
     }
 }
 
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
+// Only users who are already logged in are allow to view and use the webpage.
+if ($user_id == null) {
+    header('Location: ../index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -485,9 +486,6 @@ $connection->close();
                     </tr>
 
                 <?php
-                // Attempt to make a new connection to the database.
-                include '../php/connection.php';
-
                 // Get data from the "requests" table.
                 // Declare a variable for the query.
                 $sql_query_1 = "SELECT * FROM `requests` WHERE

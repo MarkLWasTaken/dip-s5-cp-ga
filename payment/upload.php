@@ -25,9 +25,10 @@ if ($user_id != null) {
     }
 }
 
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
+// Only users who are already logged in are allow to view and use the webpage.
+if ($user_id == null) {
+    header('Location: ../index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -409,9 +410,6 @@ $connection->close();
                 // echo "uploadOk: " . $uploadOk . "<br>";
                 // echo "imageFileType: " . $imageFileType . "<br>";
 
-                // Include the PHP script for connecting to the database (DB).
-                include '../php/connection.php';
-
                 // Get the data from the database table.
                 // Declare a variable for the query.
                 $sql_query_1 = "SELECT * FROM `accounts_receivable`
@@ -538,6 +536,10 @@ $connection->close();
                 // File upload module.
                 // Reference: https://www.w3schools.com/php/php_file_upload.asp
             }
+
+        // Ensure the connection to the DB is closed, with or without
+        // any code or query execution for security reasons.
+        $connection->close();
         }
         ?>
 

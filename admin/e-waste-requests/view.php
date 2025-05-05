@@ -25,15 +25,11 @@ if ($user_id != null) {
     }
 }
 
-// Users who are not system administrators (sysadmins)
+// Users who are not office administrators (office AD)
 // are not allowed to access this page.
 if ($is_admin != 2) {
     header('Location: ../../index.php');
 }
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -386,9 +382,6 @@ $connection->close();
             echo $html;
         }
 
-        // Include the PHP script for re-connecting to the database (DB).
-        include '../../php/connection.php';
-
         // Declare a variable for the query.
         $sql_query_1 = "SELECT * FROM `requests`
                         WHERE request_id = $request_id AND
@@ -402,10 +395,6 @@ $connection->close();
             $pictureFile = $sql_query_1_row['picture_id'];
             $request_type = $sql_query_1_row['request_type'];
         }
-
-        // Ensure the connection to the DB is closed, with or without
-        // any code or query execution for security reasons.
-        $connection->close();
 
         if ($request_type != "Sell") {
             // Use heredoc syntax to make the code readable and easier to maintain.
@@ -440,9 +429,6 @@ $connection->close();
         <div>
             <div class="requests-table auto-center">
                 <?php
-                // Attempt to make a new connection to the database.
-                include '../../php/connection.php';
-
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML

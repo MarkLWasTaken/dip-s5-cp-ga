@@ -25,9 +25,10 @@ if ($user_id != null) {
     }
 }
 
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
+// Only users who are already logged in are allow to view and use the webpage.
+if ($user_id == null) {
+    header('Location: ../index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -436,9 +437,6 @@ $connection->close();
         <div>
             <div class="requests-table">
                 <?php
-                // Attempt to make a new connection to the database.
-                include '../php/connection.php';
-
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML

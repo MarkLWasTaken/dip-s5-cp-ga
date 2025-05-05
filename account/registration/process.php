@@ -368,9 +368,6 @@ if (isset($_SESSION['email_address'])) {
                     <p>Please try again later.</p>
                     HTML;
                     echo $html;
-
-                    // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    $connection->close();
                 }
                 // Check if the string length is less than 8 characters.
                 else if (strlen($password) < 8) {
@@ -395,9 +392,6 @@ if (isset($_SESSION['email_address'])) {
                     <p>Please try again later.</p>
                     HTML;
                     echo $html;
-
-                    // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    $connection->close();
                 }
                 // Check if the email address already exists in the database.
                 else if ($sql_query_2_result->num_rows) {
@@ -422,9 +416,6 @@ if (isset($_SESSION['email_address'])) {
                     <p>Please register using a new email address and try again later.</p>
                     HTML;
                     echo $html;
-
-                    // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    $connection->close();
                 }
                 // Register the account details into the database.
                 else if ($connection->query($sql_query_1)) {
@@ -438,11 +429,9 @@ if (isset($_SESSION['email_address'])) {
                     <meta http-equiv="refresh" content="5; url=../../account/login/index.php">
                     HTML;
                     echo $html;
-
-                    // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    $connection->close();
                 }
-                // If other errors were encountered.
+                // If other errors were encountered or
+                // does not meet any of the conditions.
                 else {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
@@ -470,10 +459,11 @@ if (isset($_SESSION['email_address'])) {
                     <p>Please try again later.</p>
                     HTML;
                     echo $html;
-
-                    // Ensure the connection to the DB is closed, with or without any code execution for security reasons.
-                    $connection->close();
                 }
+
+                // Ensure the connection to the DB is closed, with or without
+                // any code or query execution for security reasons.
+                $connection->close();
                 ?>
                 <br>
             </div>

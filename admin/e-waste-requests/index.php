@@ -25,15 +25,11 @@ if ($user_id != null) {
     }
 }
 
-// Users who are not system administrators (sysadmins)
+// Users who are not office administrators (office AD)
 // are not allowed to access this page.
 if ($is_admin != 2) {
     header('Location: ../../index.php');
 }
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -463,9 +459,6 @@ $connection->close();
         <div>
             <div class="requests-table">
                 <?php
-                // Attempt to make a new connection to the database.
-                include '../../php/connection.php';
-
                 // Use heredoc syntax to make the code readable and easier to maintain.
                 // Very useful for handling large blocks of of codes.
                 $html = <<<HTML

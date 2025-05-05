@@ -375,7 +375,7 @@ if ($is_admin != 1) {
                                 // Check if 'selected_table' is set.
                                 else if (isset($_SESSION['selected_table'])) {
                                     // Insert the each of the results into combo box.
-                                    while ($table_name = $result_show_tables->fetch_assoc()) {
+                                    while ($table_name = $sql_query_1_result->fetch_assoc()) {
                                         // Check if the current table name is the selected one
                                         if ($table_name['Tables_in_' . $database] == $selected_table) {
                                             echo '<option selected="selected" value="' . $selected_table . '">' . $selected_table . '</option>';
@@ -435,15 +435,23 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
+                            </tr>
+                            <tr>
+                                <th>Payable Date:</th>
+                                <td><input type="text" name="txtPayableDate"></td>
                             </tr>
                             <tr>
                                 <th>Amount Payable:</th>
-                                <td><input type="text" name="txtAmountPayable" id=""></td>
+                                <td><input type="text" name="txtAmountPayable"></td>
                             </tr>
                             <tr>
                                 <th>Request ID:</th>
-                                <td><input type="text" name="txtRequestID" id=""></td>
+                                <td><input type="text" name="txtRequestID"></td>
+                            </tr>
+                            <tr>
+                                <th>Picture ID:</th>
+                                <td><input type="text" name="txtPictureID"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -455,8 +463,10 @@ if ($is_admin != 1) {
                             // Declare the variables and store it in the session.
                             // Suppress the warning message when the variables are null or empty.
                             @$_SESSION['txtID'] = $_POST['txtID'];
+                            @$_SESSION['txtPayableDate'] = $_POST['txtPayableDate'];
                             @$_SESSION['txtAmountPayable'] = $_POST['txtAmountPayable'];
                             @$_SESSION['txtRequestID'] = $_POST['txtRequestID'];
+                            @$_SESSION['txtPictureID'] = $_POST['txtPictureID'];
                         }
                         // "accounts_receivable" table query options.
                         else if ($_SESSION['selected_table'] == 'accounts_receivable') {
@@ -465,15 +475,23 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
+                            </tr>
+                            <tr>
+                                <th>Receivable date:</th>
+                                <td><input type="text" name="txtReceivableDate"></td>
                             </tr>
                             <tr>
                                 <th>Amount Receivable:</th>
-                                <td><input type="text" name="txtAmountReceivable" id=""></td>
+                                <td><input type="text" name="txtAmountReceivable"></td>
                             </tr>
                             <tr>
                                 <th>Request ID:</th>
-                                <td><input type="text" name="txtRequestID" id=""></td>
+                                <td><input type="text" name="txtRequestID"></td>
+                            </tr>
+                            <tr>
+                                <th>Picture ID:</th>
+                                <td><input type="text" name="txtPictureID"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -485,8 +503,10 @@ if ($is_admin != 1) {
                             // Declare the variables and store it in the session.
                             // Suppress the warning message when the variables are null or empty.
                             @$_SESSION['txtID'] = $_POST['txtID'];
+                            @$_SESSION['txtReceivableDate'] = $_POST['txtReceivableDate'];
                             @$_SESSION['txtAmountReceivable'] = $_POST['txtAmountReceivable'];
                             @$_SESSION['txtRequestID'] = $_POST['txtRequestID'];
+                            @$_SESSION['txtPictureID'] = $_POST['txtPictureID'];
                         }
                         // "contact_us" table query options.
                         else if ($_SESSION['selected_table'] == 'contact_us') {
@@ -495,23 +515,23 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>Name:</th>
-                                <td><input type="text" name="txtName" id=""></td>
+                                <td><input type="text" name="txtName"></td>
                             </tr>
                             <tr>
                                 <th>Email Address:</th>
-                                <td><input type="email" name="txtEmail" id="" class="query-table-email-field"></td>
+                                <td><input type="email" name="txtEmail" class="query-table-email-field"></td>
                             </tr>
                             <tr>
                                 <th>Message:</th>
-                                <td><input type="text" name="txtMessage" id=""></td>
+                                <td><input type="text" name="txtMessage"></td>
                             </tr>
                             <tr>
                                 <th>Date Submitted:</th>
-                                <td><input type="text" name="txtDateSubmitted" id=""></td>
+                                <td><input type="text" name="txtDateSubmitted"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -535,15 +555,15 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>FAQ Question:</th>
-                                <td><input type="text" name="txtFAQQuestion" id=""></td>
+                                <td><input type="text" name="txtFAQQuestion"></td>
                             </tr>
                             <tr>
                                 <th>FAQ Answer:</th>
-                                <td><input type="text" name="txtFAQAnswer" id=""></td>
+                                <td><input type="text" name="txtFAQAnswer"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -565,19 +585,19 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>Date Submitted:</th>
-                                <td><input type="text" name="txtDateSubmitted" id=""></td>
+                                <td><input type="text" name="txtDateSubmitted"></td>
                             </tr>
                             <tr>
                                 <th>Content:</th>
-                                <td><input type="text" name="txtFAQContent" id=""></td>
+                                <td><input type="text" name="txtFAQContent"></td>
                             </tr>
                             <tr>
                                 <th>User ID:</th>
-                                <td><input type="text" name="txtUserID" id=""></td>
+                                <td><input type="text" name="txtUserID"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -600,23 +620,23 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>Item Name:</th>
-                                <td><input type="text" name="txtItemName" id=""></td>
+                                <td><input type="text" name="txtItemName"></td>
                             </tr>
                             <tr>
                                 <th>Item Type:</th>
-                                <td><input type="text" name="txtItemType" id=""></td>
+                                <td><input type="text" name="txtItemType"></td>
                             </tr>
                             <tr>
                                 <th>Item Price:</th>
-                                <td><input type="text" name="txtItemPrice" id=""></td>
+                                <td><input type="text" name="txtItemPrice"></td>
                             </tr>
                             <tr>
                                 <th>Transaction Type:</th>
-                                <td><input type="text" name="txtTransactionType" id=""></td>
+                                <td><input type="text" name="txtTransactionType"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -639,11 +659,11 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>Email Address:</th>
-                                <td><input type="email" name="txtEmail" id="" class="query-table-email-field"></td>
+                                <td><input type="email" name="txtEmail" class="query-table-email-field"></td>
                             </tr>
                             <tr>
                                 <th>Is subscribed?</th>
@@ -662,11 +682,11 @@ if ($is_admin != 1) {
                             </tr>
                             <tr>
                                 <th>Date First Subscribed:</th>
-                                <td><input type="text" name="txtDateFirstSubscribed" id=""></td>
+                                <td><input type="text" name="txtDateFirstSubscribed"></td>
                             </tr>
                             <tr>
                                 <th>Date Modified:</th>
-                                <td><input type="text" name="txtDateModified" id=""></td>
+                                <td><input type="text" name="txtDateModified"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -690,43 +710,47 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>Request Date:</th>
-                                <td><input type="text" name="txtRequestDate" id=""></td>
+                                <td><input type="text" name="txtRequestDate"></td>
                             </tr>
                             <tr>
                                 <th>Request Type:</th>
-                                <td><input type="text" name="txtRequestType" id=""></td>
+                                <td><input type="text" name="txtRequestType"></td>
                             </tr>
                             <tr>
                                 <th>Request Item Name:</th>
-                                <td><input type="text" name="txtRequestItemName" id=""></td>
+                                <td><input type="text" name="txtRequestItemName"></td>
                             </tr>
                             <tr>
                                 <th>Item Quantity:</th>
-                                <td><input type="text" name="txtItemQuantity" id=""></td>
+                                <td><input type="text" name="txtItemQuantity"></td>
                             </tr>
                             <tr>
                                 <th>Request Status:</th>
-                                <td><input type="text" name="txtRequestStatus" id=""></td>
+                                <td><input type="text" name="txtRequestStatus"></td>
+                            </tr>
+                            <tr>
+                                <th>Picture ID:</th>
+                                <td><input type="text" name="txtPictureID"></td>
                             </tr>
                             <tr>
                                 <th>User ID:</th>
-                                <td><input type="text" name="txtUserID" id=""></td>
+                                <td><input type="text" name="txtUserID"></td>
                             </tr>
                             <tr>
                                 <th>Item ID:</th>
-                                <td><input type="text" name="txtItemID" id=""></td>
+                                <td><input type="text" name="txtItemID"></td>
                             </tr>
                             <tr>
                                 <th>Accounts Payable ID:</th>
-                                <td><input type="text" name="txtAccountsPayableID" id=""></td>
+                                <td><input type="text" name="txtAccountsPayableID"></td>
                             </tr>
                             <tr>
                                 <th>Accounts Receivable ID:</th>
-                                <td><input type="text" name="txtAccountsReceivableID" id=""></td>
+                                <td><input type="text" name="txtAccountsReceivableID"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -743,6 +767,7 @@ if ($is_admin != 1) {
                             @$_SESSION['txtRequestItemName'] = $_POST['txtRequestItemName'];
                             @$_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
                             @$_SESSION['txtRequestStatus'] = $_POST['txtRequestStatus'];
+                            @$_SESSION['txtPictureID'] = $_POST['txtPictureID'];
                             @$_SESSION['txtUserID'] = $_POST['txtUserID'];
                             @$_SESSION['txtItemID'] = $_POST['txtItemID'];
                             @$_SESSION['txtAccountsPayableID'] = $_POST['txtAccountsPayableID'];
@@ -755,23 +780,23 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>Packing Date:</th>
-                                <td><input type="text" name="txtPackingDate" id=""></td>
+                                <td><input type="text" name="txtPackingDate"></td>
                             </tr>
                             <tr>
                                 <th>Delivery Date:</th>
-                                <td><input type="text" name="txtDeliveryDate" id=""></td>
+                                <td><input type="text" name="txtDeliveryDate"></td>
                             </tr>
                             <tr>
                                 <th>Delivery Status:</th>
-                                <td><input type="text" name="txtDeliveryStatus" id=""></td>
+                                <td><input type="text" name="txtDeliveryStatus"></td>
                             </tr>
                             <tr>
                                 <th>Request ID:</th>
-                                <td><input type="text" name="txtRequestID" id=""></td>
+                                <td><input type="text" name="txtRequestID"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -795,19 +820,19 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                             <tr>
                                 <th>ID:</th>
-                                <td><input type="text" name="txtID" id=""></td>
+                                <td><input type="text" name="txtID"></td>
                             </tr>
                             <tr>
                                 <th>First Name:</th>
-                                <td><input type="text" name="txtFName" id=""></td>
+                                <td><input type="text" name="txtFName"></td>
                             </tr>
                             <tr>
                                 <th>Last Name:</th>
-                                <td><input type="text" name="txtLName" id=""></td>
+                                <td><input type="text" name="txtLName"></td>
                             </tr>
                             <tr>
                                 <th>Email Address:</th>
-                                <td><input type="email" name="txtEmail" id="" class="query-table-email-field"></td>
+                                <td><input type="email" name="txtEmail" class="query-table-email-field"></td>
                             </tr>
                             <tr>
                                 <th>Gender:</th>
@@ -826,7 +851,7 @@ if ($is_admin != 1) {
                             </tr>
                             <tr>
                                 <th>Country:</th>
-                                <td><input type="text" name="txtCountry" id=""></td>
+                                <td><input type="text" name="txtCountry"></td>
                             </tr>
                             <tr>
                                 <th>Is admin?</th>
@@ -849,11 +874,11 @@ if ($is_admin != 1) {
                             </tr>
                             <tr>
                                 <th>Date Created:</th>
-                                <td><input type="text" name="txtDateCreated" id=""></td>
+                                <td><input type="text" name="txtDateCreated"></td>
                             </tr>
                             <tr>
                                 <th>Date Modified:</th>
-                                <td><input type="text" name="txtDateModified" id=""></td>
+                                <td><input type="text" name="txtDateModified"></td>
                             </tr>
                             <tr>
                                 <th>Action:</th>
@@ -892,22 +917,28 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                                 <tr>
                                     <th>ID</th>
+                                    <th>Payable date</th>
                                     <th>Amount Payable</th>
                                     <th>Request ID</th>
+                                    <th>Picture ID</th>
                                 </tr>
                             HTML;
                             echo $html;
 
                             // Declare variables to get the data.
                             $accounts_payable_id  = $_SESSION['txtID'];
+                            $payable_date = $_SESSION['txtPayableDate'];
                             $amount_payable = $_SESSION['txtAmountPayable'];
                             $request_id = $_SESSION['txtRequestID'];
+                            $picture_id = $_SESSION['txtPictureID'];
 
                             // Declare a variable for the query.
                             $sql_query_2 = "SELECT * FROM `$selected_table` WHERE
                                             accounts_payable_id LIKE '%$accounts_payable_id%' AND
+                                            payable_date LIKE '%$payable_date%' AND
                                             amount_payable LIKE '%$amount_payable%' AND
-                                            request_id LIKE '%$request_id%'
+                                            request_id LIKE '%$request_id%' AND
+                                            picture_id LIKE '%$picture_id%'
                                             ORDER BY accounts_payable_id ASC";
 
                             // Attempt to connect to the database and execute the query.
@@ -920,8 +951,10 @@ if ($is_admin != 1) {
                                 $html = <<<HTML
                                 <tr>
                                     <td>{$sql_query_2_row['accounts_payable_id']}</td>
+                                    <td>{$sql_query_2_row['payable_date']}</td>
                                     <td>{$sql_query_2_row['amount_payable']}</td>
                                     <td>{$sql_query_2_row['request_id']}</td>
+                                    <td>{$sql_query_2_row['picture_id']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -934,22 +967,28 @@ if ($is_admin != 1) {
                             $html = <<<HTML
                                 <tr>
                                     <th>ID</th>
+                                    <th>Receivable Date</th>
                                     <th>Amount Receivable</th>
                                     <th>Request ID</th>
+                                    <th>Picture ID</th>
                                 </tr>
                             HTML;
                             echo $html;
 
                             // Declare variables to get the data.
                             $accounts_receivable_id  = $_SESSION['txtID'];
+                            $receivable_date  = $_SESSION['txtReceivableDate'];
                             $amount_receivable = $_SESSION['txtAmountReceivable'];
                             $request_id = $_SESSION['txtRequestID'];
+                            $picture_id = $_SESSION['txtPictureID'];
 
                             // Declare a variable for the query.
                             $sql_query_3 = "SELECT * FROM `$selected_table` WHERE
                                             accounts_receivable_id LIKE '%$accounts_receivable_id%' AND
+                                            receivable_date LIKE '%$receivable_date%' AND
                                             amount_receivable LIKE '%$amount_receivable%' AND
-                                            request_id LIKE '%$request_id%'
+                                            request_id LIKE '%$request_id%' AND
+                                            picture_id LIKE '%$picture_id%'
                                             ORDER BY accounts_receivable_id ASC";
 
                             // Attempt to connect to the database and execute the query.
@@ -962,8 +1001,10 @@ if ($is_admin != 1) {
                                 $html = <<<HTML
                                 <tr>
                                     <td>{$sql_query_3_row['accounts_receivable_id']}</td>
+                                    <td>{$sql_query_3_row['receivable_date']}</td>
                                     <td>{$sql_query_3_row['amount_receivable']}</td>
                                     <td>{$sql_query_3_row['request_id']}</td>
+                                    <td>{$sql_query_3_row['picture_id']}</td>
                                 </tr>
                                 HTML;
                                 echo $html;
@@ -1215,6 +1256,7 @@ if ($is_admin != 1) {
                                     <th>Request Item Name</th>
                                     <th>Item Quantity</th>
                                     <th>Request Status</th>
+                                    <th>Picture ID</th>
                                     <th>User ID</th>
                                     <th>Item ID</th>
                                     <th>Accounts Payable ID</th>
@@ -1230,6 +1272,7 @@ if ($is_admin != 1) {
                             $request_item_name = $_SESSION['txtRequestItemName'];
                             $item_quantity = $_SESSION['txtItemQuantity'];
                             $request_status = $_SESSION['txtRequestStatus'];
+                            $picture_id = $_SESSION['txtPictureID'];
                             $user_id = $_SESSION['txtUserID'];
                             $item_id = $_SESSION['txtItemID'];
                             $accounts_payable_id = $_SESSION['txtAccountsPayableID'];
@@ -1243,6 +1286,7 @@ if ($is_admin != 1) {
                                             request_item_name LIKE '%$request_item_name%' AND
                                             item_quantity LIKE '%$item_quantity%' AND
                                             request_status LIKE '%$request_status%' AND
+                                            picture_id LIKE '%$picture_id%' AND
                                             user_id LIKE '%$user_id%' AND
                                             item_id LIKE '%$item_id%' AND
                                             accounts_payable_id LIKE '%$accounts_payable_id%' AND
@@ -1261,8 +1305,10 @@ if ($is_admin != 1) {
                                     <td>{$sql_query_9_row['request_id']}</td>
                                     <td>{$sql_query_9_row['request_date']}</td>
                                     <td>{$sql_query_9_row['request_type']}</td>
+                                    <td>{$sql_query_9_row['request_item_name']}</td>
                                     <td>{$sql_query_9_row['item_quantity']}</td>
                                     <td>{$sql_query_9_row['request_status']}</td>
+                                    <td>{$sql_query_9_row['picture_id']}</td>
                                     <td>{$sql_query_9_row['user_id']}</td>
                                     <td>{$sql_query_9_row['item_id']}</td>
                                     <td>{$sql_query_9_row['accounts_payable_id']}</td>
@@ -1336,6 +1382,8 @@ if ($is_admin != 1) {
                                 <th>Gender</th>
                                 <th>Country</th>
                                 <th>Is Admin</th>
+                                <th>Date Created</th>
+                                <th>Date Modified</th>
                                 <!-- <th colspan="2" style="text-align: center;">Actions</th> -->
                             </tr>
                             HTML;
@@ -1349,6 +1397,8 @@ if ($is_admin != 1) {
                             $gender = $_SESSION['rdoGender'];
                             $country = $_SESSION['txtCountry'];
                             $is_admin = $_SESSION['rdoAdmin'];
+                            $date_created = $_SESSION['rdoAdmin'];
+                            $date_modified = $_SESSION['rdoAdmin'];
 
                             // Declare a variable for the query.
                             $sql_query_11 = "SELECT * FROM `$selected_table` WHERE
@@ -1358,7 +1408,9 @@ if ($is_admin != 1) {
                                             email_address LIKE '%$email_address%' AND
                                             gender LIKE '%$gender%' AND
                                             country LIKE '%$country%' AND
-                                            is_admin LIKE '%$is_admin%'
+                                            is_admin LIKE '%$is_admin%' AND
+                                            date_created LIKE '%$date_created%' AND
+                                            date_modified LIKE '%$date_modified%'
                                             ORDER BY user_id ASC";
 
                             // Attempt to connect to the database and execute the query.
@@ -1377,22 +1429,23 @@ if ($is_admin != 1) {
                                     <td>{$sql_query_11_row['gender']}</td>
                                     <td>{$sql_query_11_row['country']}</td>
                                     <td>{$sql_query_11_row['is_admin']}</td>
+                                    <td>{$sql_query_11_row['date_created']}</td>
+                                    <td>{$sql_query_11_row['date_modified']}</td>
                                     <!-- 
                                     <td><a href="javascript:void(0)">Edit</a></td>
                                     <td><a href="javascript:void(0)">Delete</a></td>
-                                    <td><a href="edit_user.php?id={$row['user_id']}\">Edit</a></td>
-                                    <td><a href="delete_user.php?id={$row['user_id']}\">Delete</a></td>
-                                        -->
+                                    -->
                                     </tr>
                                 HTML;
                                 echo $html;
                             }
                         }
-                        // Ensure the connection to the DB is closed, with or without
-                        // any code or query execution for security reasons.
-                        $connection->close();
                     echo '</table>';
                 }
+
+                // Ensure the connection to the DB is closed, with or without
+                // any code or query execution for security reasons.
+                $connection->close();
                 ?>
             </div>
         </div>

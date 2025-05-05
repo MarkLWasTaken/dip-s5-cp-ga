@@ -25,7 +25,7 @@ if ($user_id != null) {
     }
 }
 
-// Users who are not system administrators (sysadmins)
+// Users who are not office administrators (office AD)
 // are not allowed to access this page.
 if ($is_admin != 2) {
     header('Location: ../../index.php');
@@ -36,10 +36,6 @@ date_default_timezone_set('Asia/Singapore');
 
 // Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
 $date = date('Y-m-d H:i:s P');
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -342,9 +338,6 @@ $connection->close();
             <div class="margin-30px"></div>
 
                 <?php
-                // Include the PHP script for re-connecting to the database (DB).
-                include '../../php/connection.php';
-
                 // Check if the form has been submitted.
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Get the form data from the previous webpage.
@@ -396,10 +389,6 @@ $connection->close();
                         echo $html;
                     }
                 }
-
-                // Ensure the connection to the DB is closed, with or without
-                // any code or query execution for security reasons.
-                $connection->close();
                 ?>
 
                 <p>Here are the details of the user's request.</p>
@@ -409,9 +398,6 @@ $connection->close();
                 <div>
                     <div class="requests-table">
                         <?php
-                        // Attempt to make a new connection to the database.
-                        include '../../php/connection.php';
-
                         // Use heredoc syntax to make the code readable and easier to maintain.
                         // Very useful for handling large blocks of of codes.
                         $html = <<<HTML
