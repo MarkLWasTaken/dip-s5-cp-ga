@@ -337,21 +337,249 @@ if ($user_id == null) {
 
         <div class="margin-40px"></div>
 
-        
+        <?php
+        // Check if the form has been submitted.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $request_id = $_POST['request_id'];
+        }
 
+        // Get data from the "requests" table with specific request ID for the user.
+        // Declare a variable for the query.
+        $sql_query_1 = "SELECT * FROM `requests`
+                        WHERE request_id = '$request_id'";
 
+        // Attempt to connect to the database and execute the query.
+        $sql_query_1_result = $connection->query($sql_query_1);
 
+        // Insert the each of the results into the table.
+        while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
+            $request_type = $sql_query_1_row['request_type'];
+            $request_status = $sql_query_1_row['request_status'];
+            $request_picture_id = $sql_query_1_row['picture_id'];
 
+            if ($request_status == "Courier pick package") {
+                $delivery_status_1 = "&#128994;";
+                $delivery_status_2 = "&#128308;";
+            }
+            else if ($request_status == "Package out for delivery") {
+                $delivery_status_1 = "&#128994;";
+                $delivery_status_2 = "&#128994;";
+            }
+            else {
+                $delivery_status_1 = "&#128308;";
+                $delivery_status_2 = "&#128308;";
+            }
+        }
+        ?>
 
+        <!-- Layout for the container 3. -->
+        <div class="container-3-container">
+            <div class="container-3-content">
+                <div class="margin-30px"></div>
+                <p class="font-size-30px">Delivery status details:</p>
+                <div class="margin-30px"></div>
+                    <div style="text-align: left; padding-left: 37%;">
+                        <!--
+                        &#128994; = Green circle
+                        &#128308; = Red circle
+                        -->
+                        <p class="font-size-20px"><?php echo $delivery_status_1 ?> Courier pick package</p>
+                        <p class="font-size-20px"><?php echo $delivery_status_2 ?> Package out for delivery</p>
+                    </div>
+                <div class="margin-60px"></div>
+                <p class="font-size-30px">Request details:</p>
+                <div class="requests-details-table-content">
+                    <table border=1>
+                        <tr>
+                            <th>ID</th>
+                            <th>Request Date</th>
+                            <th>Request Type</th>
+                            <th>Request Item Name</th>
+                            <th>Item Quantity</th>
+                            <th>Request Status</th>
+                            <th>Item ID</th>
+                            <th>Amount Receivable</th>
+                        </tr>
 
+                        <?php
+                        // Get data from the "requests" table with specific request ID for the user.
+                        // Declare a variable for the query.
+                        $sql_query_2 = "SELECT * FROM `requests`
+                                        WHERE request_id = '$request_id'";
 
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_2_result = $connection->query($sql_query_2);
 
+                        // Insert the each of the results into the table.
+                        while($sql_query_2_row = $sql_query_2_result->fetch_assoc()) {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <tr>
+                                <td>{$sql_query_2_row['request_id']}</td>
+                                <td>{$sql_query_2_row['request_date']}</td>
+                                <td>{$sql_query_2_row['request_type']}</td>
+                                <td>{$sql_query_2_row['request_item_name']}</td>
+                                <td>{$sql_query_2_row['item_quantity']}</td>
+                                <td>{$sql_query_2_row['request_status']}</td>
+                                <td>{$sql_query_2_row['item_id']}</td>
+                                <td>{$sql_query_2_row['amount_receivable']}</td>
+                            </tr>
+                            HTML;
+                            echo $html;
 
+                            $request_type = $sql_query_2_row['request_type'];
+                            $request_status = $sql_query_2_row['request_status'];
+                            $request_picture_id = $sql_query_2_row['picture_id'];
+                        }
 
+                        // Get data from the "accounts_receivable" table with specific request ID for the user.
+                        // Declare a variable for the query.
+                        $sql_query_3 = "SELECT * FROM `accounts_receivable`
+                                        WHERE request_id = '$request_id'";
 
+                        // Attempt to connect to the database and execute the query.
+                        $sql_query_3_result = $connection->query($sql_query_3);
 
+                        // Insert the each of the results into the table.
+                        while($sql_query_3_row = $sql_query_3_result->fetch_assoc()) {
+                            $accounts_receivable_picture_id = $sql_query_3_row['picture_id'];
+                        }
 
-        
+                        // Ensure the connection to the DB is closed, with or without
+                        // any code or query execution for security reasons.
+                        $connection->close();
+
+                        if ($request_type == "Buy") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #user-request-picture {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        else if ($request_type == "Sell") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+
+                        if ($request_status == "Pending") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-no-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+
+                                #receivable-payment-picture-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        if ($request_status == "Pending payment") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-pending-review {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+
+                                #receivable-payment-picture-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        else if (@$accounts_receivable_picture_id == "") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        else if (@$accounts_receivable_picture_id != "") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-no-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+
+                                #receivable-payment-picture-pending-review {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        ?>
+                    </table>
+                </div>
+
+                <div id="user-request-picture">
+                    <div class="margin-60px"></div>
+                    <p class="font-size-30px">Request picture:</p>
+                    <img src="../uploads/requests/<?php echo $request_picture_id; ?>" width="90%" height ="50%" alt="User's request picture." title="User's request picture.">
+                </div>
+
+                <div id="receivable-payment-picture">
+                    <div class="margin-60px"></div>
+                    <p class="font-size-30px">Proof of Payment picture:</p>
+                    <div id="receivable-payment-picture-pending-review">
+                        Please wait for us to review your application<br>
+                        <div class="margin-20px"></div>
+                        before you can upload the Proof of Payment picture.
+                    </div>
+                    <div id="receivable-payment-picture-no-exist">
+                        You have not uploaded the Proof of Payment picture yet.
+                    </div>
+                    <div id="receivable-payment-picture-exist">
+                        <img src="../uploads/payments/<?php echo $accounts_receivable_picture_id; ?>" width="90%" height ="50%" alt="User's request picture." title="User's request picture.">
+                    </div>
+                </div>
+
+                <div class="margin-60px"></div>
+                <div class="container-4-container">
+                    <a class="container-4-contents" href="../view-transactions/index.php">
+                        <p>Return to view transactions page</p>
+                    </a>
+                </div>
+                <div class="margin-80px"></div>
+            </div>
+        </div>
+
         <div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">
