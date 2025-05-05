@@ -29,7 +29,7 @@ if ($user_id != null) {
 // any code or query execution for security reasons.
 $connection->close();
 
-// Only users who are already logged in are allow to view and use the webpage.
+// Only users who are already logged in are allowed to view and use the webpage.
 if ($user_id == null) {
     header('Location: ../index.php');
 }

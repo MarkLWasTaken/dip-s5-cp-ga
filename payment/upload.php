@@ -25,7 +25,7 @@ if ($user_id != null) {
     }
 }
 
-// Only users who are already logged in are allow to view and use the webpage.
+// Only users who are already logged in are allowed to view and use the webpage.
 if ($user_id == null) {
     header('Location: ../index.php');
 }
@@ -412,6 +412,8 @@ if ($user_id == null) {
 
                 // Get the data from the database table.
                 // Declare a variable for the query.
+                // $sql_query_1 = "SELECT * FROM `accounts_receivable`
+                //                 WHERE request_id = '$request_id'";
                 $sql_query_1 = "SELECT * FROM `accounts_receivable`
                                 WHERE request_id = '$request_id'";
 
@@ -424,7 +426,7 @@ if ($user_id == null) {
                 }
 
                 // Rename picture.
-                $newFileName = "accounts_receivable_id_" . $accounts_receivable_id . "_" . "request_id_" . $request_id . "." . $imageFileType;
+                @$newFileName = "accounts_receivable_id_" . @$accounts_receivable_id . "_" . "request_id_" . @$request_id . "." . @$imageFileType;
                 $newTargetFile = $target_dir . $newFileName;
 
                 // Declare and initialize the variables as empty.
@@ -500,7 +502,7 @@ if ($user_id == null) {
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Declare a variable for the query.
                             // Update the data into the database table row.
-                            $sql_query_2 = "UPDATE `accounts_receivable`
+                            @$sql_query_2 = "UPDATE `accounts_receivable`
                                             SET `picture_id` = '$newFileName'
                                             WHERE `accounts_receivable_id` = '$accounts_receivable_id';";
 

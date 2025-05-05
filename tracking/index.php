@@ -40,13 +40,13 @@ if ($user_id == null) {
     <meta name="keywords" content="Quantum E-waste Solution (Management System), built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Solution Group">
 
-    <title>Quantum E-waste Solution - Proof of Payment</title>
+    <title>Quantum E-waste Solution - Tracking</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../css/payment.css" rel="stylesheet">
+    <link href="../css/tracking.css" rel="stylesheet">
     <link href="../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -76,9 +76,9 @@ if ($user_id == null) {
             <a href="javascript:void(0)">&#128994; User is logged in.</a>
             <a href="../dashboard.php" onclick="closeNav()">Dashboard</a>
             <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
-            <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
+            <a href="#" onclick="closeNav()">Tracking</a>
             <a href="../view-transactions/index.php" onclick="closeNav()">View transactions</a>
-            <a href="#" onclick="closeNav()">Proof of Payment</a>
+            <a href="../payment/index.php" onclick="closeNav()">Proof of Payment</a>
             <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="../account/logout.php" onclick="closeNav()">Logout</a>
             <div class="margin-50px"></div>
@@ -318,8 +318,8 @@ if ($user_id == null) {
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Proof of Payment</div>
+        <div class="page-title-banner-container-1">
+            <div class="page-title-banner-content-1">Tracking</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -328,10 +328,10 @@ if ($user_id == null) {
             <h1>Blank space.</h1>
         </div> -->
 
-        <!-- Layout for the contents 1 container. -->
+        <!-- Layout for the container 1. -->
         <div class="container-1-container">
             <div class="container-1-contents">
-                <h2>To begin, select a request here.</h2>
+                <h2>Select a request to view the delivery status.</h2>
             </div>
         </div>
 
@@ -390,7 +390,7 @@ if ($user_id == null) {
                     <table>
                         <tr>
                             <th colspan="2" style="padding-left: 0; text-align: center;">
-                                "requests" Table Query
+                                Delivery Table Query
                             </th>
                         </tr>
                         <?php // "requests" table query options. ?>
@@ -461,7 +461,7 @@ if ($user_id == null) {
                                 request_type = 'Buy' AND
                                 request_item_name LIKE '%$request_item_name%' AND
                                 item_quantity LIKE '%$item_quantity%' AND
-                                request_status = 'Pending payment' AND
+                                request_status = 'Approve delivery' AND
                                 item_id LIKE '%$item_id%'
                                 ORDER BY request_id ASC";
                 // "picture_id", "user_id", "accounts_payable" and "accounts_receivable" is excluded.
@@ -483,9 +483,9 @@ if ($user_id == null) {
                         <td>{$sql_query_1_row['request_status']}</td>
                         <td>{$sql_query_1_row['item_id']}</td>
                         <td>
-                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../payment/upload.php">
+                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="view.php">
                                 <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
-                                <input type="submit" name="submit" value="Upload picture">
+                                <input type="submit" name="submit" value="View status">
                             </form>
                         </td>
                     </tr>

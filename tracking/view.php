@@ -40,13 +40,13 @@ if ($user_id == null) {
     <meta name="keywords" content="Quantum E-waste Solution (Management System), built with HTML, CSS, JS, PHP and SQL">
     <meta name="author" content="Quantum E-waste Solution Group">
 
-    <title>Quantum E-waste Solution - Proof of Payment</title>
+    <title>Quantum E-waste Solution - Tracking (View)</title>
 
     <!-- Cascading Style Sheets -->
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/navigation-bar-buttons.css" rel="stylesheet">
     <link href="../css/dropdown-menu.css" rel="stylesheet">
-    <link href="../css/payment.css" rel="stylesheet">
+    <link href="../css/tracking.css" rel="stylesheet">
     <link href="../css/styles-cp-mobile.css" rel="stylesheet">
     <link href="../css/side-navigation-menu.css" rel="stylesheet">
 
@@ -78,7 +78,7 @@ if ($user_id == null) {
             <a href="../buy-sell-request/index.php" onclick="closeNav()">Buy/Sell Request</a>
             <a href="../tracking/index.php" onclick="closeNav()">Tracking</a>
             <a href="../view-transactions/index.php" onclick="closeNav()">View transactions</a>
-            <a href="#" onclick="closeNav()">Proof of Payment</a>
+            <a href="../payment/index.php" onclick="closeNav()">Proof of Payment</a>
             <a href="../account/profile/index.php" onclick="closeNav()">Manage/Edit Profile</a>
             <a href="../account/logout.php" onclick="closeNav()">Logout</a>
             <div class="margin-50px"></div>
@@ -318,8 +318,8 @@ if ($user_id == null) {
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container">
-            <div class="page-title-banner-content">Proof of Payment</div>
+        <div class="page-title-banner-container-1">
+            <div class="page-title-banner-content-1">Tracking (View)</div>
         </div>
 
         <div class="margin-30px"></div>
@@ -328,179 +328,30 @@ if ($user_id == null) {
             <h1>Blank space.</h1>
         </div> -->
 
-        <!-- Layout for the contents 1 container. -->
-        <div class="container-1-container">
-            <div class="container-1-contents">
-                <h2>To begin, select a request here.</h2>
+        <!-- Layout for the container 1. -->
+        <div class="container-2-container">
+            <div class="container-2-contents">
+                <h2>Customer package delivery status</h2>
             </div>
         </div>
 
         <div class="margin-40px"></div>
 
-        <?php
-        // Unset the session variables to clear the form data.
-        unset($_SESSION['txtID']);
-        unset($_SESSION['txtRequestDate']);
-        unset($_SESSION['txtRequestType']);
-        unset($_SESSION['txtRequestItemName']);
-        unset($_SESSION['txtItemQuantity']);
-        unset($_SESSION['txtItemID']);
+        
 
-        // Check if the form has been submitted.
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
-            $_SESSION['txtID'] = $_POST['txtID'];
-            $_SESSION['txtRequestDate'] = $_POST['txtRequestDate'];
-            $_SESSION['txtRequestType'] = $_POST['txtRequestType'];
-            $_SESSION['txtRequestItemName'] = $_POST['txtRequestItemName'];
-            $_SESSION['txtItemQuantity'] = $_POST['txtItemQuantity'];
-            @$_SESSION['txtItemID'] = $_POST['txtItemID'];
-            if (isset($_POST['clear'])) {
-                // Unset the session variables to clear the form data.
-                unset($_SESSION['txtID']);
-                unset($_SESSION['txtRequestDate']);
-                unset($_SESSION['txtRequestType']);
-                unset($_SESSION['txtRequestItemName']);
-                unset($_SESSION['txtItemQuantity']);
-                unset($_SESSION['txtItemID']);
-            }
-        } else if (isset($_POST['clear'])) {
-            // Unset the session variables to clear the form data.
-            unset($_SESSION['txtID']);
-            unset($_SESSION['txtRequestDate']);
-            unset($_SESSION['txtRequestType']);
-            unset($_SESSION['txtRequestItemName']);
-            unset($_SESSION['txtItemQuantity']);
-            unset($_SESSION['txtItemID']);
-        }
 
-        // Retrieve the values from the session.
-        $request_id = isset($_SESSION['txtID']) ? $_SESSION['txtID'] : '';
-        $request_date = isset($_SESSION['txtRequestDate']) ? $_SESSION['txtRequestDate'] : '';
-        $request_type = isset($_SESSION['txtRequestType']) ? $_SESSION['txtRequestType'] : '';
-        $request_item_name = isset($_SESSION['txtRequestItemName']) ? $_SESSION['txtRequestItemName'] : '';
-        $item_quantity = isset($_SESSION['txtItemQuantity']) ? $_SESSION['txtItemQuantity'] : '';
-        $item_id = isset($_SESSION['txtItemID']) ? $_SESSION['txtItemID'] : '';
-        ?>
 
-        <!-- Table query container -->
-        <div>
-            <form action="" method="post">
-                <div class="table-query-content">
-                    <table>
-                        <tr>
-                            <th colspan="2" style="padding-left: 0; text-align: center;">
-                                "requests" Table Query
-                            </th>
-                        </tr>
-                        <?php // "requests" table query options. ?>
-                        <tr>
-                            <th>ID:</th>
-                            <td><input type="text" name="txtID" value="<?php echo $request_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Request Date:</th>
-                            <td><input type="text" name="txtRequestDate" value="<?php echo $request_date ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Request Type:</th>
-                            <td><input type="text" name="txtRequestType" value="<?php echo $request_type ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Request Item Name:</th>
-                            <td><input type="text" name="txtRequestItemName" value="<?php echo $request_item_name ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item Quantity:</th>
-                            <td><input type="text" name="txtItemQuantity" value="<?php echo $item_quantity ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Item ID:</th>
-                            <td><input type="text" name="txtItemID" value="<?php $item_id ?>"></td>
-                        </tr>
-                        <tr>
-                            <th>Actions:</th>
-                            <td>
-                                <input class="submit-button" type="submit" name="submit" value="Search from the table">
-                                <div class="margin-20px"></div>
-                                <input class="submit-button" type="submit" name="clear" value="Clear the query">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
-        </div>
 
-        <div class="margin-50px"></div>
 
-        <!-- E-waste requests table container -->
-        <div>
-            <div class="requests-table">
-                <?php
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <table border=1>
-                    <tr>
-                        <th>ID</th>
-                        <th>Request Date</th>
-                        <th>Request Type</th>
-                        <th>Request Item Name</th>
-                        <th>Item Quantity</th>
-                        <th>Request Status</th>
-                        <th>Item ID</th>
-                        <th colspan="2" style="text-align: center;">Actions</th>
-                    </tr>
-                HTML;
-                echo $html;
 
-                // Declare a variable for the query.
-                $sql_query_1 = "SELECT * FROM `requests` WHERE
-                                request_id LIKE '%$request_id%' AND
-                                request_date LIKE '%$request_date%' AND
-                                request_type = 'Buy' AND
-                                request_item_name LIKE '%$request_item_name%' AND
-                                item_quantity LIKE '%$item_quantity%' AND
-                                request_status = 'Pending payment' AND
-                                item_id LIKE '%$item_id%'
-                                ORDER BY request_id ASC";
-                // "picture_id", "user_id", "accounts_payable" and "accounts_receivable" is excluded.
 
-                // Attempt to connect to the database and execute the query.
-                $sql_query_1_result = $connection->query($sql_query_1);
 
-                // Insert the each of the results into the table.
-                while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
-                    // Use heredoc syntax to make the code readable and easier to maintain.
-                    // Very useful for handling large blocks of of codes.
-                    $html = <<<HTML
-                    <tr>
-                        <td>{$sql_query_1_row['request_id']}</td>
-                        <td>{$sql_query_1_row['request_date']}</td>
-                        <td>{$sql_query_1_row['request_type']}</td>
-                        <td>{$sql_query_1_row['request_item_name']}</td>
-                        <td>{$sql_query_1_row['item_quantity']}</td>
-                        <td>{$sql_query_1_row['request_status']}</td>
-                        <td>{$sql_query_1_row['item_id']}</td>
-                        <td>
-                            <form id="post_request_id_{$sql_query_1_row['request_id']}" method="post" action="../payment/upload.php">
-                                <input type="hidden" name="request_id" value="{$sql_query_1_row['request_id']}">
-                                <input type="submit" name="submit" value="Upload picture">
-                            </form>
-                        </td>
-                    </tr>
-                    HTML;
-                    echo $html;
-                }
-                echo '</table>';
 
-                // Ensure the connection to the DB is closed, with or without
-                // any code or query execution for security reasons.
-                $connection->close();
-                ?>
-            </div>
-        </div>
 
+
+
+
+        
         <div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">

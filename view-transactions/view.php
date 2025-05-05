@@ -25,7 +25,7 @@ if ($user_id != null) {
     }
 }
 
-// Only users who are already logged in are allow to view and use the webpage.
+// Only users who are already logged in are allowed to view and use the webpage.
 if ($user_id == null) {
     header('Location: ../index.php');
 }
@@ -391,6 +391,7 @@ if ($user_id == null) {
                             echo $html;
 
                             $request_type = $sql_query_1_row['request_type'];
+                            $request_status = $sql_query_1_row['request_status'];
                             $request_picture_id = $sql_query_1_row['picture_id'];
                         }
 
@@ -438,7 +439,43 @@ if ($user_id == null) {
                             echo $html;
                         }
 
-                        if (@$accounts_receivable_picture_id == "") {
+                        if ($request_status == "Pending") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-no-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+
+                                #receivable-payment-picture-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        if ($request_status == "Pending payment") {
+                            // Use heredoc syntax to make the code readable and easier to maintain.
+                            // Very useful for handling large blocks of of codes.
+                            $html = <<<HTML
+                            <style>
+                                #receivable-payment-picture-pending-review {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+
+                                #receivable-payment-picture-exist {
+                                    display: none;
+                                    opacity: 0%;
+                                }
+                            </style>
+                            HTML;
+                            echo $html;
+                        }
+                        else if (@$accounts_receivable_picture_id == "") {
                             // Use heredoc syntax to make the code readable and easier to maintain.
                             // Very useful for handling large blocks of of codes.
                             $html = <<<HTML
@@ -460,6 +497,11 @@ if ($user_id == null) {
                                     display: none;
                                     opacity: 0%;
                                 }
+
+                                #receivable-payment-picture-pending-review {
+                                    display: none;
+                                    opacity: 0%;
+                                }
                             </style>
                             HTML;
                             echo $html;
@@ -477,6 +519,11 @@ if ($user_id == null) {
                 <div id="receivable-payment-picture">
                     <div class="margin-60px"></div>
                     <p class="font-size-20px">Proof of Payment picture:</p>
+                    <div id="receivable-payment-picture-pending-review">
+                        Please wait for us to review your application<br>
+                        <div class="margin-20px"></div>
+                        before you can upload the Proof of Payment picture.
+                    </div>
                     <div id="receivable-payment-picture-no-exist">
                         You have not uploaded the Proof of Payment picture yet.
                     </div>

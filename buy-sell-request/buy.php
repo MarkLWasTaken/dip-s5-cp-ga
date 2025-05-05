@@ -25,7 +25,7 @@ if ($user_id != null) {
     }
 }
 
-// Only users who are already logged in are allow to view and use the webpage.
+// Only users who are already logged in are allowed to view and use the webpage.
 if ($user_id == null) {
     header('Location: ../index.php');
 }
@@ -404,6 +404,7 @@ $date = date('Y-m-d H:i:s P');
                     <p>Item Type: $items_item_name</p>
                     <p>Item Name: $request_item_name</p>
                     <p>Quantity: $request_item_quantity</p>
+                    <div class="margin-40px"></div>
                     <div class="container-5-container">
                         <a class="container-5-contents" href="../buy-sell-request/index.php">
                             <p>Return to the buy/sell request page</p>
