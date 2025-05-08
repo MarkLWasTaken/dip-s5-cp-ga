@@ -1,0 +1,157 @@
+
+/* 
+Start of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/
+
+/* Admin dashboard */
+.page-title-banner-container {
+    height: 75px;
+    width: 35%;
+    /* background-color: lightgreen; */
+    border-style: solid;
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 3%;
+    box-shadow: 0px 0px 16px 0px black;
+    color: lightgreen;
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+}
+
+.page-title-banner-content {
+    margin: 0 auto;
+    flex-direction: column;
+    height: 60px;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 12px;
+}
+
+/* Container 1 */
+#container-1-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 100%;
+}
+
+#container-1-contents {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    /* float: left; */
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Container 2 */
+#container-2-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 100%;
+}
+
+#container-2-contents {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    /* float: left; */
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* Container 3 */
+#container-3-container {
+    /*
+    A hidden container to ensure the contents tabs animations (if any)
+    do not push the footer down and affect the overall website design.
+    */
+    display: flex;
+    justify-content: center;
+    gap: 75px;
+    height: 100%;
+}
+
+#container-3-contents {
+    height: 100%;
+    width: 100%;
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    /* float: left; */
+    /* padding-left: 20px; */
+    margin-left: 5px;
+    margin-right: 5px;
+    border-width: 2px;
+    text-align: center;
+    /* background-color: lightyellow; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    color: white;
+    box-shadow: 0px 0px 16px 0px black;
+}
+
+/* 
+Start of the lines/blocks of codes
+Contributed by M4
+Student ID: Redacted
+*/
+
+.card {
+    /* background: white; */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+canvas {
+    max-width: 400px;
+    margin-top: 30px;
+    max-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 
+End of the lines/blocks of codes
+Contributed by M4
+Student ID: Redacted
+*/
+
+/* 
+End of the lines/blocks of codes
+Developed by M1
+Student ID: Redacted
+*/

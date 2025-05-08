@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "ewaste_db";
+$database = "ucdf2307_cp_group_9";
 
 $conn = new mysqli($servername, $username, $password, $database);
 

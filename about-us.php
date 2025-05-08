@@ -335,10 +335,23 @@ $date = date('Y-m-d H:i:s P');
                 <div class="margin-50px"></div>
 
                 <h1>Who are we</h1>
+
+                <!--
+                Start of the lines/blocks of codes
+                Contributed by M4
+                Student ID: Redacted
+                -->
+
                 <p class="container-1-paragraph">
                     We are an environmentally-conscious organization committed<br>
                     to responsible e-waste disposal and recycling.
                 </p>
+
+                <!--
+                End of the lines/blocks of codes
+                Contributed by M4
+                Student ID: Redacted
+                -->
 
                 <div class="margin-50px"></div>
 
