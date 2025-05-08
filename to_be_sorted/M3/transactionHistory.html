@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transaction History</title>
+  <link rel="stylesheet" href="design.css">
+  <script src="function.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>E-Waste Management System - Transaction History</h1>
+  </header>
+
+  <nav>
+    <a href="buySellRequest.html">Back</a>
+    <a href="requestHistory.html" class="btn">Request History</a>
+    <a href="transactionHistory.html" class="btn">Transaction History</a>
+  </nav>
+
+  <section>
+    <h2 class="section-title">Your Total Transaction Record</h2>
+    <button id="clear-history-button" class="btn">Clear all History</button>
+    <div id="summary"></div>
+    <h2 class="section-title">Your Past Transaction</h2>
+    <div id="transactions"></div>
+  </section>
+
+  <script>
+    const history = JSON.parse(localStorage.getItem('requestHistory')) || [];
+    let totalSpent = 0, totalEarned = 0;
+    const transactionsDiv = document.getElementById('transactions');
+    history.forEach(entry => {
+      const card = document.createElement('div');
+      card.className = 'history-card';
+      card.innerHTML = `
+        <h4>${entry.type === 'Buy' ? '🟢 Buy' : '🔴 Sell'} - RM${entry.totalPrice}</h4>
+        <p><strong>Items:</strong> ${entry.items.join(', ')}</p>
+        <p><strong>Quantities:</strong> ${entry.quantities.join(', ')}</p>
+        <p><strong>Date:</strong> ${entry.date}</p>
+      `;
+      if (entry.details) {
+        card.innerHTML += `<p><strong>Details:</strong> ${entry.details}</p>`;
+      }
+      transactionsDiv.appendChild(card);
+
+      if (entry.type === "Buy") totalSpent += entry.totalPrice;
+      if (entry.type === "Sell") totalEarned += entry.totalPrice;
+    });
+
+
+    const clearButton = document.getElementById('clear-history-button');
+    if (clearButton) {
+      clearButton.addEventListener('click', () => {
+        if (confirm("Are you sure you want to clear your all history?")) {
+          localStorage.removeItem('requestHistory'); 
+          transactionsDiv.innerHTML = '<p>Your all history has been cleared.</p>';
+          document.getElementById('summary').innerHTML = ''; 
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+

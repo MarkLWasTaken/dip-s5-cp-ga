@@ -291,6 +291,22 @@ body {
     font-size: 16px;
 }
 
+/* Thank you for subscribing! */
+#mail-text-2 {
+    display: none;
+    opacity: 0%;
+}
+
+/* Email address already exists in the database. */
+#mail-text-3 {
+    display: none;
+    opacity: 0%;
+}
+
+.font-size-20px {
+    font-size: 20px;
+}
+
 .white-hyperlink:hover {
     text-decoration: underline;
 }

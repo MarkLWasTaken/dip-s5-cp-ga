@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2025 at 02:34 PM
+-- Generation Time: May 05, 2025 at 05:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,13 @@ CREATE TABLE `accounts_payable` (
   `picture_id` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `accounts_payable`
+--
+
+INSERT INTO `accounts_payable` (`accounts_payable_id`, `payable_date`, `amount_payable`, `request_id`, `picture_id`) VALUES
+(1, '2025-05-05 22:23:10 +08:00', 5, 4, '');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +55,13 @@ CREATE TABLE `accounts_receivable` (
   `request_id` int(11) NOT NULL,
   `picture_id` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `accounts_receivable`
+--
+
+INSERT INTO `accounts_receivable` (`accounts_receivable_id`, `receivable_date`, `amount_receivable`, `request_id`, `picture_id`) VALUES
+(1, '2025-05-05 22:28:00 +08:00', 200, 1, 'accounts_receivable_id_1_request_id_1.png');
 
 -- --------------------------------------------------------
 
@@ -166,8 +180,22 @@ CREATE TABLE `requests` (
   `user_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `accounts_payable_id` int(11) NOT NULL,
-  `accounts_receivable_id` int(11) NOT NULL
+  `accounts_receivable_id` int(11) NOT NULL,
+  `amount_payable` int(11) NOT NULL,
+  `amount_receivable` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`request_id`, `request_date`, `request_type`, `request_item_name`, `item_quantity`, `request_status`, `picture_id`, `user_id`, `item_id`, `accounts_payable_id`, `accounts_receivable_id`, `amount_payable`, `amount_receivable`) VALUES
+(1, '2025-05-05 21:55:52 +08:00', 'Buy', 'AMD Ryzen 7', 1, 'Approve delivery', '', 7, 1, 0, 1, 0, 200),
+(2, '2025-05-05 21:56:14 +08:00', 'Buy', 'AMD Radeon RX 9070 XT', 1, 'Pending', '', 7, 2, 0, 0, 0, 0),
+(3, '2025-05-05 21:56:31 +08:00', 'Buy', 'Samsung DDR5', 1, 'Rejected', '', 7, 3, 0, 0, 0, 0),
+(4, '2025-05-05 22:03:34 +08:00', 'Sell', 'Apple iPhone', 1, 'Approved', 'request_id_4_user_id_7.png', 7, 12, 1, 0, 5, 0),
+(5, '2025-05-05 22:06:23 +08:00', 'Sell', 'Nokia 3310', 1, 'Pending', 'request_id_5_user_id_7.png', 7, 12, 0, 0, 0, 0),
+(6, '2025-05-05 22:07:36 +08:00', 'Sell', 'Lenovo Legion 5 Gen 7', 1, 'Pending', 'request_id_6_user_id_7.png', 7, 11, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -207,9 +235,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email_address`, `password`, `gender`, `country`, `is_admin`, `date_created`, `date_modified`) VALUES
-(6, 'Ashly', 'Wray', 'awray5@hibu.com', 'zF7*6uF1r', 'Female', 'Azerbaijan', 1, '2024-10-02', ''),
+(6, 'Ashly', 'Wray', 'awray5@hibu.com', 'aaaaaaaaaaaaaaaaaa', 'Female', 'Malaysia', 1, '2024-10-02', '2025-05-05 21:03:53 +08:00'),
 (7, 'Arne', 'Calltone', 'acalltone6@hugedomains.com', 'zK5cdV%S', 'Male', 'Brazil', 2, '2024-12-05', ''),
-(8, 'Horton', 'Seaman', 'hseaman7@1688.com', 'aX9(ZCGGwQk', 'Male', 'China', 0, '2024-11-04', ''),
+(8, 'Horton', 'Seaman', 'hseaman7@1688.com', 'aX9(ZCGGwQk', 'Male', 'Malaysia', 0, '2024-11-04', ''),
 (9, 'Margi', 'Petru', 'mpetru8@state.tx.us', 'pN7&>)XQft`1q/`', 'Female', 'Nepal', 0, '2024-10-25', ''),
 (10, 'Kellina', 'Senyard', 'ksenyard9@simplemachines.org', 'sF8>Bs!g,', 'Female', 'China', 0, '2024-12-11', ''),
 (11, 'Nanny', 'Wardley', 'nwardleya@scientificamerican.com', 'xM2\\9b%`X@H,N<_', 'Female', 'Russia', 0, '2024-12-03', ''),
@@ -336,13 +364,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounts_payable`
 --
 ALTER TABLE `accounts_payable`
-  MODIFY `accounts_payable_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `accounts_payable_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `accounts_receivable`
 --
 ALTER TABLE `accounts_receivable`
-  MODIFY `accounts_receivable_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `accounts_receivable_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
@@ -372,13 +400,13 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `mailing_list`
 --
 ALTER TABLE `mailing_list`
-  MODIFY `mailing_list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `mailing_list_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sales_request_tracking`

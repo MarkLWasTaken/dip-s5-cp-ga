@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy and Sell Request</title>
+  <link rel="stylesheet" href="design.css">
+  <script src="function.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>E-Waste Management System - Buy and Sell Request</h1>
+  </header>
+  <nav>
+    <a href="#sell">Sell Unused E-waste</a>
+    <a href="#buy">Buy E-waste Components</a>
+    <a href="requestHistory.html" class="btn">View History</a>
+  </nav>
+
+  <section id="sell">
+    <h2 class="section-title">Sell Unused E-waste</h2>
+    <form onsubmit="handleSubmit(event, 'Sell')">
+      <label class="item">
+        <input type="checkbox" value="Laptop" onchange="toggleQuantityInput(this, 'quantity-Laptop')">
+        <span class="item-text">Old Laptop - RM200</span>
+        <img src="images/laptop.jpg" alt="Laptop" class="item-image">
+      </label>
+      <div id="quantity-Laptop" class="quantity-container"><input type="number" name="quantity-Laptop" placeholder="Quantity" min="1">
+      </div>
+      
+      <label class="item">
+        <input type="checkbox" value="Desktop" onchange="toggleQuantityInput(this, 'quantity-Desktop')">
+        <span class="item-text">Old Desktop - RM300</span>
+        <img src="images/desktop.jpg" alt="Desktop" class="item-image">
+      </label>
+      <div id="quantity-Desktop" class="quantity-container"><input type="number" name="quantity-Desktop" placeholder="Quantity" min="1">
+      </div>
+
+      <label class="item">
+        <input type="checkbox" value="Smartphone" onchange="toggleQuantityInput(this, 'quantity-Smartphone')">
+        <span class="item-text">Old Smartphone - RM75</span>
+        <img src="images/smartphone.jpg" alt="Smartphone" class="item-image">
+      </label>
+      <div id="quantity-Smartphone" class="quantity-container"><input type="number" name="quantity-Smartphone" placeholder="Quantity" min="1">
+      </div>
+
+      <label class="item">
+        <input type="checkbox" value="Monitor" onchange="toggleQuantityInput(this, 'quantity-Monitor')">
+        <span class="item-text">Old Monitor - RM170</span>
+        <img src="images/monitor.jpg" alt="Monitor" class="item-image">
+      </label>
+      <div id="quantity-Monitor" class="quantity-container"><input type="number" name="quantity-Monitor" placeholder="Quantity" min="1">
+      </div>
+
+      <label class="item">
+        <input type="checkbox" value="Tablet" onchange="toggleQuantityInput(this, 'quantity-Tablet')">
+        <span class="item-text">Old Tablet - RM80</span>
+        <img src="images/tablet.jpg" alt="Tablet" class="item-image">
+      </label>
+      <div id="quantity-Tablet" class="quantity-container"><input type="number" name="quantity-Tablet" placeholder="Quantity" min="1">
+      </div>
+       
+      <label for="sell-details">Other Details</label>
+      <textarea name="other-details" placeholder="Optional details..."></textarea>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </section>
+
+  <section id="buy">
+    <h2 class="section-title">Buy E-waste Components</h2>
+    <form onsubmit="handleSubmit(event, 'Buy')">
+      <label class="item">
+        <input type="checkbox" value="RAM" onchange="toggleQuantityInput(this, 'quantity-RAM')">
+        <span class="item-text">RAM - RM70</span>
+        <img src="images/RAM.jpg" alt="RAM" class="item-image">
+      </label>
+      <div id="quantity-RAM" class="quantity-container"><input type="number" name="quantity-RAM" placeholder="Quantity" min="1">
+      </div>
+
+      <label class="item">
+        <input type="checkbox" value="Hard Disk" onchange="toggleQuantityInput(this, 'quantity-Hard Disk')">
+        <span class="item-text">Hard Disk - RM180</span>
+        <img src="images/hardisk.jpg" alt="Hard Disk" class="item-image">
+      </label>
+      <div id="quantity-Hard Disk" class="quantity-container"><input type="number" name="quantity-Hard Disk" placeholder="Quantity" min="1">
+      </div>
+
+      <label class="item">
+        <input type="checkbox" value="Wireless Network Card" onchange="toggleQuantityInput(this, 'quantity-Wireless Network Card')">
+        <span class="item-text">Wireless Network Card - RM60</span>
+        <img src="images/wireless.jpg" alt="Wireless Network Card" class="item-image">
+      </label>
+      <div id="quantity-Wireless Network Card" class="quantity-container"><input type="number" name="quantity-Wireless Network Card" placeholder="Quantity" min="1">
+      </div>
+
+      <label class="item">
+        <input type="checkbox" value="CPU" onchange="toggleQuantityInput(this, 'quantity-CPU')">
+        <span class="item-text">CPU - RM200</span>
+        <img src="images/cpu.jpg" alt="CPU" class="item-image">
+      </label>
+      <div id="quantity-CPU" class="quantity-container"><input type="number" name="quantity-CPU" placeholder="Quantity" min="1">
+      </div>
+
+      <label class="item">
+        <input type="checkbox" value="GPU" onchange="toggleQuantityInput(this, 'quantity-GPU')">
+        <span class="item-text">GPU - RM500</span>
+        <img src="images/gpu.jpg" alt="GPU" class="item-image">
+      </label>
+      <div id="quantity-GPU" class="quantity-container"><input type="number" name="quantity-GPU" placeholder="Quantity" min="1">
+      </div>
+
+      <label for="buy-details">Other Details</label>
+      <textarea name="other-details" placeholder="Optional details..."></textarea>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </section>
+</body>
+</html>
+

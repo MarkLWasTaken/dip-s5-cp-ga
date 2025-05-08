@@ -29,6 +29,12 @@ if ($user_id != null) {
 if ($user_id == null) {
     header('Location: ../index.php');
 }
+
+// Set a the default timezone for date and time.
+date_default_timezone_set('Asia/Singapore');
+
+// Set the date and time format (YYYY-MM-DD HH-MM-SS Timezone).
+$date = date('Y-m-d H:i:s P');
 ?>
 
 <!DOCTYPE html>
@@ -570,10 +576,6 @@ if ($user_id == null) {
                 */
 
                 echo "</table>";
-
-                // Ensure the connection to the DB is closed, with or without
-                // any code or query execution for security reasons.
-                $connection->close();
                 ?>
             </div>
         </div>
@@ -585,14 +587,118 @@ if ($user_id == null) {
         <br class="desktop-line-break">
         <br class="desktop-line-break"> -->
 
+        <?php
+        if (@$_SERVER["REQUEST_METHOD"] == "POST") {
+            // Get the value of the button.
+            @$mail_email_address = $_POST['email'];
+
+            if (@$mail_email_address != "") {
+                // Insert data into the "mailing_list" table.
+                // Declare a variable for the query.
+                // Attempt to connect to the database and execute the query.
+                @$sql_query_mail_1_result = $connection->query(
+                    "SELECT * FROM `mailing_list`
+                    WHERE email_address = '$mail_email_address'");
+
+                // Check if the email address exists in the mailing list.
+                if (@$sql_query_mail_1_result->num_rows > 0) {
+                    // Email address already exists in the database.
+
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
+                    <style>
+                        /* Subscribe to our mailing list to be notified of latest news. */
+                        #mail-text-1 {
+                            display: none;
+                            opacity: 0%;
+                        }
+
+                        /* Thank you for subscribing! */
+                        #mail-text-2 {
+                            display: none;
+                            opacity: 0%;
+                        }
+
+                        /* Email address already exists in the database. */
+                        #mail-text-3 {
+                            display: block;
+                            opacity: 100%;
+                        }
+
+                        /* Subscription form */
+                        #subscription-form {
+                            display: none;
+                            opacity: 0%;
+                        }
+                    </style>
+                    HTML;
+                    echo $html;
+                }
+                else {
+                    // Thank you for subscribing!
+
+                    // Insert data into the "mailing_list" table.
+                    // Declare a variable for the query.
+                    $sql_query_mail_2 = "INSERT INTO `mailing_list` (email_address, is_subscribed,
+                    date_first_subscribed)
+                    VALUES ('$mail_email_address', '1', '$date')";
+
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_mail_2_result = $connection->query($sql_query_mail_2);
+
+                    // Use heredoc syntax to make the code readable and easier to maintain.
+                    // Very useful for handling large blocks of of codes.
+                    $html = <<<HTML
+                    <style>
+                        /* Subscribe to our mailing list to be notified of latest news. */
+                        #mail-text-1 {
+                            display: none;
+                            opacity: 0%;
+                        }
+
+                        /* Thank you for subscribing! */
+                        #mail-text-2 {
+                            display: block;
+                            opacity: 100%;
+                        }
+
+                        /* Email address already exists in the database. */
+                        #mail-text-3 {
+                            display: none;
+                            opacity: 0%;
+                        }
+
+                        /* Subscription form */
+                        #subscription-form {
+                            display: none;
+                            opacity: 0%;
+                        }
+                    </style>
+                    HTML;
+                    echo $html;
+                }
+            }
+        }
+        ?>
+
+        <?php
+        // Ensure the connection to the DB is closed, with or without
+        // any code or query execution for security reasons.
+        $connection->close();
+        ?>
+
         <div id="footer-container-3-mobile">
-            <p class="black-text">Subscribe to our mailing list to be notified of latest news.</p>
-            <div class="margin-30px"></div>
-            <div class="subscription-form">
-                <form action="" method="post">
+        <div id="mailing-list"></div>
+            <p id="mail-text-1" class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p>
+            <p id="mail-text-2" class="black-text font-size-20px">Thank you for subscribing!</p>
+            <p id="mail-text-3" class="black-text font-size-20px">The email address you have<br>specified is already subscribed<br>to the mailling list.</p>
+            <div class="margin-24px"></div>
+            <div id="subscription-form" class="subscription-form">
+                <form action="#mailing-list" method="post">
                     <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
                     <div class="margin-30px"></div>
-                    <input type="submit" value="Subscribe" class="subscribe-button">
+                    <input type="submit" name="subscribe" value="Subscribe" class="subscribe-button">
                 </form>
             </div>
         </div>
@@ -631,13 +737,16 @@ if ($user_id == null) {
                 </ul>
             </div>
             <div id="footer-container-3">
-                <p class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p>
+            <div id="mailing-list"></div>
+                <p id="mail-text-1" class="black-text">Subscribe to our mailing list<br>to be notified of latest news.</p>
+                <p id="mail-text-2" class="black-text font-size-20px">Thank you for subscribing!</p>
+                <p id="mail-text-3" class="black-text font-size-20px">The email address you have<br>specified is already subscribed<br>to the mailling list.</p>
                 <div class="margin-24px"></div>
-                <div class="subscription-form">
-                    <form action="" method="post">
+                <div id="subscription-form" class="subscription-form">
+                    <form action="#mailing-list" method="post">
                         <input type="email" name="email" placeholder="Enter your email address" class="subscribe-textbox" required>
                         <div class="margin-30px"></div>
-                        <input type="submit" value="Subscribe" class="subscribe-button">
+                        <input type="submit" name="subscribe" value="Subscribe" class="subscribe-button">
                     </form>
                 </div>
             </div>

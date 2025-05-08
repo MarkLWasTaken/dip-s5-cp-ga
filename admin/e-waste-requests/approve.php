@@ -498,6 +498,15 @@ $date = date('Y-m-d H:i:s P');
                         HTML;
                         echo $html;
                     }
+                    else if ($request_status == "Approved") {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <h2>User request has been successfully approved!</h2>
+                        <div class="margin-30px"></div>
+                        HTML;
+                        echo $html;
+                    }
                     else  {
                         // Use heredoc syntax to make the code readable and easier to maintain.
                         // Very useful for handling large blocks of of codes.
