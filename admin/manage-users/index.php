@@ -347,16 +347,16 @@ if ($is_admin != 1) {
 
         // Check if the form has been submitted.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-             // Store the values in the session.
-            $_SESSION['txtID'] = $_POST['txtID'];
-            $_SESSION['txtFName'] = $_POST['txtFName'];
-            $_SESSION['txtLName'] = $_POST['txtLName'];
-            $_SESSION['txtEmail'] = $_POST['txtEmail'];
+            // Store the values in the session.
+            @$_SESSION['txtID'] = $_POST['txtID'];
+            @$_SESSION['txtFName'] = $_POST['txtFName'];
+            @$_SESSION['txtLName'] = $_POST['txtLName'];
+            @$_SESSION['txtEmail'] = $_POST['txtEmail'];
             @$_SESSION['rdoGender'] = $_POST['rdoGender'];
-            $_SESSION['txtCountry'] = $_POST['txtCountry'];
+            @$_SESSION['txtCountry'] = $_POST['txtCountry'];
             @$_SESSION['rdoAdmin'] = $_POST['rdoAdmin'];
-            $_SESSION['txtDateCreated'] = $_POST['txtDateCreated'];
-            $_SESSION['txtDateModified'] = $_POST['txtDateModified'];
+            @$_SESSION['txtDateCreated'] = $_POST['txtDateCreated'];
+            @$_SESSION['txtDateModified'] = $_POST['txtDateModified'];
             if (isset($_POST['clear'])) {
                 // Unset the session variables to clear the form data.
                 unset($_SESSION['txtID']);

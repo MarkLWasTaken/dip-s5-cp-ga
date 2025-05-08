@@ -1,5 +1,5 @@
 <?php
-include_once '../php/connection.php';
+include_once '../../php/connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['flag_issue_id'])) {

@@ -30,10 +30,6 @@ if ($user_id != null) {
 if ($is_admin != 1) {
     header('Location: ../../../index.php');
 }
-
-// Ensure the connection to the DB is closed, with or without
-// any code or query execution for security reasons.
-$connection->close();
 ?>
 
 <!DOCTYPE html>
@@ -323,8 +319,8 @@ $connection->close();
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container-2">
-            <div class="page-title-banner-content-2">Manage Users (Delete User) (Process)</div>
+        <div class="page-title-banner-container-5">
+            <div class="page-title-banner-content-5">Manage Users (Delete User)</div>
         </div>
 
         <div class="margin-40px"></div>
@@ -333,15 +329,27 @@ $connection->close();
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Get the data from the submitted form.
-            $users_user_id = $_POST["users_user_id"];
+            $users_user_id = $_POST["user_id"];
+
+            // Update the user details.
+            // Declare a variable for the query.
+            // Attempt to connect to the database and execute the query.
+            $sql_query_1_result = $connection->query("DELETE FROM users WHERE `user_id` = $users_user_id");
 
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <!-- Layout for the contents 2 container. -->
-            <div class="container--container">
-                <div class="container--content">
-                    <h2>User ID $users_user_id has been successfully deleted.</h2>
+            <!-- Layout for the container 13. -->
+            <div class="container-13-container">
+                <div class="container-13-content">
+                    <h2>User ID $users_user_id has been successfully deleted!</h2>
+                    <div class="margin-50px"></div>
+                        <div class="container-15-container">
+                            <a class="container-15-contents" href="../../../admin/manage-users/index.php">
+                                <p>Return to the manage users page</p>
+                            </a>
+                        </div>
+                        <div class="margin-80px"></div>
                 </div>
             </div>
             HTML;
@@ -352,71 +360,40 @@ $connection->close();
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
             <style>
-                container-2-container {
+                .container-13-container {
                     display: none;
                     opacity: 0%;
                 }
 
-                container-2-content {
+                .container-13-content {
                     display: none;
                     opacity: 0%;
                 }
             </style>
 
-            <!-- Layout for the contents 5 container. -->
-            <div class="container-2-container">
-                <div class="container-5-content">
+            <!-- Layout for the container 14. -->
+            <div class="container-14-container">
+                <div class="container-14-content">
                     <h2>Please select a user to delete in manage users page.</h2>
+                    <div class="margin-60px"></div>
+                    <div class="container-8-container">
+                        <a class="container-8-contents" href="../../../admin/manage-users/index.php">
+                            <p>Return to the manage users page</p>
+                        </a>
+                    </div>
+                    <div class="margin-80px"></div>
                 </div>
             </div>
             HTML;
             echo $html;
         }
+
+        // Ensure the connection to the DB is closed, with or without
+        // any code or query execution for security reasons.
+        $connection->close();
         ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="margin-100px"></div>
+        <div class="margin-100px"></div>
         <!-- <br class="desktop-line-break">
         <br class="desktop-line-break">
         <br class="desktop-line-break">

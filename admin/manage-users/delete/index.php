@@ -319,18 +319,71 @@ if ($is_admin != 1) {
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container-3">
-            <div class="page-title-banner-content-3">Admin - Manage Users (Delete User)</div>
+        <div class="page-title-banner-container-4">
+            <div class="page-title-banner-content-4">Manage Users (Delete User)</div>
         </div>
 
         <div class="margin-30px"></div>
         <!-- <br> -->
 
         <?php
-        // Check if the 'id' parameter is set in the URL
-        if (isset($_GET['id'])) {
-            // Retrieve the value of 'id' from the link.
-            $user_id = $_GET['id'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <!-- Layout for the container 12. -->
+            <div class="container-12-container">
+                <div class="container-12-content">
+                    <h2>Delete user here.</h2>
+                </div>
+            </div>
+            HTML;
+            echo $html;
+
+            // Get the user ID from POST request.
+            @$users_user_id = $_POST["user_id"];
+        }
+        else if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            // Use heredoc syntax to make the code readable and easier to maintain.
+            // Very useful for handling large blocks of of codes.
+            $html = <<<HTML
+            <style>
+                .manage-user-table {
+                    display: none;
+                    opacity: 0%;
+                }
+
+                .manage-user-table {
+                    display: none;
+                    opacity: 0%;
+                }
+
+                .container-3-container {
+                    display: none;
+                    opacity: 0%;
+                }
+
+                .container-3-content {
+                    display: none;
+                    opacity: 0%;
+                }
+            </style>
+
+            <!-- Layout for the container 5. -->
+            <div class="container-5-container">
+                <div class="container-5-content">
+                    <h2>Please select a user to delete in manage users page.</h2>
+                    <div class="margin-60px"></div>
+                    <div class="container-8-container">
+                        <a class="container-8-contents" href="../../../admin/manage-users/index.php">
+                            <p>Return to the manage users page</p>
+                        </a>
+                    </div>
+                    <div class="margin-80px"></div>
+                </div>
+            </div>
+            HTML;
+            echo $html;
         }
         ?>
 
@@ -338,47 +391,49 @@ if ($is_admin != 1) {
         <div>
             <div class="manage-user-table">
                 <?php
-                // Use heredoc syntax to make the code readable and easier to maintain.
-                // Very useful for handling large blocks of of codes.
-                $html = <<<HTML
-                <table class="manage-rows-table" border=1>
-                    <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email Address</th>
-                        <th>Gender</th>
-                        <th>Country</th>
-                        <th>Is Admin</th>
-                    </tr>
-                HTML;
-                echo $html;
-
-                // Declare a variable for the query.
-                $sql_query_1 = "SELECT * FROM `users`
-                                WHERE user_id = $user_id";
-
-                // Attempt to connect to the database and execute the query.
-                $sql_query_1_result = $connection->query($sql_query_1);
-
-                // Insert the each of the results into the table.
-                while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Use heredoc syntax to make the code readable and easier to maintain.
                     // Very useful for handling large blocks of of codes.
                     $html = <<<HTML
-                    <tr>
-                        <td>{$sql_query_1_row['user_id']}</td>
-                        <td>{$sql_query_1_row['first_name']}</td>
-                        <td>{$sql_query_1_row['last_name']}</td>
-                        <td>{$sql_query_1_row['email_address']}</td>
-                        <td>{$sql_query_1_row['gender']}</td>
-                        <td>{$sql_query_1_row['country']}</td>
-                        <td>{$sql_query_1_row['is_admin']}</td>
-                    </tr>
+                    <table class="manage-rows-table" border=1>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Address</th>
+                            <th>Gender</th>
+                            <th>Country</th>
+                            <th>Is Admin</th>
+                        </tr>
                     HTML;
                     echo $html;
+
+                    // Declare a variable for the query.
+                    $sql_query_1 = "SELECT * FROM `users`
+                                    WHERE user_id = $users_user_id";
+
+                    // Attempt to connect to the database and execute the query.
+                    $sql_query_1_result = $connection->query($sql_query_1);
+
+                    // Insert the each of the results into the table.
+                    while($sql_query_1_row = $sql_query_1_result->fetch_assoc()) {
+                        // Use heredoc syntax to make the code readable and easier to maintain.
+                        // Very useful for handling large blocks of of codes.
+                        $html = <<<HTML
+                        <tr>
+                            <td>{$sql_query_1_row['user_id']}</td>
+                            <td>{$sql_query_1_row['first_name']}</td>
+                            <td>{$sql_query_1_row['last_name']}</td>
+                            <td>{$sql_query_1_row['email_address']}</td>
+                            <td>{$sql_query_1_row['gender']}</td>
+                            <td>{$sql_query_1_row['country']}</td>
+                            <td>{$sql_query_1_row['is_admin']}</td>
+                        </tr>
+                        HTML;
+                        echo $html;
+                    }
+                    echo '</table>';
                 }
-                echo '</table>';
 
                 // Ensure the connection to the DB is closed, with or without
                 // any code or query execution for security reasons.
@@ -399,16 +454,13 @@ if ($is_admin != 1) {
 
                 <!-- Layout for the container 4. -->
                 <div class="container-4-container">
-                    <div class="container-4-content-1">
-                        <a class="black-hyperlink-display" href="../../../admin/manage-users/index.php">    <!-- TODO -->
-                            <p class="container-4-content-1-title">Yes</p>
-                        </a>
-                    </div>
-                    <div class="container-4-content-2">
-                        <a class="black-hyperlink-display" href="../../../admin/manage-users/index.php">
-                            <p class="container-4-content-2-title">No</p>
-                        </a>
-                    </div>
+                    <form id="yes" method="post" action="process.php" class="container-4-contents-shared container-4-contents-yes">
+                        <input type="hidden" name="user_id" value="<?php echo $users_user_id; ?>">
+                        <input type="submit" name="submit" value="Yes" class="container-4-contents-yes no-decoration-button">
+                    </form>
+                    <form id="no" method="post" action="../../../admin/manage-users/index.php" class="container-4-contents-shared container-4-contents-no">
+                        <input type="submit" name="submit" value="No" class="container-4-contents-no no-decoration-button">
+                    </form>
                 </div>
 
             </div>

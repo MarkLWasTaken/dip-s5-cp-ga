@@ -325,8 +325,8 @@ $date = date('Y-m-d H:i:s P');
         <div class="margin-20px-desktop"></div>
         <!-- <br class="desktop-line-break"> -->
 
-        <div class="page-title-banner-container-2">
-            <div class="page-title-banner-content-2">Manage Users (Edit User)</div>
+        <div class="page-title-banner-container-3">
+            <div class="page-title-banner-content-3">Manage Users (Edit User)</div>
         </div>
 
         <div class="margin-40px"></div>

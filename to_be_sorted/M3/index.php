@@ -76,6 +76,7 @@ $cashChartJSON = json_encode($cashData);
 </header>
 
 <nav>
+  <a href="../../dashboard.php">Dashboard</a>
   <a href="#materials">Preprocessing Materials</a>
   <a href="#recycled">Recycled Products</a>
   <a href="#e-waste">Collected E-Waste</a>

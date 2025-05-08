@@ -7,7 +7,9 @@ body {
 }
 
 header {
-  background: linear-gradient(to right, #00f260, #0575e6);
+  /* background: linear-gradient(to right, #00f260, #0575e6); */
+  /* background: linear-gradient(to right, #008033, #0575e6); */
+    background: linear-gradient(rgb(50, 70, 70, 1), rgba(27, 47, 48, 0.7));
   color: white;
   padding: 2.5em 0;
   text-align: center;
@@ -15,7 +17,8 @@ header {
 }
 
 nav {
-  background-color: #ff4e50;
+  /* background-color: #ff4e50; */
+  background-color: gray;
   text-align: center;
   padding: 1em;
 }

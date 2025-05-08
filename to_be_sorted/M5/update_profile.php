@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connection.php';
+include '../../php/connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnUpdate'])) {
     $user_id = $_SESSION['user_id'];
