@@ -129,10 +129,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="../admin/index.php" onclick="closeNav()">Admin control panel</a>
             <a href="../admin/manage-users/index.php" onclick="closeNav()">Manage users</a>
-            <a href="../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <a href="../admin/database-query.php" onclick="closeNav()">Database Query</a>
+            <a href="../admin/dashboard.php" onclick="closeNav()">Admin Dashboard</a>
+            <a href="../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
             echo $html;
@@ -141,8 +141,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Use heredoc syntax to make the code readable and easier to maintain.
             // Very useful for handling large blocks of of codes.
             $html = <<<HTML
-            <a href="../admin/index.php" onclick="closeNav()">Admin control panel</a>
             <a href="../admin/e-waste-requests/index.php" onclick="closeNav()">Screen user requests (Approve/Reject)</a>
+            <a href="../admin/dashboard.php" onclick="closeNav()">Admin Dashboard</a>
             <a href="../admin/statistics/index.php" onclick="closeNav()">Statistics</a>
             <div class="margin-100px"></div>
             HTML;
